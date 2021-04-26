@@ -9,6 +9,6 @@ public class Chat
 	public Chat(Huprum main)
 	{
 		Loginer loginer = main.getLoginer();
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdh
 	}
 }
