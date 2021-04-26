@@ -1,1 +1,1 @@
-I am Batman give me detonstor
+I am Batman give me detonator
