@@ -12,6 +12,7 @@ public class Loginer
 
 	public Loginer(Huprum main)
 	{
+//пеши здеся
 	}
 
 	public int getId()
