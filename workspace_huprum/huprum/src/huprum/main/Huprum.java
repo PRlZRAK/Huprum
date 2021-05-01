@@ -1,5 +1,7 @@
 package huprum.main;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -36,6 +38,8 @@ public class Huprum extends JFrame
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		loginer = new Loginer(this);
+		Container panel = getContentPane();
+		panel.setLayout(new BorderLayout());
 		new Chat(this);
 		setVisible(true);
 	}
