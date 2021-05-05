@@ -10,7 +10,6 @@ require_once('src/db.php');
 require_once("src/debugOutput.php");
 require_once("src/login.php");
 
-
 $debug = new debugOutput('server.txt');
 
 $postData = file_get_contents('php://input');
