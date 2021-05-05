@@ -1,0 +1,5 @@
+May 5, 2021, 3:57 pm
+[$data] = (array): {
+	[action] = (string)"login"
+	[email] = (string)"yaa52@mail.ru"
+} [/$data]

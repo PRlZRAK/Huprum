@@ -12,29 +12,25 @@ import javax.swing.JFrame;
 import huprum.main.chat.Chat;
 import huprum.main.loginer.Loginer;
 
-public class Huprum extends JFrame
-{
+public class Huprum extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3256294715807967862L;
-	private static final int  DEFAULT_HEIGHT   = 600;
-	private static final int  DEFAULT_WIDTH    = 1024;
-	private Loginer           loginer;
+	private static final int DEFAULT_HEIGHT = 600;
+	private static final int DEFAULT_WIDTH = 1024;
+	private Loginer loginer;
 
-	public Huprum(String title)
-	{
+	public Huprum(String title) {
 		super(title);
-		addWindowListener(new WindowAdapter()
-		{
-			public void windowClosing(WindowEvent e)
-			{
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		// setExtendedState(JFrame.MAXIMIZED_BOTH);
-		Toolkit   kit        = Toolkit.getDefaultToolkit();
+		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		loginer = new Loginer(this);
@@ -44,13 +40,11 @@ public class Huprum extends JFrame
 		setVisible(true);
 	}
 
-	public Loginer getLoginer()
-	{
+	public Loginer getLoginer() {
 		return loginer;
 	}
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		new Huprum("Messenger Huprum");
 	}
 }
