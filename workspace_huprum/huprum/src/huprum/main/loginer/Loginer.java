@@ -2,6 +2,9 @@ package huprum.main.loginer;
 
 import huprum.main.Huprum;
 
+import java.awt.BorderLayout;
+import huprum.main.loginer.panels.Panel;
+
 public class Loginer
 {
 	private int    id;
@@ -9,10 +12,19 @@ public class Loginer
 	private String phone;
 	private String email;
 	private String password;
+	public Panel p;
 
 	public Loginer(Huprum main)
 	{
+
+
+		p=new Panel(this);
+		main.add(p,BorderLayout.CENTER);
 		
+		       
+		main.setSize(500, 200);     
+		        
+
 	}
 
 	public int getId()

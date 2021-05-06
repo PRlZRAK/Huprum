@@ -5,10 +5,10 @@ import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 
 import huprum.main.Huprum;
+import huprum.main.chat.panels.CenterPanel;
+import huprum.main.chat.panels.SouthPanel;
+import huprum.main.chat.panels.WestPanel;
 import huprum.main.loginer.Loginer;
-import huprum.main.panels.CenterPanel;
-import huprum.main.panels.SouthPanel;
-import huprum.main.panels.WestPanel;
 
 public class Chat
 {

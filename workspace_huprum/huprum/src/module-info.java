@@ -1,5 +1,5 @@
 module huprum {
-	exports huprum.main.panels;
+	exports huprum.main.chat.panels;
 	exports huprum.main.loginer;
 	exports huprum.main;
 	exports huprum.main.chat;
