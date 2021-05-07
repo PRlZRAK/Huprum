@@ -34,10 +34,9 @@ public class Huprum extends JFrame {
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		loginer = new Loginer(this);
-		Container panel = getContentPane();
-		panel.setLayout(new BorderLayout());
-		new Chat(this);
+		//new Chat(this);
 		setVisible(true);
+		//test
 	}
 
 	public Loginer getLoginer() {
