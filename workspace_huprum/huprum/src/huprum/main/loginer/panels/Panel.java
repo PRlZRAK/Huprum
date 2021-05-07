@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import huprum.main.Huprum;
 import huprum.main.loginer.Loginer;
+import huprum.main.loginer.listener.EnterActionList;
 
 public class Panel extends JPanel 
 {
@@ -22,25 +24,35 @@ public class Panel extends JPanel
 	private JButton Enter;
 	private JLabel LMP;
 	private JLabel P;
-	public Panel(Loginer main) { 
+	public Panel(Huprum main) { 
 		
 		setLayout (new FlowLayout(FlowLayout.CENTER));
 		
 		Pas=new TextField(60);
 		LogMailPhone=new TextField(60);
 		Enter=new JButton("Enter");
-		LMP = new JLabel("Почта/Телефон/Логин");
-		P = new JLabel("Пароль");
+		LMP = new JLabel("РўРµР»РµС„РѕРЅ/РџРѕС‡С‚Р°/Р›РѕРіРёРЅ");
+		P = new JLabel("РџР°СЂРѕР»СЊ");
 		add(LMP);
 		add(LogMailPhone);
 		add(P);
 		add(Pas);
 		add(Enter);
-
+        Enter.addActionListener(new EnterActionList(main));
+      
 	
 		
 		
-		
+	}
+	public String GetLMP() 
+	{
+		String s = LogMailPhone.getText();
+		return s;
+	}
+	public String GetPas() 
+	{
+		String s = Pas.getText();
+		return s;
 	}
 
 }

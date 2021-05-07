@@ -18,7 +18,7 @@ public class Loginer
 	{
 
 
-		p=new Panel(this);
+		p=new Panel(main);
 		main.add(p,BorderLayout.CENTER);
 		
 		       

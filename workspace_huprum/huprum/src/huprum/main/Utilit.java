@@ -8,13 +8,9 @@ public class Utilit implements UtilitInt
 	public static void main(String[] args)
 	{
 		Utilit ut  = new Utilit();
-		int    ret = ut.ChecLogin("+7(928)661-35-22");
-		System.out.println(ret);
-		System.out.println(ut.ClearPhone("+7(928)661-35-22"));
 	}
 
-	@Override
-	public int ChecLogin(String login)
+	public static int CheckLogin(String login)
 	{
 		// TODO Auto-generated method stub
 		// 0 -mail
@@ -35,8 +31,7 @@ public class Utilit implements UtilitInt
 		return 2;
 	}
 
-	@Override
-	public String ClearPhone(String phone)
+	public static String CleaPhone(String phone)
 	{
 		String shablon = "0123456789";
 		if (phone.charAt(0) == '+' && phone.charAt(1) == '7')
@@ -50,5 +45,19 @@ public class Utilit implements UtilitInt
 				ret += phone.charAt(i);
 		}
 		return ret;
+	}
+
+	@Override
+	public int ChecLogin(String login)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String ClearPhone(String phone)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

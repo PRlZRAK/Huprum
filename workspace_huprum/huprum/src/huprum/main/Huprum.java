@@ -19,7 +19,7 @@ public class Huprum extends JFrame {
 	private static final long serialVersionUID = -3256294715807967862L;
 	private static final int DEFAULT_HEIGHT = 600;
 	private static final int DEFAULT_WIDTH = 1024;
-	private Loginer loginer;
+	public Loginer loginer;
 
 	public Huprum(String title) {
 		super(title);
@@ -37,7 +37,7 @@ public class Huprum extends JFrame {
 		//new Chat(this);
 		setVisible(true);
 		//test
-		//Michail bober
+		//Michail boberito
 	}
 
 	public Loginer getLoginer() {
