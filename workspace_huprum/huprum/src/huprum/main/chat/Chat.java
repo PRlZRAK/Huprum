@@ -15,6 +15,7 @@ public class Chat
 	public SouthPanel sp;
 	public CenterPanel cp;
 	public WestPanel wp;
+	//fffff
 	
 	public Chat(Huprum main)
 	{
