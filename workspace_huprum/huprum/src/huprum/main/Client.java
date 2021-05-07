@@ -51,9 +51,21 @@ public class Client
 			{
 				response.append(responseLine.trim());
 			}
-			// System.out.println("yaa response " + response.toString());
-			return response.toString();
+			System.out.println("response = " + response.toString());
+			return getJson(response.toString());
 		}
+	}
+
+	private String getJson(String s)
+	{
+		int b = s.indexOf("<#");
+		if (b > 0)
+		{
+			int e = s.indexOf("#>");
+			if (e > 0 && e > b)
+				return s.substring(b + 2, e);
+		}
+		return s;
 	}
 
 	public String getStringUrl()
@@ -65,12 +77,25 @@ public class Client
 	{
 		try
 		{
-			Client              cl   = new Client("http://localhost/huprum/");
+			Client cl = new Client("http://130.61.155.146/huprum/server/index.php");
+			// Client cl = new Client("http://localhost/huprum/server/index.php");
 			Map<String, String> pars = new HashMap<String, String>();
 			pars.put("action", "login");
 			pars.put("email", "yaa52@mail.ru");
 			String otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
+			pars.clear();
+			pars.put("action", "get_users");
+			otvet = cl.send(pars);
+			System.out.println("otvet = " + otvet);
+			pars.clear();
+			pars.put("action", "get_chat");
+			pars.put("myid", "3");
+			pars.put("id", "1");
+			otvet = cl.send(pars);
+			System.out.println("otvet = " + otvet);
+			JSONObject jo = new JSONObject(otvet);
+			System.out.println("jo = " + jo);
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block

@@ -20,8 +20,7 @@ public class Chat
 	public Chat(Huprum main)
 	{
 		Loginer loginer = main.getLoginer();
-	 
-		
+	 		
 		wp=new WestPanel(this);
 		main.add(new JScrollPane(wp),BorderLayout.WEST);
 		
