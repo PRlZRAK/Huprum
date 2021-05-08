@@ -27,6 +27,13 @@ public class LoginActionListener implements ActionListener
 		} else
 			loginer.setErrLog("");
 		
+		String  pass     = loginer.getJpass();
+		if (pass.equals(""))
+		{
+			loginer.setErrPas("<html><p color=red>заполнить");
+			return;
+		} else
+			loginer.setErrPas("");
 		// todo
 	}
 }

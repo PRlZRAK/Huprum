@@ -2,6 +2,7 @@ package huprum.main.loginer;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,9 +43,14 @@ public class Loginer
 		GridBagConstraints c = new GridBagConstraints();
 		c.weightx = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		// c.insets = new Insets(10, 1, 10, 1);
+		c.insets = new Insets(5,5,5,5);
+		c.fill=GridBagConstraints.HORIZONTAL;
+		
 		c.gridx = 0;
+		panel.add(new JLabel(""), c);
+		c.gridx = 1;
 		c.gridy = 0;
+		
 		panel.add(new JLabel("Логин или Телефон или Почта:"), c);
 		c.gridy++;
 		jlogin = new JTextField(20);
@@ -52,17 +58,21 @@ public class Loginer
 		c.gridx++;
 		er_login = new JLabel();
 		panel.add(er_login, c);
-		c.gridx = 0;
+		
+		c.gridx = 1;
 		c.gridy++;
+		
 		panel.add(new JLabel("Пароль:"), c);
 		c.gridy++;
 		jpass = new JTextField(20);
 		panel.add(jpass, c);
 		c.gridx++;
-		er_pass = new JLabel("<html><p color=red>ошибка");
+		er_pass = new JLabel();
 		panel.add(er_pass, c);
+		
 		c.gridy++;
-		c.gridx = 0;
+		c.gridx = 1;
+		
 		JButton button = new JButton("Ввод");
 		panel.add(button, c);
 		button.addActionListener(new LoginActionListener(main));
@@ -96,6 +106,11 @@ public class Loginer
 	public void setErrLog(String string)
 	{
 		er_login.setText(string);
+		
+	}
+	public void setErrPas(String string)
+	{
+		er_pass.setText(string);
 		
 	}
 }
