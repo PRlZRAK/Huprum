@@ -3,13 +3,8 @@ package huprum.main.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Utilit implements UtilitInt
+public class Utilit
 {
-	public static void main(String[] args)
-	{
-		Utilit ut = new Utilit();
-	}
-
 	public static int CheckLogin(String login)
 	{
 		// TODO Auto-generated method stub
@@ -45,19 +40,5 @@ public class Utilit implements UtilitInt
 				ret += phone.charAt(i);
 		}
 		return ret;
-	}
-
-	@Override
-	public int ChecLogin(String login)
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String ClearPhone(String phone)
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
