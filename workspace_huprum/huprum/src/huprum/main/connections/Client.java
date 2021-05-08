@@ -1,4 +1,4 @@
-package huprum.main;
+package huprum.main.connections;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class Client
 		con.setRequestMethod("POST");
 		con.setRequestProperty("Content-Type", "application/json; utf-8");
 		con.setDoOutput(true);
-		con.setReadTimeout(10 * 1000);
+		con.setReadTimeout(10 * 1000); 
 		JSONObject jo = new JSONObject(params);
 		try (OutputStream os = con.getOutputStream())
 		{

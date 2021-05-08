@@ -1,4 +1,4 @@
-package huprum.main;
+package huprum.main.utils;
 
 public interface UtilitInt
 {

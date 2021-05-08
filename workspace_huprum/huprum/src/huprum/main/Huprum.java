@@ -35,7 +35,7 @@ public class Huprum extends JFrame {
 		setVisible(true);
 	}
 
-	public Loginer getLoginer() {
+	public Loginer getLoginer() { 
 		return loginer;
 	}
 
