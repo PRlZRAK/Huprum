@@ -1,7 +1,5 @@
 package huprum.main;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -9,7 +7,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import huprum.main.chat.Chat;
 import huprum.main.loginer.Loginer;
 
 public class Huprum extends JFrame {
