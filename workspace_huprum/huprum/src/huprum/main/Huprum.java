@@ -36,8 +36,6 @@ public class Huprum extends JFrame {
 		loginer = new Loginer(this);
 		//new Chat(this);
 		setVisible(true);
-		//test
-		//Michail boberito
 	}
 
 	public Loginer getLoginer() {

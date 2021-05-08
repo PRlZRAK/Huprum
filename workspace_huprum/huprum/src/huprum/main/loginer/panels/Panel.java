@@ -1,6 +1,7 @@
 package huprum.main.loginer.panels;
 
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.TextField;
 
@@ -20,9 +21,9 @@ public class Panel extends JPanel
 	 */
 	private static final long serialVersionUID = 1L;
 	private TextField LogMailPhone;
-	private TextField Pas;
+	public TextField Pas;
 	private JButton Enter;
-	private JLabel LMP;
+	public JLabel LMP;
 	private JLabel P;
 	public Panel(Huprum main) { 
 		
@@ -39,10 +40,9 @@ public class Panel extends JPanel
 		add(Pas);
 		add(Enter);
         Enter.addActionListener(new EnterActionList(main));
+        
+        
       
-	
-		
-		
 	}
 	public String GetLMP() 
 	{
