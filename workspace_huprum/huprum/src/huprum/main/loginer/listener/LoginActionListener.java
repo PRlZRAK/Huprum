@@ -35,5 +35,14 @@ public class LoginActionListener implements ActionListener
 		} else
 			loginer.setErrPas("");
 		// todo
+		/* дальше:
+		 * Определить что у нас в loginer
+		 * отправить запрос на сервер (Client)
+		 * Eсли satus 0 
+		 * сверить пароль
+		 * заполнить свойства в объекте Loginer
+		 * и передать управление в Chat
+		 * 
+		 */
 	}
 }
