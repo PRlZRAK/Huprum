@@ -14,7 +14,10 @@ public class UserButtomClass extends JButton implements UserButtom
 	 */
 	private static final long serialVersionUID = 0;
 	private boolean           isSel;
-
+	public UserButtomClass(String string)
+	{
+    	
+	} 
 	@Override
 	public void setSelect(boolean select)
 	{
@@ -62,12 +65,13 @@ public class UserButtomClass extends JButton implements UserButtom
 		jb.setBounds(5, 5, 100, 30);
 		panel.add(jb);
 		// кнопка Алексея раскоментировать и отладить
-		/*
-		UserButtomClass ubc=new UserButtomClass("enter 2"); // нет конструктора
-		ubc.setBounds(5, 20, 100, 30);
+		
+		UserButtomClass ubc=new UserButtomClass("enter 2");
+		ubc.setBounds(5, 40, 100, 30);
 		panel.add(ubc);
-		*/
+		
 		jframe.getContentPane().add(panel);
 		
 	}
 }
+

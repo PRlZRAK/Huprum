@@ -15,10 +15,10 @@ public class Chat
 	public SouthPanel sp;
 	public CenterPanel cp;
 	public WestPanel wp;
-	//fffff
 	
 	public Chat(Huprum main)
 	{
+		@SuppressWarnings("unused")
 		Loginer loginer = main.getLoginer();
 	 		
 		wp=new WestPanel(this);
