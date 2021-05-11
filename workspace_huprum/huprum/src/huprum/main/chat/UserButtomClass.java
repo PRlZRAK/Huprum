@@ -4,6 +4,8 @@ import java.awt.Button;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class UserButtomClass extends JButton implements UserButtom
 {
@@ -44,5 +46,28 @@ public class UserButtomClass extends JButton implements UserButtom
 	{
 		// TODO Auto-generated method stub
 		return null;
+	}
+	/**
+	 * @param args
+	 * Метод добавллен для отладки класса
+	 */
+	public static void main(String[] args) {
+		JFrame jframe = new JFrame("test UserButtomClass");
+		jframe.setSize(800, 600);
+		jframe.setVisible(true);
+		JPanel panel = new JPanel();
+        panel.setLayout(null);
+        // стандартная кнопка
+		JButton jb = new JButton("enter 1");
+		jb.setBounds(5, 5, 100, 30);
+		panel.add(jb);
+		// кнопка Алексея раскоментировать и отладить
+		/*
+		UserButtomClass ubc=new UserButtomClass("enter 2"); // нет конструктора
+		ubc.setBounds(5, 20, 100, 30);
+		panel.add(ubc);
+		*/
+		jframe.getContentPane().add(panel);
+		
 	}
 }
