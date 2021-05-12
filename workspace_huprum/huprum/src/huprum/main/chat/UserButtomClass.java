@@ -13,20 +13,21 @@ public class UserButtomClass extends JButton implements UserButtom
 	 * 
 	 */
 	private static final long serialVersionUID = 0;
-	private boolean           isSel;
-	public UserButtomClass(String string)
+	private boolean isSel;
+	private Integer recId;
+	public UserButtomClass(String b)
 	{
-    	
+    super(b);
 	} 
 	@Override
 	public void setSelect(boolean select)
 	{
-		Button b = new Button();
 		if (select == true)
 		{
-			b.setBackground(new Color(255, 204, 0));
 			isSel = true;
 		}
+		else 
+			isSel = false;
 	}
 
 	@Override
@@ -38,14 +39,13 @@ public class UserButtomClass extends JButton implements UserButtom
 	@Override
 	public void setId(Integer id)
 	{
-		// TODO Auto-generated method stub
+		recId = id;
 	}
 
 	@Override
 	public Integer getId()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return recId;
 	}
 	/**
 	 * @param args
@@ -62,6 +62,7 @@ public class UserButtomClass extends JButton implements UserButtom
 		jb.setBounds(5, 5, 100, 30);
 		panel.add(jb);
 		// кнопка Алексея раскоментировать и отладить
+		
 		
 		UserButtomClass ubc=new UserButtomClass("enter 2");
 		ubc.setBounds(5, 40, 100, 30);
