@@ -32,10 +32,7 @@ public class UserButtomClass extends JButton implements UserButtom
 	@Override
 	public boolean isSelected()
 	{
-		if (isSel = true)
-			return true;
-		else
-			return false;
+	return isSel;
 	}
 
 	@Override
