@@ -61,7 +61,7 @@ public class UserButtomClass extends JButton implements UserButtom
 		JButton jb = new JButton("enter 1");
 		jb.setBounds(5, 5, 100, 30);
 		panel.add(jb);
-		// кнопка Алексея раскоментировать и отладить
+		// кнопка Алексея
 		
 		
 		UserButtomClass ubc=new UserButtomClass("enter 2");
