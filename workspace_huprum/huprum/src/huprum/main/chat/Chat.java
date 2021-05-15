@@ -18,7 +18,10 @@ public class Chat
 	
 	public Chat(Huprum main)
 	{
-		@SuppressWarnings("unused")
+		
+		main.getContentPane().removeAll();
+		
+	
 		Loginer loginer = main.getLoginer();
 	 		
 		wp=new WestPanel(this);
@@ -29,6 +32,7 @@ public class Chat
 			
 		cp=new CenterPanel(this);
 		main.add(new JScrollPane(cp),BorderLayout.CENTER);
+		main.repaint();
 	
 		
 		

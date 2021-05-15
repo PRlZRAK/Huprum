@@ -7,6 +7,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import huprum.main.Huprum;
@@ -64,7 +65,7 @@ public class Loginer
 		
 		panel.add(new JLabel("Пароль:"), c);
 		c.gridy++;
-		jpass = new JTextField(20);
+		jpass = new JPasswordField(20);
 		panel.add(jpass, c);
 		c.gridx++;
 		er_pass = new JLabel();
@@ -76,6 +77,26 @@ public class Loginer
 		JButton button = new JButton("Ввод");
 		panel.add(button, c);
 		button.addActionListener(new LoginActionListener(main));
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+
+	public void setLogin(String login)
+	{
+		this.login = login;
+	}
+
+	public void setPhone(String phone)
+	{
+		this.phone = phone;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
 	}
 
 	public int getId()
