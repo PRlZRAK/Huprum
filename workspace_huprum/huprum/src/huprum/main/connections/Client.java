@@ -77,8 +77,8 @@ public class Client
 	{
 		try
 		{
-			//Client cl = new Client("http://130.61.155.146/huprum/server/index.php");
-			 Client cl = new Client("http://localhost/huprum/server/index.php");
+			Client cl = new Client("http://130.61.155.146/huprum/server/index.php");
+			//Client cl = new Client("http://localhost/huprum/server/index.php");
 			Map<String, String> pars = new HashMap<String, String>();
 			pars.put("action", "login");
 			pars.put("email", "yaa52@mail.ru");
