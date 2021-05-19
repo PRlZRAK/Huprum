@@ -80,9 +80,11 @@ public class Client
 			Client cl = new Client("http://130.61.155.146/huprum/server/index.php");
 			//Client cl = new Client("http://localhost/huprum/server/index.php");
 			Map<String, String> pars = new HashMap<String, String>();
+			String otvet;
+			/*
 			pars.put("action", "login");
 			pars.put("email", "yaa52@mail.ru");
-			String otvet = cl.send(pars);
+			otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
 			pars.clear();
 			pars.put("action", "get_users");
@@ -96,6 +98,28 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			JSONObject jo = new JSONObject(otvet);
 			System.out.println("jo = " + jo);
+			*/
+			// логин
+			pars.clear();
+			pars.put("action", "registr");
+			pars.put("login", "user1");
+			pars.put("phone", "898877035351");
+			pars.put("email", "yaa521@mail.ru");
+			pars.put("password", "qwerty");
+			otvet = cl.send(pars);
+			JSONObject jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			//
+			pars.clear();
+			pars.put("action", "registr");
+			pars.put("login", "user");
+			pars.put("phone", "89887703535");
+			pars.put("email", "yaa52@mail.ru");
+			pars.put("password", "qwerty");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
