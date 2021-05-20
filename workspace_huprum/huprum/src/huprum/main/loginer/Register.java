@@ -1,0 +1,125 @@
+package huprum.main.loginer;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import huprum.main.Huprum;
+import huprum.main.loginer.listener.LoginActionListener;
+
+
+public class Register extends JFrame
+{
+	
+
+	private JTextField jlogin;
+	private JTextField jpass;
+	private JTextField jmail;
+	private JTextField jphone;
+	
+		  private static final long serialVersionUID = 1L;
+			private GridBagConstraints c;
+			
+			public static void main(String[] args) {
+				new Register("Регистрация");
+			}
+			public Register(String b) 
+			{
+				super(b);
+				Toolkit kit = Toolkit.getDefaultToolkit();
+				Dimension screenSize = kit.getScreenSize();
+				setLocation((screenSize.width - 1024) / 2, (screenSize.height - 600) / 2);
+				setSize(1024,600);
+				JPanel panel = new JPanel();
+				panel.setLayout(new GridBagLayout());
+			    add(panel);
+
+			    
+				
+				GridBagConstraints c = new GridBagConstraints();
+				c.weightx = 1;
+				c.anchor = GridBagConstraints.CENTER;
+				c.insets = new Insets(5,5,5,5);
+				c.fill=GridBagConstraints.HORIZONTAL;
+				
+				c.gridx = 0;
+				panel.add(new JLabel(""), c);
+				c.gridx = 1;
+				c.gridy = 0;
+				
+				panel.add(new JLabel("Логин:"), c);
+				c.gridy++;
+				jlogin = new JTextField(20);
+				panel.add(jlogin, c);
+				c.gridx++;
+				
+				panel.add(new JLabel(""),c);
+				
+				
+				c.gridx = 1;
+				c.gridy++;
+				
+				panel.add(new JLabel("Почта:"), c);
+				c.gridy++;
+				jmail = new JTextField(20);
+				panel.add(jmail, c);
+				c.gridx++;
+				
+				
+				
+				c.gridx = 1;
+				c.gridy++;
+				
+				panel.add(new JLabel("Телефон:"), c);
+				c.gridy++;
+				jphone = new JTextField(20);
+				panel.add(jphone, c);
+				c.gridx++;
+			
+				
+				c.gridx = 1;
+				c.gridy++;
+				
+				panel.add(new JLabel("Пароль:"), c);
+				c.gridy++;
+				jpass = new JPasswordField(20);
+				panel.add(jpass, c);
+				c.gridx++;
+			
+				
+				c.gridy++;
+				c.gridx = 1;
+				
+			    
+				ActionListener usersListener = new UsersActionListener();
+				JButton button = new JButton("Ввод");
+				panel.add(button, c);
+				button.addActionListener(usersListener);
+				setVisible(true);
+				
+			}
+			public class UsersActionListener implements ActionListener {
+
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					// TODO Auto-generated method stub
+					
+				}
+		     }
+
+			
+}
