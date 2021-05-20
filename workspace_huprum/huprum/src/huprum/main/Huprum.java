@@ -1,6 +1,7 @@
 package huprum.main;
 
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -8,6 +9,7 @@ import java.net.MalformedURLException;
 
 import javax.swing.JFrame;
 
+import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 
@@ -20,6 +22,7 @@ public class Huprum extends JFrame {
 	private static final int DEFAULT_WIDTH = 1024;
 	private Loginer loginer;
 	private Client cl;
+	
 
 	public Huprum(String title) {
 		super(title);
@@ -36,16 +39,16 @@ public class Huprum extends JFrame {
 		cl=null;
 		 try
 		{
-			//cl = new Client("http://130.61.155.146/huprum/server/index.php");
-			 cl = new Client("http://localhost/huprum/server/index.php");
+			cl = new Client("http://130.61.155.146/huprum/server/index.php");
+			 //cl = new Client("http://localhost/huprum/server/index.php");
 		} catch (MalformedURLException e1)
 		{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		//  cl = new Client("http://localhost/huprum/server/index.php");
-		loginer = new Loginer(this);
-		//new Chat(this);
+		//loginer = new Loginer(this);
+		new Chat(this);
 		setVisible(true);
 		
 	}

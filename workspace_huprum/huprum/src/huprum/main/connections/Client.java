@@ -100,6 +100,10 @@ public class Client
 			System.out.println("jo = " + jo);
 			*/
 			// логин
+			pars.put("action", "login");
+			pars.put("mail", "alesharodygin@gmail.com");
+			otvet = cl.send(pars);
+			System.out.println("otvet = " + otvet);
 			pars.clear();
 			pars.put("action", "registr");
 			pars.put("login", "user1");
@@ -117,6 +121,13 @@ public class Client
 			pars.put("email", "yaa52@mail.ru");
 			pars.put("password", "qwerty");
 			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			pars.clear();
+
+			pars.put("action", "get_users");
+			otvet = cl.send(pars);
+			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			

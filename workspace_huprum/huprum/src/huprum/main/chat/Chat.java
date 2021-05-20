@@ -24,13 +24,13 @@ public class Chat
 	
 		Loginer loginer = main.getLoginer();
 	 		
-		wp=new WestPanel(this);
+		wp=new WestPanel(main);
 		main.add(new JScrollPane(wp),BorderLayout.WEST);
 		
-		sp = new SouthPanel(this);
+		sp = new SouthPanel(main);
 		main.add(sp,BorderLayout.SOUTH);
 			
-		cp=new CenterPanel(this);
+		cp=new CenterPanel(main);
 		main.add(new JScrollPane(cp),BorderLayout.CENTER);
 		main.repaint();
 	
