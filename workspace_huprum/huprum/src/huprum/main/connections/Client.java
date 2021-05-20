@@ -100,11 +100,6 @@ public class Client
 			System.out.println("jo = " + jo);
 			*/
 			// логин
-			pars.put("action", "login");
-			pars.put("mail", "alesharodygin@gmail.com");
-			otvet = cl.send(pars);
-			System.out.println("otvet = " + otvet);
-			pars.clear();
 			pars.put("action", "registr");
 			pars.put("login", "user1");
 			pars.put("phone", "898877035351");
@@ -114,7 +109,7 @@ public class Client
 			JSONObject jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			//
-			pars.clear();
+			/*pars.clear();
 			pars.put("action", "registr");
 			pars.put("login", "user");
 			pars.put("phone", "89887703535");
@@ -129,7 +124,7 @@ public class Client
 			otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
-			System.out.println("otvet = " + jo);
+			System.out.println("otvet = " + jo);*/
 			
 		} catch (IOException e)
 		{

@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.json.JSONObject;
+
 import huprum.main.Huprum;
+import huprum.main.connections.Client;
 import huprum.main.loginer.listener.LoginActionListener;
 
 
@@ -32,6 +39,7 @@ public class Register extends JFrame
 	
 		  private static final long serialVersionUID = 1L;
 			private GridBagConstraints c;
+			private Client cl;
 			
 			public static void main(String[] args) {
 				new Register("Регистрация");
@@ -47,9 +55,18 @@ public class Register extends JFrame
 				panel.setLayout(new GridBagLayout());
 			    add(panel);
 
+			    try
+				{
+					cl = new Client("http://130.61.155.146/huprum/server/index.php");
+					//cl = new Client("http://localhost/huprum/server/index.php");
+				} catch (MalformedURLException e1)
+				{
+					e1.printStackTrace();
+				}
+			    
 			    
 				
-				GridBagConstraints c = new GridBagConstraints();
+				c = new GridBagConstraints();
 				c.weightx = 1;
 				c.anchor = GridBagConstraints.CENTER;
 				c.insets = new Insets(5,5,5,5);
@@ -116,7 +133,23 @@ public class Register extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					// TODO Auto-generated method stub
+					Map<String, String> pars = new HashMap<String, String>();
+					String otvet = null;
+					pars.put("action", "registr");
+					pars.put("login",jlogin.getText());
+					pars.put("phone",jphone.getText());
+					pars.put("email",jmail. getText());
+					pars.put("password",jpass.getText());
+					try
+					{
+						otvet = cl.send(pars);
+					} catch (IOException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					JSONObject jo = new JSONObject(otvet);
+					System.out.println("otvet = " + jo);
 					
 				}
 		     }
