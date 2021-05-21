@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
@@ -88,18 +87,6 @@ public class LoginActionListener implements ActionListener
 		}
 		
 		
-	//TODO
-
-				
-		// todo
-		/* дальше:
-		 * Определить что у нас в loginer
-		 * отправить запрос на сервер (Client)
-		 * Eсли satus 0 
-		 * сверить пароль
-		 * заполнить свойства в объекте Loginer
-		 * и передать управление в Chat
-		 * 
-		 */
+	
 	}
 }

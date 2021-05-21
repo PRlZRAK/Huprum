@@ -8,7 +8,6 @@ import huprum.main.Huprum;
 import huprum.main.chat.panels.CenterPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.WestPanel;
-import huprum.main.loginer.Loginer;
 
 public class Chat
 {
@@ -18,12 +17,9 @@ public class Chat
 	
 	public Chat(Huprum main)
 	{
-		
+		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
-		
-	
-		Loginer loginer = main.getLoginer();
-	 		
+			
 		wp=new WestPanel(main);
 		main.add(new JScrollPane(wp),BorderLayout.WEST);
 		
@@ -32,10 +28,11 @@ public class Chat
 			
 		cp=new CenterPanel(main);
 		main.add(new JScrollPane(cp),BorderLayout.CENTER);
+		/*
+		 * перерисовка окна
+		 */
+		main.revalidate();
 		main.repaint();
-	
-		
-		
 
 	}
 }
