@@ -81,32 +81,39 @@ public class Client
 			//Client cl = new Client("http://localhost/huprum/server/index.php");
 			Map<String, String> pars = new HashMap<String, String>();
 			String otvet;
+			JSONObject jo;
 			/*
 			pars.put("action", "login");
 			pars.put("email", "yaa52@mail.ru");
 			otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
+			
 			pars.clear();
 			pars.put("action", "get_users");
+			pars.put("last_user_id", "6");
 			otvet = cl.send(pars);
-			System.out.println("otvet = " + otvet);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			*/
 			pars.clear();
 			pars.put("action", "get_chat");
 			pars.put("myid", "3");
 			pars.put("id", "1");
+			pars.put("last_chat_id", "4");
 			otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
-			JSONObject jo = new JSONObject(otvet);
+			jo = new JSONObject(otvet);
 			System.out.println("jo = " + jo);
-			*/
+			/*
 			// логин
+			pars.clear();
 			pars.put("action", "registr");
 			pars.put("login", "user1");
 			pars.put("phone", "898877035351");
 			pars.put("email", "yaa521@mail.ru");
 			pars.put("password", "qwerty");
 			otvet = cl.send(pars);
-			JSONObject jo = new JSONObject(otvet);
+			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			//
 			/*pars.clear();
