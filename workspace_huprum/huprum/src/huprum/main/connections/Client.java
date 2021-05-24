@@ -94,7 +94,7 @@ public class Client
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			*/
+			
 			pars.clear();
 			pars.put("action", "get_chat");
 			pars.put("myid", "3");
@@ -104,7 +104,7 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
 			System.out.println("jo = " + jo);
-			/*
+			
 			// логин
 			pars.clear();
 			pars.put("action", "registr");
@@ -132,6 +132,15 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);*/
+			// тест отправки сообщения другому юзеру
+			pars.put("action", "put_msg");
+			pars.put("id_from", "3");
+			pars.put("id_to", "1");
+			pars.put("msg", "Проверка put_msg");
+			otvet = cl.send(pars);
+			System.out.println("otvet = " + otvet);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
 			
 		} catch (IOException e)
 		{
