@@ -44,8 +44,12 @@ public class LoginActionListener implements ActionListener
 			return;
 		} else
 			loginer.setErrPas("");
-
+		
 		int i = Utilit.CheckLogin(log);
+		if(i==1) 
+		{
+			log=Utilit.CleaPhone(log);
+		}
 		String[] par = new String[] {"mail","phone","login"};
 		Map<String, String> pars = new HashMap<String, String>();
 		pars.put("action", "login");
@@ -69,6 +73,8 @@ public class LoginActionListener implements ActionListener
 				loginer.setErrPas("<html><p color=red>неправильный пароль");
 				return;
 			}
+			
+				
 			int id=jo.getInt("id");
 			String login= (String) jo.get("login");
 			String phone= (String) jo.get("phone");

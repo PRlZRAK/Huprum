@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
+import huprum.main.loginer.Register;
+
 
 public class Huprum extends JFrame
 {
@@ -21,6 +23,7 @@ public class Huprum extends JFrame
 	private static final int  DEFAULT_WIDTH    = 1024;
 	private Loginer           loginer;
 	private Client            cl;
+	private Register          registr;
 
 	public Huprum(String title) throws MalformedURLException
 	{
@@ -39,6 +42,7 @@ public class Huprum extends JFrame
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		cl = new Client("http://130.61.155.146/huprum/server/index.php");
 		loginer = new Loginer(this);
+		registr = new Register(this);
 		setVisible(true);
 	}
 
@@ -60,8 +64,13 @@ public class Huprum extends JFrame
 			new Huprum("Messenger Huprum");
 		} catch (MalformedURLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+	public Register getRegister()
+	{
+		return registr;
 	}
 }

@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.listener.LoginActionListener;
+import huprum.main.utils.Utilit;
 
 
 public class Register extends JFrame implements ActionListener
@@ -39,44 +40,119 @@ public class Register extends JFrame implements ActionListener
 	
 		  private static final long serialVersionUID = 1L;
 			private GridBagConstraints c;
-			private Client cl;
 			private Huprum main;
+			private JLabel er_mail;
+			private JLabel er_login;
+			private JLabel er_phone;
+			private JLabel er_pass;
+			private Client cl;
+			private String log; 
+			private String pass;
+			private String mail;
+			private String phone;
+			
+			public void setErrPas(String string)
+			{
+				er_pass.setText(string);
+			}
+			public void setErrPhone(String string)
+			{
+				er_phone.setText(string);
+			}
+			public void setErrMail(String string)
+			{
+				er_mail.setText(string);
+			}
+			public void setErrLog(String string)
+			{
+				er_login.setText(string);
+			}
 			
 			
 			public Register(Huprum main) 
 			{
 				this.main=main;
-			}
+				cl=main.getCl();
+				
+			} 
 			public class UsersActionListener implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+
+					log     =jlogin.getText();
+					if (log.equals(""))
+					{
+					 setErrLog("<html><p color=red>заполнить");					
+					}else
+					setErrLog("");
+					
+					pass     = jpass.getText();
+					if (pass.equals(""))
+					{
+						setErrPas("<html><p color=red>заполнить");
+					} else
+						setErrPas("");
+
+					mail     = jmail.getText();
+					if (mail.equals(""))
+					{
+						setErrMail("<html><p color=red>заполнить");
+					} else
+						setErrMail("");
+
+					phone     = jphone.getText();
+					if (phone.equals(""))
+					{
+						setErrPhone("<html><p color=red>заполнить");
+						return;
+					} else
+						setErrPhone("");
+					
+					phone=Utilit.CleaPhone(phone);
+					int i=Utilit.CheckLogin(phone);
+					if (i!=1)
+						{
+							setErrPhone("<html><p color=red>некоректный телефон");
+						}else
+							setErrPhone("");
+					int b=Utilit.CheckLogin(mail);
+					if (b!=0)
+						{
+							setErrMail("<html><p color=red>некоректная почта");
+							return;
+						}else
+							setErrMail("");
 					Map<String, String> pars = new HashMap<String, String>();
-					String otvet = null;
 					pars.put("action", "registr");
-					pars.put("login",jlogin.getText());
-					pars.put("phone",jphone.getText());
-					pars.put("email",jmail. getText());
-					pars.put("password",jpass.getText());
+					pars.put("login", log);
+					pars.put("phone", phone);
+					pars.put("email", mail);
+					pars.put("password", pass);
+					String otvet = null;
 					try
 					{
 						otvet = cl.send(pars);
-					} catch (IOException e1)
+					} catch (IOException g)
 					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						g.printStackTrace();
 					}
 					JSONObject jo = new JSONObject(otvet);
-					System.out.println("otvet = " + jo);
+					
+						int status=jo.getInt("status");
+						
+						if (status==2) setErrLog  ("<html><p color=red>"+jo.getString("msg")); else setErrLog("");
+						
+						if (status==3) setErrMail ("<html><p color=red>"+jo.getString("msg")); else setErrMail("");
+						
+						if (status==4) { setErrPhone("<html><p color=red>"+jo.getString("msg"));return;}else setErrPhone("");
 					
 				}
 		     }
 			@Override
-			public void actionPerformed(ActionEvent a)
+			public void actionPerformed(ActionEvent e)
 			{
-
-				
 				Toolkit kit = Toolkit.getDefaultToolkit();
 				Dimension screenSize = kit.getScreenSize();
 				setLocation((screenSize.width - 1024) / 2, (screenSize.height - 600) / 2);
@@ -85,17 +161,6 @@ public class Register extends JFrame implements ActionListener
 				panel.setLayout(new GridBagLayout());
 			    add(panel);
 
-			    try
-				{
-					cl = new Client("http://130.61.155.146/huprum/server/index.php");
-					//cl = new Client("http://localhost/huprum/server/index.php");
-				} catch (MalformedURLException e1)
-				{
-					e1.printStackTrace();
-				}
-			    
-			    
-				
 				c = new GridBagConstraints();
 				c.weightx = 1;
 				c.anchor = GridBagConstraints.CENTER;
@@ -110,21 +175,22 @@ public class Register extends JFrame implements ActionListener
 				panel.add(new JLabel("Логин:"), c);
 				c.gridy++;
 				jlogin = new JTextField(20);
+				er_login = new JLabel("");
 				panel.add(jlogin, c);
 				c.gridx++;
 				
-				panel.add(new JLabel(""),c);
-				
-				
+				panel.add(er_login,c);
+								
 				c.gridx = 1;
 				c.gridy++;
 				
 				panel.add(new JLabel("Почта:"), c);
 				c.gridy++;
 				jmail = new JTextField(20);
+				er_mail = new JLabel("");
 				panel.add(jmail, c);
 				c.gridx++;
-				
+				panel.add(er_mail,c);
 				
 				
 				c.gridx = 1;
@@ -133,9 +199,10 @@ public class Register extends JFrame implements ActionListener
 				panel.add(new JLabel("Телефон:"), c);
 				c.gridy++;
 				jphone = new JTextField(20);
+				er_phone = new JLabel("");
 				panel.add(jphone, c);
 				c.gridx++;
-			
+				panel.add(er_phone,c);
 				
 				c.gridx = 1;
 				c.gridy++;
@@ -143,9 +210,10 @@ public class Register extends JFrame implements ActionListener
 				panel.add(new JLabel("Пароль:"), c);
 				c.gridy++;
 				jpass = new JPasswordField(20);
+				er_pass = new JLabel("");
 				panel.add(jpass, c);
 				c.gridx++;
-			
+				panel.add(er_pass,c);
 				
 				c.gridy++;
 				c.gridx = 1;
@@ -155,9 +223,7 @@ public class Register extends JFrame implements ActionListener
 				JButton button = new JButton("Ввод");
 				panel.add(button, c);
 				button.addActionListener(usersListener);
-				setVisible(true);
+				setVisible(true);			
+			}		
 				
-			}
-
-			
 }

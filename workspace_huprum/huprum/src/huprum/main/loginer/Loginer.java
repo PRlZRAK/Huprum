@@ -77,8 +77,10 @@ public class Loginer
 		JButton button = new JButton("Ввод");
 		panel.add(button, c);
 		button.addActionListener(new LoginActionListener(main));
+		
 		c.gridy++;
-		JButton button_new_user = new JButton("Ввод");
+		
+		JButton button_new_user = new JButton("Регистрация");
 		panel.add(button_new_user , c);
 		button_new_user.addActionListener(new Register(main));
 	}
