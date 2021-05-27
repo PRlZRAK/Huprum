@@ -148,6 +148,8 @@ public class Register extends JFrame implements ActionListener
 						
 						if (status==4) { setErrPhone("<html><p color=red>"+jo.getString("msg"));return;}else setErrPhone("");
 					
+						
+						setVisible(false);
 				}
 		     }
 			@Override
