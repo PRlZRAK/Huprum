@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 
 import javax.swing.JFrame;
 
+import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.loginer.Register;

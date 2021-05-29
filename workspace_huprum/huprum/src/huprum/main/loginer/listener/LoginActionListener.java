@@ -83,7 +83,8 @@ public class LoginActionListener implements ActionListener
 			loginer.setId(id);
 			loginer.setPhone(phone);
 			loginer.setLogin(login);
-			new Chat(main);
+			Chat chat=new Chat(main);
+			loginer.setChat(chat);
 			return;
 			
 		} catch (IOException e)
