@@ -11,6 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import huprum.main.Huprum;
+import huprum.main.chat.Chat;
 import huprum.main.loginer.listener.LoginActionListener;
 
 public class Loginer
@@ -25,6 +26,17 @@ public class Loginer
 	private JLabel     er_pass;
 	private JTextField jlogin;
 	private JTextField jpass;
+	private Chat chat;
+
+	public Chat getChat()
+	{
+		return chat;
+	}
+
+	public void setChat(Chat chat)
+	{
+		this.chat = chat;
+	}
 
 	public String getJlogin()
 	{

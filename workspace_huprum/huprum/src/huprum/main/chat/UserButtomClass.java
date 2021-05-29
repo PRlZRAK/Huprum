@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -36,7 +37,7 @@ public class UserButtomClass extends JButton implements UserButtom
 	{
 		isSel = select;
 		if (select)
-			this.setBackground(Color.red);
+			this.setBackground(Color.gray);
 		else
 			this.setBackground(defaultColor);
 	}
@@ -69,15 +70,15 @@ public class UserButtomClass extends JButton implements UserButtom
 		jframe.setVisible(true);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		// кнопка Алексея
-		UserButtomClass ubc = new UserButtomClass("enter 2");
-		ubc.setBounds(5, 40, 100, 30);
-		panel.add(ubc);
 		// стандартная кнопка
 		JButton jb = new JButton("enter 1");
 		jb.setBounds(5, 5, 100, 30);
 		panel.add(jb);
-		jb.addActionListener(new ActionListener()
+		// кнопка Алексея
+		UserButtomClass ubc = new UserButtomClass("enter 2");
+		ubc.setBounds(5, 40, 100, 30);
+		panel.add(ubc);
+		ubc.addActionListener(new ActionListener()		
 		{
 			boolean flag = true;
 
