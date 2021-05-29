@@ -34,7 +34,13 @@ public class WestPanel extends JPanel
     private UserButtomClass lastButton;
     private JSONArray  jarray;
     private Loginer loginer;
+	private String strId;
     
+	public String getStrId()
+	{
+		return strId;
+	}
+
 	public WestPanel(Huprum main)
 	{
 		this.main = main;
@@ -72,7 +78,7 @@ public class WestPanel extends JPanel
 		{
 			JSONObject jo = ja.getJSONObject(i);
 			String login = (String) jo.get("login");
-			String strId = (String) jo.get("id");					
+			strId = (String) jo.get("id");					
 			int id =  Integer.parseInt(strId);
 			if(id!=myId) {
 			batArray[i] = new UserButtomClass(login);

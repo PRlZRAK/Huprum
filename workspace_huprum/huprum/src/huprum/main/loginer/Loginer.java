@@ -94,7 +94,7 @@ public class Loginer
 		
 		JButton button_new_user = new JButton("Регистрация");
 		panel.add(button_new_user , c);
-		button_new_user.addActionListener(new Register(main));
+		button_new_user.addActionListener(new Register1(main));
 	}
 
 	public void setId(int id)

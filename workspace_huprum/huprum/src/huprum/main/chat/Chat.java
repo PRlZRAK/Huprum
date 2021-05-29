@@ -33,6 +33,8 @@ public class Chat
 		 */
 		main.revalidate();
 		main.repaint();
+		Runnable demon=new Demon(this);
+		new Thread(demon).start();
 
 	}
 }

@@ -43,6 +43,10 @@ public class CenterPanel extends JPanel
 
 	}
 	public void chatRedr() {
+		/*
+		 *  обращение к серверу
+		 */
+		
 		removeAll();
 		JSONArray jarray  = loginer.getChat().wp.getJarray();
 		for (int i = 0; i < jarray.length(); i++)
