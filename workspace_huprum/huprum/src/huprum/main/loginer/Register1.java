@@ -62,16 +62,16 @@ public class Register1 extends JFrame implements ActionListener
 			int i = Utilit.CheckLogin(phone);
 			if (i != 1)
 			{
-				setErrLog("<html><p color=red>некоректный телефон");
+				setErrPhone("<html><p color=red>некоректный телефон");
 			} else
-				setErrLog("");
+				setErrPhone("");
 			int b = Utilit.CheckLogin(mail);
 			if (b != 0)
 			{
-				setErrLog("<html><p color=red>некоректная почта");
+				setErrMail("<html><p color=red>некоректная почта");
 				return;
 			} else
-				setErrLog("");
+				setErrMail("");
 			Map<String, String> pars = new HashMap<String, String>();
 			pars.put("action", "registr");
 			pars.put("login", log);
@@ -94,15 +94,15 @@ public class Register1 extends JFrame implements ActionListener
 			else
 				setErrLog("");
 			if (status == 3)
-				setErrLog("<html><p color=red>" + jo.getString("msg"));
+				setErrPhone("<html><p color=red>" + jo.getString("msg"));
 			else
-				setErrLog("");
+				setErrPhone("");
 			if (status == 4)
 			{
-				setErrLog("<html><p color=red>" + jo.getString("msg"));
+				setErrMail("<html><p color=red>" + jo.getString("msg"));
 				return;
 			} else
-				setErrLog("");
+				setErrMail("");
 			if (status == 0)
 				setVisible(false);
 		}
