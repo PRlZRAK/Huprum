@@ -25,11 +25,13 @@ public class UserButtomClass extends JButton implements UserButtom
 	private boolean           isSel;
 	private Integer           recId;
 	private Color             defaultColor;
+	private Color             defaultColorText;
 
 	public UserButtomClass(String b)
 	{
 		super(b);
 		defaultColor = getBackground();
+		defaultColorText = getForeground();
 	}
 
 	@Override
@@ -40,6 +42,11 @@ public class UserButtomClass extends JButton implements UserButtom
 			this.setBackground(Color.gray);
 		else
 			this.setBackground(defaultColor);
+		
+		if (select)
+			this.setForeground(Color.white);
+		else
+			this.setForeground(defaultColorText);
 	}
 
 	@Override
