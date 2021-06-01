@@ -32,13 +32,15 @@ public class WestPanel extends JPanel
 	private UserButtomClass[]  batArray;
     private int myId;
     private UserButtomClass lastButton;
-    private JSONArray  jarray;
     private Loginer loginer;
+	private String sId;
+	private String strMyId;
 	private String strId;
+	private boolean i;
     
 	public String getStrId()
 	{
-		return strId;
+		return sId;
 	}
 
 	public WestPanel(Huprum main)
@@ -51,7 +53,9 @@ public class WestPanel extends JPanel
 		c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.NORTH;
+        i=true;
 		redr();
+		
 	}
 
 	private void redr()
@@ -78,8 +82,8 @@ public class WestPanel extends JPanel
 		{
 			JSONObject jo = ja.getJSONObject(i);
 			String login = (String) jo.get("login");
-			strId = (String) jo.get("id");					
-			int id =  Integer.parseInt(strId);
+			sId = (String) jo.get("id");					
+			int id =  Integer.parseInt(sId);
 			if(id!=myId) {
 			batArray[i] = new UserButtomClass(login);
 			batArray[i].setId(id);	
@@ -92,35 +96,33 @@ public class WestPanel extends JPanel
 		add(new JLabel(), c);
 	}
 	public class UserButtonListener implements ActionListener {
+
+
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
 
 			lastButton.setSelect(false);
 			UserButtomClass button = (UserButtomClass)(e.getSource());
-			button.setSelect(true);
-			
-			Map<String, String> pars = new HashMap<String, String>();
-			String otvet = null;
-			
-			String strMyId = Integer.toString(myId);
-			String strId = button.getId().toString();
-			pars.clear();
-			pars.put("action", "get_chat");
-			pars.put("myid", strMyId);
-			pars.put("id", strId);
-			try{otvet = cl.send(pars);} catch (IOException e1){e1.printStackTrace();}
-			JSONObject jo1 = new JSONObject(otvet);
-			jarray  = jo1.getJSONArray("chat");
-			System.out.println("jarray = " + jarray);
-			loginer.getChat().cp.chatRedr();
-			
+			button.setSelect(true);		
+			strMyId = Integer.toString(myId);
+			strId = button.getId().toString();			
+			if(i) {
+			loginer.getChat().d.start();
+			i=false;
+			}
 			lastButton=button;
 			
 	    }
     }
-	public JSONArray getJarray()
+
+	public String getMyId()
 	{
-		return jarray;
+		return strMyId;
+	}
+
+	public String getId()
+	{
+		return strId;
 	}
 }

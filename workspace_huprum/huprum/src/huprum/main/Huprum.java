@@ -16,7 +16,6 @@ import huprum.main.loginer.Register;
 
 public class Huprum extends JFrame
 {
-	//Проверка
 	/**
 	 * 
 	 */

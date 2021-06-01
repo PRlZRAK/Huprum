@@ -18,10 +18,10 @@ public class Demon implements Runnable
 			try
 			{
 				Thread.sleep(1000);
-				System.out.println(++i+"");
+				System.out.println(++i+"");				
+				chat.cp.chatRedr();
 			} catch (InterruptedException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

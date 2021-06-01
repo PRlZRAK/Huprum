@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
 import huprum.main.chat.UserButtomClass;
+import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 
 public class CenterPanel extends JPanel 
@@ -31,6 +33,7 @@ public class CenterPanel extends JPanel
 	private int myId;
 	private Huprum main;
 	private Loginer loginer;
+	
 	
 	public CenterPanel(Huprum main) {
 		this.main = main;
@@ -48,17 +51,27 @@ public class CenterPanel extends JPanel
 		 */
 		
 		removeAll();
-		JSONArray jarray  = loginer.getChat().wp.getJarray();
+		
+		Client cl = main.getCl();
+		Map<String, String> pars = new HashMap<String, String>();
+		String otvet = null;
+		pars.clear();
+		pars.put("action", "get_chat");
+		pars.put("myid", loginer.getChat().wp.getMyId());		
+		pars.put("id", loginer.getChat().wp.getId());
+		try{otvet = cl.send(pars);} catch (IOException e1){e1.printStackTrace();}
+		JSONObject jo1 = new JSONObject(otvet);
+		JSONArray jarray  = jo1.getJSONArray("chat");
+		System.out.println("jarray = " + jarray);
+		
 		for (int i = 0; i < jarray.length(); i++)
 		{			
 			JSONObject jo = jarray.getJSONObject(i);
-			String strId = (String) jo.get("user1_id");					
-			int id =  Integer.parseInt(strId);
+			String sId = (String) jo.get("user1_id");					
+			int id =  Integer.parseInt(sId);
 			if(id==myId) {
 			c.anchor = GridBagConstraints.EAST;
 			JLabel myJLabel = new JLabel((String) jo.get("msg"));
-			//myJLabel.setOpaque(true);
-			//myJLabel.setBackground(Color.green);
 			add(myJLabel, c);
 			System.out.println("mymsg = " + jo.get("msg"));
 			c.gridy++;
