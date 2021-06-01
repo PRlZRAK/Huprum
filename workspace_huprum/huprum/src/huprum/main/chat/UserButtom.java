@@ -3,6 +3,8 @@
  */
 package huprum.main.chat;
 
+import java.awt.Color;
+
 /**
  * @author yaa Интерфейс для создания объекта кнопка для юзера. Эта кнопка
  *         должна иметь другой цвет(синий к примеру), если setSelect(true).
@@ -14,7 +16,7 @@ public interface UserButtom
 	/**
 	 * @param select метод устанавливает синий цвет кнопке
 	 */
-	public void setSelect(boolean select);
+	public void setSelect(boolean select,Color Background,Color Foreground);
 
 	/**
 	 * @return узнаем - выделена ли кнопка
@@ -30,4 +32,6 @@ public interface UserButtom
 	 * @return узнать заполненного юзера
 	 */
 	public Integer getId();
+
+	
 }

@@ -35,19 +35,21 @@ public class UserButtomClass extends JButton implements UserButtom
 	}
 
 	@Override
-	public void setSelect(boolean select)
+	public void setSelect(boolean select, Color Background, Color Foreground)
 	{
 		isSel = select;
 		if (select)
 			this.setBackground(Color.gray);
 		else
-			this.setBackground(defaultColor);
+			this.setBackground(Background);
 		
 		if (select)
 			this.setForeground(Color.white);
 		else
-			this.setForeground(defaultColorText);
+			this.setForeground(Foreground);
+		
 	}
+	
 
 	@Override
 	public boolean isSelected()
@@ -92,7 +94,7 @@ public class UserButtomClass extends JButton implements UserButtom
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				ubc.setSelect(flag);
+				ubc.setSelect(flag,Color.gray,Color.white);
 				ubc.setId(999);
 				jframe.repaint();
 				flag = !flag;
@@ -101,4 +103,17 @@ public class UserButtomClass extends JButton implements UserButtom
 		});
 		jframe.getContentPane().add(panel);
 	}
+
+	public Color getDefaultColor()
+	{
+		return defaultColor;
+	}
+
+	public Color getDefaultColorText()
+	{
+		return defaultColorText;
+	}
+
+
+	
 }
