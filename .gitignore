@@ -33,3 +33,5 @@ workspace_huprum/huprum/bin/huprum/main/chat/panels/WestPanel.class
 workspace_huprum/huprum/bin/huprum/main/Huprum.class
 workspace_huprum/huprum/bin/huprum/main/loginer/Loginer.class
 workspace_huprum/huprum/bin/module-info.class
+workspace_huprum/huprum/bin/huprum/main/chat/panels/CenterPanel.class
+workspace_huprum/huprum/bin/huprum/main/chat/panels/WestPanel.class
