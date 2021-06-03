@@ -16,7 +16,7 @@ public interface UserButtom
 	/**
 	 * @param select метод устанавливает синий цвет кнопке
 	 */
-	public void setSelect(boolean select,Color Background,Color Foreground);
+	public void setSelect(boolean select);
 
 	/**
 	 * @return узнаем - выделена ли кнопка
@@ -33,5 +33,9 @@ public interface UserButtom
 	 */
 	public Integer getId();
 
+	/**
+	 * @return Установить цвет кнопке и её тексту
+	 */
+	public void setColorButton(Color Background, Color Foreground);
 	
 }

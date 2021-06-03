@@ -102,10 +102,9 @@ public class WestPanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-
-			lastButton.setSelect(false, Color.white, Color.black);
+			lastButton.setSelect(false);
 			UserButtomClass button = (UserButtomClass)(e.getSource());
-			button.setSelect(true, Color.gray, Color.white);		
+			button.setSelect(true);		
 			strMyId = Integer.toString(myId);
 			strId = button.getId().toString();			
 			if(i) {
