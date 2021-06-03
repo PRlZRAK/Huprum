@@ -31,14 +31,14 @@ public class WestPanel extends JPanel
 	private Client             cl;
 	private Huprum             main;
 	private UserButtomClass[]  batArray;
-    private int myId;
-    private UserButtomClass lastButton;
-    private Loginer loginer;
-	private String sId;
-	private String strMyId;
-	private String strId;
-	private boolean i;
-    
+	private int                myId;
+	private UserButtomClass    lastButton;
+	private Loginer            loginer;
+	private String             sId;
+	private String             strMyId;
+	private String             strId            = null;
+	private boolean            i;
+
 	public String getStrId()
 	{
 		return sId;
@@ -47,16 +47,15 @@ public class WestPanel extends JPanel
 	public WestPanel(Huprum main)
 	{
 		this.main = main;
-		loginer = main.getLoginer();		
+		loginer = main.getLoginer();
 		myId = loginer.getId();
-		lastButton=new UserButtomClass("");
+		lastButton = new UserButtomClass("");
 		setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        i=true;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTH;
+		i = true;
 		redr();
-		
 	}
 
 	private void redr()
@@ -81,40 +80,37 @@ public class WestPanel extends JPanel
 		batArray = new UserButtomClass[ja.length()];
 		for (int i = 0; i < ja.length(); i++)
 		{
-			JSONObject jo = ja.getJSONObject(i);
-			String login = (String) jo.get("login");
-			sId = (String) jo.get("id");					
-			int id =  Integer.parseInt(sId);
-			if(id!=myId) {
-			batArray[i] = new UserButtomClass(login);
-			batArray[i].setId(id);	
-			batArray[i].addActionListener(userButtonListener);
-			add(batArray[i], c);
-			c.gridy++;
+			JSONObject jo    = ja.getJSONObject(i);
+			String     login = (String) jo.get("login");
+			sId = (String) jo.get("id");
+			int id = Integer.parseInt(sId);
+			if (id != myId)
+			{
+				batArray[i] = new UserButtomClass(login);
+				batArray[i].setId(id);
+				batArray[i].addActionListener(userButtonListener);
+				add(batArray[i], c);
+				c.gridy++;
 			}
 		}
 		c.weighty = 1;
 		add(new JLabel(), c);
 	}
-	public class UserButtonListener implements ActionListener {
 
-
+	public class UserButtonListener implements ActionListener
+	{
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
 			lastButton.setSelect(false);
-			UserButtomClass button = (UserButtomClass)(e.getSource());
-			button.setSelect(true);		
+			UserButtomClass button = (UserButtomClass) (e.getSource());
+			button.setSelect(true);
 			strMyId = Integer.toString(myId);
-			strId = button.getId().toString();			
-			if(i) {
-			loginer.getChat().d.start();
-			i=false;
-			}
-			lastButton=button;
-			
-	    }
-    }
+			strId = button.getId().toString();
+			loginer.getChat().cp.last_id = "-1";
+			lastButton = button;
+		}
+	}
 
 	public String getMyId()
 	{

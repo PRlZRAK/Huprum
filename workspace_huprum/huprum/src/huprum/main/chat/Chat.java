@@ -14,7 +14,7 @@ public class Chat
 	public SouthPanel sp;
 	public CenterPanel cp;
 	public WestPanel wp;
-	public Thread d;
+	
 	
 	public Chat(Huprum main)
 	{
@@ -35,7 +35,7 @@ public class Chat
 		main.revalidate();
 		main.repaint();
 		Runnable demon=new Demon(this);
-		d = new Thread(demon);
+		new Thread(demon).start();
 
 	}
 }

@@ -1,11 +1,9 @@
 package huprum.main.chat;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,34 +24,43 @@ public class UserButtomClass extends JButton implements UserButtom
 	private Integer           recId;
 	private Color             defaultColor;
 	private Color             defaultColorText;
-	
+	private Color             selectBackgColor;
+	private Color             selectTextColor;
 
 	public UserButtomClass(String b)
 	{
 		super(b);
 		defaultColor = getBackground();
 		defaultColorText = getForeground();
+		selectBackgColor = Color.gray;
+		selectTextColor = Color.white;
+	}
+
+	@SuppressWarnings("exports")
+	public UserButtomClass(String b, Color backGround, Color textColor)
+	{
+		super(b);
+		defaultColor = getBackground();
+		defaultColorText = getForeground();
+		selectBackgColor = backGround;
+		selectTextColor = textColor;
 	}
 
 	@Override
 	public void setSelect(boolean select)
-	//Background Background, Color Foreground
+	// Background Background, Color Foreground
 	{
 		isSel = select;
-        if (select)
-            this.setBackground(Color.gray);
-        else
-            this.setBackground(defaultColor);
-		
+		if (select)
+		{
+			this.setBackground(selectBackgColor);
+			setForeground(selectTextColor);
+		} else
+		{
+			this.setBackground(defaultColor);
+			setForeground(defaultColorText);
+		}
 	}
-	public void setColorButton(Color Background, Color Foreground)
-	{
-		
-			this.setBackground(Background);
-		
-			this.setForeground(Foreground);
-	}
-	
 
 	@Override
 	public boolean isSelected()
@@ -91,7 +98,7 @@ public class UserButtomClass extends JButton implements UserButtom
 		UserButtomClass ubc = new UserButtomClass("enter 2");
 		ubc.setBounds(5, 40, 100, 30);
 		panel.add(ubc);
-		ubc.addActionListener(new ActionListener()		
+		ubc.addActionListener(new ActionListener()
 		{
 			boolean flag = true;
 
@@ -107,17 +114,4 @@ public class UserButtomClass extends JButton implements UserButtom
 		});
 		jframe.getContentPane().add(panel);
 	}
-
-	public Color getDefaultColor()
-	{
-		return defaultColor;
-	}
-
-	public Color getDefaultColorText()
-	{
-		return defaultColorText;
-	}
-
-
-	
 }

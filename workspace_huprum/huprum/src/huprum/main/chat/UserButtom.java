@@ -36,6 +36,6 @@ public interface UserButtom
 	/**
 	 * @return Установить цвет кнопке и её тексту
 	 */
-	public void setColorButton(Color Background, Color Foreground);
+	
 	
 }

@@ -41,4 +41,9 @@ public class Utilit
 		}
 		return ret;
 	}
+
+	public static String InsertPerenos(String text, int wide, String znak)
+	{
+		return null;
+	}
 }
