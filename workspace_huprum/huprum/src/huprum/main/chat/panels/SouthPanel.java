@@ -58,7 +58,7 @@ public class SouthPanel extends JPanel
 			try	{otvet = cl.send(pars);} catch (IOException e){e.printStackTrace();}
 			jo = new JSONObject(otvet);
 			vod.setText("");
-			loginer.getChat().cp.chatRedr();
+			//loginer.getChat().cp.chatRedr();
 		}
     }
 }
