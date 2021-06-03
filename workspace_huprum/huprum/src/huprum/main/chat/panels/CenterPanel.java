@@ -61,9 +61,10 @@ public class CenterPanel extends JPanel
 		pars.put("id", loginer.getChat().wp.getId());
 		try{otvet = cl.send(pars);} catch (IOException e1){e1.printStackTrace();}
 		JSONObject jo1 = new JSONObject(otvet);
+		int status = (int) jo1.get("status");
+		if(status==0) {
 		JSONArray jarray  = jo1.getJSONArray("chat");
-		System.out.println("jarray = " + jarray);
-		
+		System.out.println("jarray = " + jarray);		
 		for (int i = 0; i < jarray.length(); i++)
 		{			
 			JSONObject jo = jarray.getJSONObject(i);
@@ -82,7 +83,12 @@ public class CenterPanel extends JPanel
 			System.out.println("notmymsg = " + jo.get("msg"));
 			c.gridy++;
 			}
-
+		}
+	}
+		else {			
+		String msg = (String) jo1.get("msg");		
+		c.anchor = GridBagConstraints.CENTER;
+		add(new JLabel(msg), c);
 		}
 		main.revalidate();
 		main.repaint();
