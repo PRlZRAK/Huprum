@@ -28,7 +28,7 @@ public class Client
 		con.setRequestMethod("POST");
 		con.setRequestProperty("Content-Type", "application/json; utf-8");
 		con.setDoOutput(true);
-		con.setReadTimeout(10 * 1000); 
+		con.setReadTimeout(10 * 1000);
 		JSONObject jo = new JSONObject(params);
 		try (OutputStream os = con.getOutputStream())
 		{
@@ -37,7 +37,8 @@ public class Client
 			os.flush();
 			os.close();
 			int responseCode = con.getResponseCode();
-			System.out.println("POST Response Code :: " + responseCode);
+			if (responseCode != 200)
+				System.out.println("POST Response Code :: " + responseCode);
 		} catch (ConnectException e)
 		{
 			// return "{\"status\":1,\"msg\":\"Нет связи с сервером\"}";
@@ -51,7 +52,7 @@ public class Client
 			{
 				response.append(responseLine.trim());
 			}
-			System.out.println("response = " + response.toString());
+			// System.out.println("response = " + response.toString());
 			return getJson(response.toString());
 		}
 	}
@@ -78,23 +79,21 @@ public class Client
 		try
 		{
 			Client cl = new Client("http://130.61.155.146/huprum/server/index.php");
-			//Client cl = new Client("http://localhost/huprum/server/index.php");
+			//Client              cl   = new Client("http://localhost/huprum/server/index.php");
 			Map<String, String> pars = new HashMap<String, String>();
-			String otvet;
-			JSONObject jo;
+			String              otvet;
+			JSONObject          jo;
 			/*
 			pars.put("action", "login");
 			pars.put("email", "yaa52@mail.ru");
 			otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
-			
 			pars.clear();
 			pars.put("action", "get_users");
-			pars.put("last_user_id", "6");
+			// pars.put("last_user_id", "6");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			
 			pars.clear();
 			pars.put("action", "get_chat");
 			pars.put("myid", "3");
@@ -104,7 +103,6 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
 			System.out.println("jo = " + jo);
-			
 			// логин
 			pars.clear();
 			pars.put("action", "registr");
@@ -116,7 +114,7 @@ public class Client
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			//
-			/*pars.clear();
+			pars.clear();
 			pars.put("action", "registr");
 			pars.put("login", "user");
 			pars.put("phone", "89887703535");
@@ -126,12 +124,11 @@ public class Client
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			pars.clear();
-
 			pars.put("action", "get_users");
 			otvet = cl.send(pars);
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
-			System.out.println("otvet = " + jo);*/
+			System.out.println("otvet = " + jo);
 			// тест отправки сообщения другому юзеру
 			pars.put("action", "put_msg");
 			pars.put("id_from", "3");
@@ -141,7 +138,14 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			
+			*/
+			// тест получения юзеров для чата
+			pars.put("action", "get_my_users");
+			pars.put("id", "3");
+			pars.put("ksum", "100");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block

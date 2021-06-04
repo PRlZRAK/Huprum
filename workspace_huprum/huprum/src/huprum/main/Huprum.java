@@ -8,7 +8,6 @@ import java.net.MalformedURLException;
 
 import javax.swing.JFrame;
 
-import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 
@@ -40,6 +39,7 @@ public class Huprum extends JFrame
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		cl = new Client("http://130.61.155.146/huprum/server/index.php");
+		//cl = new Client("http://localhost/huprum/server/index.php");
 		loginer = new Loginer(this);
 		setVisible(true);
 	}
