@@ -28,6 +28,7 @@ public class CenterPanel extends JPanel
 	private Loginer                 loginer;
 	private Client                  cl;
 	private HashMap<String, String> pars;
+	private JLabel con;
 	String last_id;
 
 	public CenterPanel(Huprum main)
@@ -35,6 +36,7 @@ public class CenterPanel extends JPanel
 		this.main = main;
 		loginer = main.getLoginer();
 		myId = loginer.getId();
+		con = new JLabel("");
 		setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
 		c.weightx = 1;
@@ -49,6 +51,7 @@ public class CenterPanel extends JPanel
 		 * обращение к серверу
 		 */
 		if (loginer.getChat().wp.getId() == null)
+			
 			return;
 		// removeAll();
 		pars.clear();
@@ -62,10 +65,12 @@ public class CenterPanel extends JPanel
 			otvet = cl.send(pars);
 		} catch (IOException e1)
 		{
-			e1.printStackTrace();
-			// диагностика
+			c.anchor = GridBagConstraints.SOUTH;
+			con.setText("<html><p color=#d3d3d3>Нет соединения с сервером");	
+			add(con, c);
 			return;
 		}
+		con.setText("");	
 		JSONObject jo1    = new JSONObject(otvet);
 		int        status = (int) jo1.get("status");
 		if (status == 0)
@@ -103,6 +108,7 @@ public class CenterPanel extends JPanel
 			add(new JLabel(msg), c);
 			*/
 		}
+		
 		main.revalidate();
 		main.repaint();
 	}

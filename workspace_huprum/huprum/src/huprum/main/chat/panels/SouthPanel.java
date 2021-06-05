@@ -1,7 +1,6 @@
 package huprum.main.chat.panels;
 
 import java.awt.Button;
-import java.awt.TextComponent;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,6 @@ import javax.swing.JPanel;
 import org.json.JSONObject;
 
 import huprum.main.Huprum;
-import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 
@@ -58,7 +56,6 @@ public class SouthPanel extends JPanel
 			try	{otvet = cl.send(pars);} catch (IOException e){e.printStackTrace();}
 			jo = new JSONObject(otvet);
 			vod.setText("");
-			//loginer.getChat().cp.chatRedr();
 		}
     }
 }

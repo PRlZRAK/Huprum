@@ -27,6 +27,7 @@ public class Loginer
 	private JTextField jlogin;
 	private JTextField jpass;
 	private Chat chat;
+	private JLabel er_сonnection;
 
 	public Chat getChat()
 	{
@@ -63,6 +64,10 @@ public class Loginer
 		panel.add(new JLabel(""), c);
 		c.gridx = 1;
 		c.gridy = 0;
+		
+		er_сonnection = new JLabel("");
+		panel.add(er_сonnection, c);
+		c.gridy++;
 		
 		panel.add(new JLabel("Логин или Телефон или Почта:"), c);
 		c.gridy++;
@@ -152,4 +157,8 @@ public class Loginer
 		er_pass.setText(string);
 		
 	}
+	public void setEr_сonnection(String string) {
+		er_сonnection.setText(string);
+	}
+	
 }

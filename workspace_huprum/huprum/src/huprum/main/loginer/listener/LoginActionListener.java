@@ -89,8 +89,9 @@ public class LoginActionListener implements ActionListener
 			
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			loginer.setEr_сonnection("<html><p color=red>Нет соединения с сервером");
+			return;
 		}
 		
 		
