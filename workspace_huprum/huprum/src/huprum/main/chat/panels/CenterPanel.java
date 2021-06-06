@@ -1,5 +1,6 @@
 package huprum.main.chat.panels;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -33,16 +34,17 @@ public class CenterPanel extends JPanel
 
 	public CenterPanel(Huprum main)
 	{
+		
 		this.main = main;
 		loginer = main.getLoginer();
 		myId = loginer.getId();
 		con = new JLabel("");
 		setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-		c.weightx = 1;
-		c.insets = new Insets(3, 5, 3, 5);
+		c.weightx  = 1.0f;
 		cl = main.getCl();
 		pars = new HashMap<String, String>();
+		
 	}
 
 	public void chatRedr()
@@ -85,15 +87,23 @@ public class CenterPanel extends JPanel
 				int        id  = Integer.parseInt(sId);
 				if (id == myId)
 				{
+					c.insets = new Insets(3, 50, 3, 30);	
 					c.anchor = GridBagConstraints.EAST;
-					JLabel myJLabel = new JLabel("<html><p>"+ jo.get("msg"));
+					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
+					myJLabel.setOpaque(true);
+					myJLabel.setBackground(new Color(198,246,218));
 					add(myJLabel, c);
 					System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;
+					
 				} else
 				{
+					c.insets = new Insets(3, 30, 3, 50);	
 					c.anchor = GridBagConstraints.WEST;
-					add(new JLabel((String) jo.get("msg")), c);
+					JLabel frJLabel = new JLabel("<html><p style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
+					frJLabel.setOpaque(true);
+					frJLabel.setBackground(Color.white);
+					add(frJLabel, c);
 					System.out.println("notmymsg = " + jo.get("msg"));
 					c.gridy++;
 				}
