@@ -85,7 +85,7 @@ public class CenterPanel extends JPanel
 			c.gridy=0;
 			c.gridwidth=1;
 			for(c.gridx=0;c.gridx<3;c.gridx++)
-			add(new JLabel("            "),c);
+			add(new JLabel("                             "),c);
 			c.gridwidth=2;
 			c.gridy++;
 			for (int i = 0; i < jarray.length(); i++)
