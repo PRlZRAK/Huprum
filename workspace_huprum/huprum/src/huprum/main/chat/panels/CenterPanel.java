@@ -41,11 +41,13 @@ public class CenterPanel extends JPanel
 		con = new JLabel("");
 		setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-		c.weightx  = 1.0f;
+		//c.weightx  = 1.0f;
 		cl = main.getCl();
 		pars = new HashMap<String, String>();
-		
-	}
+		setBackground(Color.lightGray);
+		c.fill=GridBagConstraints.HORIZONTAL;
+		c.insets = new Insets(10, 5, 5, 5);
+			}
 
 	public void chatRedr()
 	{
@@ -80,6 +82,12 @@ public class CenterPanel extends JPanel
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
 			System.out.println("jarray = " + jarray);
 			removeAll();
+			c.gridy=0;
+			c.gridwidth=1;
+			for(c.gridx=0;c.gridx<3;c.gridx++)
+			add(new JLabel("            "),c);
+			c.gridwidth=2;
+			c.gridy++;
 			for (int i = 0; i < jarray.length(); i++)
 			{
 				JSONObject jo  = jarray.getJSONObject(i);
@@ -87,8 +95,9 @@ public class CenterPanel extends JPanel
 				int        id  = Integer.parseInt(sId);
 				if (id == myId)
 				{
-					c.insets = new Insets(3, 50, 3, 30);	
-					c.anchor = GridBagConstraints.EAST;
+					//c.insets = new Insets(3, 50, 3, 30);	
+					//c.anchor = GridBagConstraints.EAST;
+					c.gridx=1;
 					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
 					myJLabel.setOpaque(true);
 					myJLabel.setBackground(new Color(198,246,218));
@@ -98,8 +107,9 @@ public class CenterPanel extends JPanel
 					
 				} else
 				{
-					c.insets = new Insets(3, 30, 3, 50);	
-					c.anchor = GridBagConstraints.WEST;
+					//c.insets = new Insets(3, 30, 3, 50);	
+					//c.anchor = GridBagConstraints.WEST;
+					c.gridx=0;
 					JLabel frJLabel = new JLabel("<html><p style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
 					frJLabel.setOpaque(true);
 					frJLabel.setBackground(Color.white);
