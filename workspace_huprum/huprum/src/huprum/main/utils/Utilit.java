@@ -52,53 +52,47 @@ public class Utilit
 		/*
 		 * отделяет пока только 1 раз
 		 */
-		int end = 0;
-		int i=wide;
-		String otvet = null;
-		int lenght = text.length();		
+		int    end    = 0;
+		int    i      = wide;
+		String otvet  = null;
+		int    lenght = text.length();
 		{
-			if (lenght<=wide)return text;
-			for(;i>end;i--)
+			if (lenght <= wide)
+				return text;
+			for (; i > end; i--)
 			{
-				
-					
-				char ch = text.charAt(i);			
-				if(ch==' ')
+				char ch = text.charAt(i);
+				if (ch == ' ')
 				{
 					System.out.println(i);
-					text = new StringBuilder(text).insert(i+1,znak).toString();
-					otvet = "<html>"+text;
+					text = new StringBuilder(text).insert(i + 1, znak).toString();
+					otvet = "<html>" + text;
 					break;
-					
-				}				
+				}
 			}
-			
-			if(i==0) {
-				System.out.println("i="+i);
-				text = new StringBuilder(text).insert(wide,znak).toString();
-				otvet = "<html>"+text;
+			if (i == 0)
+			{
+				System.out.println("i=" + i);
+				text = new StringBuilder(text).insert(wide, znak).toString();
+				otvet = "<html>" + text;
 			}
-				
-			}		
-		return  otvet;
+		}
+		return otvet;
 	}
+
 	public static void main(String[] args)
-	{	
+	{
 		JFrame jframe = new JFrame("test Utilit");
 		jframe.setSize(800, 600);
 		jframe.setVisible(true);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-
-		String text="aa aaaaaaaaabdffffffffffffffffffffffffffffffffffffffffffffffffffff";
+		String text  = "aa aaaaaaaaabdfffffffffffffffffffffffffffff fffffffffffffffffffffff";
 		String otvet = InsertPerenos(text, 20, "<br>");
 		System.out.println(otvet);
-		
-		
 		JLabel jb = new JLabel(otvet);
 		jb.setBounds(5, 5, 1000, 30);
 		panel.add(jb);
-		
 		jframe.getContentPane().add(panel);
 	}
 }

@@ -146,6 +146,8 @@ public class Client
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
+			
+					
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
