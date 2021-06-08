@@ -50,16 +50,18 @@ public class Utilit
 	public static String InsertPerenos(String text, int wide, String znak)
 	{
 		/*
-		 * отделяет пока только 1 раз
+		 * все должно работать
 		 */
+		int    j      = wide;
 		int    end    = 0;
 		int    i      = wide;
 		String otvet  = null;
 		int    lenght = text.length();
+		if (lenght <= wide)
+			return text;
+		while(wide<lenght)
 		{
-			if (lenght <= wide)
-				return text;
-			for (; i > end; i--)
+			for (i = wide; i > end; i--)
 			{
 				char ch = text.charAt(i);
 				if (ch == ' ')
@@ -76,6 +78,7 @@ public class Utilit
 				text = new StringBuilder(text).insert(wide, znak).toString();
 				otvet = "<html>" + text;
 			}
+			wide+=j;
 		}
 		return otvet;
 	}
@@ -87,11 +90,11 @@ public class Utilit
 		jframe.setVisible(true);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		String text  = "aa aaaaaaaaabdfffffffffffffffffffffffffffff fffffffffffffffffffffff";
+		String text  = "На этом сайте можно снять квартиру на сутки. В центре города, хороший ремонт, недорого.";
 		String otvet = InsertPerenos(text, 20, "<br>");
 		System.out.println(otvet);
 		JLabel jb = new JLabel(otvet);
-		jb.setBounds(5, 5, 1000, 30);
+		jb.setBounds(5, 5, 1000, 300);
 		panel.add(jb);
 		jframe.getContentPane().add(panel);
 	}
