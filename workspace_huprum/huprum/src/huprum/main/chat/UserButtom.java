@@ -3,7 +3,6 @@
  */
 package huprum.main.chat;
 
-import java.awt.Color;
 
 /**
  * @author yaa Интерфейс для создания объекта кнопка для юзера. Эта кнопка
@@ -32,10 +31,4 @@ public interface UserButtom
 	 * @return узнать заполненного юзера
 	 */
 	public Integer getId();
-
-	/**
-	 * @return Установить цвет кнопке и её тексту
-	 */
-	
-	
 }

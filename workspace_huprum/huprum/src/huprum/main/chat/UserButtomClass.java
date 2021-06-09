@@ -48,7 +48,6 @@ public class UserButtomClass extends JButton implements UserButtom
 
 	@Override
 	public void setSelect(boolean select)
-	// Background Background, Color Foreground
 	{
 		isSel = select;
 		if (select)

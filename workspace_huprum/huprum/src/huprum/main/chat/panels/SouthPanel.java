@@ -10,8 +10,6 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import org.json.JSONObject;
-
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
@@ -38,23 +36,24 @@ public class SouthPanel extends JPanel
 		add(enter);
 		
 	}
+	/*
+	 * отправка сообщения
+	 */
 	public class Message implements ActionListener
 	{		
+		@SuppressWarnings("exports")
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
 			Client cl = main.getCl();
 
 			Map<String, String> pars = new HashMap<String, String>();
-			String otvet = null;
-			JSONObject jo;
 
 			pars.put("action", "put_msg");
 			pars.put("id_from", myId);
 			pars.put("id_to", loginer.getChat().wp.getId());
 			pars.put("msg", vod.getText());
-			try	{otvet = cl.send(pars);} catch (IOException e){e.printStackTrace();}
-			jo = new JSONObject(otvet);
+			try	{cl.send(pars);} catch (IOException e){e.printStackTrace();}
 			vod.setText("");
 		}
     }

@@ -41,23 +41,21 @@ public class CenterPanel extends JPanel
 		con = new JLabel("");
 		setLayout(new GridBagLayout());
 		c = new GridBagConstraints();
-		//c.weightx  = 1.0f;
 		cl = main.getCl();
 		pars = new HashMap<String, String>();
 		setBackground(Color.lightGray);
 		c.fill=GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 5, 5, 5);
 			}
-
+	/*
+	 * обновление чата
+	 */
 	public void chatRedr()
 	{
+		if (loginer.getChat().wp.getId() == null)return;
 		/*
 		 * обращение к серверу
 		 */
-		if (loginer.getChat().wp.getId() == null)
-			
-			return;
-		// removeAll();
 		pars.clear();
 		pars.put("action", "get_chat");
 		pars.put("myid", loginer.getChat().wp.getMyId());
@@ -93,10 +91,11 @@ public class CenterPanel extends JPanel
 				JSONObject jo  = jarray.getJSONObject(i);
 				String     sId = (String) jo.get("user1_id");
 				int        id  = Integer.parseInt(sId);
+				/*
+				 * прорисовка моих сообщений
+				 */
 				if (id == myId)
 				{
-					//c.insets = new Insets(3, 50, 3, 30);	
-					//c.anchor = GridBagConstraints.EAST;
 					c.gridx=1;
 					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
 					myJLabel.setOpaque(true);
@@ -105,10 +104,12 @@ public class CenterPanel extends JPanel
 					System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;
 					
-				} else
+				} 
+				/*
+				 * прорисовка сообщений собеседника
+				 */
+				else
 				{
-					//c.insets = new Insets(3, 30, 3, 50);	
-					//c.anchor = GridBagConstraints.WEST;
 					c.gridx=0;
 					JLabel frJLabel = new JLabel("<html><p style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
 					frJLabel.setOpaque(true);
@@ -121,12 +122,7 @@ public class CenterPanel extends JPanel
 			}
 		} else
 		{
-			/*
-			removeAll();
-			String msg = (String) jo1.get("msg");
-			c.anchor = GridBagConstraints.CENTER;
-			add(new JLabel(msg), c);
-			*/
+
 		}
 		
 		main.revalidate();
