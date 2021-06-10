@@ -53,11 +53,12 @@ public class WestPanel extends JPanel
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTH;
-		redr();
+		//redr();
 	}
-/*
- * перерисовка панели
- */
+
+	/*
+	 * перерисовка панели
+	 */
 	public void redr()
 	{
 		Map<String, String> pars = new HashMap<String, String>();
@@ -65,43 +66,52 @@ public class WestPanel extends JPanel
 		pars.put("id", Integer.toString(myId));
 		pars.put("ksum", Integer.toString(ksum));
 		String otvet = null;
-		try	{otvet = cl.send(pars);}catch (IOException e){e.printStackTrace();}		
+		try
+		{
+			otvet = cl.send(pars);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+			return;
+		}
 		JSONObject jo1 = new JSONObject(otvet);
 		System.out.println(jo1);
 		int status = (int) jo1.get("status");
-		if(status == 0){
-		ksum= (int) jo1.get("ksum");
-		removeAll();
-		c.gridx = 0;
-		c.gridy = 0;
-		ActionListener userButtonListener = new UserButtonListener();
-				
-		JSONArray  ja  = jo1.getJSONArray("users");
-		batArray = new UserButtomClass[ja.length()];
-		for (int i = 0; i < ja.length(); i++)
+		if (status == 0)
 		{
-			JSONObject jo    = ja.getJSONObject(i);
-			String     login = (String) jo.get("login");
-			sId = (String) jo.get("id");
-			int id = Integer.parseInt(sId);
-			if (id != myId)
+			ksum = (int) jo1.get("ksum");
+			removeAll();
+			c.gridx = 0;
+			c.gridy = 0;
+			ActionListener userButtonListener = new UserButtonListener();
+			JSONArray      ja                 = jo1.getJSONArray("users");
+			batArray = new UserButtomClass[ja.length()];
+			for (int i = 0; i < ja.length(); i++)
 			{
-				batArray[i] = new UserButtomClass(login);
-				batArray[i].setId(id);
-				batArray[i].addActionListener(userButtonListener);
-				add(batArray[i], c);
-				if(jo.get("cnt").equals("1")) {
-					c.gridx=1;
-					add(new JLabel("<html><p style=\"background-color: #FFBF14\">!"));
-					c.gridx=0;
+				JSONObject jo    = ja.getJSONObject(i);
+				String     login = (String) jo.get("login");
+				sId = (String) jo.get("id");
+				int id = Integer.parseInt(sId);
+				if (id != myId)
+				{
+					batArray[i] = new UserButtomClass(login);
+					batArray[i].setId(id);
+					batArray[i].addActionListener(userButtonListener);
+					add(batArray[i], c);
+					int cnt = jo.getInt("cnt");
+					if (cnt>0)
+					{
+						c.gridx = 1;
+						add(new JLabel("<html><p style=\"background-color: #FFBF14\">"+cnt),c);
+						c.gridx = 0;
+					}
+					c.gridy++;
 				}
-
-					
-				c.gridy++;
 			}
-		}
-		c.weighty = 1;
-		add(new JLabel(), c);
+			//c.weighty = 1;
+			//add(new JLabel(), c);
+			main.revalidate();
+			main.repaint();
 		}
 	}
 

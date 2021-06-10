@@ -12,24 +12,27 @@ public class Demon implements Runnable
 	@Override
 	public void run()
 	{
-		int i=0;
+		int i = 0;
 		while (true)
 		{
 			/*
 			 * обновление чата раз в секунду
 			 */
-			try{
+			try
+			{
 				Thread.sleep(1000);
-				System.out.println(++i+"");				
+				if (i == 0)
+					chat.wp.redr();
 				chat.cp.chatRedr();
-			} catch (InterruptedException e){e.printStackTrace();}
+			} catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
 			/*
 			 * обновление левой панели раз в пять секунд
 			 */
-			if(i==5) {
-				i=0;
-				chat.wp.redr();
-			}
+			if (i++ == 5)
+				i = 0;
 		}
 	}
 }
