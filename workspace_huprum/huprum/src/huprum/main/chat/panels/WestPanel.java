@@ -53,7 +53,7 @@ public class WestPanel extends JPanel
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTH;
-		//redr();
+		redr();
 	}
 
 	/*
@@ -99,17 +99,19 @@ public class WestPanel extends JPanel
 					batArray[i].addActionListener(userButtonListener);
 					add(batArray[i], c);
 					int cnt = jo.getInt("cnt");
-					if (cnt>0)
+					if (cnt > 0)
 					{
 						c.gridx = 1;
-						add(new JLabel("<html><p style=\"background-color: #FFBF14\">"+cnt),c);
+						JLabel new_msg = new JLabel("<html><p style=\"background-color: #FFBF14\">" + cnt);
+						new_msg.setToolTipText("Новые сообщения");
+						add(new_msg, c);
 						c.gridx = 0;
 					}
 					c.gridy++;
 				}
 			}
-			//c.weighty = 1;
-			//add(new JLabel(), c);
+			// c.weighty = 1;
+			// add(new JLabel(), c);
 			main.revalidate();
 			main.repaint();
 		}
