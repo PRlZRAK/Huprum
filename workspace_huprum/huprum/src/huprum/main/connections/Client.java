@@ -142,7 +142,7 @@ public class Client
 			// тест получения юзеров для чата
 			pars.put("action", "get_my_users");
 			pars.put("id", "3");
-			pars.put("ksum", "100");
+			pars.put("ksum", "30");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
