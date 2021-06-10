@@ -130,6 +130,7 @@ public class Client
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			// тест отправки сообщения другому юзеру
+			*/
 			pars.put("action", "put_msg");
 			pars.put("id_from", "3");
 			pars.put("id_to", "1");
@@ -138,10 +139,10 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			*/
+			
 			// тест получения юзеров для чата
 			pars.put("action", "get_my_users");
-			pars.put("id", "3");
+			pars.put("id", "1");
 			pars.put("ksum", "100");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
