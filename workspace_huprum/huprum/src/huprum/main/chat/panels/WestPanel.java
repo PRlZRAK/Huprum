@@ -35,6 +35,7 @@ public class WestPanel extends JPanel
 	private String             sId;
 	private String             strMyId;
 	private String             strId            = null;
+	private int                ksum             = -1;
 
 	public String getStrId()
 	{
@@ -62,15 +63,19 @@ public class WestPanel extends JPanel
 		Map<String, String> pars = new HashMap<String, String>();
 		pars.put("action", "get_my_users");
 		pars.put("id", Integer.toString(myId));
+		pars.put("ksum", Integer.toString(ksum));
 		String otvet = null;
-		try	{otvet = cl.send(pars);}catch (IOException e){e.printStackTrace();}
+		try	{otvet = cl.send(pars);}catch (IOException e){e.printStackTrace();}		
+		JSONObject jo1 = new JSONObject(otvet);
+		System.out.println(jo1);
+		int status = (int) jo1.get("status");
+		if(status == 0){
+		ksum= (int) jo1.get("ksum");
 		removeAll();
 		c.gridx = 0;
 		c.gridy = 0;
 		ActionListener userButtonListener = new UserButtonListener();
-		
-
-		JSONObject jo1 = new JSONObject(otvet);
+				
 		JSONArray  ja  = jo1.getJSONArray("users");
 		batArray = new UserButtomClass[ja.length()];
 		for (int i = 0; i < ja.length(); i++)
@@ -85,11 +90,19 @@ public class WestPanel extends JPanel
 				batArray[i].setId(id);
 				batArray[i].addActionListener(userButtonListener);
 				add(batArray[i], c);
+				if(jo.get("cnt").equals("1")) {
+					c.gridx=1;
+					add(new JLabel("<html><p style=\"background-color: #FFBF14\">!"));
+					c.gridx=0;
+				}
+
+					
 				c.gridy++;
 			}
 		}
 		c.weighty = 1;
 		add(new JLabel(), c);
+		}
 	}
 
 	public class UserButtonListener implements ActionListener
