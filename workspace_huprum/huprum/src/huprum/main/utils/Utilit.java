@@ -50,13 +50,14 @@ public class Utilit
 	public static String InsertPerenos(String text, int wide, String znak)
 	{
 		/*
-		 * все должно работать
+		 * обработка текста
 		 */
 		int    j       = wide;
 		int    end     = 0;
 		int    i       = wide;
 		int    lenZnak = znak.length();
 		int    lenght  = text.length();
+		String doublZnak = znak+znak;
 		String otvet   = null;
 		if (lenght <= wide)
 			return text;
@@ -69,22 +70,21 @@ public class Utilit
 				{
 					System.out.println(i);
 					text = new StringBuilder(text).insert(i + 1, znak).toString();
-					otvet = "<html>" + text;
+					otvet = text.replaceAll(doublZnak, znak);;
 					break;
 				}
-			}
-			if (i == 0)
-			{
-				System.out.println("i=" + i);
-				text = new StringBuilder(text).insert(wide, znak).toString();
-				otvet = "<html>" + text;
+				if (i == 0)
+				{
+					System.out.println("i=" + i);
+					text = new StringBuilder(text).insert(wide, znak).toString();
+					otvet = text.replaceAll(doublZnak, znak);;
+				}
 			}
 			lenght+=lenZnak;
 			wide+=j;
 		}
 		return otvet;
 	}
-
 	public static void main(String[] args)
 	{
 		JFrame jframe = new JFrame("test Utilit");
@@ -93,7 +93,7 @@ public class Utilit
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		String text  = "На этом сайте можно снять квартиру на сутки. В центре города, хороший ремонт, недорого. Но зта квартира дешевле остальных. Поэтому многие хотят её купить.";
-		String otvet = InsertPerenos(text, 50, "<br>");
+		String otvet = InsertPerenos(text, 10, "<br>");
 		System.out.println(otvet);
 		JLabel jb = new JLabel(otvet);
 		jb.setBounds(5, 5, 1000, 300);
