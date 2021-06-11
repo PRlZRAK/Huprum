@@ -52,11 +52,12 @@ public class Utilit
 		/*
 		 * все должно работать
 		 */
-		int    j      = wide;
-		int    end    = 0;
-		int    i      = wide;
-		String otvet  = null;
-		int    lenght = text.length();
+		int    j       = wide;
+		int    end     = 0;
+		int    i       = wide;
+		int    lenZnak = znak.length();
+		int    lenght  = text.length();
+		String otvet   = null;
 		if (lenght <= wide)
 			return text;
 		while(wide<lenght)
@@ -78,6 +79,7 @@ public class Utilit
 				text = new StringBuilder(text).insert(wide, znak).toString();
 				otvet = "<html>" + text;
 			}
+			lenght+=lenZnak;
 			wide+=j;
 		}
 		return otvet;
@@ -90,10 +92,9 @@ public class Utilit
 		jframe.setVisible(true);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		String text  = "На этом сайте можно снять квартиру на сутки. В центре города, хороший ремонт, недорого.";
-		String otvet = InsertPerenos(text, 20, "<br>");
+		String text  = "На этом сайте можно снять квартиру на сутки. В центре города, хороший ремонт, недорого. Но зта квартира дешевле остальных. Поэтому многие хотят её купить.";
+		String otvet = InsertPerenos(text, 50, "<br>");
 		System.out.println(otvet);
-		System.out.println(text);
 		JLabel jb = new JLabel(otvet);
 		jb.setBounds(5, 5, 1000, 300);
 		panel.add(jb);
