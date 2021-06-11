@@ -46,15 +46,16 @@ public class SouthPanel extends JPanel
 		public void actionPerformed(ActionEvent arg0)
 		{
 			Client cl = main.getCl();
-
+            String msg = vod.getText().trim();
 			Map<String, String> pars = new HashMap<String, String>();
-
+            if(!msg.equals("")) {
 			pars.put("action", "put_msg");
 			pars.put("id_from", myId);
 			pars.put("id_to", loginer.getChat().wp.getId());
-			pars.put("msg", vod.getText());
+			pars.put("msg", msg);
 			try	{cl.send(pars);} catch (IOException e){e.printStackTrace();}
-			vod.setText("");
+			vod.setText("");			
+            }     
 		}
     }
 }
