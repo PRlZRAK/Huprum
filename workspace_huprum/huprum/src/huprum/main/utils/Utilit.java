@@ -95,7 +95,7 @@ public class Utilit
 		String text  = "На этом сайте можно снять квартиру на сутки. В центре города, хороший ремонт, недорого. Но зта квартира дешевле остальных. Поэтому многие хотят её купить.";
 		String otvet = InsertPerenos(text, 10, "<br>");
 		System.out.println(otvet);
-		JLabel jb = new JLabel(otvet);
+		JLabel jb = new JLabel("<html>"+otvet);
 		jb.setBounds(5, 5, 1000, 300);
 		panel.add(jb);
 		jframe.getContentPane().add(panel);

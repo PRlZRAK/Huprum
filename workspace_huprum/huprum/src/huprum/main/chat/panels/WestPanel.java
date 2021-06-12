@@ -92,8 +92,7 @@ public class WestPanel extends JPanel
 				String     login = (String) jo.get("login");
 				sId = (String) jo.get("id");
 				int id = Integer.parseInt(sId);
-				if (id != myId)
-				{
+				
 					batArray[i] = new UserButtomClass(login);
 					batArray[i].setId(id);
 					batArray[i].addActionListener(userButtonListener);
@@ -108,9 +107,9 @@ public class WestPanel extends JPanel
 						c.gridx = 0;
 					}
 					c.gridy++;
-				}
+				
 			}
-			// c.weighty = 1;
+			//` c.weighty = 1;
 			// add(new JLabel(), c);
 			main.revalidate();
 			main.repaint();
