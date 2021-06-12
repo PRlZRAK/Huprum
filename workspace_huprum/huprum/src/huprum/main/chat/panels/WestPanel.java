@@ -18,6 +18,7 @@ import huprum.main.Huprum;
 import huprum.main.chat.UserButtomClass;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
+import huprum.main.media.Sound;
 
 public class WestPanel extends JPanel
 {
@@ -113,6 +114,7 @@ public class WestPanel extends JPanel
 			// add(new JLabel(), c);
 			main.revalidate();
 			main.repaint();
+			Sound.playSound("sounds/5216_pod-zvonok.ru__.wav").join();
 		}
 	}
 

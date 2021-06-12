@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
+import huprum.main.media.Sound;
 
 public class CenterPanel extends JPanel
 {
@@ -31,6 +32,7 @@ public class CenterPanel extends JPanel
 	private HashMap<String, String> pars;
 	private JLabel con;
 	String last_id;
+	private Sound sound1;
 
 	public CenterPanel(Huprum main)
 	{
@@ -46,6 +48,7 @@ public class CenterPanel extends JPanel
 		setBackground(Color.lightGray);
 		c.fill=GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 5, 5, 5);
+		
 			}
 	/*
 	 * обновление чата
@@ -119,13 +122,14 @@ public class CenterPanel extends JPanel
 					c.gridy++;
 				}
 				last_id=jo.getString("id");
+				
 			}
-		} else
-		{
-
-		}
+			main.revalidate();
+			main.repaint();
+			Sound.playSound("sounds/5061_pod-zvonok.ru__.wav").join();
+		} 
 		
-		main.revalidate();
-		main.repaint();
+		
+		
 	}
 }
