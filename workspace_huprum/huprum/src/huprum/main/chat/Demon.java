@@ -12,7 +12,7 @@ public class Demon implements Runnable
 	@Override
 	public void run()
 	{
-		int i = 0;
+		
 		while (true)
 		{
 			/*
@@ -21,7 +21,7 @@ public class Demon implements Runnable
 			try
 			{
 				Thread.sleep(1000);
-				if (i == 0)
+				
 					chat.wp.redr();
 				chat.cp.chatRedr();
 			} catch (InterruptedException e)
@@ -31,8 +31,7 @@ public class Demon implements Runnable
 			/*
 			 * обновление левой панели раз в пять секунд
 			 */
-			if (i++ == 5)
-				i = 0;
+		
 		}
 	}
 }

@@ -110,6 +110,8 @@ public class WestPanel extends JPanel
 				
 					batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
 					batArray[i].setId(id);
+					if(strId!=null && strId.equals(id+""))
+						batArray[i].setSelect(true);
 					batArray[i].addActionListener(userButtonListener);
 					add(batArray[i], c);
 					int cnt = jo.getInt("cnt");
