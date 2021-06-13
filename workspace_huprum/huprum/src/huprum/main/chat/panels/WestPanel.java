@@ -1,5 +1,6 @@
 package huprum.main.chat.panels;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -95,7 +96,7 @@ public class WestPanel extends JPanel
 				sId = (String) jo.get("id");
 				int id = Integer.parseInt(sId);
 				
-					batArray[i] = new UserButtomClass(login);
+					batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
 					batArray[i].setId(id);
 					batArray[i].addActionListener(userButtonListener);
 					add(batArray[i], c);
