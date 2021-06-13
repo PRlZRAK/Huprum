@@ -11,31 +11,29 @@ import huprum.main.chat.panels.WestPanel;
 
 public class Chat
 {
-	public SouthPanel sp;
+	public SouthPanel  sp;
 	public CenterPanel cp;
-	public WestPanel wp;
-	
-	
+	public WestPanel   wp;
+	@SuppressWarnings("exports")
+	public JScrollPane scroll;
+
 	public Chat(Huprum main)
 	{
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
-			
-		wp=new WestPanel(main);
-		main.add(new JScrollPane(wp),BorderLayout.WEST);
-		
+		wp = new WestPanel(main);
+		main.add(new JScrollPane(wp), BorderLayout.WEST);
 		sp = new SouthPanel(main);
-		main.add(sp,BorderLayout.SOUTH);
-			
-		cp=new CenterPanel(main);
-		main.add(new JScrollPane(cp),BorderLayout.CENTER);
+		main.add(sp, BorderLayout.SOUTH);
+		cp = new CenterPanel(main);
+		scroll = new JScrollPane(cp);
+		main.add(scroll, BorderLayout.CENTER);
 		/*
 		 * перерисовка окна
 		 */
 		main.revalidate();
 		main.repaint();
-		Runnable demon=new Demon(this);
+		Runnable demon = new Demon(this);
 		new Thread(demon).start();
-
 	}
 }

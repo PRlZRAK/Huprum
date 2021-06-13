@@ -5,20 +5,24 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.PlaySound;
+import huprum.main.utils.DTime;
 import huprum.main.utils.Utilit;
 
 public class CenterPanel extends JPanel
@@ -33,13 +37,12 @@ public class CenterPanel extends JPanel
 	private Loginer                 loginer;
 	private Client                  cl;
 	private HashMap<String, String> pars;
-	private JLabel con;
-	String last_id;
-	private PlaySound clip;
-	
+	private JLabel                  con;
+	String                          last_id;
+	private PlaySound               clip;
+
 	public CenterPanel(Huprum main)
 	{
-		
 		this.main = main;
 		loginer = main.getLoginer();
 		myId = loginer.getId();
@@ -49,7 +52,7 @@ public class CenterPanel extends JPanel
 		cl = main.getCl();
 		pars = new HashMap<String, String>();
 		setBackground(Utilit.COLOR_1068);
-		c.fill=GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 5, 5, 5);
 		try
 		{
@@ -59,14 +62,15 @@ public class CenterPanel extends JPanel
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-			}
+	}
+
 	/*
 	 * обновление чата
 	 */
 	public void chatRedr()
 	{
-		if (loginer.getChat().wp.getId() == null)return;
+		if (loginer.getChat().wp.getId() == null)
+			return;
 		/*
 		 * обращение к серверу
 		 */
@@ -82,11 +86,11 @@ public class CenterPanel extends JPanel
 		} catch (IOException e1)
 		{
 			c.anchor = GridBagConstraints.SOUTH;
-			con.setText("<html><p color=#d3d3d3>Нет соединения с сервером");	
+			con.setText("<html><p color=#d3d3d3>Нет соединения с сервером");
 			add(con, c);
 			return;
 		}
-		con.setText("");	
+		con.setText("");
 		JSONObject jo1    = new JSONObject(otvet);
 		int        status = (int) jo1.get("status");
 		if (status == 0)
@@ -94,53 +98,63 @@ public class CenterPanel extends JPanel
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
 			System.out.println("jarray = " + jarray);
 			removeAll();
-			c.gridy=0;
-			c.gridwidth=1;
-			for(c.gridx=0;c.gridx<3;c.gridx++)
-			add(new JLabel("                             "),c);
-			c.gridwidth=2;
+			c.gridy = 0;
+			c.gridwidth = 1;
+			for (c.gridx = 0; c.gridx < 3; c.gridx++)
+				add(new JLabel("                             "), c);
+			c.gridwidth = 2;
 			c.gridy++;
 			for (int i = 0; i < jarray.length(); i++)
 			{
 				JSONObject jo  = jarray.getJSONObject(i);
 				String     sId = (String) jo.get("user1_id");
 				int        id  = Integer.parseInt(sId);
+				DTime      dt  = null;
+				try
+				{
+					dt = new DTime(jo.getString("dtime"));
+				} catch (JSONException | ParseException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				/*
 				 * прорисовка моих сообщений
 				 */
 				if (id == myId)
 				{
-					c.gridx=1;
-					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
+					c.gridx = 1;
+					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"
+							+ Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
+							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
 					myJLabel.setOpaque(true);
 					myJLabel.setBackground(Utilit.COLOR_1085);
 					add(myJLabel, c);
 					System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;
-					
-				} 
+				}
 				/*
 				 * прорисовка сообщений собеседника
 				 */
 				else
 				{
-					c.gridx=0;
-					JLabel frJLabel = new JLabel("<html><p style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
+					c.gridx = 0;
+					JLabel frJLabel = new JLabel("<html><p style=\"font-size: 11px\">"
+							+ Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
+							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
 					frJLabel.setOpaque(true);
 					frJLabel.setBackground(Color.white);
 					add(frJLabel, c);
 					System.out.println("notmymsg = " + jo.get("msg"));
 					c.gridy++;
 				}
-				last_id=jo.getString("id");
-				
+				last_id = jo.getString("id");
 			}
 			main.revalidate();
 			main.repaint();
 			clip.play();
-		} 
-		
-		
-		
+			JScrollBar bar = loginer.getChat().scroll.getVerticalScrollBar();
+			bar.setValue(bar.getMaximum());
+		}
 	}
 }
