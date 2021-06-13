@@ -7,6 +7,8 @@ import java.awt.Insets;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,7 +18,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
-import huprum.main.media.Sound;
+import huprum.main.media.PlaySound;
 import huprum.main.utils.Utilit;
 
 public class CenterPanel extends JPanel
@@ -33,8 +35,8 @@ public class CenterPanel extends JPanel
 	private HashMap<String, String> pars;
 	private JLabel con;
 	String last_id;
-	private Sound sound1;
-
+	private PlaySound clip;
+	
 	public CenterPanel(Huprum main)
 	{
 		
@@ -49,6 +51,14 @@ public class CenterPanel extends JPanel
 		setBackground(Utilit.COLOR_1068);
 		c.fill=GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 5, 5, 5);
+		try
+		{
+			clip = new PlaySound("5061_pod-zvonok.ru__.wav");
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 			}
 	/*
@@ -127,7 +137,7 @@ public class CenterPanel extends JPanel
 			}
 			main.revalidate();
 			main.repaint();
-			Sound.playSound("sounds/5061_pod-zvonok.ru__.wav").join();
+			clip.play();
 		} 
 		
 		

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,7 +21,8 @@ import huprum.main.Huprum;
 import huprum.main.chat.UserButtomClass;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
-import huprum.main.media.Sound;
+import huprum.main.media.PlaySound;
+
 import huprum.main.utils.Utilit;
 
 public class WestPanel extends JPanel
@@ -39,6 +42,7 @@ public class WestPanel extends JPanel
 	private String             strMyId;
 	private String             strId            = null;
 	private int                ksum             = -1;
+	private PlaySound clip;
 
 	public String getStrId()
 	{
@@ -56,6 +60,14 @@ public class WestPanel extends JPanel
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTH;
+		try
+		{
+			clip = new PlaySound("5216_pod-zvonok.ru__.wav");
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		redr();
 	}
 
@@ -116,7 +128,8 @@ public class WestPanel extends JPanel
 			// add(new JLabel(), c);
 			main.revalidate();
 			main.repaint();
-			Sound.playSound("sounds/5216_pod-zvonok.ru__.wav").join();
+			//Sound.playSound("sounds/5216_pod-zvonok.ru__.wav").join();
+			clip.play();
 		}
 	}
 
