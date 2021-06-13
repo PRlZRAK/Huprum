@@ -112,6 +112,8 @@ public class WestPanel extends JPanel
 					batArray[i].setId(id);
 					if(strId!=null && strId.equals(id+""))
 						batArray[i].setSelect(true);
+					else
+						batArray[i].setSelect(false);
 					batArray[i].addActionListener(userButtonListener);
 					add(batArray[i], c);
 					int cnt = jo.getInt("cnt");
