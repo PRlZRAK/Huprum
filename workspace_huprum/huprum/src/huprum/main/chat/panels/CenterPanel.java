@@ -17,6 +17,7 @@ import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.Sound;
+import huprum.main.utils.Utilit;
 
 public class CenterPanel extends JPanel
 {
@@ -45,7 +46,7 @@ public class CenterPanel extends JPanel
 		c = new GridBagConstraints();
 		cl = main.getCl();
 		pars = new HashMap<String, String>();
-		setBackground(Color.lightGray);
+		setBackground(Utilit.COLOR_1068);
 		c.fill=GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 5, 5, 5);
 		
@@ -102,7 +103,7 @@ public class CenterPanel extends JPanel
 					c.gridx=1;
 					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"+jo.get("msg")+"<html></p>");
 					myJLabel.setOpaque(true);
-					myJLabel.setBackground(new Color(198,246,218));
+					myJLabel.setBackground(Utilit.COLOR_1085);
 					add(myJLabel, c);
 					System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;

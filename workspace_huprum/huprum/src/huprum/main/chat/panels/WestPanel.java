@@ -19,6 +19,7 @@ import huprum.main.chat.UserButtomClass;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.Sound;
+import huprum.main.utils.Utilit;
 
 public class WestPanel extends JPanel
 {
@@ -102,7 +103,7 @@ public class WestPanel extends JPanel
 					if (cnt > 0)
 					{
 						c.gridx = 1;
-						JLabel new_msg = new JLabel("<html><p style=\"background-color: #FFBF14\">" + cnt);
+						JLabel new_msg = new JLabel("<html><p style=\"background-color: "+Utilit.S_COLOR_399+"; color: white;\">" + cnt);
 						new_msg.setToolTipText("Новые сообщения");
 						add(new_msg, c);
 						c.gridx = 0;

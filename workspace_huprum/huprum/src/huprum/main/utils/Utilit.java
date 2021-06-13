@@ -1,15 +1,35 @@
 package huprum.main.utils;
 
+import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Utilit
 {
+	/*
+	 * Цвета интерфейса
+	 */
+	public static String S_COLOR_1085="#E7F0FA";
+	public static Color COLOR_1085=Color.decode(S_COLOR_1085);
+	public static String S_COLOR_490="#2B2415";
+	public static Color COLOR_490=Color.decode(S_COLOR_490);
+	public static String S_COLOR_389="#F3B25F";
+	public static Color COLOR_389=Color.decode(S_COLOR_389);
+	public static String S_COLOR_470="#928348";
+	public static Color COLOR_470=Color.decode(S_COLOR_470);
+	public static String S_COLOR_1074="#064A5F";
+	public static Color COLOR_1074=Color.decode(S_COLOR_1074);
+	public static String S_COLOR_399="#C59242";
+	public static Color COLOR_399=Color.decode(S_COLOR_399);
+	public static String S_COLOR_1057="#00678E";
+	public static Color COLOR_1057=Color.decode(S_COLOR_1057);
+	public static String S_COLOR_1068="#BACDDA";
+	public static Color COLOR_1068=Color.decode(S_COLOR_1068);
+	//
 	public static int CheckLogin(String login)
 	{
 		// TODO Auto-generated method stub
