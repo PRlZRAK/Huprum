@@ -90,7 +90,7 @@ public class WestPanel extends JPanel
 			return;
 		}
 		JSONObject jo1 = new JSONObject(otvet);
-		System.out.println(jo1);
+		//System.out.println(jo1);
 		int status = (int) jo1.get("status");
 		if (status == 0)
 		{
