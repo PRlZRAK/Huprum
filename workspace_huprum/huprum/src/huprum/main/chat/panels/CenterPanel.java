@@ -97,12 +97,12 @@ public class CenterPanel extends JPanel
 		if (status == 0)
 		{
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
-			System.out.println("jarray = " + jarray);
+			//System.out.println("jarray = " + jarray);
 			removeAll();
 			c.gridy = 0;
 			c.gridwidth = 1;
 			for (c.gridx = 0; c.gridx < 3; c.gridx++)
-				add(new JLabel("                             "), c);
+				add(new JLabel("                     "), c);
 			c.gridwidth = 2;
 			c.gridy++;
 			for (int i = 0; i < jarray.length(); i++)
@@ -142,7 +142,7 @@ public class CenterPanel extends JPanel
 					myJLabel.setOpaque(true);
 					myJLabel.setBackground(Utilit.COLOR_1085);
 					add(myJLabel, c);
-					System.out.println("mymsg = " + jo.get("msg"));
+					//System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;
 				}
 				/*
@@ -157,7 +157,7 @@ public class CenterPanel extends JPanel
 					frJLabel.setOpaque(true);
 					frJLabel.setBackground(Color.white);
 					add(frJLabel, c);
-					System.out.println("notmymsg = " + jo.get("msg"));
+					//System.out.println("notmymsg = " + jo.get("msg"));
 					c.gridy++;
 				}
 				last_id = jo.getString("id");

@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
-
+import huprum.main.utils.Utilit;
 
 public class Huprum extends JFrame
 {
@@ -38,8 +38,7 @@ public class Huprum extends JFrame
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
-		cl = new Client("http://130.61.155.146/huprum/server/index.php");
-		//cl = new Client("http://localhost/huprum/server/index.php");
+		cl = new Client(Utilit.SERVER_URL);
 		loginer = new Loginer(this);
 		setVisible(true);
 	}
