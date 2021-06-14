@@ -8,19 +8,22 @@ import huprum.main.Huprum;
 import huprum.main.chat.panels.CenterPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.WestPanel;
+import huprum.main.toolbar.ToolBar;
 
-public class Chat
-{
-	public SouthPanel  sp;
+public class Chat {
+	
+	public ToolBar toolbar;
+	public SouthPanel sp;
 	public CenterPanel cp;
-	public WestPanel   wp;
+	public WestPanel wp;
 	@SuppressWarnings("exports")
 	public JScrollPane scroll;
 
-	public Chat(Huprum main)
-	{
+	public Chat(Huprum main) {
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
+		toolbar=new ToolBar(main);
+		main.add(toolbar, BorderLayout.PAGE_START);
 		wp = new WestPanel(main);
 		main.add(new JScrollPane(wp), BorderLayout.WEST);
 		sp = new SouthPanel(main);
