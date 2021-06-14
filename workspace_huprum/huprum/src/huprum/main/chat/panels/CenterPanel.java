@@ -40,6 +40,7 @@ public class CenterPanel extends JPanel
 	private JLabel                  con;
 	String                          last_id;
 	private PlaySound               clip;
+	private int                     day              = 0;
 
 	public CenterPanel(Huprum main)
 	{
@@ -113,6 +114,17 @@ public class CenterPanel extends JPanel
 				try
 				{
 					dt = new DTime(jo.getString("dtime"));
+					if (dt.day() != day)
+					{
+						c.gridwidth = 1;
+						c.gridx = 1;
+						JLabel label_day = new JLabel(dt.dayToString());
+						label_day.setForeground(Utilit.COLOR_1057);
+						add(label_day, c);
+						c.gridwidth = 2;
+						c.gridy++;
+						day = dt.day();
+					}
 				} catch (JSONException | ParseException e)
 				{
 					// TODO Auto-generated catch block
