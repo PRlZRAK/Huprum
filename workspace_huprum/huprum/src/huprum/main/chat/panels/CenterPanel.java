@@ -57,7 +57,7 @@ public class CenterPanel extends JPanel
 		c.insets = new Insets(10, 5, 5, 5);
 		try
 		{
-			clip = new PlaySound("5061_pod-zvonok.ru__.wav");
+			clip = new PlaySound("Sound_16487.wav");
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
 		{
 			// TODO Auto-generated catch block
