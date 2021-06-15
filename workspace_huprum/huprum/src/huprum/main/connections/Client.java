@@ -13,6 +13,8 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import huprum.main.utils.Utilit;
+
 public class Client
 {
 	private URL url;
@@ -78,8 +80,7 @@ public class Client
 	{
 		try
 		{
-			Client cl = new Client("http://130.61.155.146/huprum/server/index.php");
-			//Client              cl   = new Client("http://localhost/huprum/server/index.php");
+			Client cl = new Client(Utilit.SERVER_URL);
 			Map<String, String> pars = new HashMap<String, String>();
 			String              otvet;
 			JSONObject          jo;
@@ -130,7 +131,7 @@ public class Client
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			// тест отправки сообщения другому юзеру
-			*/
+			
 			pars.put("action", "put_msg");
 			pars.put("id_from", "3");
 			pars.put("id_to", "1");
@@ -147,7 +148,14 @@ public class Client
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			
+			*/
+			// тест получения юзеров для чата
+			pars.put("action", "del_user");
+			pars.put("myid", "3");
+			pars.put("userid", "6");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
 					
 		} catch (IOException e)
 		{

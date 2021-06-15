@@ -33,7 +33,7 @@ public class Utilit
 	 * url сервера
 	 */
 	public static String SERVER_URL = "http://130.61.155.146/huprum/server/index.php";
-	// public static String SERVER_URL="http://localhost/huprum/server/index.php";
+	//public static String SERVER_URL="http://localhost/huprum/server/index.php";
 
 	public static int CheckLogin(String login)
 	{
