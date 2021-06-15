@@ -139,7 +139,7 @@ public class WestPanel extends JPanel
 
 	public class UserButtonListener implements ActionListener
 	{
-		@SuppressWarnings("exports")
+		
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{

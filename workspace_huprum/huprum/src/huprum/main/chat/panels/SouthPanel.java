@@ -41,7 +41,7 @@ public class SouthPanel extends JPanel
 	 */
 	public class Message implements ActionListener
 	{		
-		@SuppressWarnings("exports")
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{

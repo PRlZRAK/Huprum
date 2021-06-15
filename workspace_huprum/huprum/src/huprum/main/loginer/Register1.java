@@ -1,10 +1,8 @@
 package huprum.main.loginer;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -22,11 +20,15 @@ import org.json.JSONObject;
 
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
-import huprum.main.loginer.Register1.UsersActionListener1;
 import huprum.main.utils.Utilit;
 
 public class Register1 extends JFrame implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7798770920700174385L;
+
 	public class UsersActionListener1 implements ActionListener
 	{
 		@Override
@@ -38,6 +40,7 @@ public class Register1 extends JFrame implements ActionListener
 				setErrLog("<html><p color=red>заполнить");
 			} else
 				setErrLog("");
+			@SuppressWarnings("deprecation")
 			String pass = jpass.getText();
 			if (pass.equals(""))
 			{
@@ -107,6 +110,7 @@ public class Register1 extends JFrame implements ActionListener
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private Huprum         main;
 	private JTextField     jlogin;
 	private JLabel         er_login;

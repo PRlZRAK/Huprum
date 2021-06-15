@@ -4,14 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JOptionPane;
 
 import org.json.JSONObject;
 
 import huprum.main.Huprum;
-import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.utils.Utilit;
@@ -38,13 +36,13 @@ public class AddUserActionList implements ActionListener {
 
 	public void AddUsOptonPane() {
 
-		String user = JOptionPane.showInputDialog(null, "Введите логин/почту/телефон того, кого хотите добавить",
-				"Добавление переписки", JOptionPane.PLAIN_MESSAGE);
+		String user = JOptionPane.showInputDialog(main, "Введите логин или почту или телефон абонента",
+				"Добавление чата", JOptionPane.PLAIN_MESSAGE);
 		if (user == null) {
-			System.out.println("Отменено");
+		//	System.out.println("Отменено");
 			return;
 		}
-		System.out.println("Подтверждено");
+		//System.out.println("Подтверждено");
 		int i = Utilit.CheckLogin(user);
 		if (i == 1) {
 			user = Utilit.CleaPhone(user);
@@ -60,22 +58,22 @@ public class AddUserActionList implements ActionListener {
 			JSONObject jo = new JSONObject(otvet);
 			int status = jo.getInt("status");
 			if (status != 0) {
-				int repeat = JOptionPane.showConfirmDialog(null, "Пользователь не найден, попробовать ещё раз?",
-						"Ошибка", JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE);
+				int repeat = JOptionPane.showConfirmDialog(main, "Пользователь не найден, попробовать ещё раз?",
+						"Ошибка", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (repeat == JOptionPane.YES_OPTION)
 					AddUsOptonPane();
 				return;
 			}
 			System.out.println(jo);
 			String login = jo.getString("login");
-			int confirm = JOptionPane.showConfirmDialog(null, "Добавить переписку с " + login + "?", "Подтверждение",
-					JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE);
+			int confirm = JOptionPane.showConfirmDialog(main, "Добавить чат с " + login + "?", "Подтверждение",
+					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (confirm == JOptionPane.YES_OPTION) {
 				String id = Integer.toString(jo.getInt("id"));
 				pars.put("action", "put_msg");
 				pars.put("id_from", myId);
 				pars.put("id_to", id);
-				pars.put("msg", "Добавлена новая переписка");
+				pars.put("msg", loginer.getJlogin()+" предлагает вам переписываться");
 				try {
 					cl.send(pars);
 				} catch (IOException b) {

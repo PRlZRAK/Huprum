@@ -36,7 +36,7 @@ public class UserButtomClass extends JButton implements UserButtom
 		selectTextColor = Color.white;
 	}
 
-	@SuppressWarnings("exports")
+	
 	public UserButtomClass(String b, Color backGround, Color textColor)
 	{
 		super(b);

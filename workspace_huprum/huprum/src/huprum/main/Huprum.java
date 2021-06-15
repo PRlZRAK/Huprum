@@ -43,7 +43,7 @@ public class Huprum extends JFrame
 		setVisible(true);
 	}
 
-	@SuppressWarnings("exports")
+	
 	public Client getCl()
 	{
 		return cl;

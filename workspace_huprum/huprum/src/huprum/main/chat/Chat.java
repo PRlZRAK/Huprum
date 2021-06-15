@@ -16,7 +16,7 @@ public class Chat {
 	public SouthPanel sp;
 	public CenterPanel cp;
 	public WestPanel wp;
-	@SuppressWarnings("exports")
+	
 	public JScrollPane scroll;
 
 	public Chat(Huprum main) {
