@@ -149,10 +149,10 @@ public class Client
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
 			*/
-			// тест получения юзеров для чата
+			// тест удаления юзеров из чата
 			pars.put("action", "del_user");
 			pars.put("myid", "3");
-			pars.put("userid", "6");
+			pars.put("userid", "5");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);

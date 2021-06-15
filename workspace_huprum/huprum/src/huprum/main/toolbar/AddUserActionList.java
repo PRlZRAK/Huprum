@@ -66,7 +66,7 @@ public class AddUserActionList implements ActionListener {
 			}
 			System.out.println(jo);
 			String login = jo.getString("login");
-			int confirm = JOptionPane.showConfirmDialog(main, "Добавить чат с " + login + "?", "Подтверждение",
+			int confirm = JOptionPane.showConfirmDialog(main, "Добавить чат с " + login + "?", "Юзер "+login+" найден",
 					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (confirm == JOptionPane.YES_OPTION) {
 				String id = Integer.toString(jo.getInt("id"));
