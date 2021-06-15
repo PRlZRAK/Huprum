@@ -66,21 +66,28 @@ public class AddUserActionList implements ActionListener {
 					AddUsOptonPane();
 				return;
 			}
-
-			String id = Integer.toString(jo.getInt("id"));
-			pars.put("action", "put_msg");
-			pars.put("id_from", myId);
-			pars.put("id_to", id);
-			pars.put("msg", "Добавлена новая переписка");
-			try {
-				cl.send(pars);
-			} catch (IOException b) {
-				b.printStackTrace();
+			System.out.println(jo);
+			String login = jo.getString("login");
+			int confirm = JOptionPane.showConfirmDialog(null, "Добавить переписку с " + login + "?", "Подтверждение",
+					JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE);
+			if (confirm == JOptionPane.YES_OPTION) {
+				String id = Integer.toString(jo.getInt("id"));
+				pars.put("action", "put_msg");
+				pars.put("id_from", myId);
+				pars.put("id_to", id);
+				pars.put("msg", "Добавлена новая переписка");
+				try {
+					cl.send(pars);
+				} catch (IOException b) {
+					b.printStackTrace();
+				}
 			}
+			return;
 		} catch (IOException d) {
 			d.printStackTrace();
 			return;
 		}
+
 	}
 
 }
