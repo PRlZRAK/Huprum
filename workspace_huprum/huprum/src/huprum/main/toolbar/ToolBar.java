@@ -8,19 +8,28 @@ import javax.swing.JToolBar;
 
 import huprum.main.Huprum;
 
-public class ToolBar extends JToolBar{
+public class ToolBar extends JToolBar {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton addUser;
+	private JButton back;
 
-public ToolBar(Huprum main) {		
+	public ToolBar(Huprum main) {
+
+		back = new JButton();
+		ImageIcon backIcon = new ImageIcon(
+		Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/back 1.png")));
+		back.setIcon(backIcon);
+		back.addActionListener(new BackActionList(main));
+		add(back);
+
 		addUser = new JButton();
 		ImageIcon addUserButIcon = new ImageIcon(
 		Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/add user.png")));
 		addUser.setIcon(addUserButIcon);
 		addUser.addActionListener(new AddUserActionList(main));
-		add(addUser);		
+		add(addUser);
 	}
 }

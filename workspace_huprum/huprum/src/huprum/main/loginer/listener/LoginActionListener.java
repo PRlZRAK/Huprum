@@ -58,7 +58,6 @@ public class LoginActionListener implements ActionListener
 		try
 		{
 			otvet = cl.send(pars);
-			//System.out.println(otvet);
 			JSONObject jo = new JSONObject(otvet);
 			int status = jo.getInt("status");
 			if (status!=0)

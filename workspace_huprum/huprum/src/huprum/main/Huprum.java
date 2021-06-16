@@ -54,6 +54,11 @@ public class Huprum extends JFrame
 		return loginer;
 	}
 
+	public void setLoginer(Loginer loginer) {
+		this.loginer = loginer;
+	}
+
+
 	public static void main(String[] args)
 	{
 		try

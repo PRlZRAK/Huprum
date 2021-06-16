@@ -51,10 +51,12 @@ public class WestPanel extends JPanel
 
 	public WestPanel(Huprum main)
 	{
+		
 		this.main = main;
 		loginer = main.getLoginer();
 		cl = main.getCl();
 		myId = loginer.getId();
+		System.out.println(myId);
 		lastButton = new UserButtomClass("");
 		setLayout(new GridBagLayout());
 		c = new GridBagConstraints();

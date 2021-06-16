@@ -27,11 +27,7 @@ public class Demon implements Runnable
 			} catch (InterruptedException e)
 			{
 				e.printStackTrace();
-			}
-			/*
-			 * обновление левой панели раз в пять секунд
-			 */
-		
+			}		
 		}
 	}
 }
