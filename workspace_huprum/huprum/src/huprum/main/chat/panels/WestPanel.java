@@ -126,18 +126,18 @@ public class WestPanel extends JPanel
 					String tooltip = null;
 					if (cnt > 0 && online == 0) {
 						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
-								+ "img/orang_cirk_.png);background-repeat: no-repeat; color: white;  \">&nbsp;" + cnt
+								+ "server/img/orang_cirk_.png);background-repeat: no-repeat; color: white;  \">&nbsp;" + cnt
 								+ "&nbsp;&nbsp;";
 						 tooltip = "новые сообщения";
 					}
 					else if (cnt == 0 && online > 0) {
 						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
-								+ "img/blue_cirk_.png);background-repeat: no-repeat;  \">&nbsp;&nbsp;&nbsp;&nbsp;";
+								+ "server/img/blue_cirk_.png);background-repeat: no-repeat;  \">&nbsp;&nbsp;&nbsp;&nbsp;";
 						tooltip = "юзер онлайн";
 					}
 					else if (cnt > 0 && online > 0) {
 						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
-								+ "img/all_cirk_.png);background-repeat: no-repeat; color: white; \">&nbsp;" + cnt
+								+ "server/img/all_cirk_.png);background-repeat: no-repeat; color: white; \">&nbsp;" + cnt
 								+ "&nbsp;&nbsp;";
 					tooltip = "новые сообщения + юзер онлайн";}
 					JLabel new_msg = new JLabel(img);
