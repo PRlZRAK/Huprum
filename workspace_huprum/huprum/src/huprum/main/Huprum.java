@@ -56,7 +56,7 @@ public class Huprum extends JFrame
 					filewr.write(jo.toString());
 					filewr.flush();
 					filewr.close();
-					System.exit(0);
+					//System.exit(0);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

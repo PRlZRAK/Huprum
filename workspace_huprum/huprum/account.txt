@@ -1,1 +1,0 @@
-{"locaty":240,"locatx":448,"width":1024,"status":0,"height":600}
