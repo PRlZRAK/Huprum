@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
+import huprum.main.utils.DTime;
 import huprum.main.utils.Utilit;
 
 public class AddUserActionList implements ActionListener {
@@ -70,10 +71,12 @@ public class AddUserActionList implements ActionListener {
 					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (confirm == JOptionPane.YES_OPTION) {
 				String id = Integer.toString(jo.getInt("id"));
+				pars.clear();
 				pars.put("action", "put_msg");
 				pars.put("id_from", myId);
 				pars.put("id_to", id);
 				pars.put("msg", loginer.getJlogin()+" предлагает вам переписываться");
+				pars.put("dtime", DTime.now());
 				try {
 					cl.send(pars);
 				} catch (IOException b) {
