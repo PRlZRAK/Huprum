@@ -98,7 +98,7 @@ public class Huprum extends JFrame
 		}
 	}
 
-	private void configSave()
+	public void configSave()
 	{
 		JSONObject jo = new JSONObject();
 		if (remember)
@@ -112,7 +112,7 @@ public class Huprum extends JFrame
 		jo.put("height", getSize().height);
 		jo.put("locatx", getLocation().x);
 		jo.put("locaty", getLocation().y);
-		File       f = new File("config.json");
+		File       f = new File(Utilit.CONFIG);
 		FileWriter filewr;
 		try
 		{
