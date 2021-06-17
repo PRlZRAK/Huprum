@@ -51,7 +51,7 @@ public class Huprum extends JFrame
 				jo.put("locaty", getLocation().y);
 				
 				try {
-					File f = new File("account.txt");
+					File f = new File("config.json");
 					FileWriter filewr = new FileWriter(f);
 					filewr.write(jo.toString());
 					filewr.flush();
