@@ -54,7 +54,7 @@ public class Client
 			{
 				response.append(responseLine.trim());
 			}
-			// System.out.println("response = " + response.toString());
+			//System.out.println("response = " + response.toString());
 			return getJson(response.toString());
 		}
 	}

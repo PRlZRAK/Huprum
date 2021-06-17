@@ -12,6 +12,7 @@ import huprum.main.Huprum;
 import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
+import huprum.main.utils.DTime;
 import huprum.main.utils.Utilit;
 
 public class LoginActionListener implements ActionListener
@@ -22,7 +23,7 @@ public class LoginActionListener implements ActionListener
 	public LoginActionListener(Huprum main)
 	{
 		this.main = main;
-		cl=main.getCl();
+		cl = main.getCl();
 	}
 
 	@Override
@@ -36,64 +37,58 @@ public class LoginActionListener implements ActionListener
 			return;
 		} else
 			loginer.setErrLog("");
-		
-		String  pass     = loginer.getJpass();
+		String pass = loginer.getJpass();
 		if (pass.equals(""))
 		{
 			loginer.setErrPas("<html><p color=red>заполнить");
 			return;
 		} else
 			loginer.setErrPas("");
-		
 		int i = Utilit.CheckLogin(log);
-		if(i==1) 
+		if (i == 1)
 		{
-			log=Utilit.CleaPhone(log);
+			log = Utilit.CleaPhone(log);
 		}
-		String[] par = new String[] {"mail","phone","login"};
+		String[]            par  = new String[]
+		{ "mail", "phone", "login" };
 		Map<String, String> pars = new HashMap<String, String>();
 		pars.put("action", "login");
-		pars.put(par[i],log);
+		pars.put(par[i], log);
+		pars.put("dtime", DTime.now());
 		String otvet;
 		try
 		{
 			otvet = cl.send(pars);
-			JSONObject jo = new JSONObject(otvet);
-			int status = jo.getInt("status");
-			if (status!=0)
+			JSONObject jo     = new JSONObject(otvet);
+			int        status = jo.getInt("status");
+			if (status != 0)
 			{
-
-				loginer.setErrPas("<html><p color=red>"+jo.getString("msg"));
+				loginer.setErrPas("<html><p color=red>" + jo.getString("msg"));
 				return;
 			}
-			String jpass= (String) jo.get("password");
-			if(!jpass.equals(pass))
+			String jpass = (String) jo.get("password");
+			if (!jpass.equals(pass))
 			{
 				loginer.setErrPas("<html><p color=red>неправильный пароль");
 				return;
 			}
-			
-				
-			int id=jo.getInt("id");
-			String login= (String) jo.get("login");
-			String phone= (String) jo.get("phone");
-			String password= (String) jo.get("password");
+			int    id       = jo.getInt("id");
+			main.getLoginer().setId(id);
+			String login    = (String) jo.get("login");
+			String phone    = (String) jo.get("phone");
+			String password = (String) jo.get("password");
 			loginer.setPassword(password);
 			loginer.setId(id);
 			loginer.setPhone(phone);
 			loginer.setLogin(login);
-			Chat chat=new Chat(main);
+			Chat chat = new Chat(main);
 			loginer.setChat(chat);
 			return;
-			
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 			loginer.setEr_сonnection("<html><p color=red>Нет соединения с сервером");
 			return;
 		}
-		
-		
-	
 	}
 }

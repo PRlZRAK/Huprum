@@ -97,7 +97,7 @@ public class CenterPanel extends JPanel
 		if (status == 0)
 		{
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
-			//System.out.println("jarray = " + jarray);
+			// System.out.println("jarray = " + jarray);
 			removeAll();
 			c.gridy = 0;
 			c.gridwidth = 1;
@@ -142,7 +142,7 @@ public class CenterPanel extends JPanel
 					myJLabel.setOpaque(true);
 					myJLabel.setBackground(Utilit.COLOR_1085);
 					add(myJLabel, c);
-					//System.out.println("mymsg = " + jo.get("msg"));
+					// System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;
 				}
 				/*
@@ -157,14 +157,15 @@ public class CenterPanel extends JPanel
 					frJLabel.setOpaque(true);
 					frJLabel.setBackground(Color.white);
 					add(frJLabel, c);
-					//System.out.println("notmymsg = " + jo.get("msg"));
+					// System.out.println("notmymsg = " + jo.get("msg"));
 					c.gridy++;
 				}
 				last_id = jo.getString("id");
 			}
 			main.revalidate();
 			main.repaint();
-			clip.play();
+			if (jarray.length() > 0)
+				clip.play();
 			JScrollBar bar = loginer.getChat().scroll.getVerticalScrollBar();
 			bar.setValue(bar.getMaximum());
 		}

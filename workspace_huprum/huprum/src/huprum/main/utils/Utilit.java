@@ -32,8 +32,9 @@ public class Utilit
 	/*
 	 * url сервера
 	 */
-	public static String SERVER_URL = "http://130.61.155.146/huprum/server/index.php";
-	//public static String SERVER_URL="http://localhost/huprum/server/index.php";
+	//public static String HUPRUM_URL = "http://localhost/huprum/";
+	public static String HUPRUM_URL = "http://130.61.155.146/huprum/";
+	public static String SERVER_URL = HUPRUM_URL + "server/index.php";
 
 	public static int CheckLogin(String login)
 	{
@@ -93,14 +94,14 @@ public class Utilit
 				char ch = text.charAt(i);
 				if (ch == ' ')
 				{
-					//System.out.println(i);
+					// System.out.println(i);
 					text = new StringBuilder(text).insert(i + 1, znak).toString();
 					otvet = text.replaceAll(doublZnak, znak);;
 					break;
 				}
 				if (i == 0)
 				{
-					//System.out.println("i=" + i);
+					// System.out.println("i=" + i);
 					text = new StringBuilder(text).insert(wide, znak).toString();
 					otvet = text.replaceAll(doublZnak, znak);;
 				}

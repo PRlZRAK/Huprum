@@ -4,7 +4,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 
@@ -30,6 +32,7 @@ public class Huprum extends JFrame
 		{
 			public void windowClosing(WindowEvent e)
 			{
+				userLogoff();
 				System.exit(0);
 			}
 		});
@@ -43,7 +46,6 @@ public class Huprum extends JFrame
 		setVisible(true);
 	}
 
-	
 	public Client getCl()
 	{
 		return cl;
@@ -54,10 +56,10 @@ public class Huprum extends JFrame
 		return loginer;
 	}
 
-	public void setLoginer(Loginer loginer) {
+	public void setLoginer(Loginer loginer)
+	{
 		this.loginer = loginer;
 	}
-
 
 	public static void main(String[] args)
 	{
@@ -67,6 +69,21 @@ public class Huprum extends JFrame
 		} catch (MalformedURLException e)
 		{
 			e.printStackTrace();
+		}
+	}
+
+	public void userLogoff()
+	{
+		HashMap<String, String> pars = new HashMap<String, String>();
+		pars.put("action", "user_off");
+		pars.put("id", loginer.getId() + "");
+		try
+		{
+			cl.send(pars);
+		} catch (IOException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 }

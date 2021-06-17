@@ -43,4 +43,10 @@ public class DTime
 		cal.setTime(date);
 		return cal.get(Calendar.DAY_OF_YEAR);
 	}
+
+	public static String now()
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return simpleDateFormat.format(new Date());
+	}
 }

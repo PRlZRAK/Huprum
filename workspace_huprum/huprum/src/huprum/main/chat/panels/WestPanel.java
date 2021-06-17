@@ -42,7 +42,7 @@ public class WestPanel extends JPanel
 	private String             strMyId;
 	private String             strId            = null;
 	private int                ksum             = -1;
-	private PlaySound clip;
+	private PlaySound          clip;
 
 	public String getStrId()
 	{
@@ -51,7 +51,6 @@ public class WestPanel extends JPanel
 
 	public WestPanel(Huprum main)
 	{
-		
 		this.main = main;
 		loginer = main.getLoginer();
 		cl = main.getCl();
@@ -59,6 +58,7 @@ public class WestPanel extends JPanel
 		System.out.println(myId);
 		lastButton = new UserButtomClass("");
 		setLayout(new GridBagLayout());
+		setBackground(Utilit.COLOR_490);
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTH;
@@ -92,7 +92,7 @@ public class WestPanel extends JPanel
 			return;
 		}
 		JSONObject jo1 = new JSONObject(otvet);
-		//System.out.println(jo1);
+		// System.out.println(jo1);
 		int status = (int) jo1.get("status");
 		if (status == 0)
 		{
@@ -109,39 +109,56 @@ public class WestPanel extends JPanel
 				String     login = (String) jo.get("login");
 				sId = (String) jo.get("id");
 				int id = Integer.parseInt(sId);
-				
-					batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
-					batArray[i].setId(id);
-					if(strId!=null && strId.equals(id+""))
-						batArray[i].setSelect(true);
-					else
-						batArray[i].setSelect(false);
-					batArray[i].addActionListener(userButtonListener);
-					add(batArray[i], c);
-					int cnt = jo.getInt("cnt");
-					if (cnt > 0)
-					{
-						c.gridx = 1;
-						JLabel new_msg = new JLabel("<html><p style=\"background-color: "+Utilit.S_COLOR_399+"; color: white;\">" + cnt);
-						new_msg.setToolTipText("Новые сообщения");
-						add(new_msg, c);
-						c.gridx = 0;
+				batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
+				batArray[i].setId(id);
+				if (strId != null && strId.equals(id + ""))
+					batArray[i].setSelect(true);
+				else
+					batArray[i].setSelect(false);
+				batArray[i].addActionListener(userButtonListener);
+				add(batArray[i], c);
+				int cnt    = jo.getInt("cnt");
+				int online = jo.getInt("online");
+				if (cnt + online > 0)
+				{
+					c.gridx = 1;
+					String img     = null;
+					String tooltip = null;
+					if (cnt > 0 && online == 0) {
+						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
+								+ "img/orang_cirk_.png);background-repeat: no-repeat; color: white;  \">&nbsp;" + cnt
+								+ "&nbsp;&nbsp;";
+						 tooltip = "новые сообщения";
 					}
-					c.gridy++;
-				
+					else if (cnt == 0 && online > 0) {
+						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
+								+ "img/blue_cirk_.png);background-repeat: no-repeat;  \">&nbsp;&nbsp;&nbsp;&nbsp;";
+						tooltip = "юзер онлайн";
+					}
+					else if (cnt > 0 && online > 0) {
+						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
+								+ "img/all_cirk_.png);background-repeat: no-repeat; color: white; \">&nbsp;" + cnt
+								+ "&nbsp;&nbsp;";
+					tooltip = "новые сообщения + юзер онлайн";}
+					JLabel new_msg = new JLabel(img);
+					new_msg.setOpaque(false);
+					new_msg.setToolTipText(tooltip);
+					add(new_msg, c);
+					c.gridx = 0;
+				}
+				c.gridy++;
 			}
-			//` c.weighty = 1;
-			// add(new JLabel(), c);
+			// add(new JLabel("<html><img src=\"http://localhost/huprum/img/loading-42.gif\"
+			// width=\"16\" height=\"16\" />"), c);
 			main.revalidate();
 			main.repaint();
-			//Sound.playSound("sounds/5216_pod-zvonok.ru__.wav").join();
+			// Sound.playSound("sounds/5216_pod-zvonok.ru__.wav").join();
 			clip.play();
 		}
 	}
 
 	public class UserButtonListener implements ActionListener
 	{
-		
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{

@@ -23,6 +23,7 @@ public class ToolBar extends JToolBar {
 		Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/back 1.png")));
 		back.setIcon(backIcon);
 		back.addActionListener(new BackActionList(main));
+		back.setToolTipText("Выход");
 		add(back);
 
 		addUser = new JButton();
@@ -30,6 +31,7 @@ public class ToolBar extends JToolBar {
 		Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/add user.png")));
 		addUser.setIcon(addUserButIcon);
 		addUser.addActionListener(new AddUserActionList(main));
+		addUser.setToolTipText("Найти, добавить чат с юзером по логину или майлу или телефону");
 		add(addUser);
 	}
 }
