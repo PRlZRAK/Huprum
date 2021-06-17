@@ -28,7 +28,7 @@ public class Huprum extends JFrame
 	private static final int  DEFAULT_WIDTH    = 1024;
 	private Loginer           loginer;
 	private Client            cl;
-	private boolean remember = false;
+	private boolean           remember         = false;
 
 	public Huprum(String title) throws MalformedURLException
 	{
@@ -37,29 +37,7 @@ public class Huprum extends JFrame
 		{
 			public void windowClosing(WindowEvent e)
 			{
-
-				JSONObject jo = new JSONObject();
-				if(remember)
-				{					
-					jo.put("status", 1);
-					jo.put("login", loginer.getLogin());
-					jo.put("password", loginer.getPassword());
-				}else	jo.put("status", 0);
-				jo.put("width", getSize().width);
-				jo.put("height", getSize().height);
-				jo.put("locatx", getLocation().x);
-				jo.put("locaty", getLocation().y);
-				
-				try {
-					File f = new File("config.json");
-					FileWriter filewr = new FileWriter(f);
-					filewr.write(jo.toString());
-					filewr.flush();
-					filewr.close();
-					//System.exit(0);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				configSave();
 				userLogoff();
 				System.exit(0);
 			}
@@ -88,8 +66,9 @@ public class Huprum extends JFrame
 	{
 		this.loginer = loginer;
 	}
-	
-	public void setRemember(boolean remember) {
+
+	public void setRemember(boolean remember)
+	{
 		this.remember = remember;
 	}
 
@@ -116,6 +95,35 @@ public class Huprum extends JFrame
 		{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	}
+
+	private void configSave()
+	{
+		JSONObject jo = new JSONObject();
+		if (remember)
+		{
+			jo.put("status", 1);
+			jo.put("login", loginer.getLogin());
+			jo.put("password", loginer.getPassword());
+		} else
+			jo.put("status", 0);
+		jo.put("width", getSize().width);
+		jo.put("height", getSize().height);
+		jo.put("locatx", getLocation().x);
+		jo.put("locaty", getLocation().y);
+		File       f = new File("config.json");
+		FileWriter filewr;
+		try
+		{
+			filewr = new FileWriter(f);
+			filewr.write(jo.toString());
+			filewr.flush();
+			filewr.close();
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
