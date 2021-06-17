@@ -72,6 +72,8 @@ public class LoginActionListener implements ActionListener
 				loginer.setErrPas("<html><p color=red>неправильный пароль");
 				return;
 			}
+			main.setRemember(loginer.getJremember().isSelected());
+			
 			int    id       = jo.getInt("id");
 			main.getLoginer().setId(id);
 			String login    = (String) jo.get("login");

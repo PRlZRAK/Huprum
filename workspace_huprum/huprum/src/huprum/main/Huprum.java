@@ -4,11 +4,15 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+
+import org.json.JSONObject;
 
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
@@ -24,6 +28,7 @@ public class Huprum extends JFrame
 	private static final int  DEFAULT_WIDTH    = 1024;
 	private Loginer           loginer;
 	private Client            cl;
+	private boolean remember = false;
 
 	public Huprum(String title) throws MalformedURLException
 	{
@@ -32,6 +37,29 @@ public class Huprum extends JFrame
 		{
 			public void windowClosing(WindowEvent e)
 			{
+
+				JSONObject jo = new JSONObject();
+				if(remember)
+				{					
+					jo.put("status", 1);
+					jo.put("login", loginer.getLogin());
+					jo.put("password", loginer.getPassword());
+				}else	jo.put("status", 0);
+				jo.put("width", getSize().width);
+				jo.put("height", getSize().height);
+				jo.put("locatx", getLocation().x);
+				jo.put("locaty", getLocation().y);
+				
+				try {
+					File f = new File("account.txt");
+					FileWriter filewr = new FileWriter(f);
+					filewr.write(jo.toString());
+					filewr.flush();
+					filewr.close();
+					System.exit(0);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				userLogoff();
 				System.exit(0);
 			}
@@ -59,6 +87,10 @@ public class Huprum extends JFrame
 	public void setLoginer(Loginer loginer)
 	{
 		this.loginer = loginer;
+	}
+	
+	public void setRemember(boolean remember) {
+		this.remember = remember;
 	}
 
 	public static void main(String[] args)
