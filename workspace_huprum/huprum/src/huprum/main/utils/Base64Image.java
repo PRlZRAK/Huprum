@@ -38,6 +38,10 @@ public class Base64Image
 		byte[] imageByteArray = Base64.getDecoder().decode(base64Image);
 		imageOutFile.write(imageByteArray);
 	}
+
+	/**
+	 * @param args пример работы с base64 как с изображением
+	 */
 	public static void main(String[] args)
 	{
 		String buf;
