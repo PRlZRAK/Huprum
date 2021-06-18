@@ -3,12 +3,14 @@ package huprum.main.toolbar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import huprum.main.Huprum;
+import huprum.main.toolbar.ToolBar.BackActionList1;
 
 public class ToolBar extends JToolBar
 {
@@ -28,7 +30,8 @@ public class ToolBar extends JToolBar
 		ImageIcon backIcon = new ImageIcon(
 				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/back 1.png")));
 		back.setIcon(backIcon);
-		back.addActionListener(new BackActionList(main));
+		//back.addActionListener(new BackActionList(main));
+		back.addActionListener(new BackActionList1());
 		back.setToolTipText("Выход");
 		add(back);
 		//
@@ -59,4 +62,24 @@ public class ToolBar extends JToolBar
 			System.exit(0);
 		}
 	}
+
+	public class BackActionList1 implements ActionListener
+	{
+		
+		public void actionPerformed(ActionEvent arg0)
+		{
+			main.configSave();
+			main.userLogoff();
+			try
+			{
+				Runtime.getRuntime().exec("java -jar huprum.jar");
+			} catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.exit(0);
+		}
+	}
+
 }

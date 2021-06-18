@@ -80,7 +80,8 @@ public class Loginer
 			}
 		} catch (IOException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
+			status =2;
 		}
 		if (!(status == 2))
 		{
