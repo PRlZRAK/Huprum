@@ -30,6 +30,8 @@ public class BackActionList implements ActionListener
 			 */
 			main.userLogoff();
 			//
+			main.setRemember(false);
+			main.configSave();
 			main.getContentPane().removeAll();
 			loginer = new Loginer(main);
 			main.setLoginer(loginer);
