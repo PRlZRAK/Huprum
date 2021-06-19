@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,9 +19,7 @@ import org.json.JSONObject;
 
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
-import huprum.main.connections.Client;
 import huprum.main.loginer.listener.LoginActionListener;
-import huprum.main.utils.DTime;
 import huprum.main.utils.Utilit;
 
 public class Loginer
