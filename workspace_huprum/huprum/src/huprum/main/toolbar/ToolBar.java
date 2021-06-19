@@ -7,10 +7,10 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
 import huprum.main.Huprum;
-import huprum.main.toolbar.ToolBar.BackActionList1;
 
 public class ToolBar extends JToolBar
 {
@@ -68,6 +68,10 @@ public class ToolBar extends JToolBar
 		
 		public void actionPerformed(ActionEvent arg0)
 		{
+			int confirm = JOptionPane.showConfirmDialog(main, "Вы уверены, что хотите выйти?", "Выход из аккаунта",
+					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (confirm == JOptionPane.YES_OPTION)
+			{
 			main.configSave();
 			main.userLogoff();
 			try
@@ -75,10 +79,10 @@ public class ToolBar extends JToolBar
 				Runtime.getRuntime().exec("java -jar huprum.jar");
 			} catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.exit(0);
+			}
 		}
 	}
 
