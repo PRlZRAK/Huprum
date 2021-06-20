@@ -124,22 +124,24 @@ public class WestPanel extends JPanel
 					c.gridx = 1;
 					String img     = null;
 					String tooltip = null;
-					if (cnt > 0 && online == 0) {
+					if (cnt > 0 && online == 0)
+					{
 						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
-								+ "server/img/orang_cirk_.png);background-repeat: no-repeat; color: white;  \">&nbsp;" + cnt
-								+ "&nbsp;&nbsp;";
-						 tooltip = "новые сообщения";
-					}
-					else if (cnt == 0 && online > 0) {
+								+ "server/img/orang_cirk_.png);background-repeat: no-repeat; color: white;  \">&nbsp;"
+								+ cnt + "&nbsp;&nbsp;";
+						tooltip = "новые сообщения";
+					} else if (cnt == 0 && online > 0)
+					{
 						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
 								+ "server/img/blue_cirk_.png);background-repeat: no-repeat;  \">&nbsp;&nbsp;&nbsp;&nbsp;";
 						tooltip = "юзер онлайн";
-					}
-					else if (cnt > 0 && online > 0) {
+					} else if (cnt > 0 && online > 0)
+					{
 						img = "<html><div style=\"background-image: url(" + Utilit.HUPRUM_URL
-								+ "server/img/all_cirk_.png);background-repeat: no-repeat; color: white; \">&nbsp;" + cnt
-								+ "&nbsp;&nbsp;";
-					tooltip = "новые сообщения + юзер онлайн";}
+								+ "server/img/all_cirk_.png);background-repeat: no-repeat; color: white; \">&nbsp;"
+								+ cnt + "&nbsp;&nbsp;";
+						tooltip = "новые сообщения + юзер онлайн";
+					}
 					JLabel new_msg = new JLabel(img);
 					new_msg.setOpaque(false);
 					new_msg.setToolTipText(tooltip);
@@ -180,5 +182,10 @@ public class WestPanel extends JPanel
 	public String getId()
 	{
 		return strId;
+	}
+
+	public UserButtomClass getLastButton()
+	{
+		return lastButton;
 	}
 }

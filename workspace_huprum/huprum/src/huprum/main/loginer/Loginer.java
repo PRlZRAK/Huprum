@@ -59,7 +59,7 @@ public class Loginer
 	}
 
 	public Loginer(Huprum main)
-	{		
+	{
 		JSONObject jo     = null;
 		int        status = 0;
 		try
@@ -74,7 +74,7 @@ public class Loginer
 			}
 		} catch (IOException e)
 		{
-			status =2;
+			status = 2;
 		}
 		if (!(status == 2))
 		{
@@ -99,7 +99,7 @@ public class Loginer
 			c.gridy++;
 			panel.add(new JLabel("Логин или Телефон или Почта:"), c);
 			c.gridy++;
-			jlogin = new JTextField(20);			
+			jlogin = new JTextField(20);
 			panel.add(jlogin, c);
 			c.gridx++;
 			er_login = new JLabel();
@@ -125,12 +125,11 @@ public class Loginer
 			JButton button_new_user = new JButton("Регистрация");
 			panel.add(button_new_user, c);
 			button_new_user.addActionListener(new Register1(main));
-			
 			if (status == 1)
 			{
-				String remLog  = (String) jo.get("login");
+				String remLog = (String) jo.get("login");
 				jlogin.setText(remLog);
-				String remPas  = (String) jo.get("password");
+				String remPas = (String) jo.get("password");
 				jpass.setText(remPas);
 				jremember.setSelected(true);
 			}
