@@ -63,7 +63,7 @@ public class LoginActionListener implements ActionListener
 			int        status = jo.getInt("status");
 			if (status != 0)
 			{
-				loginer.setErrPas("<html><p color=red>" + jo.getString("msg"));
+				loginer.setErrLog("<html><p color=red>" + jo.getString("msg"));
 				return;
 			}
 			String jpass = (String) jo.get("password");
