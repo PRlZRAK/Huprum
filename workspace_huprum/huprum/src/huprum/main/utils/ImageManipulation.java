@@ -269,7 +269,7 @@ public class ImageManipulation
 	public JPanel getImageTxt(int i, int j, String txt, int k, Color bgcolor)
 	{
 		JPanel panel = new JPanel();
-		panel.setSize(i, j);
+		//panel.setSize(i, j);
 		panel.setBackground(bgcolor);
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

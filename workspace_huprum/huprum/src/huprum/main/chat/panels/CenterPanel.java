@@ -143,7 +143,7 @@ public class CenterPanel extends JPanel
 						try
 						{
 							ImageManipulation im = new ImageManipulation(jo.getString("img"));
-							add(im.getImageTxt(200, 200, jo.getString("msg"), 30,Utilit.COLOR_1085),c);
+							add(im.getImageTxt(200, 200, jo.getString("msg"), 20,Utilit.COLOR_1085),c);
 						} catch (JSONException | IOException e)
 						{
 							// TODO Auto-generated catch block

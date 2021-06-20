@@ -106,7 +106,7 @@ public class SouthPanel extends JPanel
 			try
 			{
 				img_send = new ImageManipulation(main);
-				show.setIcon(img_send.getImageIcon(20, 20));
+				show.setIcon(img_send.getImageIcon(30, 30));
 				vod.setText(" ");
 			} catch (IOException e)
 			{
