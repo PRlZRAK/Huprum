@@ -171,6 +171,7 @@ public class WestPanel extends JPanel
 			strId = button.getId().toString();
 			loginer.getChat().cp.last_id = "-1";
 			lastButton = button;
+			main.getLoginer().getChat().sp.setImgNull();
 		}
 	}
 

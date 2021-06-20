@@ -23,6 +23,7 @@ import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.PlaySound;
 import huprum.main.utils.DTime;
+import huprum.main.utils.ImageManipulation;
 import huprum.main.utils.Utilit;
 
 public class CenterPanel extends JPanel
@@ -135,15 +136,30 @@ public class CenterPanel extends JPanel
 				 */
 				if (id == myId)
 				{
+					
 					c.gridx = 1;
+					if (!jo.isNull("img"))
+					{
+						try
+						{
+							ImageManipulation im = new ImageManipulation(jo.getString("img"));
+							add(im.getImageTxt(200, 200, jo.getString("msg"), 30,Utilit.COLOR_1085),c);
+						} catch (JSONException | IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					else {
 					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"
 							+ Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
 							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
 					myJLabel.setOpaque(true);
 					myJLabel.setBackground(Utilit.COLOR_1085);
-					add(myJLabel, c);
+					add(myJLabel, c);}
 					// System.out.println("mymsg = " + jo.get("msg"));
 					c.gridy++;
+					
 				}
 				/*
 				 * прорисовка сообщений собеседника
