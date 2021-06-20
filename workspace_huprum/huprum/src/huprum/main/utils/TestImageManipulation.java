@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -38,7 +40,7 @@ public class TestImageManipulation extends JFrame
 		c.gridy++;
 		panel.add(new JLabel("Оригинальное изображение:"), c);
 		c.gridx = 1;
-		panel.add(new JLabel(im.getImageIcon()), c);
+		panel.add(new JLabel(im.getImageIcon(300, 300)), c);
 		c.gridx = 0;
 		c.gridy++;
 		panel.add(new JLabel("<html>Его измененная пропорционально <br>уменьшенная копия:"), c);
@@ -55,12 +57,24 @@ public class TestImageManipulation extends JFrame
 		c.gridy++;
 		panel.add(new JLabel("Изображение из строки:"), c);
 		c.gridx = 1;
-		panel.add(new JLabel(im1.getImageIcon()), c);
+		JLabel lb1 = new JLabel(im1.getImageIcon(300, 300));
+		panel.add(lb1, c);
 		c.gridx = 0;
 		c.gridy++;
 		JButton save = new JButton("сохранить изображение");
 		panel.add(save, c);
 		save.addActionListener(new SaveActionListener(this, im1));
+		c.gridx = 0;
+		c.gridy++;
+		panel.add(new JLabel("нажмите на третье сверху изображение"), c);
+		lb1.addMouseListener(new MyListener(this, im1));
+		c.gridx = 0;
+		c.gridy++;
+		panel.add(new JLabel("Изображение с надписью:"), c);
+		c.gridx = 1;
+		String text = "Примечание: ниже расположен перевод статьи \"Inline Images with Data URLs\", в которой"
+				+ " рассматривается вопрос о внедрении картинки на веб-страницы при помощи data:URI.";
+		panel.add(im.getImageTxt(200, 200, text, 25, Utilit.COLOR_1085), c);
 		setVisible(true);
 	}
 
@@ -86,6 +100,48 @@ public class TestImageManipulation extends JFrame
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+
+	public class MyListener implements MouseListener
+	{
+		private ImageManipulation     im;
+		private TestImageManipulation main;
+
+		public MyListener(TestImageManipulation testImageManipulation, ImageManipulation im1)
+		{
+			main = testImageManipulation;
+			im = im1;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			im.show(main, "Привет");
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0)
+		{
+			// im.show(main);
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0)
+		{
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0)
+		{
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0)
+		{
+			// TODO Auto-generated method stub
 		}
 	}
 

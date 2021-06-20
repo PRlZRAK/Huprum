@@ -1,10 +1,14 @@
 package huprum.main.utils;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,25 +17,30 @@ import java.util.Base64;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+/**
+ * @author yaa Класс для манипулирования изображениями удобный для swing
+ *         интерфейса
+ * 
+ */
 public class ImageManipulation
 {
 	private BufferedImage    image;
 	private String           base64String;
 	private String           fileType;
 	private FileOutputStream imageOutFile;
+	private FileInputStream  imageInFile;
 
-	public void readFile(File file) throws IOException
-	{
-		fileType = Files.probeContentType(file.toPath());
-		base64String = Base64Image.encoder(file);
-		byte[] btDataFile = Base64.getDecoder().decode(base64String);
-		image = ImageIO.read(new ByteArrayInputStream(btDataFile));
-	}
-
+	/**
+	 * @param base64
+	 * @throws IOException конструктор для изображения полученного с сервера, где
+	 *                     оно хранилось в виде base64 строки
+	 */
 	public ImageManipulation(String base64) throws IOException
 	{
 		base64String = base64.split(",")[1];
@@ -40,58 +49,106 @@ public class ImageManipulation
 		image = ImageIO.read(new ByteArrayInputStream(btDataFile));
 	}
 
+	/**
+	 * @param main
+	 * @throws IOException конструктор для получения изображения их файловой
+	 *                     сиистемы юзера для отправки на сервер
+	 */
 	public ImageManipulation(Component main) throws IOException
 	{
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		jfc.setDialogTitle("Найдите файл изображения: ");
 		jfc.setAcceptAllFileFilterUsed(false);
-		
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Изображения" , "jpg","jpeg","png","gif","bmp");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Изображения", "jpg", "jpeg", "png", "gif", "bmp");
 		jfc.addChoosableFileFilter(filter);
 		int returnValue = jfc.showOpenDialog(main);
 		if (returnValue == JFileChooser.APPROVE_OPTION)
 		{
-			File   selectedFile = jfc.getSelectedFile();
+			File selectedFile = jfc.getSelectedFile();
 			readFile(selectedFile);
 		}
 	}
 
+	/**
+	 * @param file
+	 * @throws IOException читает файл изображения и преобразует его в base64
+	 */
+	public void readFile(File file) throws IOException
+	{
+		fileType = Files.probeContentType(file.toPath());
+		base64String = encoder(file);
+		byte[] btDataFile = Base64.getDecoder().decode(base64String);
+		image = ImageIO.read(new ByteArrayInputStream(btDataFile));
+	}
+
+	/**
+	 * @return высота изображения в пикселах
+	 */
 	public int getHeight()
 	{
 		return image.getHeight();
 	}
 
+	/**
+	 * @return тип или формат файла
+	 */
 	public String getFileType()
 	{
 		return fileType;
 	}
 
+	/**
+	 * @return ширина изображения в пикселах
+	 */
 	public int getWidth()
 	{
 		return image.getWidth();
 	}
 
+	/**
+	 * @return возвращает полноразмерный ImageIcon для JLabel
+	 */
 	public ImageIcon getImageIcon()
 	{
 		return new ImageIcon(image);
 	}
 
-	public String toString()
-	{
-		return "BufferedImage: Width = " + getWidth() + ", Height = " + getHeight() + ", Type = " + getFileType();
-	}
-
+	/**
+	 * @param maxX максимальная ширина иконки
+	 * @param maxY максимальная высота иконки
+	 * @return возвращает ImageIcon для JLabel не больше максимальных параметров но
+	 *         с сохранением пропорций
+	 */
 	public ImageIcon getImageIcon(int maxX, int maxY)
 	{
 		int ns[] = newSize(maxX, maxY);
 		return new ImageIcon(imageResize(ns[0], ns[1]));
 	}
 
+	/**
+	 * для отладки
+	 */
+	public String toString()
+	{
+		return "BufferedImage: Width = " + getWidth() + ", Height = " + getHeight() + ", Type = " + getFileType();
+	}
+
+	/**
+	 * @param x ширина
+	 * @param y высота
+	 * @return возвращает изображение новых размеров
+	 */
 	public Image imageResize(int x, int y)
 	{
 		return image.getScaledInstance(x, y, BufferedImage.SCALE_SMOOTH);
 	}
 
+	/**
+	 * @param maxX
+	 * @param maxY
+	 * @return ширину и высоту не больше максимальных значений с сохранением
+	 *         пропорций (внутренний метод)
+	 */
 	private int[] newSize(int maxX, int maxY)
 	{
 		int x = getWidth();
@@ -112,12 +169,19 @@ public class ImageManipulation
 		return null;
 	}
 
-//data:image/png;base64, iV
+	/**
+	 * @return изображение в виде base64 строки
+	 */
 	public String getBase64()
 	{
 		return "data:" + fileType + ";base64," + base64String;
 	}
 
+	/**
+	 * @param main
+	 * @throws IOException диалог для сохранения изображения в файловой системе
+	 *                     юзера (сохранение присланных картинок)
+	 */
 	public void save(Component main) throws IOException
 	{
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -144,6 +208,10 @@ public class ImageManipulation
 		}
 	}
 
+	/**
+	 * @param pathFile полное имя файла
+	 * @throws IOException сохраняет изображение в файл
+	 */
 	public void saveImage(String pathFile) throws IOException
 	{
 		imageOutFile = new FileOutputStream(pathFile);
@@ -151,6 +219,12 @@ public class ImageManipulation
 		imageOutFile.write(imageByteArray);
 	}
 
+	/**
+	 * @param f        файл изображения
+	 * @param fileType тип/формат файла
+	 * @return исправляет префикс файла, если неправильно его ввел (внутренний
+	 *         метод)
+	 */
 	private String checkFileName(File f, String fileType)
 	{
 		String types[][] = new String[][]
@@ -172,5 +246,53 @@ public class ImageManipulation
 		if (li <= 0)
 			return path + "." + ext;
 		return path.substring(0, li) + "." + ext;
+	}
+
+	/**
+	 * @param main   адресс главного окна или null
+	 * @param string надпись на изображении. Метод для показа изображения в большом
+	 *               размере. Предназначен для обработки события.
+	 */
+	public void show(Component main, String string)
+	{
+		JOptionPane.showMessageDialog(main, "", string, JOptionPane.INFORMATION_MESSAGE, getImageIcon());
+	}
+
+	/**
+	 * @param i       максимальная ширина в пикселах
+	 * @param j       максимальная высата в пикселах
+	 * @param txt     текст под иконкой
+	 * @param k       максиимальная ширина текста в буквах
+	 * @param bgcolor цвет фона
+	 * @return панель с изображением и текстом под ним
+	 */
+	public JPanel getImageTxt(int i, int j, String txt, int k, Color bgcolor)
+	{
+		JPanel panel = new JPanel();
+		panel.setSize(i, j);
+		panel.setBackground(bgcolor);
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		panel.add(new JLabel(getImageIcon(i, j)), c);
+		c.gridy = 1;
+		panel.add(new JLabel("<html><p><br>" + Utilit.InsertPerenos(txt, k, "<br>")), c);
+		return panel;
+	}
+
+	/**
+	 * @param file изображение
+	 * @return строка в формате base64
+	 * @throws IOException читает и перекодирует файл (внутренний метод)
+	 */
+	private String encoder(File file) throws IOException
+	{
+		String base64Image = "";
+		imageInFile = new FileInputStream(file);
+		byte imageData[] = new byte[(int) file.length()];
+		imageInFile.read(imageData);
+		base64Image = Base64.getEncoder().encodeToString(imageData);
+		return base64Image;
 	}
 }
