@@ -60,6 +60,7 @@ public class SouthPanel extends JPanel
 	public void setImgNull()
 	{
 		this.img_send = null;
+		show.setIcon(null);
 	}
 
 	/*
@@ -106,8 +107,11 @@ public class SouthPanel extends JPanel
 			try
 			{
 				img_send = new ImageManipulation(main);
-				show.setIcon(img_send.getImageIcon(30, 30));
-				vod.setText(" ");
+				if (img_send.getImage() != null)
+				{
+					show.setIcon(img_send.getImageIcon(40, 40));
+					vod.setText(" ");
+				}
 			} catch (IOException e)
 			{
 				img_send = null;

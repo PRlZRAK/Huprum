@@ -30,7 +30,7 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class ImageManipulation
 {
-	private BufferedImage    image;
+	private BufferedImage    image = null;
 	private String           base64String;
 	private String           fileType;
 	private FileOutputStream imageOutFile;
@@ -302,5 +302,14 @@ public class ImageManipulation
 		imageInFile.read(imageData);
 		base64Image = Base64.getEncoder().encodeToString(imageData);
 		return base64Image;
+	}
+
+	/**
+	 * @return BufferedImage объект. Метод для проверки на коректность отработки
+	 *         конструктора
+	 */
+	public BufferedImage getImage()
+	{
+		return image;
 	}
 }
