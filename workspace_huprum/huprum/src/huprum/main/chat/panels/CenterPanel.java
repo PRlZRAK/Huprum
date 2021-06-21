@@ -103,7 +103,6 @@ public class CenterPanel extends JPanel
 			c.gridwidth = 1;
 			for (c.gridx = 0; c.gridx < 3; c.gridx++)
 				add(new JLabel("                   "), c);
-			
 			c.gridwidth = 2;
 			c.gridy++;
 			for (int i = 0; i < jarray.length(); i++)
@@ -161,12 +160,22 @@ public class CenterPanel extends JPanel
 
 	private void put_msg(JSONObject jo, DTime dt, Color color)
 	{
-		if (!jo.isNull("img"))
+		if (jo.getInt("img") == 1)
 		{
 			try
 			{
-				ImageManipulation im = new ImageManipulation(jo.getString("img"));
-				add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, Utilit.COLOR_1085), c);
+				pars.clear();
+				pars.put("action", "get_img");
+				String id = jo.getString("id");
+				pars.put("id", id);
+				String     ot     = cl.send(pars);
+				JSONObject jo1    = new JSONObject(ot);
+				int        status = jo1.getInt("status");
+				if (status == 0)
+				{
+					ImageManipulation im = new ImageManipulation(jo1.getString("img"));
+					add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
+				}
 			} catch (JSONException | IOException e)
 			{
 				// TODO Auto-generated catch block
@@ -178,7 +187,7 @@ public class CenterPanel extends JPanel
 					"<html><p  style=\"font-size: 11px\">" + Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
 							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
 			myJLabel.setOpaque(true);
-			myJLabel.setBackground(Utilit.COLOR_1085);
+			myJLabel.setBackground(color);
 			add(myJLabel, c);
 		}
 	}

@@ -91,19 +91,11 @@ public class Client
 			System.out.println("otvet = " + otvet);
 			pars.clear();
 			pars.put("action", "get_users");
-			// pars.put("last_user_id", "6");
+			
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			pars.clear();
-			pars.put("action", "get_chat");
-			pars.put("myid", "3");
-			pars.put("id", "1");
-			pars.put("last_chat_id", "4");
-			otvet = cl.send(pars);
-			System.out.println("otvet = " + otvet);
-			jo = new JSONObject(otvet);
-			System.out.println("jo = " + jo);
+			
 			// логин
 			pars.clear();
 			pars.put("action", "registr");
@@ -148,11 +140,37 @@ public class Client
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			*/
+			
 			// тест удаления юзеров из чата
 			pars.put("action", "del_user");
 			pars.put("myid", "3");
 			pars.put("userid", "5");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			*/
+			// тест отправки сообщения другому юзеру
+			pars.clear();
+			pars.put("action", "put_msg");
+			pars.put("id_from", "3");
+			pars.put("id_to", "1");
+			pars.put("msg", "Проверка put_msg");
+			pars.put("dtime","2020-12-12 12:12:12");
+			otvet = cl.send(pars);
+			System.out.println("otvet = " + otvet);
+			//
+			pars.clear();
+			pars.put("action", "get_chat");
+			pars.put("myid", "3");
+			pars.put("id", "6");
+			pars.put("last_chat_id", "4");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("jo = " + jo);
+			//
+			pars.clear();
+			pars.put("action", "get_img");
+			pars.put("id", "25");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);

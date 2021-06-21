@@ -35,6 +35,17 @@ public class ImageManipulation
 	private String           fileType;
 	private FileOutputStream imageOutFile;
 	private FileInputStream  imageInFile;
+	private int id;
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
 
 	/**
 	 * @param base64
