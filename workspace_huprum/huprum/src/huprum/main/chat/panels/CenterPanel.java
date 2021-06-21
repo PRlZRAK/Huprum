@@ -98,7 +98,6 @@ public class CenterPanel extends JPanel
 		if (status == 0)
 		{
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
-			// System.out.println("jarray = " + jarray);
 			removeAll();
 			c.gridy = 0;
 			c.gridwidth = 1;
@@ -136,30 +135,8 @@ public class CenterPanel extends JPanel
 				 */
 				if (id == myId)
 				{
-					
 					c.gridx = 1;
-					if (!jo.isNull("img"))
-					{
-						try
-						{
-							ImageManipulation im = new ImageManipulation(jo.getString("img"));
-							add(im.getImageTxt(200, 200, jo.getString("msg"), 20,Utilit.COLOR_1085),c);
-						} catch (JSONException | IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					else {
-					JLabel myJLabel = new JLabel("<html><p  style=\"font-size: 11px\">"
-							+ Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
-							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
-					myJLabel.setOpaque(true);
-					myJLabel.setBackground(Utilit.COLOR_1085);
-					add(myJLabel, c);}
-					// System.out.println("mymsg = " + jo.get("msg"));
-					c.gridy++;
-					
+					put_msg(jo, dt, Utilit.COLOR_1085);
 				}
 				/*
 				 * прорисовка сообщений собеседника
@@ -167,15 +144,9 @@ public class CenterPanel extends JPanel
 				else
 				{
 					c.gridx = 0;
-					JLabel frJLabel = new JLabel("<html><p style=\"font-size: 11px\">"
-							+ Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
-							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
-					frJLabel.setOpaque(true);
-					frJLabel.setBackground(Color.white);
-					add(frJLabel, c);
-					// System.out.println("notmymsg = " + jo.get("msg"));
-					c.gridy++;
+					put_msg(jo, dt, Color.white);
 				}
+				c.gridy++;
 				last_id = jo.getString("id");
 			}
 			main.revalidate();
@@ -184,6 +155,30 @@ public class CenterPanel extends JPanel
 				clip.play();
 			JScrollBar bar = loginer.getChat().scroll.getVerticalScrollBar();
 			bar.setValue(bar.getMaximum());
+		}
+	}
+
+	private void put_msg(JSONObject jo, DTime dt, Color color)
+	{
+		if (!jo.isNull("img"))
+		{
+			try
+			{
+				ImageManipulation im = new ImageManipulation(jo.getString("img"));
+				add(im.getImageTxt(200, 200, jo.getString("msg"), dt.time(), 30, Utilit.COLOR_1085), c);
+			} catch (JSONException | IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else
+		{
+			JLabel myJLabel = new JLabel(
+					"<html><p  style=\"font-size: 11px\">" + Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
+							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
+			myJLabel.setOpaque(true);
+			myJLabel.setBackground(Utilit.COLOR_1085);
+			add(myJLabel, c);
 		}
 	}
 }

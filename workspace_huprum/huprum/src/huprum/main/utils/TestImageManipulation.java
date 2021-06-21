@@ -74,7 +74,7 @@ public class TestImageManipulation extends JFrame
 		c.gridx = 1;
 		String text = "Примечание: ниже расположен перевод статьи \"Inline Images with Data URLs\", в которой"
 				+ " рассматривается вопрос о внедрении картинки на веб-страницы при помощи data:URI.";
-		panel.add(im.getImageTxt(200, 200, text, 25, Utilit.COLOR_1085), c);
+		panel.add(im.getImageTxt(200, 200, text,null, 25, Utilit.COLOR_1085), c);
 		setVisible(true);
 	}
 

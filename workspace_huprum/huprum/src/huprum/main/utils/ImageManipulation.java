@@ -262,14 +262,15 @@ public class ImageManipulation
 	 * @param i       максимальная ширина в пикселах
 	 * @param j       максимальная высата в пикселах
 	 * @param txt     текст под иконкой
+	 * @param timestr для вывода времени сообщений, если null не выводится
 	 * @param k       максиимальная ширина текста в буквах
 	 * @param bgcolor цвет фона
 	 * @return панель с изображением и текстом под ним
 	 */
-	public JPanel getImageTxt(int i, int j, String txt, int k, Color bgcolor)
+	public JPanel getImageTxt(int i, int j, String txt, String timestr, int k, Color bgcolor)
 	{
 		JPanel panel = new JPanel();
-		//panel.setSize(i, j);
+		// panel.setSize(i, j);
 		panel.setBackground(bgcolor);
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -277,7 +278,14 @@ public class ImageManipulation
 		c.gridy = 0;
 		panel.add(new JLabel(getImageIcon(i, j)), c);
 		c.gridy = 1;
-		panel.add(new JLabel("<html><p><br>" + Utilit.InsertPerenos(txt, k, "<br>")), c);
+		String dt = "";
+		if (timestr != null)
+		{
+			dt = "<p style=\"font-size: 7px\">" + timestr;
+			if (!txt.trim().equals(""))
+				dt = "<br><br>" + dt;
+		}
+		panel.add(new JLabel("<html><p><br>" + Utilit.InsertPerenos(txt, k, "<br>") + "</p>" + dt), c);
 		return panel;
 	}
 
