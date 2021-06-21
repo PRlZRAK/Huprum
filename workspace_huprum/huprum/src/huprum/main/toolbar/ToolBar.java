@@ -10,7 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
+import org.json.JSONException;
+
 import huprum.main.Huprum;
+import huprum.main.utils.ImageManipulation;
 
 public class ToolBar extends JToolBar
 {
@@ -22,6 +25,7 @@ public class ToolBar extends JToolBar
 	private JButton           back;
 	private JButton           removeUser;
 	private Huprum            main;
+	private JButton           personalArea;
 
 	public ToolBar(Huprum main)
 	{
@@ -58,6 +62,29 @@ public class ToolBar extends JToolBar
 		addUser.addActionListener(new AddUserActionList(main));
 		addUser.setToolTipText("Найти, добавить чат с юзером по логину или майлу или телефону");
 		add(addUser);
+		// кнопка личного кабинета
+		personalArea = new JButton();
+		ImageIcon personalAreaIcon;
+		if (main.getPersonalData().isNull("avatar"))
+			personalAreaIcon = new ImageIcon(
+					Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
+		else
+		{
+			try
+			{
+				personalAreaIcon = new ImageManipulation(main.getPersonalData().getString("avatar")).getImageIcon(100,
+						100);
+			} catch (JSONException | IOException e)
+			{
+				personalAreaIcon = new ImageIcon(
+						Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
+				e.printStackTrace();
+			}
+		}
+		personalArea.setIcon(personalAreaIcon);
+		personalArea.addActionListener(new personalAreaActionList(main,personalAreaIcon));
+		personalArea.setToolTipText("Личный кабинет");
+		add(personalArea);
 	}
 
 	public class StopActionList implements ActionListener

@@ -20,6 +20,7 @@ import huprum.main.utils.Utilit;
 
 public class Huprum extends JFrame
 {
+
 	/**
 	 * 
 	 */
@@ -29,6 +30,7 @@ public class Huprum extends JFrame
 	private Loginer           loginer;
 	private Client            cl;
 	private boolean           remember         = false;
+	private JSONObject   personalData;
 
 	public Huprum(String title) throws MalformedURLException
 	{
@@ -76,7 +78,7 @@ public class Huprum extends JFrame
 	{
 		try
 		{
-			new Huprum("Messenger Huprum");
+			new Huprum("Мессенджер Tuktuk");
 		} catch (MalformedURLException e)
 		{
 			e.printStackTrace();
@@ -125,5 +127,15 @@ public class Huprum extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public JSONObject getPersonalData()
+	{
+		return personalData;
+	}
+
+	public void setPersonalData(JSONObject personalData)
+	{
+		this.personalData = personalData;
 	}
 }
