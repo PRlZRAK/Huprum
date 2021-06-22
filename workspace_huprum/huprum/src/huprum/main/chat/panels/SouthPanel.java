@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -111,6 +112,12 @@ public class SouthPanel extends JPanel
 				{
 					show.setIcon(img_send.getImageIcon(40, 40));
 					vod.setText(" ");
+				} else
+				{
+					img_send = null;
+					JOptionPane.showMessageDialog(main, "Пожалуйста выберите другую картинку",
+							"Испорченное изображение", JOptionPane.ERROR_MESSAGE);
+					System.out.println("испорченное изображение");
 				}
 			} catch (IOException e)
 			{
