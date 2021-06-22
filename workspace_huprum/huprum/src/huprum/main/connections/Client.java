@@ -170,7 +170,7 @@ public class Client
 			//
 			pars.clear();
 			pars.put("action", "get_img");
-			pars.put("id", "25");
+			pars.put("id", "62");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
