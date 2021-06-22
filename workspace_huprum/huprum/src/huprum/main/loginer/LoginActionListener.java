@@ -1,4 +1,4 @@
-package huprum.main.loginer.listener;
+package huprum.main.loginer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
-import huprum.main.loginer.Loginer;
 import huprum.main.utils.DTime;
 import huprum.main.utils.Utilit;
 

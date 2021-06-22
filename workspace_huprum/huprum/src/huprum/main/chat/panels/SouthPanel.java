@@ -117,12 +117,12 @@ public class SouthPanel extends JPanel
 					img_send = null;
 					JOptionPane.showMessageDialog(main, "Пожалуйста выберите другую картинку",
 							"Испорченное изображение", JOptionPane.ERROR_MESSAGE);
-					System.out.println("испорченное изображение");
 				}
 			} catch (IOException e)
 			{
 				img_send = null;
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(main, "Пожалуйста выберите другую картинку",
+						"Очень испорченное изображение", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 

@@ -11,6 +11,10 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import org.json.JSONObject;
 
@@ -20,7 +24,6 @@ import huprum.main.utils.Utilit;
 
 public class Huprum extends JFrame
 {
-
 	/**
 	 * 
 	 */
@@ -30,11 +33,18 @@ public class Huprum extends JFrame
 	private Loginer           loginer;
 	private Client            cl;
 	private boolean           remember         = false;
-	private JSONObject   personalData;
+	private JSONObject        personalData;
 
 	public Huprum(String title) throws MalformedURLException
 	{
 		super(title);
+		try
+		{
+			UIManager.setLookAndFeel(new NimbusLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e)
+		{
+			JOptionPane.showMessageDialog(null, "Error in a LaF of executable file");
+		}
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)

@@ -1,11 +1,13 @@
 package huprum.main.chat;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
 
 import javax.swing.JScrollPane;
 
 import huprum.main.Huprum;
 import huprum.main.chat.panels.CenterPanel;
+import huprum.main.chat.panels.EastPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.toolbar.ToolBar;
@@ -18,6 +20,7 @@ public class Chat {
 	public WestPanel wp;
 	
 	public JScrollPane scroll;
+	public  EastPanel ep;
 
 	public Chat(Huprum main) {
 		main.getContentPane().setLayout(new BorderLayout());
@@ -31,6 +34,16 @@ public class Chat {
 		cp = new CenterPanel(main);
 		scroll = new JScrollPane(cp);
 		main.add(scroll, BorderLayout.CENTER);
+		try
+		{
+			ep = new EastPanel(main);
+			main.add(ep, BorderLayout.EAST);
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		/*
 		 * перерисовка окна
 		 */
