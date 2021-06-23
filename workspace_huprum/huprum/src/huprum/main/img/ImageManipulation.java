@@ -1,4 +1,4 @@
-package huprum.main.utils;
+package huprum.main.img;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
+
+import huprum.main.utils.Utilit;
 
 /**
  * @author yaa Класс для манипулирования изображениями удобный для swing

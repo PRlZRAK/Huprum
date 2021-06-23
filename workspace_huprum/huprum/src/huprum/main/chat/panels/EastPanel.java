@@ -20,7 +20,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 
 import huprum.main.connections.Client;
-import huprum.main.utils.ImageManipulation;
+import huprum.main.img.ImageManipulation;
 import huprum.main.utils.Utilit;
 
 public class EastPanel extends JPanel

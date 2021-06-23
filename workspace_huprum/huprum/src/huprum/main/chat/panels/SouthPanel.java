@@ -19,9 +19,9 @@ import javax.swing.JTextField;
 
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
+import huprum.main.img.ImageManipulation;
 import huprum.main.loginer.Loginer;
 import huprum.main.utils.DTime;
-import huprum.main.utils.ImageManipulation;
 
 public class SouthPanel extends JPanel
 {

@@ -20,10 +20,10 @@ import org.json.JSONObject;
 
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
+import huprum.main.img.ImageManipulation;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.PlaySound;
 import huprum.main.utils.DTime;
-import huprum.main.utils.ImageManipulation;
 import huprum.main.utils.Utilit;
 
 public class CenterPanel extends JPanel
@@ -162,8 +162,8 @@ public class CenterPanel extends JPanel
 	{
 		if (jo.getInt("img") == 1)
 		{
-			    ImageManipulation im = main.imageStor.getImage(jo.getString("id"));
-				add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
+			ImageManipulation im = main.imageStor.getImage(jo.getString("id"));
+			add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
 		} else
 		{
 			JLabel myJLabel = new JLabel(
@@ -172,6 +172,6 @@ public class CenterPanel extends JPanel
 			myJLabel.setOpaque(true);
 			myJLabel.setBackground(color);
 			add(myJLabel, c);
-		}		
+		}
 	}
 }

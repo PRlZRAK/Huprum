@@ -1,4 +1,4 @@
-package huprum.main;
+package huprum.main.img;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,8 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import huprum.main.Huprum;
 import huprum.main.connections.Client;
-import huprum.main.utils.ImageManipulation;
 import huprum.main.utils.Utilit;
 
 public class ImageStor extends Vector<ImageManipulation>
@@ -42,7 +42,7 @@ public class ImageStor extends Vector<ImageManipulation>
 		JSONArray arr = new JSONArray(tmp);
 		for (int i = 0; i < arr.length(); i++)
 		{
-			JSONObject row = new JSONObject(arr.get(i));
+			JSONObject row = (JSONObject) arr.get(i);
 			try
 			{
 				ImageManipulation im = new ImageManipulation(row.getString("image"));
@@ -51,6 +51,7 @@ public class ImageStor extends Vector<ImageManipulation>
 				add(im);
 			} catch (JSONException | IOException e)
 			{
+				//e.printStackTrace();
 			}
 		}
 	}
@@ -83,34 +84,35 @@ public class ImageStor extends Vector<ImageManipulation>
 
 	public ImageManipulation getImage(String id)
 	{
+		ImageManipulation im = null;
 		for (int i = 0; i < this.size(); i++)
 		{
-			ImageManipulation image = this.get(i);
-			if (id.equals(Integer.toString(image.getId())))
-			{
-				return image;
-			}
-		}
-		try
-		{
-			pars.clear();
-			pars.put("action", "get_img");
-			pars.put("id", id);
-			String     ot     = cl.send(pars);
-			JSONObject jo1    = new JSONObject(ot);
-			int        status = jo1.getInt("status");
-			if (status == 0)
-			{
-				ImageManipulation im = new ImageManipulation(jo1.getString("img"));
-				im.setId(jo1.getInt("id"));
-				add(im);
+			im = this.get(i);
+			if (id.equals(Integer.toString(im.getId())))
 				return im;
-			}
-		} catch (JSONException | IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			im = null;
 		}
+		if (im == null)
+			try
+			{
+				pars.clear();
+				pars.put("action", "get_img");
+				pars.put("id", id);
+				String     ot     = cl.send(pars);
+				JSONObject jo1    = new JSONObject(ot);
+				int        status = jo1.getInt("status");
+				if (status == 0)
+				{
+					im = new ImageManipulation(jo1.getString("img"));
+					im.setId(jo1.getInt("id"));
+					add(im);
+					return im;
+				}
+			} catch (JSONException | IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return null;
 	}
 }
