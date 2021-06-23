@@ -40,6 +40,7 @@ public class EastPanel extends JPanel
 	private JLabel            phone_label;
 	private JLabel            email_label;
 	private JLabel            fio_label;
+	private JLabel pass_label;
 
 	public EastPanel(Huprum main) throws IOException
 	{
@@ -132,9 +133,21 @@ public class EastPanel extends JPanel
 		c.gridy++;
 		c.gridx = 0;
 		add(new JLabel("Пароль:"), c);
+		c.gridx = 1;
+		pass_label = new JLabel(stars(personal_data.getString("password")));
+		add(pass_label, c);
 		c.gridx = 2;
 		JLabel pensil6 = new JLabel(pensil_image);
+		pensil6.addMouseListener(new editPass(this));
 		add(pensil6, c);
+	}
+
+	private String stars(String string)
+	{
+		String tmp = "";
+		for (int i = 0; i < string.length(); i++)
+			tmp += "*";
+		return tmp;
 	}
 
 	public class FaceEditList implements MouseListener
@@ -219,7 +232,13 @@ public class EastPanel extends JPanel
 		public void mouseClicked(MouseEvent arg0)
 		{
 			if (show)
-				im.show(eastPanel, "", im);
+				try
+				{
+					im.show(eastPanel, "", im);
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 		}
 
 		@Override
@@ -503,4 +522,66 @@ public class EastPanel extends JPanel
 		{
 		}
 	}
+	public class editPass implements MouseListener
+	{
+		private EastPanel main;
+
+		public editPass(EastPanel eastPanel)
+		{
+			main = eastPanel;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			String data     = "";
+			String par_name = "password";
+			if (!personal_data.isNull(par_name))
+				data = personal_data.getString(par_name);
+			String n = (String) JOptionPane.showInputDialog(main, "Введите новый пароль:",
+					"Редактируем личные данные", JOptionPane.NO_OPTION, null, null, data);
+			if (n == null)
+				return;
+			Map<String, String> pars = new HashMap<String, String>();
+			pars.put("action", "edit_user");
+			pars.put("id", personal_data.getString("id"));
+			pars.put("password", n);
+			String answer = null;
+			try
+			{
+				answer = cl.send(pars);
+			} catch (IOException e)
+			{
+				JOptionPane.showMessageDialog(main, "Нет соединения с сервером", "Потеряна связь",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			JSONObject jo = new JSONObject(answer);
+			if (jo.getInt("status") != 0)
+				System.err.println("FaceEditList " + jo.getString("msg"));
+			else
+				pass_label.setText(stars(n));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0)
+		{
+		}
+	}
+
 }

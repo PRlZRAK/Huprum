@@ -122,7 +122,14 @@ public class TestImageManipulation extends JFrame
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
-			im.show(main, "Привет", im);
+			try
+			{
+				im.show(main, "Привет", im);
+			} catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		@Override

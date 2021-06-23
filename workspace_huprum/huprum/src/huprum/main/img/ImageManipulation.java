@@ -37,7 +37,7 @@ public class ImageManipulation
 	private String           fileType;
 	private FileOutputStream imageOutFile;
 	private FileInputStream  imageInFile;
-	private int id;
+	private int              id;
 
 	public int getId()
 	{
@@ -265,19 +265,15 @@ public class ImageManipulation
 	 * @param main   адресс главного окна или null
 	 * @param string надпись на изображении. Метод для показа изображения в большом
 	 *               размере. Предназначен для обработки события.
+	 * @throws IOException
 	 */
-	public void show(Component main, String string, ImageManipulation im)
+	public void show(Component main, String string, ImageManipulation im) throws IOException
 	{
-		int i = JOptionPane.showOptionDialog(main, "", string,JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]{"Закрыть", "Сохранить как.."},
-		        "default");
-		if(i==JOptionPane.NO_OPTION)
-			try
-			{
-				im.save(main);
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+		int i = JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_NO_OPTION,
+				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
+				{ "Закрыть", "Сохранить как.." }, "default");
+		if (i == JOptionPane.NO_OPTION)
+			im.save(main);
 	}
 
 	/**

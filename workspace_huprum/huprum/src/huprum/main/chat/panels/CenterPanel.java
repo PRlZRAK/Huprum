@@ -13,6 +13,7 @@ import java.util.HashMap;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
@@ -195,7 +196,15 @@ public class CenterPanel extends JPanel
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
-			image.show(main, msg, image);
+			try
+			{
+				image.show(main, msg, image);
+			} catch (IOException e)
+			{
+				JOptionPane.showMessageDialog(main, "Что то с сохранением пошло не так",
+						"Ошибка", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
 		}
 
 		@Override
