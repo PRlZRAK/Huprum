@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -162,8 +164,10 @@ public class CenterPanel extends JPanel
 	{
 		if (jo.getInt("img") == 1)
 		{
-			ImageManipulation im = main.imageStor.getImage(jo.getString("id"));
-			add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
+			ImageManipulation im         = main.imageStor.getImage(jo.getString("id"));
+			JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color);
+			imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
+			add(imagePanel, c);
 		} else
 		{
 			JLabel myJLabel = new JLabel(
@@ -172,6 +176,46 @@ public class CenterPanel extends JPanel
 			myJLabel.setOpaque(true);
 			myJLabel.setBackground(color);
 			add(myJLabel, c);
+		}
+	}
+
+	public class ImageMsgListener implements MouseListener
+	{
+		private ImageManipulation image;
+		private Huprum            main;
+		private String            msg;
+
+		public ImageMsgListener(Huprum main, ImageManipulation im1, String msg1)
+		{
+			this.main = main;
+			image = im1;
+			msg = msg1;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			image.show(main, msg);
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e)
+		{
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e)
+		{
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e)
+		{
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e)
+		{
 		}
 	}
 }
