@@ -122,7 +122,7 @@ public class TestImageManipulation extends JFrame
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
-			im.show(main, "Привет");
+			im.show(main, "Привет", im);
 		}
 
 		@Override

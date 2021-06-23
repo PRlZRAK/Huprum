@@ -195,7 +195,7 @@ public class CenterPanel extends JPanel
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
-			image.show(main, msg);
+			image.show(main, msg, image);
 		}
 
 		@Override

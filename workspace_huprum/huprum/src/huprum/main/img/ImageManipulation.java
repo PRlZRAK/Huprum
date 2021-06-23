@@ -266,9 +266,18 @@ public class ImageManipulation
 	 * @param string надпись на изображении. Метод для показа изображения в большом
 	 *               размере. Предназначен для обработки события.
 	 */
-	public void show(Component main, String string)
+	public void show(Component main, String string, ImageManipulation im)
 	{
-		JOptionPane.showMessageDialog(main, "", string, JOptionPane.INFORMATION_MESSAGE, getImageIcon());
+		int i = JOptionPane.showOptionDialog(main, "", string,JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]{"Закрыть", "Сохранить как.."},
+		        "default");
+		if(i==JOptionPane.NO_OPTION)
+			try
+			{
+				im.save(main);
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 	}
 
 	/**

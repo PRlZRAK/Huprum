@@ -219,7 +219,7 @@ public class EastPanel extends JPanel
 		public void mouseClicked(MouseEvent arg0)
 		{
 			if (show)
-				im.show(eastPanel, "");
+				im.show(eastPanel, "", im);
 		}
 
 		@Override
