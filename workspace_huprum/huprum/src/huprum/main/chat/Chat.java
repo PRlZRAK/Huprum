@@ -3,12 +3,14 @@ package huprum.main.chat;
 import java.awt.BorderLayout;
 import java.io.IOException;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import huprum.main.Huprum;
 import huprum.main.chat.panels.CenterPanel;
 import huprum.main.chat.panels.EastPanel;
 import huprum.main.chat.panels.SouthPanel;
+import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.toolbar.ToolBar;
 
@@ -21,14 +23,22 @@ public class Chat {
 	
 	public JScrollPane scroll;
 	public  EastPanel ep;
+	public UserPanel up;
 
 	public Chat(Huprum main) {
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
 		toolbar=new ToolBar(main);
 		main.add(toolbar, BorderLayout.PAGE_START);
+		
+		JPanel wpanel = new JPanel();
+		wpanel.setLayout(new BorderLayout());
+		up=new UserPanel(main);
+		wpanel.add(up,BorderLayout.NORTH);
+		
 		wp = new WestPanel(main);
-		main.add(new JScrollPane(wp), BorderLayout.WEST);
+		wpanel.add(new JScrollPane(wp), BorderLayout.CENTER);
+		main.add(wpanel,BorderLayout.WEST);
 		sp = new SouthPanel(main);
 		main.add(sp, BorderLayout.SOUTH);
 		cp = new CenterPanel(main);
