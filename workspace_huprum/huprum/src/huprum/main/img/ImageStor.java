@@ -51,7 +51,7 @@ public class ImageStor extends Vector<ImageManipulation>
 				add(im);
 			} catch (JSONException | IOException e)
 			{
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
 		}
 	}
@@ -90,29 +90,27 @@ public class ImageStor extends Vector<ImageManipulation>
 			im = this.get(i);
 			if (id.equals(Integer.toString(im.getId())))
 				return im;
-			im = null;
 		}
-		if (im == null)
-			try
+		try
+		{
+			pars.clear();
+			pars.put("action", "get_img");
+			pars.put("id", id);
+			String     ot     = cl.send(pars);
+			JSONObject jo1    = new JSONObject(ot);
+			int        status = jo1.getInt("status");
+			if (status == 0)
 			{
-				pars.clear();
-				pars.put("action", "get_img");
-				pars.put("id", id);
-				String     ot     = cl.send(pars);
-				JSONObject jo1    = new JSONObject(ot);
-				int        status = jo1.getInt("status");
-				if (status == 0)
-				{
-					im = new ImageManipulation(jo1.getString("img"));
-					im.setId(jo1.getInt("id"));
-					add(im);
-					return im;
-				}
-			} catch (JSONException | IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				im = new ImageManipulation(jo1.getString("img"));
+				im.setId(jo1.getInt("id"));
+				add(im);
+				return im;
 			}
+		} catch (JSONException | IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
