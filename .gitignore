@@ -24,4 +24,4 @@ tmp/
 local.properties
 .loadpath
 .factorypath
-config.json
+*.json
