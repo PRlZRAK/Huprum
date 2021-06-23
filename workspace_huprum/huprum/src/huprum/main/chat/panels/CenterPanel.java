@@ -4,18 +4,10 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.HashMap;
-import java.util.Vector;
-import java.util.stream.Stream;
 
-import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
@@ -50,11 +42,9 @@ public class CenterPanel extends JPanel
 	String                          last_id;
 	private PlaySound               clip;
 	private int                     day              = 0;
-	Vector<ImageManipulation> imagesVec = new Vector<ImageManipulation>();
 
 	public CenterPanel(Huprum main)
 	{
-		getSavedImages();
 		this.main = main;
 		loginer = main.getLoginer();
 		myId = loginer.getId();
@@ -172,39 +162,8 @@ public class CenterPanel extends JPanel
 	{
 		if (jo.getInt("img") == 1)
 		{
-		int idInt = jo.getInt("id");
-			try
-			{
-				for(int i=0;i<imagesVec.size();i++){
-			        System.out.println(imagesVec.get(i));
-			        ImageManipulation image = imagesVec.get(i);
-			        if (idInt == image.getId()) {
-			        add(image.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
-			        return;
-			        }
-			        }
-				pars.clear();
-				pars.put("action", "get_img");
-				String id = jo.getString("id");
-				pars.put("id", id);
-				String     ot     = cl.send(pars);
-				JSONObject jo1    = new JSONObject(ot);
-				int        status = jo1.getInt("status");
-				if (status == 0)
-				{					
-					ImageManipulation im = new ImageManipulation(jo1.getString("img"));
-					im.setId(idInt);
-					imagesVec.add(im);
-					
-                    saveImages(im, id);
-					
-					add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
-				}
-			} catch (JSONException | IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			    ImageManipulation im = main.imageStor.getImage(jo.getString("id"));
+				add(im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color), c);
 		} else
 		{
 			JLabel myJLabel = new JLabel(
@@ -213,47 +172,6 @@ public class CenterPanel extends JPanel
 			myJLabel.setOpaque(true);
 			myJLabel.setBackground(color);
 			add(myJLabel, c);
-		}
-	}	
-	/*
-	 * Метод для сохранения загруженных картинок, нужен чтобы в будущем не нужно было загружать их заного.
-	 */
-	public void saveImages(ImageManipulation im, String id)
-	{
-		File file = new File(Utilit.IMAGES+"TuktukImage"+id+".jpg");
-		try
-		{
-			ImageIO.write(im.getImage(), "jpg", file);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-/*
- * Метод для заполнения вектора изображениями, загруженными ранее.
- * 
- * (Это мне ещё предстоит доделать)
- */
-	public void getSavedImages()
-	{
-		try (Stream<Path> paths = Files.walk(Paths.get(Utilit.IMAGES))) {
-			paths.forEach(filePath -> {		        
-		            System.out.println(filePath);
-		            File f = new File(filePath.toString());
-		            try
-					{
-						BufferedImage image = ImageIO.read(f);
-					} catch (IOException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		    });
-		} 
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		}		
 	}
 }

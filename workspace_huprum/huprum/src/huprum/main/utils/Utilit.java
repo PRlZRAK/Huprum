@@ -36,7 +36,7 @@ public class Utilit
 	public static String HUPRUM_URL = "http://130.61.155.146/huprum/";
 	public static String SERVER_URL = HUPRUM_URL + "server/index.php";
 	public static String CONFIG     = "config.json";
-	public static String IMAGES     = "images/";
+	public static String CHAT_IMAGES     = "chatimages.json";
 
 	public static int CheckLogin(String login)
 	{

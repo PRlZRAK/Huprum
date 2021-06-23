@@ -34,6 +34,7 @@ public class Huprum extends JFrame
 	private Client            cl;
 	private boolean           remember         = false;
 	private JSONObject        personalData;
+	public ImageStor imageStor;
 
 	public Huprum(String title) throws MalformedURLException
 	{
@@ -51,6 +52,7 @@ public class Huprum extends JFrame
 			{
 				configSave();
 				userLogoff();
+				imageStor.save();
 				System.exit(0);
 			}
 		});
@@ -60,6 +62,7 @@ public class Huprum extends JFrame
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		cl = new Client(Utilit.SERVER_URL);
+		imageStor= new ImageStor(Utilit.CHAT_IMAGES, this);
 		loginer = new Loginer(this);
 		setVisible(true);
 	}

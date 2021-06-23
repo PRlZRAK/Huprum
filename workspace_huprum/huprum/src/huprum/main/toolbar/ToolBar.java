@@ -69,6 +69,7 @@ public class ToolBar extends JToolBar
 		{
 			main.configSave();
 			main.userLogoff();
+			main.imageStor.save();
 			System.exit(0);
 		}
 	}
