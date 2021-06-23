@@ -34,9 +34,11 @@ public class Utilit
 	 */
 	//public static String HUPRUM_URL = "http://localhost/huprum/";
 	public static String HUPRUM_URL = "http://130.61.155.146/huprum/";
-	public static String SERVER_URL = HUPRUM_URL + "server/index.php";
-	public static String CONFIG     = "config.json";
-	public static String CHAT_IMAGES     = "chatimages.json";
+	public static String        SERVER_URL  = HUPRUM_URL + "server/index.php";
+	public static String        CONFIG      = "config.json";
+	public static String        CHAT_IMAGES = "chatimages.json";
+	private static String       PHON_PATERN = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
+	private static final String MAIL_PATERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	public static int CheckLogin(String login)
 	{
@@ -44,15 +46,14 @@ public class Utilit
 		// 0 -mail
 		// 1 -phone
 		// 2 -login
-		Pattern usrNamePtrn = Pattern
-				.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+		Pattern usrNamePtrn = Pattern.compile(MAIL_PATERN);
 		Matcher mtch        = usrNamePtrn.matcher(login);
 		if (login.indexOf("@") > -1)
 		{
 			if (mtch.matches())
 				return 0;
 		}
-		usrNamePtrn = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+		usrNamePtrn = Pattern.compile(PHON_PATERN);
 		mtch = usrNamePtrn.matcher(login);
 		if (mtch.matches())
 			return 1;
@@ -73,6 +74,20 @@ public class Utilit
 				ret += phone.charAt(i);
 		}
 		return ret;
+	}
+
+	public static boolean isPhone(String phone)
+	{
+		Pattern usrNamePtrn = Pattern.compile(PHON_PATERN);
+		Matcher mtch        = usrNamePtrn.matcher(phone);
+		return mtch.matches();
+	}
+
+	public static boolean isMail(String mail)
+	{
+		Pattern usrNamePtrn = Pattern.compile(MAIL_PATERN);
+		Matcher mtch        = usrNamePtrn.matcher(mail);
+		return mtch.matches();
 	}
 
 	public static String InsertPerenos(String text, int wide, String znak)
