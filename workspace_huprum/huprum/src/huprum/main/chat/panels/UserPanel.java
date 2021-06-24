@@ -62,26 +62,42 @@ public class UserPanel extends JPanel
 		c.gridx = 0;
 		c.gridy = 0;
 		ImageIcon icon;
-		if (jo.isNull("avatar"))
+		if (jo.getInt("avatar") == 0)
 		{
 			icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
 			show = false;
 		} else
 		{
-			String avatar = jo.getString("avatar");
-			im = null;
+			pars.clear();
+			pars.put("action", "get_user_img");
+			pars.put("id", id + "");
 			try
 			{
-				im = new ImageManipulation(avatar);
-				icon = im.getImageIcon(100, 100);
-			} catch (IOException e)
+				String     otvet1 = cl.send(pars);
+				JSONObject jo1    = new JSONObject(otvet1);
+				String     avatar = jo1.getString("avatar");
+				im = null;
+				try
+				{
+					im = new ImageManipulation(avatar);
+					icon = im.getImageIcon(100, 100);
+					show = true;
+				} catch (IOException e)
+				{
+					icon = new ImageIcon(
+							Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
+					show = false;
+					e.printStackTrace();
+				}
+				show = true;
+			} catch (IOException e1)
 			{
-				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
-				e.printStackTrace();
+				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
+				show = false;
+				e1.printStackTrace();
 			}
-			show = true;
 		}
-		add(new JLabel(jo.getString("login")),c);
+		add(new JLabel(jo.getString("login")), c);
 		c.gridy++;
 		label_icon = new JLabel(icon);
 		label_icon.addMouseListener(new Show(this));

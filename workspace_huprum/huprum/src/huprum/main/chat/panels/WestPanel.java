@@ -91,9 +91,8 @@ public class WestPanel extends JPanel
 			e.printStackTrace();
 			return;
 		}
-		JSONObject jo1 = new JSONObject(otvet);
-		// System.out.println(jo1);
-		int status = (int) jo1.get("status");
+		JSONObject jo1    = new JSONObject(otvet);
+		int        status = (int) jo1.get("status");
 		if (status == 0)
 		{
 			ksum = (int) jo1.get("ksum");

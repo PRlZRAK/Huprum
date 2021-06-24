@@ -31,7 +31,6 @@ public class EastPanel extends JPanel
 	private static final long serialVersionUID = -2864670554727813946L;
 	private int               text_whide       = 20;
 	private JSONObject        personal_data;
-	private String            avatar;
 	private JLabel            label_icon;
 	private Client            cl;
 	private boolean           show;
@@ -40,26 +39,37 @@ public class EastPanel extends JPanel
 	private JLabel            phone_label;
 	private JLabel            email_label;
 	private JLabel            fio_label;
-	private JLabel pass_label;
+	private JLabel            pass_label;
 
 	public EastPanel(Huprum main) throws IOException
 	{
 		setBackground(Utilit.COLOR_389);
 		personal_data = main.getPersonalData();
 		cl = main.getCl();
-		// avatar
 		ImageIcon icon;
-		if (personal_data.isNull("avatar"))
+		if (personal_data.getInt("avatar") == 0)
 		{
-			avatar = null;
 			icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
 			show = false;
 		} else
 		{
-			avatar = personal_data.getString("avatar");
-			im = new ImageManipulation(avatar);
-			icon = im.getImageIcon(200, 200);
-			show = true;
+			Map<String, String> pars = new HashMap<String, String>();
+			pars.put("action", "get_user_img");
+			pars.put("id", personal_data.getString("id"));
+			try
+			{
+				String     otvet  = cl.send(pars);
+				JSONObject jo     = new JSONObject(otvet);
+				String     avatar = jo.getString("avatar");
+				im = new ImageManipulation(avatar);
+				icon = im.getImageIcon(200, 200);
+				show = true;
+			} catch (IOException e1)
+			{
+				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
+				show = false;
+				e1.printStackTrace();
+			}
 		}
 		ImageIcon pensil_image = new ImageIcon(
 				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/pensil.png")));
@@ -522,6 +532,7 @@ public class EastPanel extends JPanel
 		{
 		}
 	}
+
 	public class editPass implements MouseListener
 	{
 		private EastPanel main;
@@ -538,8 +549,8 @@ public class EastPanel extends JPanel
 			String par_name = "password";
 			if (!personal_data.isNull(par_name))
 				data = personal_data.getString(par_name);
-			String n = (String) JOptionPane.showInputDialog(main, "Введите новый пароль:",
-					"Редактируем личные данные", JOptionPane.NO_OPTION, null, null, data);
+			String n = (String) JOptionPane.showInputDialog(main, "Введите новый пароль:", "Редактируем личные данные",
+					JOptionPane.NO_OPTION, null, null, data);
 			if (n == null)
 				return;
 			Map<String, String> pars = new HashMap<String, String>();
@@ -583,5 +594,4 @@ public class EastPanel extends JPanel
 		{
 		}
 	}
-
 }
