@@ -32,13 +32,15 @@ public class Utilit
 	/*
 	 * url сервера
 	 */
-	//public static String HUPRUM_URL = "http://localhost/huprum/";
-	public static String HUPRUM_URL = "http://130.61.155.146/huprum/";
-	public static String        SERVER_URL  = HUPRUM_URL + "server/index.php";
-	public static String        CONFIG      = "config.json";
-	public static String        CHAT_IMAGES = "chatimages.json";
-	private static String       PHON_PATERN = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
-	private static final String MAIL_PATERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	// public static String HUPRUM_URL = "http://localhost/huprum/";
+	public static String        HUPRUM_URL     = "http://130.61.155.146/huprum/";
+	public static String        SERVER_URL     = HUPRUM_URL + "server/index.php";
+	public static String        CONFIG         = "config.json";
+	public static String        CHAT_IMAGES    = "chatimages.json";
+	private static String       PHON_PATERN    = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
+	private static final String MAIL_PATERN    = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	public static final int     IMG_MAX_WIDTH  = 800;
+	public static final int     IMG_MAX_HEIGHT = 600;
 
 	public static int CheckLogin(String login)
 	{
@@ -128,6 +130,7 @@ public class Utilit
 		}
 		return otvet;
 	}
+
 	public static String insertWordWrap(String src, String separator, int len_str)
 	{
 		String rez = "";
@@ -144,6 +147,7 @@ public class Utilit
 		}
 		return rez + row;
 	}
+
 	public static void main(String[] args)
 	{
 		JFrame jframe = new JFrame("test Utilit");

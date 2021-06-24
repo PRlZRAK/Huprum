@@ -22,6 +22,7 @@ import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
 import huprum.main.loginer.Loginer;
 import huprum.main.utils.DTime;
+import huprum.main.utils.Utilit;
 
 public class SouthPanel extends JPanel
 {
@@ -108,7 +109,7 @@ public class SouthPanel extends JPanel
 			try
 			{
 				img_send = new ImageManipulation(main);
-				img_send.checkMaxSize(800, 600);
+				img_send.checkMaxSize(Utilit.IMG_MAX_WIDTH, Utilit.IMG_MAX_HEIGHT);
 				if (img_send.getImage() != null)
 				{
 					show.setIcon(img_send.getImageIcon(40, 40));
