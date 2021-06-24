@@ -198,7 +198,7 @@ public class CenterPanel extends JPanel
 		{
 			try
 			{
-				image.show(main, msg, image);
+				image.show(main, msg);
 			} catch (IOException e)
 			{
 				JOptionPane.showMessageDialog(main, "Что то с сохранением пошло не так",

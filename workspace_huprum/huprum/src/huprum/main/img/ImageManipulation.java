@@ -24,6 +24,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import huprum.main.utils.Utilit;
+import net.coobird.thumbnailator.Thumbnails;
 
 /**
  * @author yaa Класс для манипулирования изображениями удобный для swing
@@ -38,6 +39,7 @@ public class ImageManipulation
 	private FileOutputStream imageOutFile;
 	private FileInputStream  imageInFile;
 	private int              id;
+	private String           file_name;
 
 	public int getId()
 	{
@@ -88,6 +90,7 @@ public class ImageManipulation
 	 */
 	public void readFile(File file) throws IOException
 	{
+		file_name = file.getAbsolutePath();
 		fileType = Files.probeContentType(file.toPath());
 		base64String = encoder(file);
 		byte[] btDataFile = Base64.getDecoder().decode(base64String);
@@ -267,13 +270,13 @@ public class ImageManipulation
 	 *               размере. Предназначен для обработки события.
 	 * @throws IOException
 	 */
-	public void show(Component main, String string, ImageManipulation im) throws IOException
+	public void show(Component main, String string) throws IOException
 	{
 		int i = JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_NO_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
 				{ "Закрыть", "Сохранить как.." }, "default");
 		if (i == JOptionPane.NO_OPTION)
-			im.save(main);
+			save(main);
 	}
 
 	/**
@@ -329,5 +332,20 @@ public class ImageManipulation
 	public BufferedImage getImage()
 	{
 		return image;
+	}
+
+	public void checkMaxSize(int maxX, int maxY) throws IOException
+	{
+		if (getImage() == null)
+			return;
+		int x = getWidth();
+		int y = getHeight();
+		if (x <= maxX && y <= maxY)
+			return;
+		String ext     = "." + fileType.split("/")[1];
+		File   tmpFile = File.createTempFile("tuk", ext);
+		Thumbnails.of(new File(file_name)).size(maxX, maxY).toFile(tmpFile);
+		readFile(tmpFile);
+		tmpFile.deleteOnExit();
 	}
 }

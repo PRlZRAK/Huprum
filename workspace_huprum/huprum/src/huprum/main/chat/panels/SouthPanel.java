@@ -108,6 +108,7 @@ public class SouthPanel extends JPanel
 			try
 			{
 				img_send = new ImageManipulation(main);
+				img_send.checkMaxSize(800, 600);
 				if (img_send.getImage() != null)
 				{
 					show.setIcon(img_send.getImageIcon(40, 40));

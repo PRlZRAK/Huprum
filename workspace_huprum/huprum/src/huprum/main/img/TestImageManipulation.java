@@ -1,5 +1,6 @@
 package huprum.main.img;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -79,6 +80,28 @@ public class TestImageManipulation extends JFrame
 			String text = "Примечание: ниже расположен перевод статьи \"Inline Images with Data URLs\", в которой"
 					+ " рассматривается вопрос о внедрении картинки на веб-страницы при помощи data:URI.";
 			panel.add(im.getImageTxt(200, 200, text, null, 25, Utilit.COLOR_1085), c);
+			c.gridy++;
+			c.gridx = 0;
+			JButton button = new JButton("test compress img");
+			button.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent arg0)
+				{
+					Component main=null;
+					try
+					{
+						ImageManipulation im2 = new ImageManipulation(main);
+						im2.checkMaxSize(200, 100);
+						im2.show(null, "");
+					} catch (IOException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+			panel.add(button,c);
 		}
 		setVisible(true);
 	}
@@ -124,7 +147,7 @@ public class TestImageManipulation extends JFrame
 		{
 			try
 			{
-				im.show(main, "Привет", im);
+				im.show(main, "Привет");
 			} catch (IOException e)
 			{
 				// TODO Auto-generated catch block

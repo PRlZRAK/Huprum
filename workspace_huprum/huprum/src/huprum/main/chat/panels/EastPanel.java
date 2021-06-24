@@ -339,7 +339,7 @@ public class EastPanel extends JPanel
 			if (show)
 				try
 				{
-					im.show(eastPanel, "", im);
+					im.show(eastPanel, "");
 				} catch (IOException e)
 				{
 					e.printStackTrace();

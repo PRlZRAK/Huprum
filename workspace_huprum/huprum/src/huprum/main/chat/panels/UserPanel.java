@@ -129,7 +129,7 @@ public class UserPanel extends JPanel
 			if (show)
 				try
 				{
-					im.show(main, "", im);
+					im.show(main, "");
 				} catch (IOException e)
 				{
 					e.printStackTrace();
