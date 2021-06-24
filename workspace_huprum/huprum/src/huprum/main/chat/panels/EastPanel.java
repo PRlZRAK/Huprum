@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,7 +21,6 @@ import javax.swing.JPanel;
 import org.json.JSONObject;
 
 import huprum.main.Huprum;
-
 import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
 import huprum.main.utils.Utilit;
@@ -28,24 +30,31 @@ public class EastPanel extends JPanel
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2864670554727813946L;
-	private int               text_whide       = 20;
-	private JSONObject        personal_data;
-	private JLabel            label_icon;
-	private Client            cl;
-	private boolean           show;
-	private ImageManipulation im;
-	private JLabel            login_label;
-	private JLabel            phone_label;
-	private JLabel            email_label;
-	private JLabel            fio_label;
-	private JLabel            pass_label;
+	private static final long       serialVersionUID = -2864670554727813946L;
+	private int                     text_whide       = 20;
+	private JSONObject              personal_data;
+	private JLabel                  label_icon;
+	private Client                  cl;
+	private boolean                 show;
+	private ImageManipulation       im;
+	private JLabel                  login_label;
+	private JLabel                  phone_label;
+	private JLabel                  email_label;
+	private JLabel                  fio_label;
+	private JLabel                  pass_label;
+	private HashMap<String, String> pars;
+	private String                  id;
+	private JCheckBox               check_phone;
+	private JCheckBox               check_email;
+	private JCheckBox               check_fio;
 
 	public EastPanel(Huprum main) throws IOException
 	{
 		setBackground(Utilit.COLOR_389);
 		personal_data = main.getPersonalData();
+		id = personal_data.getString("id");
 		cl = main.getCl();
+		pars = new HashMap<String, String>();
 		ImageIcon icon;
 		if (personal_data.getInt("avatar") == 0)
 		{
@@ -53,7 +62,7 @@ public class EastPanel extends JPanel
 			show = false;
 		} else
 		{
-			Map<String, String> pars = new HashMap<String, String>();
+			
 			pars.put("action", "get_user_img");
 			pars.put("id", personal_data.getString("id"));
 			try
@@ -75,7 +84,7 @@ public class EastPanel extends JPanel
 				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/pensil.png")));
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(10, 20, 10, 20);
+		c.insets = new Insets(10, 5, 15, 5);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
@@ -114,6 +123,33 @@ public class EastPanel extends JPanel
 		JLabel pensil3 = new JLabel(pensil_image);
 		pensil3.addMouseListener(new editPhone(this));
 		add(pensil3, c);
+		c.gridx = 3;
+		check_phone = new JCheckBox();
+		if (personal_data.getInt("show_phone") == 0)
+			check_phone.setSelected(false);
+		else
+			check_phone.setSelected(true);
+		check_phone.addItemListener(new ItemListener()
+		{
+			@Override
+			public void itemStateChanged(ItemEvent e)
+			{
+				String check = e.getStateChange() == 1 ? "1" : "0";
+				pars.clear();
+				pars.put("action", "check_show");
+				pars.put("id", id);
+				pars.put("param", "phone");
+				pars.put("val", check);
+				try
+				{
+					cl.send(pars);
+				} catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		});
+		add(check_phone, c);
 		//
 		c.gridy++;
 		c.gridx = 0;
@@ -125,6 +161,33 @@ public class EastPanel extends JPanel
 		JLabel pensil4 = new JLabel(pensil_image);
 		pensil4.addMouseListener(new editEmail(this));
 		add(pensil4, c);
+		c.gridx = 3;
+		check_email = new JCheckBox();
+		if (personal_data.getInt("show_email") == 0)
+			check_email.setSelected(false);
+		else
+			check_email.setSelected(true);
+		check_email.addItemListener(new ItemListener()
+		{
+			@Override
+			public void itemStateChanged(ItemEvent e)
+			{
+				String check = e.getStateChange() == 1 ? "1" : "0";
+				pars.clear();
+				pars.put("action", "check_show");
+				pars.put("id", id);
+				pars.put("param", "email");
+				pars.put("val", check);
+				try
+				{
+					cl.send(pars);
+				} catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		});
+		add(check_email, c);
 		//
 		c.gridy++;
 		c.gridx = 0;
@@ -139,6 +202,33 @@ public class EastPanel extends JPanel
 		JLabel pensil5 = new JLabel(pensil_image);
 		pensil5.addMouseListener(new editFio(this));
 		add(pensil5, c);
+		c.gridx = 3;
+		check_fio = new JCheckBox();
+		if (personal_data.getInt("show_fio") == 0)
+			check_fio.setSelected(false);
+		else
+			check_fio.setSelected(true);
+		check_fio.addItemListener(new ItemListener()
+		{
+			@Override
+			public void itemStateChanged(ItemEvent e)
+			{
+				String check = e.getStateChange() == 1 ? "1" : "0";
+				pars.clear();
+				pars.put("action", "check_show");
+				pars.put("id", id);
+				pars.put("param", "fio");
+				pars.put("val", check);
+				try
+				{
+					cl.send(pars);
+				} catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		});
+		add(check_fio, c);
 		//
 		c.gridy++;
 		c.gridx = 0;
@@ -150,6 +240,11 @@ public class EastPanel extends JPanel
 		JLabel pensil6 = new JLabel(pensil_image);
 		pensil6.addMouseListener(new editPass(this));
 		add(pensil6, c);
+		c.gridx = 0;
+		c.gridy++;
+		c.gridwidth = 4;
+		add(new JLabel("<html><i>" + Utilit.InsertPerenos(
+				"Галочками отмечены те данные, которые вы готовы показывать своим собеседникам.", 32, "<br>")), c);
 	}
 
 	private String stars(String string)

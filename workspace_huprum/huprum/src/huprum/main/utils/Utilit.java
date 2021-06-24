@@ -128,7 +128,22 @@ public class Utilit
 		}
 		return otvet;
 	}
-
+	public static String insertWordWrap(String src, String separator, int len_str)
+	{
+		String rez = "";
+		String row = src;
+		while (row.length() > len_str)
+		{
+			int i = row.lastIndexOf(" ", len_str);
+			if (i <= 0)
+				i = len_str;
+			else
+				i++;
+			rez += row.substring(0, i) + separator;
+			row = row.substring(i);
+		}
+		return rez + row;
+	}
 	public static void main(String[] args)
 	{
 		JFrame jframe = new JFrame("test Utilit");

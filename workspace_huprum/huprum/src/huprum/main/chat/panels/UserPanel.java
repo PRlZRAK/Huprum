@@ -80,7 +80,7 @@ public class UserPanel extends JPanel
 				try
 				{
 					im = new ImageManipulation(avatar);
-					icon = im.getImageIcon(100, 100);
+					icon = im.getImageIcon(120, 120);
 					show = true;
 				} catch (IOException e)
 				{
@@ -103,8 +103,14 @@ public class UserPanel extends JPanel
 		label_icon.addMouseListener(new Show(this));
 		add(label_icon, c);
 		c.gridy++;
-		if (!jo.isNull("fio"))
+		if (!jo.isNull("fio") && jo.getInt("show_fio") == 1)
 			add(new JLabel("<html>" + Utilit.InsertPerenos(jo.getString("fio"), 20, "<br>")), c);
+		c.gridy++;
+		if (jo.getInt("show_phone") == 1)
+			add(new JLabel("тел.: " + jo.getString("phone")), c);
+		c.gridy++;
+		if (jo.getInt("show_email") == 1)
+			add(new JLabel("<html>" + Utilit.insertWordWrap("email: " + jo.getString("email"), "<br>", 20)), c);
 		updateUI();
 	}
 

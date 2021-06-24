@@ -86,7 +86,7 @@ public class ToolBar extends JToolBar
 				main.userLogoff();
 				try
 				{
-					Runtime.getRuntime().exec("java -jar huprum.jar");
+					Runtime.getRuntime().exec("java -jar tuktuk.jar");
 				} catch (IOException e)
 				{
 					e.printStackTrace();
