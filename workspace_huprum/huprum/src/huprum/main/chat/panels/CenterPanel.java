@@ -26,6 +26,7 @@ import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.PlaySound;
+import huprum.main.smile.Smile;
 import huprum.main.utils.DTime;
 import huprum.main.utils.Utilit;
 
@@ -183,14 +184,15 @@ public class CenterPanel extends JPanel
 		if (jo.getInt("img") == 1)
 		{
 			ImageManipulation im         = main.imageStor.getImage(jo.getString("id"));
-			JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color);
+			JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30,
+					color);
 			imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
 			add(imagePanel, c);
 		} else
 		{
-			JLabel myJLabel = new JLabel(
+			JLabel myJLabel = new JLabel(Smile.replace(
 					"<html><p  style=\"font-size: 11px\">" + Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
-							+ "<br><br><p style=\"font-size: 7px\">" + dt.time());
+							+ "<br><br><p style=\"font-size: 7px\">" + dt.time()));
 			myJLabel.setOpaque(true);
 			myJLabel.setBackground(color);
 			add(myJLabel, c);

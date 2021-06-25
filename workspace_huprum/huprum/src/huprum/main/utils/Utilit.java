@@ -32,8 +32,8 @@ public class Utilit
 	/*
 	 * url сервера
 	 */
-	 public static String HUPRUM_URL = "http://localhost/huprum/";
-	//public static String        HUPRUM_URL     = "http://130.61.155.146/huprum/";
+	// public static String HUPRUM_URL = "http://localhost/huprum/";
+	public static String        HUPRUM_URL     = "http://130.61.155.146/huprum/";
 	public static String        SERVER_URL     = HUPRUM_URL + "server/index.php";
 	public static final String  SMILE_URL      = HUPRUM_URL + "server/smile/";
 	public static String        CONFIG         = "config.json";
