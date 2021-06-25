@@ -11,9 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
 import huprum.main.Huprum;
+import huprum.main.utils.Lang;
 
 public class ToolBar extends JToolBar
 {
+	
+
 	/**
 	 * 
 	 */
@@ -22,7 +25,7 @@ public class ToolBar extends JToolBar
 	private JButton           back;
 	private JButton           removeUser;
 	private Huprum            main;
-	
+	private JButton setLang;
 
 	public ToolBar(Huprum main)
 	{
@@ -59,9 +62,34 @@ public class ToolBar extends JToolBar
 		addUser.addActionListener(new AddUserActionList(main));
 		addUser.setToolTipText("Найти, добавить чат с юзером по логину или майлу или телефону");
 		add(addUser);
+		//
+		setLang = new JButton();
+		ImageIcon langIcon = new ImageIcon(
+				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/globe.png")));
+		setLang.setIcon(langIcon);
+		setLang.addActionListener(new langActionList(main));
+		setLang.setToolTipText("Сменить язык");
+		add(setLang);
 		
 	}
-
+	public static class langActionList implements ActionListener
+	{
+		static boolean b_lang=true;
+		private Huprum main;
+		public langActionList(Huprum main)
+		{
+			this.main=main;
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			if(b_lang)Lang.setEn();
+			else Lang.setRu();
+			b_lang=!b_lang;
+			main.revalidate();
+			main.repaint();
+		}
+	}
 	public class StopActionList implements ActionListener
 	{
 		@Override

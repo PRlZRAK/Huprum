@@ -28,6 +28,7 @@ import huprum.main.img.ImageManipulation;
 import huprum.main.loginer.Loginer;
 import huprum.main.smile.Smile;
 import huprum.main.utils.DTime;
+import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
 public class SouthPanel extends JPanel
@@ -99,6 +100,13 @@ public class SouthPanel extends JPanel
 		JButton enter = new JButton("Отправить");
 		enter.addActionListener(new Message());
 		add(enter, c);
+		//
+		c.gridwidth = 4;
+		c.gridx = 0;
+		c.gridy++;
+		JLabel label_copyright = Utilit.getCopyright(Lang.getLang());
+		label_copyright.setForeground(Color.WHITE);
+		add(label_copyright, c);
 	}
 
 	public void setImgNull()

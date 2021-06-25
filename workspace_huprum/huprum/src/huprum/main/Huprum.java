@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import huprum.main.connections.Client;
 import huprum.main.sqlite.ImageStor;
 import huprum.main.loginer.Loginer;
+import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
 public class Huprum extends JFrame
@@ -63,6 +64,7 @@ public class Huprum extends JFrame
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
+		new Lang("ru");
 		cl = new Client(Utilit.SERVER_URL);
 		imageStor= new ImageStor();
 		try

@@ -148,7 +148,18 @@ public class Utilit
 		}
 		return rez + row;
 	}
-
+	@SuppressWarnings("static-access")
+	public static JLabel getCopyright(Lang lang)
+	{
+		return new JLabel(lang.put("<html><br> &nbsp;&nbsp;&nbsp;&nbsp; Copyright © 2021. Limited Liability "
+				+ "Company \"TukTukSoft\". All rights reserved.<br> &nbsp;"
+				+ "#<html><br> &nbsp;&nbsp;&nbsp;&nbsp; Copyright © 2021. "
+				+ "Общество с ограниченной ответственностью «ТуктукСофт». Все права защищены.<br> &nbsp;"));
+	}
+	public static JLabel getCopyright(String lang)
+	{
+		return getCopyright(new Lang(lang));
+	}
 	public static void main(String[] args)
 	{
 		JFrame jframe = new JFrame("test Utilit");

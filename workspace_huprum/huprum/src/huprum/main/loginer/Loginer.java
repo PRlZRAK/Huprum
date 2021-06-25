@@ -117,7 +117,7 @@ public class Loginer
 			jremember = new JCheckBox("Запомнить на этом устройстве");
 			panel.add(jremember, c);
 			c.gridy++;
-			JButton button = new JButton("Ввод");
+			JButton button = new JButton("Вход");
 			panel.add(button, c);
 			button.addActionListener(new LoginActionListener(main));
 			c.gridy++;
