@@ -131,8 +131,8 @@ public class ImageStor
 		try
 		{
 			conn.close();
-			statmt.close();
-			resSet.close();
+			//statmt.close();
+			//resSet.close();
 		} catch (SQLException e)
 		{
 			e.printStackTrace();

@@ -48,7 +48,6 @@ public class SouthPanel extends JPanel
 	public SouthPanel(Huprum main)
 	{
 		setBackground(Utilit.COLOR_1057);
-		
 		this.main = main;
 		loginer = main.getLoginer();
 		myId = Integer.toString(loginer.getId());
@@ -72,9 +71,9 @@ public class SouthPanel extends JPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		//JLabel gray_smile = new JLabel("<html>" + Smile.tag("sm1_gray.png"));
-		JLabel gray_smile = new JLabel(new ImageIcon(
-				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/sm2_gray.png"))));
+		// JLabel gray_smile = new JLabel("<html>" + Smile.tag("sm1_gray.png"));
+		JLabel gray_smile = new JLabel(
+				new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/sm2_gray.png"))));
 		gray_smile.addMouseListener(new GrayListener(sml));
 		add(gray_smile, c);
 		//
