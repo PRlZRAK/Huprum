@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 
@@ -183,11 +184,20 @@ public class CenterPanel extends JPanel
 	{
 		if (jo.getInt("img") == 1)
 		{
-			ImageManipulation im         = main.imageStor.getImage(jo.getString("id"));
-			JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30,
-					color);
-			imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
-			add(imagePanel, c);
+			ImageManipulation im;
+			try
+			{
+				im = main.imageStor.getImage(jo.getInt("id"), 1);
+				JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30,
+						color);
+				imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
+				add(imagePanel, c);
+			} catch (ClassNotFoundException | JSONException | SQLException | IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} else
 		{
 			JLabel myJLabel = new JLabel(Smile.replace(
