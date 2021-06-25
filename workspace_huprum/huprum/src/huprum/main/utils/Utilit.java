@@ -39,8 +39,8 @@ public class Utilit
 	public static String        CHAT_IMAGES    = "chatimages.json";
 	private static String       PHON_PATERN    = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
 	private static final String MAIL_PATERN    = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	public static final int     IMG_MAX_WIDTH  = 800;
-	public static final int     IMG_MAX_HEIGHT = 600;
+	public static final int     IMG_MAX_WIDTH  = 1000;
+	public static final int     IMG_MAX_HEIGHT = 800;
 
 	public static int CheckLogin(String login)
 	{

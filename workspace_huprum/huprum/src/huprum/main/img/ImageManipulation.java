@@ -340,7 +340,7 @@ public class ImageManipulation
 			return;
 		int x = getWidth();
 		int y = getHeight();
-		if (x <= maxX && y <= maxY)
+		if (x <= maxX || y <= maxY)
 			return;
 		String ext     = "." + fileType.split("/")[1];
 		File   tmpFile = File.createTempFile("tuk", ext);
