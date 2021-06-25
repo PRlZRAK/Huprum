@@ -31,8 +31,6 @@ import huprum.main.utils.Utilit;
 
 public class SouthPanel extends JPanel
 {
-	
-
 	/**
 	 * 
 	 */
@@ -44,7 +42,7 @@ public class SouthPanel extends JPanel
 	private ImageManipulation img_send         = null;
 	private JLabel            show;
 	private Smile             sml;
-	private JLabel show_label;
+	private JLabel            show_label;
 
 	public SouthPanel(Huprum main)
 	{
@@ -57,25 +55,22 @@ public class SouthPanel extends JPanel
 		c.insets = new Insets(1, 5, 1, 5);
 		c.gridx = 0;
 		c.gridy = 0;
-		
 		//
-		c.gridwidth=3;
-		
+		c.gridwidth = 3;
 		sml = new Smile(this);
 		add(sml, c);
-		c.gridwidth=1;
+		c.gridwidth = 1;
 		//
-		c.gridx=3;
-		c.gridwidth=1;
-		show_label=new JLabel();
+		c.gridx = 3;
+		c.gridwidth = 1;
+		show_label = new JLabel();
 		add(show_label, c);
 		//
 		c.gridy++;
-		c.gridx=0;
+		c.gridx = 0;
 		JLabel gray_smile = new JLabel("<html>" + Smile.tag("sm1_gray.png"));
 		gray_smile.addMouseListener(new GrayListener(sml));
 		add(gray_smile, c);
-		
 		//
 		c.gridx++;
 		ImageIcon img    = new ImageIcon(
@@ -117,6 +112,9 @@ public class SouthPanel extends JPanel
 		{
 			sml.setVisible(false);
 			show_label.setText("");
+			String id_to = loginer.getChat().wp.getId();
+			if (id_to == null)
+				return;
 			Client              cl   = main.getCl();
 			String              msg  = vod.getText();                // .trim();
 			Map<String, String> pars = new HashMap<String, String>();
@@ -124,7 +122,7 @@ public class SouthPanel extends JPanel
 			{
 				pars.put("action", "put_msg");
 				pars.put("id_from", myId);
-				pars.put("id_to", loginer.getChat().wp.getId());
+				pars.put("id_to", id_to);
 				pars.put("msg", msg);
 				pars.put("dtime", DTime.now());
 				if (img_send != null)
@@ -144,11 +142,12 @@ public class SouthPanel extends JPanel
 			}
 		}
 	}
+
 	public void insertText(String insert_text)
 	{
-		vod.setText(vod.getText()+insert_text);
-		
+		vod.setText(vod.getText() + insert_text);
 	}
+
 	public class ImgSeachListener implements MouseListener
 	{
 		@Override
@@ -232,28 +231,26 @@ public class SouthPanel extends JPanel
 		{
 		}
 	}
+
 	public class KeyList implements KeyListener
 	{
 		@Override
 		public void keyPressed(KeyEvent arg0)
 		{
 			String txt = vod.getText();
-			txt=Utilit.insertWordWrap(txt, "<br>", 30);
-			txt=Smile.replace(txt);
-			show_label.setText("<html>"+txt);
+			txt = Utilit.insertWordWrap(txt, "<br>", 30);
+			txt = Smile.replace(txt);
+			show_label.setText("<html>" + txt);
 		}
 
 		@Override
 		public void keyReleased(KeyEvent arg0)
 		{
-			
 		}
 
 		@Override
 		public void keyTyped(KeyEvent arg0)
 		{
-			
 		}
 	}
-
 }
