@@ -45,6 +45,7 @@ public class CenterPanel extends JPanel
 	String                          last_id;
 	private PlaySound               clip;
 	private int                     day              = 0;
+	private int                     show_msg;
 
 	public CenterPanel(Huprum main)
 	{
@@ -102,6 +103,7 @@ public class CenterPanel extends JPanel
 		{
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
 			removeAll();
+			show_msg = 1; // для вывода новых сообщений
 			c.gridy = 0;
 			c.gridwidth = 1;
 			for (c.gridx = 0; c.gridx < 3; c.gridx++)
@@ -132,6 +134,21 @@ public class CenterPanel extends JPanel
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				/*
+				 * вывод в ленту заголовка о новых сообщениях
+				 */
+				int sm = jo.getInt("show_msg");
+				if (sm == 0 && show_msg == 1)
+				{
+					c.gridwidth = 1;
+					c.gridx = 1;
+					JLabel label_new = new JLabel("Новые сообщения");
+					label_new.setForeground(Utilit.COLOR_1057);
+					add(label_new, c);
+					c.gridwidth = 2;
+					c.gridy++;
+					show_msg = 0;
 				}
 				/*
 				 * прорисовка моих сообщений
@@ -201,8 +218,8 @@ public class CenterPanel extends JPanel
 				image.show(main, msg);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Что то с сохранением пошло не так",
-						"Ошибка", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(main, "Что то с сохранением пошло не так", "Ошибка",
+						JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
 		}
