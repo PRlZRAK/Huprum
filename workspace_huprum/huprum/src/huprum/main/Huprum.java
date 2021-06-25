@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -19,7 +20,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import org.json.JSONObject;
 
 import huprum.main.connections.Client;
-import huprum.main.img.ImageStor;
+import huprum.main.sqlite.ImageStor;
 import huprum.main.loginer.Loginer;
 import huprum.main.utils.Utilit;
 
@@ -53,7 +54,7 @@ public class Huprum extends JFrame
 			{
 				configSave();
 				userLogoff();
-				imageStor.save();
+				imageStor.close();
 				System.exit(0);
 			}
 		});
@@ -63,7 +64,16 @@ public class Huprum extends JFrame
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		cl = new Client(Utilit.SERVER_URL);
-		imageStor= new ImageStor(Utilit.CHAT_IMAGES, this);
+		imageStor= new ImageStor();
+		try
+		{
+			imageStor.conn(this);
+			imageStor.create();
+		} catch (ClassNotFoundException | SQLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		loginer = new Loginer(this);
 		setVisible(true);
 	}
