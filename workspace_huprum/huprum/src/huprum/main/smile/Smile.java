@@ -15,7 +15,7 @@ public class Smile
 	private static String smile_array[][] =
 	{
 			{ ":)", "sm1.png" },
-			{ ";-D", "123" } };
+			{ "D-:", "6.gif" } };
 
 	public static void main(String[] args)
 	{
@@ -29,8 +29,8 @@ public class Smile
 		jframe.setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());
-		String smile_str = "    :)       ;-D                   ";
-		String str_new   = Smile.replace(smile_str);
+		String smile_str = "    :)       D-:               ";
+		String str_new   = Smile.replace(smile_str, 80, 80);
 		JLabel jb        = new JLabel("<html>" + smile_str);
 		panel.add(jb);
 		JLabel jb1 = new JLabel("<html>" + str_new);
@@ -39,14 +39,20 @@ public class Smile
 		jframe.setVisible(true);
 	}
 
-	private static String replace(String str)
+	private static String replace(String str,int width,int height)
 	{
 		for (int i = 0; i < smile_array.length; i++)
 		{
 			String[] row = smile_array[i];
 			while (str.indexOf(row[0]) >= 0)
-				str = str.replace(row[0],"<img src=\""+Utilit.SMILE_URL+ row[1]+"\" height=\"16\" width=\"16\" >");
+				str= str.replace(row[0],tag(row[1],width,height));
+				
 		}
 		return str;
+	}
+
+	private static String tag(String file_name, int height, int width)
+	{
+		return "<img src=\"" + Utilit.SMILE_URL + file_name + "\" height=" + height + " width=" + width + " >";
 	}
 }
