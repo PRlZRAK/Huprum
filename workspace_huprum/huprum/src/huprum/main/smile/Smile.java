@@ -15,6 +15,7 @@ public class Smile extends JPanel
 	public Smile(SouthPanel southPanel)
 	{
 		super(new FlowLayout());
+		setBackground(Utilit.COLOR_1057);
 		for (String[] str_label : smile_array)
 		{
 			JLabel label = new JLabel("<html>" + tag(str_label[1]));
