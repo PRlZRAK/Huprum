@@ -25,6 +25,4 @@ local.properties
 .loadpath
 .factorypath
 *.json
-*.json
-workspace_huprum/huprum/chatimages.json
 *.s3db
