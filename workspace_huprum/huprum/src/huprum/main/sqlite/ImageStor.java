@@ -88,7 +88,7 @@ public class ImageStor
 	public ImageManipulation getImage(int id, int status) throws ClassNotFoundException, SQLException, IOException
 	{
 		ImageManipulation im;
-		resSet = statmt.executeQuery("SELECT * FROM Images");
+		resSet = statmt.executeQuery("SELECT * FROM Images ");
 		while (resSet.next())
 		{
 			System.out.println("работает цикл");
