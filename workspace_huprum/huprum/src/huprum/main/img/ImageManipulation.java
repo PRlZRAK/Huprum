@@ -271,13 +271,19 @@ public class ImageManipulation
 	 *               размере. Предназначен для обработки события.
 	 * @throws IOException
 	 */
-	public void show(Component main, String string) throws IOException
+	public void showSave(Component main, String string) throws IOException
 	{
 		int i = JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_NO_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
-				{ "Закрыть", "Сохранить как.." }, "default");
+				{ "Назад", "Сохранить как.." }, "default");
 		if (i == JOptionPane.NO_OPTION)
 			save(main);
+	}
+	public void show(Component main, String string) throws IOException
+	{
+		JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_OPTION,
+				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
+				{ "Назад" }, "default");
 	}
 
 	/**
