@@ -15,8 +15,6 @@ import huprum.main.utils.Lang;
 
 public class ToolBar extends JToolBar
 {
-	
-
 	/**
 	 * 
 	 */
@@ -25,7 +23,9 @@ public class ToolBar extends JToolBar
 	private JButton           back;
 	private JButton           removeUser;
 	private Huprum            main;
-	private JButton setLang;
+	private JButton           setLang;
+	private ImageIcon         engIcon;
+	private ImageIcon         rusIcon;
 
 	public ToolBar(Huprum main)
 	{
@@ -64,32 +64,43 @@ public class ToolBar extends JToolBar
 		add(addUser);
 		//
 		setLang = new JButton();
-		ImageIcon langIcon = new ImageIcon(
-				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/globe.png")));
-		setLang.setIcon(langIcon);
-		setLang.addActionListener(new langActionList(main));
+		engIcon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/eng.png")));
+		rusIcon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/rus.png")));
+		if (Lang.getLang().equals("ru"))
+			setLang.setIcon(engIcon);
+		else
+			setLang.setIcon(rusIcon);
+		setLang.addActionListener(new langActionList(this));
 		setLang.setToolTipText("Сменить язык");
 		add(setLang);
-		
 	}
+
 	public static class langActionList implements ActionListener
 	{
-		static boolean b_lang=true;
-		private Huprum main;
-		public langActionList(Huprum main)
+		static boolean  b_lang = true;
+		private ToolBar toolBar;
+
+		public langActionList(ToolBar toolBar)
 		{
-			this.main=main;
+			this.toolBar = toolBar;
 		}
+
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			if(b_lang)Lang.setEn();
-			else Lang.setRu();
-			b_lang=!b_lang;
-			main.revalidate();
-			main.repaint();
+			if (b_lang)
+			{
+				Lang.setEn();
+				toolBar.setLang.setIcon(toolBar.rusIcon);
+			} else
+			{
+				Lang.setRu();
+				toolBar.setLang.setIcon(toolBar.engIcon);
+			}
+			b_lang = !b_lang;
 		}
 	}
+
 	public class StopActionList implements ActionListener
 	{
 		@Override

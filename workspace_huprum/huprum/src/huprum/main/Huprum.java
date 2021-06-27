@@ -49,6 +49,7 @@ public class Huprum extends JFrame
 		{
 			JOptionPane.showMessageDialog(null, "Error in a LaF of executable file");
 		}
+		
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
@@ -60,7 +61,7 @@ public class Huprum extends JFrame
 			}
 		});
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-		// setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
