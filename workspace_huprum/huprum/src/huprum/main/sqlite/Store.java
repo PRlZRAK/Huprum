@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 public class Store
 {
 	public static void main(String[] args)
@@ -18,11 +20,13 @@ public class Store
 			st.putAva(1, "image1");
 			st.putAva(2, "image223");
 			st.putChatImg(1, "image1");
-			st.putChatImg(45, "image123");	
+			st.putChatImg(45, "image123");
+			st.putParam(12, "234", "width");
 			
-			String img = st.get(2,"AvaImg");
-			String img1 = st.get(45,"ChatImg");
-			
+			String img = st.getAvaImg(2);
+			String img1 = st.getChatImg(45);
+			String width = st.getParam(12, "width");
+			System.out.println(width);
 			System.out.println(img);
 			System.out.println(img1);
 		} catch (SQLException e)
@@ -63,14 +67,28 @@ public class Store
 					"	img	TEXT," + 
 					"	PRIMARY KEY(id)" + 
 					");");
+			
 			Statement statmt1 = conn.createStatement();
 			statmt1.execute("CREATE TABLE if not exists ChatImg (" + 
 					"	id	INTEGER NOT NULL," +  
 					"	img	TEXT" + 
 					");");
+			
+			Statement statmt2 = conn.createStatement();
+			statmt2.execute("CREATE TABLE if not exists set1 (" + 
+					"	id	     INTEGER," +  
+					"	locaty   INTEGER," + 
+					"	locatx   INTEGER," + 
+					"	width    INTEGER," + 
+					"	height   INTEGER," + 
+					"	login    TEXT," + 
+					"	password TEXT" + 					
+					");");			
 		} catch (ClassNotFoundException | SQLException e)
 		{
-			// TODO  joptionpane
+			JOptionPane.showOptionDialog(null, "Ошибка", null, JOptionPane.YES_OPTION,
+					JOptionPane.WARNING_MESSAGE, null, new String[]
+					{ "Назад" }, "default");
 			e.printStackTrace();
 		}
 	}
@@ -101,15 +119,52 @@ public class Store
 			statmt.setString(2, img);
 			statmt.execute();
 	}
+	private void putParam(int id, String param, String key) throws SQLException
+	{
+		PreparedStatement statmt = conn.prepareStatement("SELECT * FROM set1 WHERE id=?");
+		statmt.setInt(1, id);
+		ResultSet rs = statmt.executeQuery();
+		if (rs.next())
+		{
+			PreparedStatement statmt1 = conn.prepareStatement("UPDATE set1 SET "+key+"=? WHERE id=?");
+			statmt1.setString(1, param);
+			statmt1.setInt(2, id);
+			statmt1.executeUpdate();
+		} else
+		{
+			PreparedStatement statmt2 = conn.prepareStatement("INSERT INTO set1(id," + key + ") VALUES (?,?)");
+			statmt2.setInt(1, id);
+			statmt2.setString(2, param);
+			statmt2.execute();
+		}
+	}
 	
 
-	private String get(int id, String table) throws SQLException
+	private String getChatImg(int id) throws SQLException
 	{
-		PreparedStatement statmt = conn.prepareStatement("SELECT img FROM "+ table +" WHERE id=?");
+		PreparedStatement statmt = conn.prepareStatement("SELECT img FROM ChatImg WHERE id=?");
 		statmt.setInt(1, id);
 		ResultSet rs = statmt.executeQuery();
 		if (rs.next())
 			return rs.getString("img");
+		return null;
+	}
+	private String getAvaImg(int id) throws SQLException
+	{
+		PreparedStatement statmt = conn.prepareStatement("SELECT img FROM AvaImg WHERE id=?");
+		statmt.setInt(1, id);
+		ResultSet rs = statmt.executeQuery();
+		if (rs.next())
+			return rs.getString("img");
+		return null;
+	}
+	private String getParam(int id, String key) throws SQLException
+	{
+		PreparedStatement statmt = conn.prepareStatement("SELECT "+key+" FROM set1 WHERE id=?");
+		statmt.setInt(1, id);
+		ResultSet rs = statmt.executeQuery();
+		if (rs.next())
+			return rs.getString(key);
 		return null;
 	}
 }
