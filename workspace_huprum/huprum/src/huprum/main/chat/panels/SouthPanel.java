@@ -72,10 +72,11 @@ public class SouthPanel extends JPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		// JLabel gray_smile = new JLabel("<html>" + Smile.tag("sm1_gray.png"));
+		
 		JLabel gray_smile = new JLabel(
 				new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/sm2_gray.png"))));
 		gray_smile.addMouseListener(new GrayListener(sml));
+		gray_smile.setToolTipText("Выбрать смайлик");
 		add(gray_smile, c);
 		//
 		c.gridx++;

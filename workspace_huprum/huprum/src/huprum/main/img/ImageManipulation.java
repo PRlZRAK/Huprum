@@ -275,7 +275,7 @@ public class ImageManipulation
 	{
 		int i = JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_NO_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
-				{ "Назад", "Сохранить как.." }, "default");
+				{ "Закрыть", "Сохранить как.." }, "default");
 		if (i == JOptionPane.NO_OPTION)
 			save(main);
 	}
@@ -283,7 +283,7 @@ public class ImageManipulation
 	{
 		JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
-				{ "Назад" }, "default");
+				{ "Закрыть" }, "default");
 	}
 
 	/**

@@ -23,13 +23,13 @@ public class Lang
 			return string;
 		}
 	}
-
+/*
 	public static String put(int i, String string)
 	{
 		l = i;
 		return put(string);
 	}
-
+*/
 	public static String getLang()
 	{
 		if (l == 0)
