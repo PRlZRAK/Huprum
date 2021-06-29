@@ -96,7 +96,7 @@ public class Store
 			statmt_5 = conn.prepareStatement("SELECT img FROM AvaImg WHERE id=?");
 		} catch (ClassNotFoundException | SQLException e)
 		{
-			JOptionPane.showOptionDialog(null, "Ошибка", null, JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE,
+			JOptionPane.showOptionDialog(main, "Ошибка", null, JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, new String[]
 					{ "Назад" }, "default");
 			e.printStackTrace();
