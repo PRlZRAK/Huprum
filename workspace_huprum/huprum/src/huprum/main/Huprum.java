@@ -125,36 +125,22 @@ public class Huprum extends JFrame
 		try
 		{
 			store.setParam("lang", Lang.getLang());
+			store.setParam("width", Integer.toString(getSize().width));
+			store.setParam("height", Integer.toString(getSize().height));
+			store.setParam("locatx", Integer.toString(getLocation().x));
+			store.setParam("locaty", Integer.toString(getLocation().y));
+			if (remember)
+			{
+				store.setParam("remember", "1");
+				store.setParam("login", loginer.getLogin());
+				store.setParam("password", loginer.getPassword());
+			} else
+				store.setParam("remember", "0");
 		} catch (SQLException e1)
 		{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		JSONObject jo = new JSONObject();
-		if (remember)
-		{
-			jo.put("status", 1);
-			jo.put("login", loginer.getLogin());
-			jo.put("password", loginer.getPassword());
-		} else
-			jo.put("status", 0);
-		jo.put("width", getSize().width);
-		jo.put("height", getSize().height);
-		jo.put("locatx", getLocation().x);
-		jo.put("locaty", getLocation().y);
-		File       f = new File(Utilit.CONFIG);
-		FileWriter filewr;
-		try
-		{
-			filewr = new FileWriter(f);
-			filewr.write(jo.toString());
-			filewr.flush();
-			filewr.close();
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		}	
 	}
 
 	public JSONObject getPersonalData()

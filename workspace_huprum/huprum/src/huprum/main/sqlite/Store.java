@@ -198,7 +198,7 @@ public class Store
 			String     avatar = jo1.getString("avatar");
 				im = new ImageManipulation(avatar);
 				putAva(id, avatar);
-				return im;	
+				return im;
 	}
 
 	public String getParam(String key) throws SQLException

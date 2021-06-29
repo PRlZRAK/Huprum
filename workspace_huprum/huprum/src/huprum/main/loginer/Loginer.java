@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -59,26 +60,16 @@ public class Loginer
 
 	public Loginer(Huprum main)
 	{
-		JSONObject jo     = null;
-		int        status = 0;
 		try
 		{
-			String config = new String(Files.readAllBytes(Paths.get(Utilit.CONFIG)), StandardCharsets.UTF_8);
-			if (config.equals(""))
-				status = 2;
-			else
-			{
-				jo = new JSONObject(config);
-				status = jo.getInt("status");
-			}
-		} catch (IOException e)
+			int width  = Integer.parseInt(main.store.getParam("width"));
+			int height = Integer.parseInt(main.store.getParam("height"));
+			int locatx = Integer.parseInt(main.store.getParam("locatx"));
+			int locaty = Integer.parseInt(main.store.getParam("locaty"));
+			main.setLocation(locatx, locaty);
+			main.setSize(width, height);
+		} catch (NumberFormatException | SQLException e)
 		{
-			status = 2;
-		}
-		if (!(status == 2))
-		{
-			main.setLocation(jo.getInt("locatx"), jo.getInt("locaty"));
-			main.setSize(jo.getInt("width"), jo.getInt("height"));
 		}
 		{
 			JPanel panel = new JPanel();
@@ -124,17 +115,22 @@ public class Loginer
 			JButton button_new_user = new JButton("Регистрация");
 			panel.add(button_new_user, c);
 			button_new_user.addActionListener(new Register1(main));
-			if (status == 1)
+			try
 			{
-				String remLog = (String) jo.get("login");
-				jlogin.setText(remLog);
-				String remPas = (String) jo.get("password");
-				jpass.setText(remPas);
-				jremember.setSelected(true);
+				String rem = main.store.getParam("remember");
+				if (!(rem==null)&&Integer.parseInt(rem)==1)
+				{
+					jlogin.setText(main.store.getParam("login"));
+					jpass.setText(main.store.getParam("password"));
+					jremember.setSelected(true);
+				}
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-	}
-
+	}	
 	public void setId(int id)
 	{
 		this.id = id;
