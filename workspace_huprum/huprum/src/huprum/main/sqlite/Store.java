@@ -67,12 +67,12 @@ public class Store
 	private PreparedStatement       statmt_5;
 	private HashMap<String, String> pars;
 	private Client                  cl;
-	private Huprum                  main;
+	//private Huprum                  main;
 
 	public Store(Huprum main)
 	{
 		super();
-		this.main= main;
+		//this.main= main;
 		pars = new HashMap<String, String>();
 		cl = main.getCl();
 		try
