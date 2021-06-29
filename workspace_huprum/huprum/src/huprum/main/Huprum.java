@@ -20,9 +20,8 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import org.json.JSONObject;
 
 import huprum.main.connections.Client;
-import huprum.main.sqlite.ImageStor;
-import huprum.main.sqlite.Store;
 import huprum.main.loginer.Loginer;
+import huprum.main.sqlite.Store;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
@@ -54,17 +53,8 @@ public class Huprum extends JFrame
 		{
 			public void windowClosing(WindowEvent e)
 			{
-				
 				configSave();
 				userLogoff();
-				try
-				{
-					store.setParam("lang", Lang.getLang());
-				} catch (SQLException e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				store.close();
 				System.exit(0);
 			}
@@ -132,6 +122,14 @@ public class Huprum extends JFrame
 
 	public void configSave()
 	{
+		try
+		{
+			store.setParam("lang", Lang.getLang());
+		} catch (SQLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		JSONObject jo = new JSONObject();
 		if (remember)
 		{
