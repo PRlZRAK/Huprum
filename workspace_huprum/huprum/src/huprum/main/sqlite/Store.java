@@ -19,33 +19,17 @@ import huprum.main.img.ImageManipulation;
 
 public class Store
 {
-	/*public static void main(String[] args)
-	{
-	  	Store st = new Store();
-		try
-		{
-			st.putAva(1, "image1");
-			st.putAva(2, "image223");
-			st.putChatImg(1, "image1");
-			st.putChatImg(45, "image123");
-			st.setParam("width", "123");
-			System.out.println(st.getParam("width"));
-			String img  = st.getAvaImg(2);
-			String img1 = st.getChatImg(45);
-			System.out.println(img);
-			System.out.println(img1);
-			st.setParam("Lang", "ru");
-			System.out.println(st.getParam("Lang"));
-			st.setParam("Lang", "en");
-			System.out.println(st.getParam("Lang"));
-		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		st.close();
-	}*/
-
+	/*
+	 * public static void main(String[] args) { Store st = new Store(); try {
+	 * st.putAva(1, "image1"); st.putAva(2, "image223"); st.putChatImg(1, "image1");
+	 * st.putChatImg(45, "image123"); st.setParam("width", "123");
+	 * System.out.println(st.getParam("width")); String img = st.getAvaImg(2);
+	 * String img1 = st.getChatImg(45); System.out.println(img);
+	 * System.out.println(img1); st.setParam("Lang", "ru");
+	 * System.out.println(st.getParam("Lang")); st.setParam("Lang", "en");
+	 * System.out.println(st.getParam("Lang")); } catch (SQLException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } st.close(); }
+	 */
 	public void close()
 	{
 		try
@@ -67,12 +51,12 @@ public class Store
 	private PreparedStatement       statmt_5;
 	private HashMap<String, String> pars;
 	private Client                  cl;
-	//private Huprum                  main;
+	// private Huprum main;
 
 	public Store(Huprum main)
 	{
 		super();
-		//this.main= main;
+		// this.main= main;
 		pars = new HashMap<String, String>();
 		cl = main.getCl();
 		try
@@ -153,30 +137,30 @@ public class Store
 		statmt_4.setInt(1, id);
 		ResultSet         rs = statmt_4.executeQuery();
 		ImageManipulation im = null;
-		if (rs.next()) {
+		if (rs.next())
+		{
 			im = new ImageManipulation(rs.getString("img"));
 			im.setId(id);
 			return im;
-			}
-			else
+		} else
+		{
+			pars.clear();
+			pars.put("action", "get_img");
+			pars.put("id", Integer.toString(id));
+			String     ot     = cl.send(pars);
+			JSONObject jo1    = new JSONObject(ot);
+			int        status = jo1.getInt("status");
+			if (status == 0)
 			{
-				pars.clear();
-				pars.put("action", "get_img");
-				pars.put("id", Integer.toString(id));
-				String     ot     = cl.send(pars);
-				JSONObject jo1    = new JSONObject(ot);
-				int        status = jo1.getInt("status");
-				if (status == 0)
-				{
-					String base64 =jo1.getString("img");
-					im = new ImageManipulation(base64);
-					im.setId(id);
-					im.setId(jo1.getInt("id"));
-					putChatImg(id, base64);
+				String base64 = jo1.getString("img");
+				im = new ImageManipulation(base64);
+				im.setId(id);
+				im.setId(jo1.getInt("id"));
+				putChatImg(id, base64);
 				return im;
-				}
 			}
-			return im;
+		}
+		return null;
 	}
 
 	public ImageManipulation getAvaImg(int id) throws SQLException, IOException
@@ -192,13 +176,18 @@ public class Store
 		}
 		pars.clear();
 		pars.put("action", "get_user_img");
-		pars.put("id", id + "");	
-			String     otvet1 = cl.send(pars);
-			JSONObject jo1    = new JSONObject(otvet1);
-			String     avatar = jo1.getString("avatar");
-				im = new ImageManipulation(avatar);
-				putAva(id, avatar);
-				return im;
+		pars.put("id", id + "");
+		String     otvet1 = cl.send(pars);
+		JSONObject jo1    = new JSONObject(otvet1);
+		int        status = jo1.getInt("status");
+		if (status == 0)
+		{
+			String avatar = jo1.getString("avatar");
+			im = new ImageManipulation(avatar);
+			putAva(id, avatar);
+			return im;
+		}
+		return null;
 	}
 
 	public String getParam(String key) throws SQLException

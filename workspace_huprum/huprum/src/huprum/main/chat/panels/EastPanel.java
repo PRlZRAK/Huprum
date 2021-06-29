@@ -9,6 +9,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,18 +63,12 @@ public class EastPanel extends JPanel
 			show = false;
 		} else
 		{
-			
-			pars.put("action", "get_user_img");
-			pars.put("id", personal_data.getString("id"));
 			try
 			{
-				String     otvet  = cl.send(pars);
-				JSONObject jo     = new JSONObject(otvet);
-				String     avatar = jo.getString("avatar");
-				im = new ImageManipulation(avatar);
+				im = main.store.getAvaImg(Integer.parseInt(id));
 				icon = im.getImageIcon(200, 200);
 				show = true;
-			} catch (IOException e1)
+			} catch (NumberFormatException | SQLException | IOException e1)
 			{
 				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
 				show = false;
