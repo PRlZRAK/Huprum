@@ -38,9 +38,9 @@ public class Huprum extends JFrame
 	private Client            cl;
 	private boolean           remember         = false;
 	private JSONObject        personalData;
-	public Store store;
+	public Store              store;
 
-	public Huprum(String title) throws MalformedURLException
+	public Huprum(String title) throws MalformedURLException, SQLException
 	{
 		super(title);
 		try
@@ -50,25 +50,36 @@ public class Huprum extends JFrame
 		{
 			JOptionPane.showMessageDialog(null, "Error in a LaF of executable file");
 		}
-		
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
 			{
+				
 				configSave();
 				userLogoff();
+				try
+				{
+					store.setParam("lang", Lang.getLang());
+				} catch (SQLException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				store.close();
 				System.exit(0);
 			}
 		});
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-		
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
-		new Lang("ru");
 		cl = new Client(Utilit.SERVER_URL);
 		store = new Store(this);
+		String lang = store.getParam("lang");
+		if (lang == null)
+			new Lang("ru");
+		else
+			new Lang(lang);
 		loginer = new Loginer(this);
 		setVisible(true);
 	}
@@ -98,7 +109,7 @@ public class Huprum extends JFrame
 		try
 		{
 			new Huprum("Мессенджер Tuktuk");
-		} catch (MalformedURLException e)
+		} catch (MalformedURLException | SQLException e)
 		{
 			e.printStackTrace();
 		}
