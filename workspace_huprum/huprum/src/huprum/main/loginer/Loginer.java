@@ -3,10 +3,6 @@ package huprum.main.loginer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -16,11 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import org.json.JSONObject;
-
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
-import huprum.main.utils.Utilit;
 
 public class Loginer
 {
