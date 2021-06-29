@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import huprum.main.connections.Client;
 import huprum.main.sqlite.ImageStor;
+import huprum.main.sqlite.Store;
 import huprum.main.loginer.Loginer;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
@@ -37,7 +38,7 @@ public class Huprum extends JFrame
 	private Client            cl;
 	private boolean           remember         = false;
 	private JSONObject        personalData;
-	public ImageStor imageStor;
+	public Store store;
 
 	public Huprum(String title) throws MalformedURLException
 	{
@@ -56,7 +57,7 @@ public class Huprum extends JFrame
 			{
 				configSave();
 				userLogoff();
-				imageStor.close();
+				store.close();
 				System.exit(0);
 			}
 		});
@@ -67,16 +68,7 @@ public class Huprum extends JFrame
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
 		new Lang("ru");
 		cl = new Client(Utilit.SERVER_URL);
-		imageStor= new ImageStor();
-		try
-		{
-			imageStor.conn(this);
-			imageStor.create();
-		} catch (ClassNotFoundException | SQLException e1)
-		{
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		store = new Store(this);
 		loginer = new Loginer(this);
 		setVisible(true);
 	}

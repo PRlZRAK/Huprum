@@ -187,12 +187,12 @@ public class CenterPanel extends JPanel
 			ImageManipulation im;
 			try
 			{
-				im = main.imageStor.getImage(jo.getInt("id"), 1);
+				im = main.store.getChatImg(jo.getInt("id"));
 				JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30,
 						color);
 				imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
 				add(imagePanel, c);
-			} catch (ClassNotFoundException | JSONException | SQLException | IOException e)
+			} catch (JSONException | SQLException | IOException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();

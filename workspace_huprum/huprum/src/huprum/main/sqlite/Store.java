@@ -1,19 +1,27 @@
 package huprum.main.sqlite;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
+import org.json.JSONObject;
+
+import huprum.main.Huprum;
+import huprum.main.connections.Client;
+import huprum.main.img.ImageManipulation;
+
 public class Store
 {
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
-		Store st = new Store();
+	  	Store st = new Store();
 		try
 		{
 			st.putAva(1, "image1");
@@ -36,9 +44,9 @@ public class Store
 			e.printStackTrace();
 		}
 		st.close();
-	}
+	}*/
 
-	private void close()
+	public void close()
 	{
 		try
 		{
@@ -50,16 +58,23 @@ public class Store
 		}
 	}
 
-	private Connection        conn;
-	private PreparedStatement statmt_0;
-	private PreparedStatement statmt_1;
-	private PreparedStatement statmt_2;
-	private PreparedStatement statmt_3;
-	private PreparedStatement statmt_4;
-	private PreparedStatement statmt_5;
+	private Connection              conn;
+	private PreparedStatement       statmt_0;
+	private PreparedStatement       statmt_1;
+	private PreparedStatement       statmt_2;
+	private PreparedStatement       statmt_3;
+	private PreparedStatement       statmt_4;
+	private PreparedStatement       statmt_5;
+	private HashMap<String, String> pars;
+	private Client                  cl;
+	private Huprum                  main;
 
-	public Store()
+	public Store(Huprum main)
 	{
+		super();
+		this.main= main;
+		pars = new HashMap<String, String>();
+		cl = main.getCl();
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
@@ -88,7 +103,7 @@ public class Store
 		}
 	}
 
-	private void putAva(int id, String img) throws SQLException
+	public void putAva(int id, String img) throws SQLException
 	{
 		statmt_0.setInt(1, id);
 		ResultSet rs = statmt_0.executeQuery();
@@ -105,14 +120,14 @@ public class Store
 		}
 	}
 
-	private void putChatImg(int id, String img) throws SQLException
+	public void putChatImg(int id, String img) throws SQLException
 	{
 		statmt_3.setInt(1, id);
 		statmt_3.setString(2, img);
 		statmt_3.execute();
 	}
 
-	private void setParam(String key, String param) throws SQLException
+	public void setParam(String key, String param) throws SQLException
 	{
 		PreparedStatement statmt = conn.prepareStatement("SELECT id FROM set1 WHERE key=?");
 		statmt.setString(1, key);
@@ -133,25 +148,52 @@ public class Store
 		}
 	}
 
-	private String getChatImg(int id) throws SQLException
+	public ImageManipulation getChatImg(int id) throws SQLException, IOException
 	{
 		statmt_4.setInt(1, id);
-		ResultSet rs = statmt_4.executeQuery();
-		if (rs.next())
-			return rs.getString("img");
-		return null;
+		ResultSet         rs = statmt_4.executeQuery();
+		ImageManipulation im = null;
+		if (rs.next()) {
+			im = new ImageManipulation(rs.getString("img"));
+			im.setId(id);
+			return im;
+			}
+			else
+			{
+				pars.clear();
+				pars.put("action", "get_img");
+				pars.put("id", Integer.toString(id));
+				String     ot     = cl.send(pars);
+				JSONObject jo1    = new JSONObject(ot);
+				int        status = jo1.getInt("status");
+				if (status == 0)
+				{
+					String base64 =jo1.getString("img");
+					im = new ImageManipulation(base64);
+					im.setId(id);
+					im.setId(jo1.getInt("id"));
+					putChatImg(id, base64);
+				return im;
+				}
+			}
+			return im;
 	}
 
-	private String getAvaImg(int id) throws SQLException
+	public ImageManipulation getAvaImg(int id) throws SQLException, IOException
 	{
 		statmt_5.setInt(1, id);
-		ResultSet rs = statmt_5.executeQuery();
-		if (rs.next())
-			return rs.getString("img");
-		return null;
+		ResultSet         rs = statmt_5.executeQuery();
+		ImageManipulation im = null;
+		if (rs.next()) {
+		im = new ImageManipulation(rs.getString("img"));
+		im.setId(id);
+		return im;
+		}
+		
+		return im;
 	}
 
-	private String getParam(String key) throws SQLException
+	public String getParam(String key) throws SQLException
 	{
 		PreparedStatement statmt = conn.prepareStatement("SELECT param FROM set1 WHERE key=?");
 		statmt.setString(1, key);
