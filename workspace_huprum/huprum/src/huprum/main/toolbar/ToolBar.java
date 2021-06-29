@@ -108,7 +108,7 @@ public class ToolBar extends JToolBar
 		{
 			main.configSave();
 			main.userLogoff();
-			main.imageStor.close();
+			main.store.close();
 			System.exit(0);
 		}
 	}
