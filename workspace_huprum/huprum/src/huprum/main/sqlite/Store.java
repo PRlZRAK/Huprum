@@ -183,14 +183,22 @@ public class Store
 	{
 		statmt_5.setInt(1, id);
 		ResultSet         rs = statmt_5.executeQuery();
-		ImageManipulation im = null;
-		if (rs.next()) {
-		im = new ImageManipulation(rs.getString("img"));
-		im.setId(id);
-		return im;
+		ImageManipulation im;
+		if (rs.next())
+		{
+			im = new ImageManipulation(rs.getString("img"));
+			im.setId(id);
+			return im;
 		}
-		
-		return im;
+		pars.clear();
+		pars.put("action", "get_user_img");
+		pars.put("id", id + "");	
+			String     otvet1 = cl.send(pars);
+			JSONObject jo1    = new JSONObject(otvet1);
+			String     avatar = jo1.getString("avatar");
+				im = new ImageManipulation(avatar);
+				putAva(id, avatar);
+				return im;	
 	}
 
 	public String getParam(String key) throws SQLException

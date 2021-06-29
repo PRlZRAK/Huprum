@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,9 +33,11 @@ public class UserPanel extends JPanel
 	private GridBagConstraints c;
 	private boolean            show;
 	private ImageManipulation  im;
+	private Huprum main;
 
 	public UserPanel(Huprum main)
 	{
+		this.main=main;
 		setLayout(new GridBagLayout());
 		setBackground(Utilit.COLOR_389);
 		c = new GridBagConstraints();
@@ -68,34 +71,18 @@ public class UserPanel extends JPanel
 			show = false;
 		} else
 		{
-			pars.clear();
-			pars.put("action", "get_user_img");
-			pars.put("id", id + "");
-			try
-			{
-				String     otvet1 = cl.send(pars);
-				JSONObject jo1    = new JSONObject(otvet1);
-				String     avatar = jo1.getString("avatar");
-				im = null;
-				try
-				{
-					im = new ImageManipulation(avatar);
-					icon = im.getImageIcon(120, 120);
-					show = true;
-				} catch (IOException e)
-				{
-					icon = new ImageIcon(
-							Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
-					show = false;
-					e.printStackTrace();
-				}
-				show = true;
-			} catch (IOException e1)
-			{
-				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
-				show = false;
-				e1.printStackTrace();
-			}
+try
+{
+	show = true;
+	im= main.store.getAvaImg(id);	
+	icon = im.getImageIcon(120, 120);
+} catch (SQLException | IOException e)
+{
+	icon = new ImageIcon(
+			Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
+	show = false;
+	e.printStackTrace();
+}				
 		}
 		add(new JLabel(jo.getString("login")), c);
 		c.gridy++;
