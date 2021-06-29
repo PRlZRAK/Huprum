@@ -32,8 +32,7 @@ public class Utilit
 	/*
 	 * url сервера
 	 */
-	//public static String HUPRUM_URL = "http://localhost/huprum/";
-	//public static String        HUPRUM_URL     = "http://130.61.155.146/huprum/";
+	// public static String HUPRUM_URL = "http://localhost/huprum/";
 	public static String        HUPRUM_URL     = "http://tuktuk.su/huprum/";
 	public static String        SERVER_URL     = HUPRUM_URL + "server/index.php";
 	public static final String  SMILE_URL      = HUPRUM_URL + "server/smile/";
@@ -149,6 +148,7 @@ public class Utilit
 		}
 		return rez + row;
 	}
+
 	@SuppressWarnings("static-access")
 	public static JLabel getCopyright(Lang lang)
 	{
@@ -157,10 +157,12 @@ public class Utilit
 				+ "#<html><br> &nbsp;&nbsp;&nbsp;&nbsp; Copyright © 2021. "
 				+ "Общество с ограниченной ответственностью «ТуктукСофт». Все права защищены.<br> &nbsp;"));
 	}
+
 	public static JLabel getCopyright(String lang)
 	{
 		return getCopyright(new Lang(lang));
 	}
+
 	public static void main(String[] args)
 	{
 		JFrame jframe = new JFrame("test Utilit");
