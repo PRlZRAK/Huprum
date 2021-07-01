@@ -71,13 +71,13 @@ public class ToolBar extends JToolBar
 		else
 			setLang.setIcon(rusIcon);
 		setLang.addActionListener(new langActionList(this));
-		setLang.setToolTipText("Сменить язык");
+		setLang.setToolTipText(Lang.put("Сменить язык#Switch language"));
 		add(setLang);
 	}
 
-	public static class langActionList implements ActionListener
+	public class langActionList implements ActionListener
 	{
-		static boolean  b_lang = true;
+		// boolean b_lang = true;
 		private ToolBar toolBar;
 
 		public langActionList(ToolBar toolBar)
@@ -88,7 +88,7 @@ public class ToolBar extends JToolBar
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			if (b_lang)
+			if (Lang.getLang().equals("ru"))
 			{
 				Lang.setEn();
 				toolBar.setLang.setIcon(toolBar.rusIcon);
@@ -97,7 +97,23 @@ public class ToolBar extends JToolBar
 				Lang.setRu();
 				toolBar.setLang.setIcon(toolBar.engIcon);
 			}
-			b_lang = !b_lang;
+			int confirm = JOptionPane.showConfirmDialog(main,
+					Lang.put("If you want to immediately change the interface language, click Yes"
+							+ "#Если вы хотите немедленной смены языка интерфейса, нажмите Yes"),
+					Lang.put("Switch language#Смена языка"), JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (confirm == JOptionPane.YES_OPTION)
+			{
+				main.configSave();
+				main.userLogoff();
+				try
+				{
+					Runtime.getRuntime().exec("java -jar tuktuk.jar");
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+				System.exit(0);
+			}
 		}
 	}
 

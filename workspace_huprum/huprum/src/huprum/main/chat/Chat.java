@@ -47,7 +47,7 @@ public class Chat {
 		try
 		{
 			ep = new EastPanel(main);
-			main.add(ep, BorderLayout.EAST);
+			main.add(new JScrollPane(ep), BorderLayout.EAST);
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block

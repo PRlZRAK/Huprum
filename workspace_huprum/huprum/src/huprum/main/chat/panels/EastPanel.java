@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
+import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
 public class EastPanel extends JPanel
@@ -84,7 +85,7 @@ public class EastPanel extends JPanel
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 3;
-		add(new JLabel("<html><h2 >Профиль"), c);
+		add(new JLabel("<html><h2 >" + Lang.put("Profile#Профиль")), c);
 		c.gridwidth = 2;
 		c.gridy++;
 		c.gridx = 0;
@@ -239,7 +240,9 @@ public class EastPanel extends JPanel
 		c.gridy++;
 		c.gridwidth = 4;
 		add(new JLabel("<html><i>" + Utilit.InsertPerenos(
-				"Галочками отмечены те данные, которые вы готовы показывать своим собеседникам.", 32, "<br>")), c);
+				Lang.put("The checkboxes mark the data that you are ready to show to your interlocutors."
+						+ "#Галочками отмечены те данные, которые вы готовы показывать своим собеседникам."),
+				32, "<br>")), c);
 	}
 
 	private String stars(String string)
