@@ -152,7 +152,7 @@ public class CenterPanel extends JPanel
 					c.gridwidth = 1;
 					c.gridx = 1;
 					JLabel label_new = new JLabel("Новые сообщения");
-					
+					label_new.setName("new");
 					label_new.setForeground(Utilit.COLOR_1057);
 					add(label_new, c);
 					c.gridwidth = 2;
@@ -195,7 +195,7 @@ public class CenterPanel extends JPanel
 			if (!comp.getClass().getName().toString().equals("javax.swing.JLabel"))
 				continue;
 			JLabel lbl = (JLabel) comp;
-			if (lbl.getText().equals("Новые сообщения"))
+			if (lbl.getName()!=null && lbl.getName().equals("new"))
 				remove(comp);
 		}
 	}

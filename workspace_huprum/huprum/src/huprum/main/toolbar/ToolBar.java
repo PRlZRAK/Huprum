@@ -75,6 +75,13 @@ public class ToolBar extends JToolBar
 		add(setLang);
 	}
 
+	private void breakoff()
+	{
+		main.configSave();
+		main.userLogoff();
+		main.store.close();
+	}
+
 	public class langActionList implements ActionListener
 	{
 		// boolean b_lang = true;
@@ -103,8 +110,7 @@ public class ToolBar extends JToolBar
 					Lang.put("Switch language#Смена языка"), JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (confirm == JOptionPane.YES_OPTION)
 			{
-				main.configSave();
-				main.userLogoff();
+				breakoff();
 				try
 				{
 					Runtime.getRuntime().exec("java -jar tuktuk.jar");
@@ -122,9 +128,7 @@ public class ToolBar extends JToolBar
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			main.configSave();
-			main.userLogoff();
-			main.store.close();
+			breakoff();
 			System.exit(0);
 		}
 	}
@@ -137,8 +141,7 @@ public class ToolBar extends JToolBar
 					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (confirm == JOptionPane.YES_OPTION)
 			{
-				main.configSave();
-				main.userLogoff();
+				breakoff();
 				try
 				{
 					Runtime.getRuntime().exec("java -jar tuktuk.jar");
