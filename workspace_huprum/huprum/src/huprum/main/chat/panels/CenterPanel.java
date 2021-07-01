@@ -1,6 +1,7 @@
 package huprum.main.chat.panels;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -104,12 +105,16 @@ public class CenterPanel extends JPanel
 		if (status == 0)
 		{
 			JSONArray jarray = jo1.getJSONArray("chat"); // диагностика
-			removeAll();
+			if (last_id.equals("0"))
+			{
+				removeAll();
+				c.gridy = 0;
+				c.gridwidth = 1;
+				for (c.gridx = 0; c.gridx < 3; c.gridx++)
+					add(new JLabel("                   "), c);
+			}
 			show_msg = 1; // для вывода новых сообщений
-			c.gridy = 0;
-			c.gridwidth = 1;
-			for (c.gridx = 0; c.gridx < 3; c.gridx++)
-				add(new JLabel("                   "), c);
+			delNewMsg("Новые сообщения");
 			c.gridwidth = 2;
 			c.gridy++;
 			for (int i = 0; i < jarray.length(); i++)
@@ -143,9 +148,11 @@ public class CenterPanel extends JPanel
 				int sm = jo.getInt("show_msg");
 				if (sm == 0 && show_msg == 1)
 				{
+					
 					c.gridwidth = 1;
 					c.gridx = 1;
 					JLabel label_new = new JLabel("Новые сообщения");
+					
 					label_new.setForeground(Utilit.COLOR_1057);
 					add(label_new, c);
 					c.gridwidth = 2;
@@ -180,6 +187,19 @@ public class CenterPanel extends JPanel
 		}
 	}
 
+	private void delNewMsg(String msg)
+	{
+		Component[] componentList = getComponents();
+		for (Component comp : componentList)
+		{
+			if (!comp.getClass().getName().toString().equals("javax.swing.JLabel"))
+				continue;
+			JLabel lbl = (JLabel) comp;
+			if (lbl.getText().equals("Новые сообщения"))
+				remove(comp);
+		}
+	}
+
 	private void put_msg(JSONObject jo, DTime dt, Color color)
 	{
 		if (jo.getInt("img") == 1)
@@ -188,8 +208,7 @@ public class CenterPanel extends JPanel
 			try
 			{
 				im = main.store.getChatImg(jo.getInt("id"));
-				JPanel            imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30,
-						color);
+				JPanel imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 30, color);
 				imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
 				add(imagePanel, c);
 			} catch (JSONException | SQLException | IOException e)
@@ -197,7 +216,6 @@ public class CenterPanel extends JPanel
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		} else
 		{
 			JLabel myJLabel = new JLabel(Smile.replace(

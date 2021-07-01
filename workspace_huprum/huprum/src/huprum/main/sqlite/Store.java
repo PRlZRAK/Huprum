@@ -19,17 +19,7 @@ import huprum.main.img.ImageManipulation;
 
 public class Store
 {
-	/*
-	 * public static void main(String[] args) { Store st = new Store(); try {
-	 * st.putAva(1, "image1"); st.putAva(2, "image223"); st.putChatImg(1, "image1");
-	 * st.putChatImg(45, "image123"); st.setParam("width", "123");
-	 * System.out.println(st.getParam("width")); String img = st.getAvaImg(2);
-	 * String img1 = st.getChatImg(45); System.out.println(img);
-	 * System.out.println(img1); st.setParam("Lang", "ru");
-	 * System.out.println(st.getParam("Lang")); st.setParam("Lang", "en");
-	 * System.out.println(st.getParam("Lang")); } catch (SQLException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } st.close(); }
-	 */
+	
 	public void close()
 	{
 		try

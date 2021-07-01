@@ -55,7 +55,7 @@ public class WestPanel extends JPanel
 		loginer = main.getLoginer();
 		cl = main.getCl();
 		myId = loginer.getId();
-		System.out.println(myId);
+		//System.out.println(myId);
 		lastButton = new UserButtomClass("");
 		setLayout(new GridBagLayout());
 		setBackground(Utilit.COLOR_490);
@@ -168,7 +168,7 @@ public class WestPanel extends JPanel
 			button.setSelect(true);
 			strMyId = Integer.toString(myId);
 			strId = button.getId().toString();
-			loginer.getChat().cp.last_id = "-1";
+			loginer.getChat().cp.last_id = "0";
 			lastButton = button;
 			main.getLoginer().getChat().sp.setImgNull();
 			main.getLoginer().getChat().up.redr(button.getId());

@@ -55,7 +55,7 @@ public class AddUserActionList implements ActionListener {
 		String otvet;
 		try {
 			otvet = cl.send(pars);
-			System.out.println(otvet);
+			//System.out.println(otvet);
 			JSONObject jo = new JSONObject(otvet);
 			int status = jo.getInt("status");
 			if (status != 0) {
@@ -65,7 +65,7 @@ public class AddUserActionList implements ActionListener {
 					AddUsOptonPane();
 				return;
 			}
-			System.out.println(jo);
+			//System.out.println(jo);
 			String login = jo.getString("login");
 			int confirm = JOptionPane.showConfirmDialog(main, "Добавить чат с " + login + "?", "Юзер "+login+" найден",
 					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
