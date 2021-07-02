@@ -53,4 +53,12 @@ public class DTime
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return simpleDateFormat.format(new Date());
 	}
+
+	public static String localeLang()
+	{
+		String lang = Locale.getDefault().getCountry().toLowerCase();
+		if (lang.equals("ru") || lang.equals("en"))
+			return lang;
+		return "en";
+	}
 }

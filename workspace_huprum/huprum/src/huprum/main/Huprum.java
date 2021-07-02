@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.sqlite.Store;
+import huprum.main.utils.DTime;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
@@ -65,7 +66,7 @@ public class Huprum extends JFrame
 		store = new Store(this);
 		String lang = store.getParam("lang");
 		if (lang == null)
-			new Lang("ru");
+			new Lang(DTime.localeLang());
 		else
 			new Lang(lang);
 		loginer = new Loginer(this);
