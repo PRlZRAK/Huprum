@@ -16,6 +16,9 @@
 	https://lifeo.ru/kak-postavit-smajlik-na-klaviature-kompyutera-vse-smajly/ - коды
 	https://emoticons.do.am/news/1-0-3    - смайлы
 3. Сделать класс унаследованный от JPanel для нанесения рисунка на панель - отв. Алексей
+public void paint(Graphics g) {
+    // здесь выводим картинку 
+    }
 4. Инсталятор для виндоус мессенжера Tuktuk - отв. Михаил, Алексей
 	ссылки:
 	https://treeone.ru/peremennye-sredy-user-windows-bat/#page-content
