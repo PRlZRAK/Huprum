@@ -148,7 +148,7 @@ public class Client
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			*/
+			
 			// тест отправки сообщения другому юзеру
 			pars.clear();
 			pars.put("action", "put_msg");
@@ -171,6 +171,24 @@ public class Client
 			pars.clear();
 			pars.put("action", "get_img");
 			pars.put("id", "62");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			*/
+			//
+			pars.clear();
+			pars.put("action", "check_user");
+			pars.put("login", "prizrak");
+			pars.put("phone", "89886613522");
+			pars.put("email", "alesharodygin@gmail.com");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			//
+			pars.clear();
+			pars.put("action", "edit_user");
+			pars.put("password", "1234");
+			pars.put("id", "6");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
