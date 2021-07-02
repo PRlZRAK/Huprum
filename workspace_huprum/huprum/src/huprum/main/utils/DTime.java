@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DTime
 {
@@ -28,12 +29,15 @@ public class DTime
 		cal.setTime(date);
 		cal_now.setTime(new Date());
 		if (cal.get(Calendar.DAY_OF_YEAR) == cal_now.get(Calendar.DAY_OF_YEAR))
-			return "сегодня";
+			return Lang.put("Today#Cегодня");
 		else if (cal_now.get(Calendar.DAY_OF_YEAR) - cal.get(Calendar.DAY_OF_YEAR) == 1)
-			return "вчера";
+			return Lang.put("Yesterday#Вчера");
 		else if (cal_now.get(Calendar.DAY_OF_YEAR) - cal.get(Calendar.DAY_OF_YEAR) == 2)
-			return "позавчера";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+			return Lang.put("Day before yesterday#Позавчера");
+		Locale loc = Locale.ENGLISH;
+		if (Lang.getLang().equals("ru"))
+			loc = Locale.getDefault();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy", loc);
 		return simpleDateFormat.format(date);
 	}
 

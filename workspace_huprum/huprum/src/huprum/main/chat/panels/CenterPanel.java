@@ -30,6 +30,7 @@ import huprum.main.loginer.Loginer;
 import huprum.main.media.PlaySound;
 import huprum.main.smile.Smile;
 import huprum.main.utils.DTime;
+import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
 public class CenterPanel extends JPanel
@@ -111,7 +112,7 @@ public class CenterPanel extends JPanel
 				c.gridy = 0;
 				c.gridwidth = 1;
 				for (c.gridx = 0; c.gridx < 3; c.gridx++)
-					add(new JLabel("                   "), c);
+					add(new JLabel("                  "), c);
 			}
 			show_msg = 1; // для вывода новых сообщений
 			delNewMsg("Новые сообщения");
@@ -151,7 +152,7 @@ public class CenterPanel extends JPanel
 					
 					c.gridwidth = 1;
 					c.gridx = 1;
-					JLabel label_new = new JLabel("Новые сообщения");
+					JLabel label_new = new JLabel(Lang.put("New messages#Новые сообщения"));
 					label_new.setName("new");
 					label_new.setForeground(Utilit.COLOR_1057);
 					add(label_new, c);

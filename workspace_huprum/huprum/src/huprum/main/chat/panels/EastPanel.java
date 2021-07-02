@@ -281,6 +281,15 @@ public class EastPanel extends JPanel
 						"Очень испорченное изображение", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			try
+			{
+				// Если картинка большая то уменьшить
+				im.checkMaxSize(Utilit.IMG_MAX_WIDTH, Utilit.IMG_MAX_HEIGHT);
+			} catch (IOException e1)
+			{
+				e1.printStackTrace();
+				return;
+			}
 			label_icon.setIcon(im.getImageIcon(200, 200));
 			Map<String, String> pars = new HashMap<String, String>();
 			pars.put("action", "edit_user");
