@@ -66,9 +66,10 @@ public class Huprum extends JFrame
 		store = new Store(this);
 		String lang = store.getParam("lang");
 		if (lang == null)
-			new Lang(DTime.localeLang());
-		else
-			new Lang(lang);
+			lang = DTime.localeLang();
+		if (!lang.equals("ru"))
+			lang = "en";
+		new Lang(lang);
 		loginer = new Loginer(this);
 		setVisible(true);
 	}
@@ -139,7 +140,7 @@ public class Huprum extends JFrame
 		{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}	
+		}
 	}
 
 	public JSONObject getPersonalData()

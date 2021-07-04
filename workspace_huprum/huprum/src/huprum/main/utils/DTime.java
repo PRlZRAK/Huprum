@@ -56,9 +56,7 @@ public class DTime
 
 	public static String localeLang()
 	{
-		String lang = Locale.getDefault().getCountry().toLowerCase();
-		if (lang.equals("ru") || lang.equals("en"))
-			return lang;
-		return "en";
+		return Locale.getDefault().getCountry().toLowerCase();
+		
 	}
 }
