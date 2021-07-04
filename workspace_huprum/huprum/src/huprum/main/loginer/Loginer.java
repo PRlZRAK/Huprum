@@ -30,6 +30,7 @@ public class Loginer
 	private Chat       chat;
 	private JLabel     er_сonnection;
 	private JCheckBox  jremember;
+	private JButton forgotBut;
 
 	public Chat getChat()
 	{
@@ -108,6 +109,11 @@ public class Loginer
 			JButton button_new_user = new JButton("Регистрация");
 			panel.add(button_new_user, c);
 			button_new_user.addActionListener(new Register1(main));
+			c.gridy++;
+	        forgotBut = new JButton("Забыл пароль?");
+	        panel.add(forgotBut, c);
+	        forgotBut.addActionListener(new RestorePas(main));
+	        forgotBut.setVisible(false);
 			try
 			{
 				String rem = main.store.getParam("remember");
@@ -187,5 +193,10 @@ public class Loginer
 	public JCheckBox getJremember()
 	{
 		return jremember;
+	}
+
+	public JButton getForgotBut()
+	{
+		return forgotBut;
 	}
 }

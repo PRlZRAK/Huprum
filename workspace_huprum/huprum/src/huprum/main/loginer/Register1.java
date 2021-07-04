@@ -110,8 +110,6 @@ public class Register1 extends JFrame implements ActionListener
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private Huprum         main;
 	private JTextField     jlogin;
 	private JLabel         er_login;
 	private JTextField     jmail;
@@ -125,7 +123,6 @@ public class Register1 extends JFrame implements ActionListener
 	public Register1(Huprum main)
 	{
 		super("jhsdshdskd");
-		this.main = main;
 		cl = main.getCl();
 		// Toolkit kit = Toolkit.getDefaultToolkit();
 		// Dimension screenSize = kit.getScreenSize();

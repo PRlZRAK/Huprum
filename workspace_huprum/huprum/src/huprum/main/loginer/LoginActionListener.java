@@ -40,7 +40,8 @@ public class LoginActionListener implements ActionListener
 		if (pass.equals(""))
 		{
 			loginer.setErrPas("<html><p color=red>заполнить");
-			return;
+			loginer.getForgotBut().setVisible(true);
+			return;			
 		} else
 			loginer.setErrPas("");
 		int i = Utilit.CheckLogin(log);
@@ -69,6 +70,7 @@ public class LoginActionListener implements ActionListener
 			if (!jpass.equals(pass))
 			{
 				loginer.setErrPas("<html><p color=red>неправильный пароль");
+				loginer.getForgotBut().setVisible(true);
 				return;
 			}
 			main.setRemember(loginer.getJremember().isSelected());
