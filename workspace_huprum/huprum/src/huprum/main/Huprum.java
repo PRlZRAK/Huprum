@@ -1,6 +1,7 @@
 package huprum.main;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -62,6 +63,8 @@ public class Huprum extends JFrame
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
+		Image image = Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/logo.png"));
+		setIconImage(image);
 		cl = new Client(Utilit.SERVER_URL);
 		store = new Store(this);
 		String lang = store.getParam("lang");
