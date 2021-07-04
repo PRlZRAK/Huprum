@@ -17,7 +17,6 @@ else
     exit 1
   fi	
 fi
-echo ok
 echo "2. инсталяция Java:"
 echo "Проверка наличия Java в системе"
 java -version
@@ -35,17 +34,16 @@ fi
 echo "3. Создание папки программы и копирование файлов:"
 tukdir=$HOME/tuktuk
 mkdir -p $tukdir
-echo $tukdir
+echo Папка программы - \"$tukdir\"
 cp logo.png $tukdir
 cp tuktuk.jar $tukdir
 echo '#!/bin/bash' > $tukdir/tuktuk.sh
 echo 'cd '$tukdir >> $tukdir/tuktuk.sh
 echo 'java -jar tuktuk.jar' >> $tukdir/tuktuk.sh
 chmod 777 $tukdir/tuktuk.sh
-
+echo "4. Создание кнопки запуска на рабочем столе:"
 desktop="$(xdg-user-dir DESKTOP)"
-echo $desktop
-
+echo Папка рабочего стола - \"$desktop\"
 echo '[Desktop Entry]' > $desktop/tuktuk.desktop
 echo 'Version=1.0'  >> $desktop/tuktuk.desktop
 echo 'Name=Messenger Tuktuk'  >> $desktop/tuktuk.desktop
@@ -58,4 +56,8 @@ echo 'Keywords=tuktuk;connect;'  >> $desktop/tuktuk.desktop
 echo 'Terminal=false'  >> $desktop/tuktuk.desktop
 echo 'Categories=Application;'  >> $desktop/tuktuk.desktop
 chmod +x "$desktop/tuktuk.desktop"
-echo "конец"
+echo "5. Подготовка кнопки запуска к работе:"
+echo "Найдите на рабочем столе кнопку белого цвета с подписью \"tuktuk.desktop\"."
+echo "Щелкните по ней правой клавишей мыши."
+echo "Выбирите в меню пункт \"Разрешить запуск\" и отметьте его."
+echo "Наслаждайтесь общением с друзьями."
