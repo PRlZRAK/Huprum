@@ -39,7 +39,7 @@ public class RestorePas extends JFrame implements ActionListener
 	public RestorePas(Huprum main)
 	{
 		
-		super(new Lang(Lang.getLang()).put("Register#Регистрация"));
+		super(Lang.put("Register#Регистрация"));
 		cl = main.getCl();
 		this.main = main;
 		setLocation(main.getLocation().x + 50, main.getLocation().y + 30);
