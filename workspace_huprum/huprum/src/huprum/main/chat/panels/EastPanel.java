@@ -49,9 +49,11 @@ public class EastPanel extends JPanel
 	private JCheckBox               check_phone;
 	private JCheckBox               check_email;
 	private JCheckBox               check_fio;
+	private Huprum                  main;
 
 	public EastPanel(Huprum main) throws IOException
 	{
+		this.main = main;
 		setBackground(Utilit.COLOR_389);
 		personal_data = main.getPersonalData();
 		id = personal_data.getString("id");
@@ -270,9 +272,11 @@ public class EastPanel extends JPanel
 			{
 				im = new ImageManipulation(eastPanel);
 				if (im.getImage() == null)
-				{
-					JOptionPane.showMessageDialog(eastPanel, "Пожалуйста выберите другую картинку",
-							"Испорченное изображение", JOptionPane.ERROR_MESSAGE);
+				{/*
+					 * JOptionPane.showMessageDialog(eastPanel,
+					 * "Пожалуйста выберите другую картинку", "Испорченное изображение",
+					 * JOptionPane.ERROR_MESSAGE);
+					 */
 					return;
 				}
 			} catch (IOException e)
@@ -308,6 +312,13 @@ public class EastPanel extends JPanel
 			JSONObject jo = new JSONObject(answer);
 			if (jo.getInt("status") != 0)
 				System.err.println("FaceEditList " + jo.getString("msg"));
+			try
+			{
+				main.store.putAva(Integer.parseInt(id), im.getBase64());
+			} catch (NumberFormatException | SQLException e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		@Override

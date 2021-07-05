@@ -49,7 +49,7 @@ public class Register1 extends JFrame implements ActionListener
 			} else
 				setErrPas("");
 			String mail = jmail.getText();
-			if (mail.equals(""))
+			if (mail.trim().equals(""))
 			{
 				setErrMail(Lang.put("<html><p color=red>Fill in the field#<html><p color=red>заполнить"));
 			} else
