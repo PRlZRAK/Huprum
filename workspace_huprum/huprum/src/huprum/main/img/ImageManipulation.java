@@ -279,10 +279,11 @@ public class ImageManipulation
 		if (i == JOptionPane.NO_OPTION)
 			save(main);
 	}
+
 	public void show(Component main, String string) throws IOException
 	{
-		JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_OPTION,
-				JOptionPane.INFORMATION_MESSAGE, getImageIcon(), new String[]
+		JOptionPane.showOptionDialog(main, "", string, JOptionPane.YES_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				getImageIcon(), new String[]
 				{ "Закрыть" }, "default");
 	}
 
@@ -309,7 +310,7 @@ public class ImageManipulation
 		String dt = "";
 		if (timestr != null)
 		{
-			dt = "<p style=\"font-size: 7px\">" + timestr;
+			dt = "<p style=\"font-size: 7px;color: " + Utilit.S_COLOR_1057 + ";\">" + timestr;
 			if (!txt.trim().equals(""))
 				dt = "<br><br>" + dt;
 		}
