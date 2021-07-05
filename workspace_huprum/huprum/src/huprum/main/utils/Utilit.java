@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Utilit
 {
@@ -92,12 +90,10 @@ public class Utilit
 		Matcher mtch        = usrNamePtrn.matcher(mail);
 		return mtch.matches();
 	}
-
+/*
 	public static String InsertPerenos(String text, int wide, String znak)
 	{
-		/*
-		 * обработка текста
-		 */
+		
 		int    j         = wide;
 		int    end       = 0;
 		int    i         = wide;
@@ -131,8 +127,8 @@ public class Utilit
 		}
 		return otvet;
 	}
-
-	public static String insertWordWrap(String src, String separator, int len_str)
+*/
+	public static String insertWordWrap(String src,  int len_str,String separator)
 	{
 		String rez = "";
 		String row = src;
@@ -163,19 +159,5 @@ public class Utilit
 		return getCopyright(new Lang(lang));
 	}
 
-	public static void main(String[] args)
-	{
-		JFrame jframe = new JFrame("test Utilit");
-		jframe.setSize(800, 600);
-		jframe.setVisible(true);
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		String text  = "На этом сайте можно снять квартиру на сутки. В центре города, хороший ремонт, недорого. Но зта квартира дешевле остальных. Поэтому многие хотят её купить.";
-		String otvet = InsertPerenos(text, 10, "<br>");
-		System.out.println(otvet);
-		JLabel jb = new JLabel("<html>" + otvet);
-		jb.setBounds(5, 5, 1000, 300);
-		panel.add(jb);
-		jframe.getContentPane().add(panel);
-	}
+	
 }

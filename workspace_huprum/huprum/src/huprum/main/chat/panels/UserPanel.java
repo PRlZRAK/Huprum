@@ -91,13 +91,13 @@ try
 		add(label_icon, c);
 		c.gridy++;
 		if (!jo.isNull("fio") && jo.getInt("show_fio") == 1)
-			add(new JLabel("<html>" + Utilit.InsertPerenos(jo.getString("fio"), 20, "<br>")), c);
+			add(new JLabel("<html>" + Utilit.insertWordWrap(jo.getString("fio"), 20, "<br>")), c);
 		c.gridy++;
 		if (jo.getInt("show_phone") == 1)
 			add(new JLabel("тел.: " + jo.getString("phone")), c);
 		c.gridy++;
 		if (jo.getInt("show_email") == 1)
-			add(new JLabel("<html>" + Utilit.insertWordWrap("email: " + jo.getString("email"), "<br>", 20)), c);
+			add(new JLabel("<html>" + Utilit.insertWordWrap("email: " + jo.getString("email"),20, "<br>")), c);
 		updateUI();
 	}
 

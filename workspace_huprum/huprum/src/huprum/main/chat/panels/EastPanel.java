@@ -194,7 +194,7 @@ public class EastPanel extends JPanel
 		String fio = "";
 		if (!personal_data.isNull("fio"))
 			fio = personal_data.getString("fio");
-		fio_label = new JLabel("<html><p>" + Utilit.InsertPerenos(fio, text_whide, "<br>"));
+		fio_label = new JLabel("<html><p>" + Utilit.insertWordWrap(fio, text_whide, "<br>"));
 		add(fio_label, c);
 		c.gridx = 2;
 		JLabel pensil5 = new JLabel(pensil_image);
@@ -241,7 +241,7 @@ public class EastPanel extends JPanel
 		c.gridx = 0;
 		c.gridy++;
 		c.gridwidth = 4;
-		add(new JLabel("<html><i>" + Utilit.InsertPerenos(
+		add(new JLabel("<html><i>" + Utilit.insertWordWrap(
 				Lang.put("The checkboxes mark the data that you are ready to show to your interlocutors."
 						+ "#Галочками отмечены те данные, которые вы готовы показывать своим собеседникам."),
 				32, "<br>")), c);
@@ -423,7 +423,7 @@ public class EastPanel extends JPanel
 			if (jo.getInt("status") != 0)
 				System.err.println("FaceEditList " + jo.getString("msg"));
 			else
-				fio_label.setText("<html><p>" + Utilit.InsertPerenos(n, text_whide, "<br>"));
+				fio_label.setText("<html><p>" + Utilit.insertWordWrap(n, text_whide, "<br>"));
 		}
 
 		@Override

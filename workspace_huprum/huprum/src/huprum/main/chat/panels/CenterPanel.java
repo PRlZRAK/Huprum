@@ -62,8 +62,11 @@ public class CenterPanel extends JPanel
 		cl = main.getCl();
 		pars = new HashMap<String, String>();
 		setBackground(Utilit.COLOR_1068);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(10, 5, 5, 5);
+		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.insets = new Insets(5, 15, 5, 15);
+		
+		//c.weightx=.1;
+		c.ipadx=10;
 		try
 		{
 			clip = new PlaySound("Sound_16487.wav");
@@ -110,9 +113,9 @@ public class CenterPanel extends JPanel
 			{
 				removeAll();
 				c.gridy = 0;
-				c.gridwidth = 1;
+				c.gridwidth = 1;/*
 				for (c.gridx = 0; c.gridx < 3; c.gridx++)
-					add(new JLabel("                  "), c);
+					add(new JLabel("                  "), c);*/
 			}
 			show_msg = 1; // для вывода новых сообщений
 			delNewMsg("Новые сообщения");
@@ -124,6 +127,7 @@ public class CenterPanel extends JPanel
 				String     sId = (String) jo.get("user1_id");
 				int        id  = Integer.parseInt(sId);
 				DTime      dt  = null;
+				c.anchor=GridBagConstraints.CENTER;
 				try
 				{
 					dt = new DTime(jo.getString("dtime"));
@@ -166,6 +170,7 @@ public class CenterPanel extends JPanel
 				if (id == myId)
 				{
 					c.gridx = 1;
+					c.anchor=GridBagConstraints.EAST;
 					put_msg(jo, dt, Utilit.COLOR_1085);
 				}
 				/*
@@ -174,6 +179,7 @@ public class CenterPanel extends JPanel
 				else
 				{
 					c.gridx = 0;
+					c.anchor=GridBagConstraints.WEST;
 					put_msg(jo, dt, Color.white);
 				}
 				c.gridy++;
@@ -220,8 +226,8 @@ public class CenterPanel extends JPanel
 		} else
 		{
 			JLabel myJLabel = new JLabel(Smile.replace(
-					"<html><p  style=\"font-size: 11px\">" + Utilit.InsertPerenos(jo.getString("msg"), 30, "<br>")
-							+ "<br><br><p style=\"font-size: 7px\">" + dt.time()));
+					"<html><p  style=\"font-size: 11px\">&nbsp;&nbsp;" + Utilit.insertWordWrap(jo.getString("msg"), 30, "<br>&nbsp;&nbsp;")
+							+ "&nbsp;&nbsp;<br><br><p style=\"font-size: 7px\">&nbsp;&nbsp;" + dt.time()));
 			myJLabel.setOpaque(true);
 			myJLabel.setBackground(color);
 			add(myJLabel, c);

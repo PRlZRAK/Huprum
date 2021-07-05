@@ -313,7 +313,7 @@ public class ImageManipulation
 			if (!txt.trim().equals(""))
 				dt = "<br><br>" + dt;
 		}
-		panel.add(new JLabel("<html><p><br>" + Smile.replace(Utilit.InsertPerenos(txt, k, "<br>")) + "</p>" + dt), c);
+		panel.add(new JLabel("<html><p><br>" + Smile.replace(Utilit.insertWordWrap(txt, k, "<br>")) + "</p>" + dt), c);
 		return panel;
 	}
 

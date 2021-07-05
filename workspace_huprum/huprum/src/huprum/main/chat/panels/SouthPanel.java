@@ -252,7 +252,7 @@ public class SouthPanel extends JPanel
 		public void keyPressed(KeyEvent arg0)
 		{
 			String txt = vod.getText();
-			txt = Utilit.insertWordWrap(txt, "<br>", 30);
+			txt = Utilit.insertWordWrap(txt,  30,"<br>");
 			txt = Smile.replace(txt);
 			show_label.setText("<html>" + txt);
 		}
