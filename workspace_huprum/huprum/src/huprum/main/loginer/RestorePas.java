@@ -34,11 +34,10 @@ public class RestorePas extends JFrame implements ActionListener
 	private JTextField        jphone;
 	private JLabel            erLab;
 	private Client            cl;
-	private Huprum main;
+	private Huprum            main;
 
 	public RestorePas(Huprum main)
 	{
-		
 		super(Lang.put("Password recovery#Восстановление пароля"));
 		cl = main.getCl();
 		this.main = main;
@@ -53,9 +52,9 @@ public class RestorePas extends JFrame implements ActionListener
 		c.insets = new Insets(5, 5, 5, 5);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
-		c.gridy=0;
-		erLab= new JLabel("");
-		panel.add(erLab , c);
+		c.gridy = 0;
+		erLab = new JLabel("");
+		panel.add(erLab, c);
 		c.gridy++;
 		panel.add(new JLabel(Lang.put("Username:#Логин:")), c);
 		c.gridy++;
@@ -96,7 +95,6 @@ public class RestorePas extends JFrame implements ActionListener
 				return;
 			} else
 				setErrLab("");
-			
 			String mail = jmail.getText();
 			if (mail.equals(""))
 			{
@@ -126,17 +124,21 @@ public class RestorePas extends JFrame implements ActionListener
 			}
 			JSONObject jo     = new JSONObject(otvet);
 			int        status = jo.getInt("status");
-			if (!(status == 0)) {
-				setErrLab("<html><p color=red>"+Lang.put(jo.getString("msg")));
-			    return;
-			}else 
+			if (!(status == 0))
 			{
-
+				setErrLab("<html><p color=red>" + Lang.put(jo.getString("msg")));
+				return;
+			} else
+			{
 				try
 				{
-					String pas = JOptionPane.showInputDialog(main, Lang.put("Enter a new password, your current password - #Введите новый пароль, ваш старый пароль - ")+jo.getString("password"),
-							Lang.put("Password recovery#Восстановление пароля"), JOptionPane.PLAIN_MESSAGE);
-					if (pas == null) {
+					String data = jo.getString("password");
+					String pas  = (String) JOptionPane.showInputDialog(main, Lang
+							.put("Enter a new password or keep the old one:#Введите новый пароль или оставте старый:"),
+							Lang.put("Password recovery#Восстановление пароля"), JOptionPane.PLAIN_MESSAGE, null, null,
+							data);
+					if (pas == null)
+					{
 						return;
 					}
 					pars.clear();
@@ -147,7 +149,8 @@ public class RestorePas extends JFrame implements ActionListener
 					jo = new JSONObject(otvet);
 					Loginer loginer = main.getLoginer();
 					loginer.setNewPass(pas);
-					String msg = Lang.put("<html><p color=58C49D> - New password#<html><p color=58C49D> - Новый пароль");
+					String msg = Lang
+							.put("<html><p color=58C49D> - New password#<html><p color=58C49D> - Новый пароль");
 					loginer.setErrPas(msg);
 					setVisible(false);
 					return;
@@ -156,12 +159,10 @@ public class RestorePas extends JFrame implements ActionListener
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
 			}
-		} 
-		
-
+		}
 	}
+
 	public void setErrLab(String string)
 	{
 		erLab.setText(string);
