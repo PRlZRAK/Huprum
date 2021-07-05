@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
+import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
 public class Register1 extends JFrame implements ActionListener
@@ -37,26 +38,26 @@ public class Register1 extends JFrame implements ActionListener
 			String log = jlogin.getText();
 			if (log.equals(""))
 			{
-				setErrLog("<html><p color=red>заполнить");
+				setErrLog(Lang.put("<html><p color=red>Fill in the field#<html><p color=red>заполнить"));
 			} else
 				setErrLog("");
 			@SuppressWarnings("deprecation")
 			String pass = jpass.getText();
 			if (pass.equals(""))
 			{
-				setErrPas("<html><p color=red>заполнить");
+				setErrPas(Lang.put("<html><p color=red>Fill in the field#<html><p color=red>заполнить"));
 			} else
 				setErrPas("");
 			String mail = jmail.getText();
 			if (mail.equals(""))
 			{
-				setErrMail("<html><p color=red>заполнить");
+				setErrMail(Lang.put("<html><p color=red>Fill in the field#<html><p color=red>заполнить"));
 			} else
 				setErrMail("");
 			String phone = jphone.getText();
 			if (phone.equals(""))
 			{
-				setErrPhone("<html><p color=red>заполнить");
+				setErrPhone(Lang.put("<html><p color=red>Fill in the field#<html><p color=red>заполнить"));
 				return;
 			} else
 				setErrPhone("");
@@ -64,13 +65,13 @@ public class Register1 extends JFrame implements ActionListener
 			int i = Utilit.CheckLogin(phone);
 			if (i != 1)
 			{
-				setErrPhone("<html><p color=red>некоректный телефон");
+				setErrPhone("<html><p color=red>Phone is invalid#<html><p color=red>некоректный телефон");
 			} else
 				setErrPhone("");
 			int b = Utilit.CheckLogin(mail);
 			if (b != 0)
 			{
-				setErrMail("<html><p color=red>некоректная почта");
+				setErrMail("<html><p color=red>Email is invalid#<html><p color=red>некоректная почта");
 				return;
 			} else
 				setErrMail("");
@@ -122,7 +123,7 @@ public class Register1 extends JFrame implements ActionListener
 
 	public Register1(Huprum main)
 	{
-		super("jhsdshdskd");
+		super(Lang.put("Registration#Регистрация"));
 		cl = main.getCl();
 		// Toolkit kit = Toolkit.getDefaultToolkit();
 		// Dimension screenSize = kit.getScreenSize();
@@ -140,7 +141,7 @@ public class Register1 extends JFrame implements ActionListener
 		panel.add(new JLabel(""), c);
 		c.gridx = 1;
 		c.gridy = 0;
-		panel.add(new JLabel("Логин:"), c);
+		panel.add(new JLabel(Lang.put("Username:#Логин:")), c);
 		c.gridy++;
 		jlogin = new JTextField(20);
 		er_login = new JLabel("");
@@ -149,7 +150,7 @@ public class Register1 extends JFrame implements ActionListener
 		panel.add(er_login, c);
 		c.gridx = 1;
 		c.gridy++;
-		panel.add(new JLabel("Почта:"), c);
+		panel.add(new JLabel(Lang.put("Email address#Почта:")), c);
 		c.gridy++;
 		jmail = new JTextField(20);
 		er_mail = new JLabel("");
@@ -158,7 +159,7 @@ public class Register1 extends JFrame implements ActionListener
 		panel.add(er_mail, c);
 		c.gridx = 1;
 		c.gridy++;
-		panel.add(new JLabel("Телефон:"), c);
+		panel.add(new JLabel(Lang.put("Phone number:#Телефон:")), c);
 		c.gridy++;
 		jphone = new JTextField(20);
 		er_phone = new JLabel("");
@@ -167,7 +168,7 @@ public class Register1 extends JFrame implements ActionListener
 		panel.add(er_phone, c);
 		c.gridx = 1;
 		c.gridy++;
-		panel.add(new JLabel("Пароль:"), c);
+		panel.add(new JLabel(Lang.put("Password:#Пароль:")), c);
 		c.gridy++;
 		jpass = new JPasswordField(20);
 		er_pass = new JLabel("");
@@ -177,7 +178,7 @@ public class Register1 extends JFrame implements ActionListener
 		c.gridy++;
 		c.gridx = 1;
 		ActionListener usersListener = new UsersActionListener1();
-		JButton        button        = new JButton("Ввод");
+		JButton        button        = new JButton(Lang.put("Register#Зарегестрироваться"));
 		panel.add(button, c);
 		button.addActionListener(usersListener);
 	}
@@ -188,7 +189,6 @@ public class Register1 extends JFrame implements ActionListener
 		setVisible(true);
 		
 	}
-	// setVisible(true);
 
 	public void setErrPas(String string)
 	{
