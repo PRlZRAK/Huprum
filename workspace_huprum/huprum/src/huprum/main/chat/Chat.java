@@ -14,31 +14,30 @@ import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.toolbar.ToolBar;
 
-public class Chat {
-	
-	public ToolBar toolbar;
-	public SouthPanel sp;
+public class Chat
+{
+	public ToolBar     toolbar;
+	public SouthPanel  sp;
 	public CenterPanel cp;
-	public WestPanel wp;
-	
+	public WestPanel   wp;
 	public JScrollPane scroll;
-	public  EastPanel ep;
-	public UserPanel up;
+	public EastPanel   ep;
+	public UserPanel   up;
+	public JScrollPane sep;
 
-	public Chat(Huprum main) {
+	public Chat(Huprum main)
+	{
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
-		toolbar=new ToolBar(main);
+		toolbar = new ToolBar(main);
 		main.add(toolbar, BorderLayout.PAGE_START);
-		
 		JPanel wpanel = new JPanel();
 		wpanel.setLayout(new BorderLayout());
-		up=new UserPanel(main);
-		wpanel.add(up,BorderLayout.NORTH);
-		
+		up = new UserPanel(main);
+		wpanel.add(up, BorderLayout.NORTH);
 		wp = new WestPanel(main);
 		wpanel.add(new JScrollPane(wp), BorderLayout.CENTER);
-		main.add(wpanel,BorderLayout.WEST);
+		main.add(wpanel, BorderLayout.WEST);
 		sp = new SouthPanel(main);
 		main.add(sp, BorderLayout.SOUTH);
 		cp = new CenterPanel(main);
@@ -47,13 +46,14 @@ public class Chat {
 		try
 		{
 			ep = new EastPanel(main);
-			main.add(new JScrollPane(ep), BorderLayout.EAST);
+			sep = new JScrollPane(ep);
+			sep.setVisible(false);
+			main.add(sep, BorderLayout.EAST);
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		/*
 		 * перерисовка окна
 		 */

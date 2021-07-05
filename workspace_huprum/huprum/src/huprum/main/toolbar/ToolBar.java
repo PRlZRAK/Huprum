@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 import huprum.main.Huprum;
@@ -15,6 +16,8 @@ import huprum.main.utils.Lang;
 
 public class ToolBar extends JToolBar
 {
+	
+
 	/**
 	 * 
 	 */
@@ -26,6 +29,7 @@ public class ToolBar extends JToolBar
 	private JButton           setLang;
 	private ImageIcon         engIcon;
 	private ImageIcon         rusIcon;
+	private JButton profile;
 
 	public ToolBar(Huprum main)
 	{
@@ -73,8 +77,27 @@ public class ToolBar extends JToolBar
 		setLang.addActionListener(new langActionList(this));
 		setLang.setToolTipText(Lang.put("Сменить язык#Switch language"));
 		add(setLang);
+		//
+		profile = new JButton();
+		ImageIcon profileIcon = new ImageIcon(
+				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/profile.png")));
+		profile.setIcon(profileIcon);
+		profile.addActionListener(new РrofileActionList());
+		profile.setToolTipText("Профиль");
+		add(profile);
 	}
-
+	public class РrofileActionList implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			 JScrollPane sep = main.getLoginer().getChat().sep;
+			if(sep.isVisible()) sep.setVisible(false);
+			else sep.setVisible(true);
+			main.revalidate();
+			main.repaint();
+		}
+	}
 	private void breakoff()
 	{
 		main.configSave();

@@ -208,7 +208,7 @@ public class CenterPanel extends JPanel
 			try
 			{
 				im = main.store.getChatImg(jo.getInt("id"));
-				JPanel imagePanel = im.getImageTxt(260, 200, jo.getString("msg"), dt.time(), 50, color);
+				JPanel imagePanel = im.getImageTxt(300, 300, jo.getString("msg"), dt.time(), 50, color);
 				imagePanel.addMouseListener(new ImageMsgListener(main, im, jo.getString("msg")));
 				add(imagePanel, c);
 			} catch (JSONException | SQLException | IOException e)

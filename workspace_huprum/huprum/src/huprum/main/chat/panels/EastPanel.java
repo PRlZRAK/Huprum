@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import org.json.JSONObject;
 
@@ -88,6 +89,15 @@ public class EastPanel extends JPanel
 		c.gridy = 0;
 		c.gridwidth = 3;
 		add(new JLabel("<html><h2 >" + Lang.put("Profile#Профиль")), c);
+		//
+		c.gridwidth = 1;
+		c.gridx = 3;
+		ImageIcon close_image = new ImageIcon(
+				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/close.png")));
+		JLabel    label_close = new JLabel(close_image);
+		label_close.addMouseListener(new CloseWidow());
+		add(label_close, c);
+		//
 		c.gridwidth = 2;
 		c.gridy++;
 		c.gridx = 0;
@@ -685,6 +695,41 @@ public class EastPanel extends JPanel
 				System.err.println("FaceEditList " + jo.getString("msg"));
 			else
 				pass_label.setText(stars(n));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0)
+		{
+		}
+	}
+
+	public class CloseWidow implements MouseListener
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			JScrollPane sep = main.getLoginer().getChat().sep;
+			if (sep.isVisible())
+				sep.setVisible(false);
+			else
+				sep.setVisible(true);
+			main.revalidate();
+			main.repaint();
 		}
 
 		@Override
