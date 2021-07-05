@@ -33,11 +33,11 @@ public class UserPanel extends JPanel
 	private GridBagConstraints c;
 	private boolean            show;
 	private ImageManipulation  im;
-	private Huprum main;
+	private Huprum             main;
 
 	public UserPanel(Huprum main)
 	{
-		this.main=main;
+		this.main = main;
 		setLayout(new GridBagLayout());
 		setBackground(Utilit.COLOR_389);
 		c = new GridBagConstraints();
@@ -71,18 +71,17 @@ public class UserPanel extends JPanel
 			show = false;
 		} else
 		{
-try
-{
-	show = true;
-	im= main.store.getAvaImg(id);	
-	icon = im.getImageIcon(120, 120);
-} catch (SQLException | IOException e)
-{
-	icon = new ImageIcon(
-			Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
-	show = false;
-	e.printStackTrace();
-}				
+			try
+			{
+				show = true;
+				im = main.store.getAvaImg(id);
+				icon = im.getImageIcon(120, 120);
+			} catch (SQLException | IOException e)
+			{
+				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
+				show = false;
+				e.printStackTrace();
+			}
 		}
 		add(new JLabel(jo.getString("login")), c);
 		c.gridy++;
@@ -97,7 +96,7 @@ try
 			add(new JLabel("тел.: " + jo.getString("phone")), c);
 		c.gridy++;
 		if (jo.getInt("show_email") == 1)
-			add(new JLabel("<html>" + Utilit.insertWordWrap("email: " + jo.getString("email"),20, "<br>")), c);
+			add(new JLabel("<html>" + Utilit.insertWordWrap("email: " + jo.getString("email"), 20, "<br>")), c);
 		updateUI();
 	}
 

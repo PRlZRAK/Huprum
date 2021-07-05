@@ -5,12 +5,16 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -20,9 +24,9 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.chat.UserButtomClass;
 import huprum.main.connections.Client;
+import huprum.main.img.ImageManipulation;
 import huprum.main.loginer.Loginer;
 import huprum.main.media.PlaySound;
-
 import huprum.main.utils.Utilit;
 
 public class WestPanel extends JPanel
@@ -55,12 +59,12 @@ public class WestPanel extends JPanel
 		loginer = main.getLoginer();
 		cl = main.getCl();
 		myId = loginer.getId();
-		//System.out.println(myId);
+		// System.out.println(myId);
 		lastButton = new UserButtomClass("");
 		setLayout(new GridBagLayout());
 		setBackground(Utilit.COLOR_490);
 		c = new GridBagConstraints();
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.BOTH;
 		c.anchor = GridBagConstraints.NORTH;
 		try
 		{
@@ -104,10 +108,29 @@ public class WestPanel extends JPanel
 			batArray = new UserButtomClass[ja.length()];
 			for (int i = 0; i < ja.length(); i++)
 			{
-				JSONObject jo    = ja.getJSONObject(i);
-				String     login = (String) jo.get("login");
-				sId = (String) jo.get("id");
-				int id = Integer.parseInt(sId);
+				JSONObject jo = ja.getJSONObject(i);
+				int        id = Integer.parseInt(jo.getString("id"));
+				
+				try
+				{
+					
+					ImageManipulation im = main.store.getAvaImg(id);
+					if (im != null)
+					{
+						c.gridx = 0;
+						ImageIcon icon       = im.getImageIcon(32, 32);
+						JLabel    label_icon = new JLabel(icon);
+						label_icon.addMouseListener(new Show1(this, im));
+						add(label_icon, c);
+					}
+				} catch (SQLException | IOException e)
+				{
+					
+					e.printStackTrace();
+				}
+				
+				String login = (String) jo.get("login");
+				
 				batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
 				batArray[i].setId(id);
 				if (strId != null && strId.equals(id + ""))
@@ -115,12 +138,13 @@ public class WestPanel extends JPanel
 				else
 					batArray[i].setSelect(false);
 				batArray[i].addActionListener(userButtonListener);
+				c.gridx = 1;
 				add(batArray[i], c);
 				int cnt    = jo.getInt("cnt");
 				int online = jo.getInt("online");
 				if (cnt + online > 0)
 				{
-					c.gridx = 1;
+					c.gridx = 2;
 					String img     = null;
 					String tooltip = null;
 					if (cnt > 0 && online == 0)
@@ -149,11 +173,10 @@ public class WestPanel extends JPanel
 				}
 				c.gridy++;
 			}
-			// add(new JLabel("<html><img src=\"http://localhost/huprum/img/loading-42.gif\"
-			// width=\"16\" height=\"16\" />"), c);
+			
 			main.revalidate();
 			main.repaint();
-			// Sound.playSound("sounds/5216_pod-zvonok.ru__.wav").join();
+			
 			clip.play();
 		}
 	}
@@ -188,5 +211,49 @@ public class WestPanel extends JPanel
 	public UserButtomClass getLastButton()
 	{
 		return lastButton;
+	}
+
+	public class Show1 implements MouseListener
+	{
+		private WestPanel         main;
+		private ImageManipulation im;
+
+		public Show1(WestPanel westPanel, ImageManipulation im)
+		{
+			this.main = westPanel;
+			this.im = im;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			try
+			{
+				im.show(main, "");
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0)
+		{
+		}
 	}
 }
