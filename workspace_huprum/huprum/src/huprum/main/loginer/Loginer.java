@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
+import huprum.main.utils.Lang;
 
 public class Loginer
 {
@@ -81,7 +82,7 @@ public class Loginer
 			er_сonnection = new JLabel("");
 			panel.add(er_сonnection, c);
 			c.gridy++;
-			panel.add(new JLabel("Логин или Телефон или Почта:"), c);
+			panel.add(new JLabel(Lang.put("Username, email address or phone number#Логин, Телефон или Почта:")), c);
 			c.gridy++;
 			jlogin = new JTextField(20);
 			panel.add(jlogin, c);
@@ -90,7 +91,7 @@ public class Loginer
 			panel.add(er_login, c);
 			c.gridx = 1;
 			c.gridy++;
-			panel.add(new JLabel("Пароль:"), c);
+			panel.add(new JLabel(Lang.put("Password:#Пароль:")), c);
 			c.gridy++;
 			jpass = new JPasswordField(20);
 			panel.add(jpass, c);
@@ -99,18 +100,18 @@ public class Loginer
 			panel.add(er_pass, c);
 			c.gridy++;
 			c.gridx = 1;
-			jremember = new JCheckBox("Запомнить на этом устройстве");
+			jremember = new JCheckBox(Lang.put("Remember on this device#Запомнить на этом устройстве"));
 			panel.add(jremember, c);
 			c.gridy++;
-			JButton button = new JButton("Вход");
+			JButton button = new JButton(Lang.put("Sign in#Вход"));
 			panel.add(button, c);
 			button.addActionListener(new LoginActionListener(main));
 			c.gridy++;
-			JButton button_new_user = new JButton("Регистрация");
+			JButton button_new_user = new JButton(Lang.put("Register#Зарегестрироваться"));
 			panel.add(button_new_user, c);
 			button_new_user.addActionListener(new Register1(main));
 			c.gridy++;
-	        forgotBut = new JButton("Забыл пароль?");
+	        forgotBut = new JButton(Lang.put("Forgot Password?#Забыл пароль?"));
 	        panel.add(forgotBut, c);
 	        forgotBut.addActionListener(new RestorePas(main));
 	        forgotBut.setVisible(false);
