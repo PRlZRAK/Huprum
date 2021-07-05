@@ -93,6 +93,7 @@ public class RestorePas extends JFrame implements ActionListener
 			if (log.equals(""))
 			{
 				setErrLab(Lang.put("<html><p color=red>fill in all the fields#<html><p color=red>Заполните все поля"));
+				return;
 			} else
 				setErrLab("");
 			
@@ -100,6 +101,7 @@ public class RestorePas extends JFrame implements ActionListener
 			if (mail.equals(""))
 			{
 				setErrLab(Lang.put("<html><p color=red>fill in all the fields#<html><p color=red>Заполните все поля"));
+				return;
 			} else
 				setErrLab("");
 			String phone = jphone.getText();
@@ -125,7 +127,7 @@ public class RestorePas extends JFrame implements ActionListener
 			JSONObject jo     = new JSONObject(otvet);
 			int        status = jo.getInt("status");
 			if (!(status == 0)) {
-				setErrLab("<html><p color=red>"+jo.getString("msg"));
+				setErrLab("<html><p color=red>"+Lang.put(jo.getString("msg")));
 			    return;
 			}else 
 			{

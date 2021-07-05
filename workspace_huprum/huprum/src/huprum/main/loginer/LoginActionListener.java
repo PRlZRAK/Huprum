@@ -12,6 +12,7 @@ import huprum.main.Huprum;
 import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
 import huprum.main.utils.DTime;
+import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
 public class LoginActionListener implements ActionListener
@@ -32,14 +33,14 @@ public class LoginActionListener implements ActionListener
 		String  log     = loginer.getJlogin();
 		if (log.equals(""))
 		{
-			loginer.setErrLog("<html><p color=red>заполнить");
+			loginer.setErrLog("<html><p color=red>"+Lang.put("Fill in the field#Заполнить"));
 			return;
 		} else
 			loginer.setErrLog("");
 		String pass = loginer.getJpass();
 		if (pass.equals(""))
 		{
-			loginer.setErrPas("<html><p color=red>заполнить");
+			loginer.setErrPas("<html><p color=red>"+Lang.put("Fill in the field#Заполнить"));
 			loginer.getForgotBut().setVisible(true);
 			return;			
 		} else
@@ -63,13 +64,13 @@ public class LoginActionListener implements ActionListener
 			int        status = jo.getInt("status");
 			if (status != 0)
 			{
-				loginer.setErrLog("<html><p color=red>" + jo.getString("msg"));
+				loginer.setErrLog("<html><p color=red>" + Lang.put(jo.getString("msg")));
 				return;
 			}
 			String jpass = (String) jo.get("password");
 			if (!jpass.equals(pass))
 			{
-				loginer.setErrPas("<html><p color=red>неправильный пароль");
+				loginer.setErrPas("<html><p color=red>"+Lang.put("Incorrect password#Неправильный пароль"));
 				loginer.getForgotBut().setVisible(true);
 				return;
 			}
@@ -90,8 +91,7 @@ public class LoginActionListener implements ActionListener
 			return;
 		} catch (IOException e)
 		{
-			e.printStackTrace();
-			loginer.setEr_сonnection("<html><p color=red>Нет соединения с сервером");
+			loginer.setEr_сonnection("<html><p color=red>"+Lang.put("Connection to the server is not established#Нет соединения с сервером"));
 			return;
 		}
 	}

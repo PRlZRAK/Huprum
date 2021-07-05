@@ -92,17 +92,17 @@ public class Register1 extends JFrame implements ActionListener
 			JSONObject jo     = new JSONObject(otvet);
 			int        status = jo.getInt("status");
 			if (status == 2) {
-				setErrLog("<html><p color=red>" + jo.getString("msg"));
+				setErrLog("<html><p color=red>" + Lang.put(jo.getString("msg")));
 			return;}
 			else
 				setErrLog("");
 			if (status == 3)
-				setErrPhone("<html><p color=red>" + jo.getString("msg"));
+				setErrPhone("<html><p color=red>" + Lang.put(jo.getString("msg")));
 			else
 				setErrPhone("");
 			if (status == 4)
 			{
-				setErrMail("<html><p color=red>" + jo.getString("msg"));
+				setErrMail("<html><p color=red>" + Lang.put(jo.getString("msg")));
 				return;
 			} else
 				setErrMail("");
