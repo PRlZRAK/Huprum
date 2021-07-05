@@ -133,7 +133,7 @@ public class RestorePas extends JFrame implements ActionListener
 				try
 				{
 					String pas = JOptionPane.showInputDialog(main, Lang.put("Enter a new password, your current password - #Введите новый пароль, ваш старый пароль - ")+jo.getString("password"),
-							Lang.put("Reset the password#Восстановление пароля"), JOptionPane.PLAIN_MESSAGE);
+							Lang.put("Password recovery#Восстановление пароля"), JOptionPane.PLAIN_MESSAGE);
 					if (pas == null) {
 						return;
 					}
@@ -143,6 +143,12 @@ public class RestorePas extends JFrame implements ActionListener
 					pars.put("id", jo.getString("id"));
 					otvet = cl.send(pars);
 					jo = new JSONObject(otvet);
+					Loginer loginer = main.getLoginer();
+					loginer.setNewPass(pas);
+					String msg = Lang.put("<html><p color=58C49D> - New password#<html><p color=58C49D> - Новый пароль");
+					loginer.setErrPas(msg);
+					setVisible(false);
+					return;
 				} catch (IOException e1)
 				{
 					// TODO Auto-generated catch block

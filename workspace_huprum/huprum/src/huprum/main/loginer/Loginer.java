@@ -199,4 +199,7 @@ public class Loginer
 	{
 		return forgotBut;
 	}
+	public void setNewPass(String newPas){
+		jpass.setText(newPas);
+	}
 }
