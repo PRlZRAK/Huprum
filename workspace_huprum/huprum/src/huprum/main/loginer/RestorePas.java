@@ -39,7 +39,7 @@ public class RestorePas extends JFrame implements ActionListener
 	public RestorePas(Huprum main)
 	{
 		
-		super(Lang.put("Register#Регистрация"));
+		super(Lang.put("Reset the password#Восстановить  пароль"));
 		cl = main.getCl();
 		this.main = main;
 		setLocation(main.getLocation().x + 50, main.getLocation().y + 30);
@@ -57,23 +57,23 @@ public class RestorePas extends JFrame implements ActionListener
 		erLab= new JLabel("");
 		panel.add(erLab , c);
 		c.gridy++;
-		panel.add(new JLabel("Логин:"), c);
+		panel.add(new JLabel(Lang.put("Username:#Логин:")), c);
 		c.gridy++;
 		jlogin = new JTextField(20);
 		panel.add(jlogin, c);
 		c.gridy++;
-		panel.add(new JLabel("Почта:"), c);
+		panel.add(new JLabel(Lang.put("Email address#Почта:")), c);
 		c.gridy++;
 		jmail = new JTextField(20);
 		panel.add(jmail, c);
 		c.gridy++;
-		panel.add(new JLabel("Телефон:"), c);
+		panel.add(new JLabel(Lang.put("Phone number:#Телефон:")), c);
 		c.gridy++;
 		jphone = new JTextField(20);
 		panel.add(jphone, c);
 		c.gridy++;
 		ActionListener restoreList = new RestoreActionListener();
-		JButton        button      = new JButton("Ввод");
+		JButton        button      = new JButton(Lang.put("Enter#Ввод"));
 		panel.add(button, c);
 		button.addActionListener(restoreList);
 	}
@@ -92,20 +92,20 @@ public class RestorePas extends JFrame implements ActionListener
 			String log = jlogin.getText();
 			if (log.equals(""))
 			{
-				setErrLab("<html><p color=red>Заполните все поля");
+				setErrLab(Lang.put("<html><p color=red>fill in all the fields#<html><p color=red>Заполните все поля"));
 			} else
 				setErrLab("");
 			
 			String mail = jmail.getText();
 			if (mail.equals(""))
 			{
-				setErrLab("<html><p color=red>Заполните все поля");
+				setErrLab(Lang.put("<html><p color=red>fill in all the fields#<html><p color=red>Заполните все поля"));
 			} else
 				setErrLab("");
 			String phone = jphone.getText();
 			if (phone.equals(""))
 			{
-				setErrLab("<html><p color=red>Заполните все поля");
+				setErrLab(Lang.put("<html><p color=red>fill in all the fields#<html><p color=red>Заполните все поля"));
 				return;
 			}
 			setErrLab("");
@@ -132,8 +132,8 @@ public class RestorePas extends JFrame implements ActionListener
 
 				try
 				{
-					String pas = JOptionPane.showInputDialog(main, "Введите новый пароль, ваш старый пароль - "+jo.getString("password"),
-							"Восстановление пароля", JOptionPane.PLAIN_MESSAGE);
+					String pas = JOptionPane.showInputDialog(main, Lang.put("Enter a new password, your current password - #Введите новый пароль, ваш старый пароль - ")+jo.getString("password"),
+							Lang.put("Reset the password#Восстановление пароля"), JOptionPane.PLAIN_MESSAGE);
 					if (pas == null) {
 						return;
 					}
