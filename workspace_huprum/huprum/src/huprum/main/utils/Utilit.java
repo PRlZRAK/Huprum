@@ -35,6 +35,7 @@ public class Utilit
 	public static String        SERVER_URL     = HUPRUM_URL + "server/index.php";
 	public static final String  SMILE_URL      = HUPRUM_URL + "server/smile/";
 	public static String        CONFIG         = "config.json";
+	public static String        DBNAME         = "tuktuk.stor";
 	public static String        CHAT_IMAGES    = "chatimages.json";
 	private static String       PHON_PATERN    = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
 	private static final String MAIL_PATERN    = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";

@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
+import huprum.main.utils.Utilit;
 
 public class Store
 {
@@ -52,7 +53,7 @@ public class Store
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:SQL.s3db");
+			conn = DriverManager.getConnection("jdbc:sqlite:"+Utilit.DBNAME);
 			Statement statmt = conn.createStatement();
 			statmt.execute("CREATE TABLE if not exists AvaImg (" + "	id	INTEGER NOT NULL," + "	img	TEXT,"
 					+ "	PRIMARY KEY(id)" + ");");
