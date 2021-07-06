@@ -79,7 +79,8 @@ public class Smile extends JPanel
 			{ ":flushed:","https://i.ibb.co/bKFxpNn/Flushed-face-1f633.png" },
 			{ ":sob:","https://i.ibb.co/hRmRCDb/Loudly-crying-face-1f62d.png" },
 			{ ":yawning:","https://i.ibb.co/Phpwgz1/Yawning-face-1f971.png" },
-			{ ":rage:","https://i.ibb.co/nwdcGFL/Pouting-face-1f621.png" }
+			{ ":rage:","https://i.ibb.co/nwdcGFL/Pouting-face-1f621.png" },
+			{ ":)","https://emoticons.do.am/1/a2/5.gif" }
 	};
 
 	public static String replace(String str, int width, int height)
