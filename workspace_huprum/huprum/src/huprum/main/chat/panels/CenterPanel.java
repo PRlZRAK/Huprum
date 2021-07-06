@@ -162,6 +162,7 @@ public class CenterPanel extends JPanel
 				 */
 				if (id == myId)
 				{
+					c.gridwidth = 2;
 					c.gridx = 1;
 					c.anchor = GridBagConstraints.EAST;
 					put_msg(jo, dt, Utilit.COLOR_1085);
@@ -171,6 +172,7 @@ public class CenterPanel extends JPanel
 				 */
 				else
 				{
+					c.gridwidth = 2;
 					c.gridx = 0;
 					c.anchor = GridBagConstraints.WEST;
 					put_msg(jo, dt, Color.white);
