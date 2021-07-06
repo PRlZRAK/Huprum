@@ -109,6 +109,9 @@ public class CenterPanel extends JPanel
 			if (last_id.equals("0"))
 			{
 				removeAll();
+				c.gridwidth = 1;
+				for (c.gridx = 0; c.gridx < 3; c.gridx++)
+					add(new JLabel("                  "), c);
 				c.gridy = 0;
 			}
 			show_msg = 1; // для вывода новых сообщений
