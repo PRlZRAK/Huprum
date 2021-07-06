@@ -26,10 +26,13 @@ public class TukPanel extends JPanel
 	{
 		this.X = x;
 		this.Y = y;
-		setBackground(color);
-		BufferedImage bimp = ImageIO.read(TukPanel.class.getResource(im_name));
-		int[]         size = newSize(bimp, maxX, maxY);
-		img = Thumbnails.of(bimp).size(size[0], size[1]).asBufferedImage();
+		if (color != null)
+			setBackground(color);
+		img = ImageIO.read(TukPanel.class.getResource(im_name));
+		int[] size = newSize(img, maxX, maxY);
+		if (img.getWidth() == size[0] || img.getHeight() == size[1])
+			return;
+		img = Thumbnails.of(img).size(size[0], size[1]).asBufferedImage();
 	}
 
 	private int[] newSize(BufferedImage bimp, int maxX, int maxY)
