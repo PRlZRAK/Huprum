@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
+import huprum.main.img.TukPanel;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
@@ -43,7 +44,19 @@ public class RestorePas extends JFrame implements ActionListener
 		this.main = main;
 		setLocation(main.getLocation().x + 50, main.getLocation().y + 30);
 		setSize(500, 400);
-		JPanel panel = new JPanel();
+		String pic_name;
+		if (Lang.getLang().equals("ru"))
+			pic_name = "brand_ru.png";
+		else
+			pic_name = "brand_en.png";
+		TukPanel panel;
+		try
+		{
+			panel = new TukPanel(pic_name, 100, 100, 10, 10, Utilit.COLOR_1085);
+		} catch (IOException e1)
+		{
+			panel = (TukPanel) new JPanel();
+		}
 		panel.setLayout(new GridBagLayout());
 		add(panel);
 		GridBagConstraints c = new GridBagConstraints();

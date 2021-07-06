@@ -73,6 +73,7 @@ public class Huprum extends JFrame
 		if (!lang.equals("ru"))
 			lang = "en";
 		new Lang(lang);
+		setTitle(Lang.put("Messenger Tuktuk#Мессенджер Tuktuk"));
 		loginer = new Loginer(this);
 		setVisible(true);
 	}
