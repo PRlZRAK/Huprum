@@ -62,7 +62,7 @@ public class WestPanel extends JPanel
 		// System.out.println(myId);
 		lastButton = new UserButtomClass("");
 		setLayout(new GridBagLayout());
-		setBackground(Utilit.COLOR_490);
+		setBackground(Utilit.COLOR_470);
 		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		c.anchor = GridBagConstraints.NORTH;

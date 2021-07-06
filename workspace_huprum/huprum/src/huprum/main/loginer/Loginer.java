@@ -3,6 +3,7 @@ package huprum.main.loginer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -14,7 +15,9 @@ import javax.swing.JTextField;
 
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
+import huprum.main.img.TukPanel;
 import huprum.main.utils.Lang;
+import huprum.main.utils.Utilit;
 
 public class Loginer
 {
@@ -31,7 +34,7 @@ public class Loginer
 	private Chat       chat;
 	private JLabel     er_сonnection;
 	private JCheckBox  jremember;
-	private JButton forgotBut;
+	private JButton    forgotBut;
 
 	public Chat getChat()
 	{
@@ -67,7 +70,19 @@ public class Loginer
 		{
 		}
 		{
-			JPanel panel = new JPanel();
+			String pic_name;
+			if (Lang.getLang().equals("ru"))
+				pic_name = "brand_ru.png";
+			else
+				pic_name = "brand_en.png";
+			TukPanel panel;
+			try
+			{
+				panel = new TukPanel(pic_name, 100, 100, 10, 10, Utilit.COLOR_1085);
+			} catch (IOException e1)
+			{
+				panel = (TukPanel) new JPanel();
+			}
 			panel.setLayout(new GridBagLayout());
 			main.add(panel);
 			GridBagConstraints c = new GridBagConstraints();
@@ -111,14 +126,14 @@ public class Loginer
 			panel.add(button_new_user, c);
 			button_new_user.addActionListener(new Register1(main));
 			c.gridy++;
-	        forgotBut = new JButton(Lang.put("Forgot Password?#Забыл пароль?"));
-	        panel.add(forgotBut, c);
-	        forgotBut.addActionListener(new RestorePas(main));
-	        forgotBut.setVisible(false);
+			forgotBut = new JButton(Lang.put("Forgot Password?#Забыл пароль?"));
+			panel.add(forgotBut, c);
+			forgotBut.addActionListener(new RestorePas(main));
+			forgotBut.setVisible(false);
 			try
 			{
 				String rem = main.store.getParam("remember");
-				if (!(rem==null)&&Integer.parseInt(rem)==1)
+				if (!(rem == null) && Integer.parseInt(rem) == 1)
 				{
 					jlogin.setText(main.store.getParam("login"));
 					jpass.setText(main.store.getParam("password"));
@@ -130,7 +145,8 @@ public class Loginer
 				e.printStackTrace();
 			}
 		}
-	}	
+	}
+
 	public void setId(int id)
 	{
 		this.id = id;
@@ -200,7 +216,9 @@ public class Loginer
 	{
 		return forgotBut;
 	}
-	public void setNewPass(String newPas){
+
+	public void setNewPass(String newPas)
+	{
 		jpass.setText(newPas);
 	}
 }
