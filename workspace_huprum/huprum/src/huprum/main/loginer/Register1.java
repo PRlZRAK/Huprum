@@ -132,13 +132,13 @@ public class Register1 extends JFrame implements ActionListener
 		setSize(1024, 600);
 		String pic_name;
 		if (Lang.getLang().equals("ru"))
-			pic_name = "brand_ru.png";
+			pic_name = "brand_ru1.png";
 		else
-			pic_name = "brand_en.png";
+			pic_name = "brand_en1.png";
 		TukPanel panel;
 		try
 		{
-			panel = new TukPanel(pic_name, 100, 100, 10, 10, Utilit.COLOR_1085);
+			panel = new TukPanel(pic_name, 250,250, 40, 20, Utilit.COLOR_1068);
 		} catch (IOException e1)
 		{
 			panel = (TukPanel) new JPanel();

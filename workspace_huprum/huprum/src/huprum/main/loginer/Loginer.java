@@ -72,13 +72,13 @@ public class Loginer
 		{
 			String pic_name;
 			if (Lang.getLang().equals("ru"))
-				pic_name = "brand_ru.png";
+				pic_name = "brand_ru1.png";
 			else
-				pic_name = "brand_en.png";
+				pic_name = "brand_en1.png";
 			TukPanel panel;
 			try
 			{
-				panel = new TukPanel(pic_name, 100, 100, 10, 10, Utilit.COLOR_1085);
+				panel = new TukPanel(pic_name, 350, 350, 50, 30, Utilit.COLOR_1068);
 			} catch (IOException e1)
 			{
 				panel = (TukPanel) new JPanel();
