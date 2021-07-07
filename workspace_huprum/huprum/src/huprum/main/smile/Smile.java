@@ -69,18 +69,23 @@ public class Smile extends JPanel
 	private static final long serialVersionUID = 7502031030850223394L;
 	private static String     smile_array[][]  =
 	{
-			{ ":grinning:","https://i.ibb.co/Yb5CjVc/Grinning-face-1f600.png" },
-			{ ":joy:","https://i.ibb.co/M9nvDdB/Face-with-tears-of-joy-1f602.png"},
-			{ ":shushing:","https://i.ibb.co/4pFb4dq/Shushing-face-1f92b.png" },
-			{ ":emotionless:","https://i.ibb.co/crBDyjW/Expressionless-face-1f611.png" },
-			{ ":sunglasses:","https://i.ibb.co/3CgZRBy/Smiling-face-with-sunglasses-1f60e.png" },
-			{ ":worried:","https://i.ibb.co/KGq4Tv0/Worried-face-1f61f.png" },
-			{ ":hushed:","https://i.ibb.co/LJB2dJr/Hushed-face-1f62f.png" },
-			{ ":flushed:","https://i.ibb.co/bKFxpNn/Flushed-face-1f633.png" },
-			{ ":sob:","https://i.ibb.co/hRmRCDb/Loudly-crying-face-1f62d.png" },
+			{ ")))","https://i.ibb.co/Yb5CjVc/Grinning-face-1f600.png" },
+			{ "=)","https://i.ibb.co/M9nvDdB/Face-with-tears-of-joy-1f602.png"},
+			{ ":x","https://i.ibb.co/4pFb4dq/Shushing-face-1f92b.png" },
+			{ "-_-","https://i.ibb.co/crBDyjW/Expressionless-face-1f611.png" },
+			{ "B)","https://i.ibb.co/3CgZRBy/Smiling-face-with-sunglasses-1f60e.png" },
+			{ ":(","https://i.ibb.co/KGq4Tv0/Worried-face-1f61f.png" },
+			{ ":o","https://i.ibb.co/LJB2dJr/Hushed-face-1f62f.png" },
+			{ "*_*","https://i.ibb.co/bKFxpNn/Flushed-face-1f633.png" },
+			{ ":_(","https://i.ibb.co/hRmRCDb/Loudly-crying-face-1f62d.png" },
 			{ ":yawning:","https://i.ibb.co/Phpwgz1/Yawning-face-1f971.png" },
-			{ ":rage:","https://i.ibb.co/nwdcGFL/Pouting-face-1f621.png" },
-			{ ":)","https://emoticons.do.am/1/a2/5.gif" }
+			{ "8)","https://i.ibb.co/nwdcGFL/Pouting-face-1f621.png" },
+			
+			{ ":)","https://emoticons.do.am/1/a2/5.gif" },
+			{ ":(","https://emoticons.do.am/1/a2/13.gif" },
+			{ ":D","https://emoticons.do.am/1/a2/4.gif" },
+			{ "]:->","https://emoticons.do.am/1/a2/17.gif" },
+			{ "B-)","https://emoticons.do.am/1/a2/7.gif" },
 	};
 
 	public static String replace(String str, int width, int height)
