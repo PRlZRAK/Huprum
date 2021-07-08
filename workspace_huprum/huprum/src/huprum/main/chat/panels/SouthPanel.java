@@ -124,6 +124,7 @@ public class SouthPanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
+			loginer.getChat().dp.play();
 			sml.setVisible(false);
 			show_label.setText("");
 			String id_to = loginer.getChat().wp.getId();

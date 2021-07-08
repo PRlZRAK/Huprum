@@ -53,6 +53,7 @@ public class CenterPanel extends JPanel
 
 	public CenterPanel(Huprum main)
 	{
+		
 		this.main = main;
 		loginer = main.getLoginer();
 		myId = loginer.getId();
@@ -69,7 +70,7 @@ public class CenterPanel extends JPanel
 			clip = new PlaySound("Sound_16487.wav");
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
 		{
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

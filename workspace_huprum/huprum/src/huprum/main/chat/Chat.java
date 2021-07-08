@@ -8,11 +8,13 @@ import javax.swing.JScrollPane;
 
 import huprum.main.Huprum;
 import huprum.main.chat.panels.CenterPanel;
+import huprum.main.chat.panels.DyatelPanel;
 import huprum.main.chat.panels.EastPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.toolbar.ToolBar;
+import huprum.main.utils.Utilit;
 
 public class Chat
 {
@@ -24,6 +26,7 @@ public class Chat
 	public EastPanel   ep;
 	public UserPanel   up;
 	public JScrollPane sep;
+	public DyatelPanel dp;
 
 	public Chat(Huprum main)
 	{
@@ -40,9 +43,16 @@ public class Chat
 		main.add(wpanel, BorderLayout.WEST);
 		sp = new SouthPanel(main);
 		main.add(sp, BorderLayout.SOUTH);
+		JPanel lp = new JPanel();
+		lp.setLayout(new BorderLayout());
+		dp = new DyatelPanel();
+		dp.setBackground(Utilit.COLOR_1068);
 		cp = new CenterPanel(main);
 		scroll = new JScrollPane(cp);
-		main.add(scroll, BorderLayout.CENTER);
+		scroll.setBorder(null);
+		lp.add(scroll, BorderLayout.CENTER);
+		lp.add(dp, BorderLayout.WEST);
+		main.add(lp, BorderLayout.CENTER);
 		try
 		{
 			ep = new EastPanel(main);
@@ -51,7 +61,6 @@ public class Chat
 			main.add(sep, BorderLayout.EAST);
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		/*
