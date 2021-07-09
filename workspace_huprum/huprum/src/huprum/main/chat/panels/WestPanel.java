@@ -17,6 +17,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -68,7 +69,7 @@ public class WestPanel extends JPanel
 		c.anchor = GridBagConstraints.NORTH;
 		try
 		{
-			clip = new PlaySound("5216_pod-zvonok.ru__.wav");
+			clip = new PlaySound("dyatel.wav");
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
 		{
 			// TODO Auto-generated catch block
@@ -108,38 +109,27 @@ public class WestPanel extends JPanel
 			batArray = new UserButtomClass[ja.length()];
 			for (int i = 0; i < ja.length(); i++)
 			{
-				JSONObject jo = ja.getJSONObject(i);
-				int        id = Integer.parseInt(jo.getString("id"));
-				ImageManipulation im =null;
+				JSONObject        jo = ja.getJSONObject(i);
+				int               id = Integer.parseInt(jo.getString("id"));
+				ImageManipulation im = null;
 				try
 				{
-					
-					 im = main.store.getAvaImg(id);
-					if (im != null)
-					{
-						c.gridx = 0;
-						ImageIcon icon       = im.getImageIcon(40, 40);
-						JLabel    label_icon = new JLabel(icon);
-						label_icon.addMouseListener(new Show1(this, im));
-						///add(label_icon, c);
-					}
+					im = main.store.getAvaImg(id);
 				} catch (SQLException | IOException e)
 				{
-					
-					e.printStackTrace();
+					im = null;
 				}
-				
 				String login = (String) jo.get("login");
-				
 				batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
 				batArray[i].setId(id);
-				if(im!=null)
-				batArray[i].setIcon(im.getImageIcon(40, 40));
-				if (strId != null && strId.equals(id + "")) {
+				if (im != null)
+					batArray[i].setIcon(im.getImageIcon(40, 40));
+				batArray[i].setHorizontalAlignment(SwingConstants.LEFT);
+				if (strId != null && strId.equals(id + ""))
+				{
 					batArray[i].setSelect(true);
 					lastButton = batArray[i];
-				}
-				else
+				} else
 					batArray[i].setSelect(false);
 				batArray[i].addActionListener(userButtonListener);
 				c.gridx = 1;
@@ -177,10 +167,8 @@ public class WestPanel extends JPanel
 				}
 				c.gridy++;
 			}
-			
 			main.revalidate();
 			main.repaint();
-			
 			clip.play();
 		}
 	}

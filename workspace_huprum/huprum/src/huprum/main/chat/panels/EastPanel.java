@@ -298,7 +298,7 @@ public class EastPanel extends JPanel
 			try
 			{
 				// Если картинка большая то уменьшить
-				im.checkMaxSize(200,200);
+				im.checkMaxSize(400,400);
 			} catch (IOException e1)
 			{
 				e1.printStackTrace();
