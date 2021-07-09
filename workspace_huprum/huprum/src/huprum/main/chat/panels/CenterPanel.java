@@ -224,7 +224,7 @@ public class CenterPanel extends JPanel
 			}
 		} else
 		{
-			JLabel myJLabel = new JLabel(Smile.replace("<html><br><p  style=\"font-size: 11px\">&nbsp;&nbsp;"
+			JLabel myJLabel = new JLabel(Smile.replace("<html><br><p  style=\"font-size: 11px;\">&nbsp;&nbsp;"
 					+ Utilit.insertWordWrap(jo.getString("msg"), 50, "<br>&nbsp;&nbsp;")
 					+ "&nbsp;&nbsp;<br><br><p style=\"font-size: 7px;color: " + Utilit.S_COLOR_1057 + ";\">&nbsp;&nbsp;"
 					+ dt.time()));

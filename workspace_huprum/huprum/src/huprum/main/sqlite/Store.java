@@ -156,15 +156,17 @@ public class Store
 
 	public ImageManipulation getAvaImg(int id) throws SQLException, IOException
 	{
+		ImageManipulation im;
+		/*
 		statmt_5.setInt(1, id);
 		ResultSet         rs = statmt_5.executeQuery();
-		ImageManipulation im;
+		
 		if (rs.next())
 		{
 			im = new ImageManipulation(rs.getString("img"));
 			im.setId(id);
 			return im;
-		}
+		}*/
 		pars.clear();
 		pars.put("action", "get_user_img");
 		pars.put("id", id + "");
@@ -174,6 +176,7 @@ public class Store
 		if (status == 0)
 		{
 			String avatar = jo1.getString("avatar");
+			//System.out.println("avatar="+avatar);
 			im = new ImageManipulation(avatar);
 			putAva(id, avatar);
 			return im;

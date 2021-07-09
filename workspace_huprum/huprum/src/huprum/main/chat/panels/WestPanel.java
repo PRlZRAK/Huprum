@@ -118,7 +118,7 @@ public class WestPanel extends JPanel
 					if (im != null)
 					{
 						c.gridx = 0;
-						ImageIcon icon       = im.getImageIcon(32, 32);
+						ImageIcon icon       = im.getImageIcon(40, 40);
 						JLabel    label_icon = new JLabel(icon);
 						label_icon.addMouseListener(new Show1(this, im));
 						add(label_icon, c);

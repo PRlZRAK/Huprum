@@ -55,7 +55,7 @@ public class EastPanel extends JPanel
 	public EastPanel(Huprum main) throws IOException
 	{
 		this.main = main;
-		setBackground(Utilit.COLOR_389);
+		setBackground(Utilit.COLOR_1085);
 		personal_data = main.getPersonalData();
 		id = personal_data.getString("id");
 		cl = main.getCl();
@@ -72,7 +72,7 @@ public class EastPanel extends JPanel
 				im = main.store.getAvaImg(Integer.parseInt(id));
 				icon = im.getImageIcon(200, 200);
 				show = true;
-			} catch (NumberFormatException | SQLException | IOException e1)
+			} catch (NumberFormatException | SQLException | IOException|NullPointerException e1)
 			{
 				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
 				show = false;
@@ -309,6 +309,8 @@ public class EastPanel extends JPanel
 			pars.put("action", "edit_user");
 			pars.put("id", personal_data.getString("id"));
 			pars.put("img", im.getBase64());
+			pars.put("width",im.getWidth()+"");
+			pars.put("height",im.getHeight()+"");
 			String answer = null;
 			try
 			{
