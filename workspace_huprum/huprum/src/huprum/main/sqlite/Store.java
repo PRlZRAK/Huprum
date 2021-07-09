@@ -177,8 +177,16 @@ public class Store
 		{
 			String avatar = jo1.getString("avatar");
 			//System.out.println("avatar="+avatar);
+			try {
 			im = new ImageManipulation(avatar);
 			putAva(id, avatar);
+			}
+			catch ( ArrayIndexOutOfBoundsException e)
+			{
+				
+			//	e.printStackTrace();
+				return null;
+			}
 			return im;
 		}
 		return null;

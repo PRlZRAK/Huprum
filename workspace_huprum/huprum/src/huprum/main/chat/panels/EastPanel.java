@@ -76,7 +76,7 @@ public class EastPanel extends JPanel
 			{
 				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
 				show = false;
-				e1.printStackTrace();
+				//e1.printStackTrace();
 			}
 		}
 		ImageIcon pensil_image = new ImageIcon(
@@ -298,7 +298,7 @@ public class EastPanel extends JPanel
 			try
 			{
 				// Если картинка большая то уменьшить
-				im.checkMaxSize(Utilit.IMG_MAX_WIDTH, Utilit.IMG_MAX_HEIGHT);
+				im.checkMaxSize(200,200);
 			} catch (IOException e1)
 			{
 				e1.printStackTrace();

@@ -76,11 +76,11 @@ public class UserPanel extends JPanel
 				show = true;
 				im = main.store.getAvaImg(id);
 				icon = im.getImageIcon(120, 120);
-			} catch (SQLException | IOException e)
+			} catch (SQLException | IOException |NullPointerException e)
 			{
 				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
 				show = false;
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		add(new JLabel(jo.getString("login")), c);
