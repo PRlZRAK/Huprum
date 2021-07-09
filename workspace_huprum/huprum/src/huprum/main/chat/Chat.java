@@ -10,6 +10,7 @@ import huprum.main.Huprum;
 import huprum.main.chat.panels.CenterPanel;
 import huprum.main.chat.panels.DyatelPanel;
 import huprum.main.chat.panels.EastPanel;
+import huprum.main.chat.panels.SettingsPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
@@ -27,6 +28,10 @@ public class Chat
 	public UserPanel   up;
 	public JScrollPane sep;
 	public DyatelPanel dp;
+	private JPanel setp;
+	private JPanel rightPanel;
+	public JScrollPane scsetp;
+	public JScrollPane lastrp;
 
 	public Chat(Huprum main)
 	{
@@ -55,14 +60,24 @@ public class Chat
 		main.add(lp, BorderLayout.CENTER);
 		try
 		{
+			lastrp = new JScrollPane();
 			ep = new EastPanel(main);
+			rightPanel = new JPanel();
+			rightPanel.setLayout(new BorderLayout());
 			sep = new JScrollPane(ep);
 			sep.setVisible(false);
-			main.add(sep, BorderLayout.EAST);
+			rightPanel.add(sep, BorderLayout.CENTER);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+		setp=new SettingsPanel(main);
+		scsetp = new JScrollPane(setp);
+		scsetp.setVisible(false);
+		rightPanel.add(scsetp, BorderLayout.EAST);
+        main.add(rightPanel, BorderLayout.EAST);
+		
+		
 		/*
 		 * перерисовка окна
 		 */

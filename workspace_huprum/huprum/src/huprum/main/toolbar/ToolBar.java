@@ -16,8 +16,6 @@ import huprum.main.utils.Lang;
 
 public class ToolBar extends JToolBar
 {
-	
-
 	/**
 	 * 
 	 */
@@ -29,7 +27,8 @@ public class ToolBar extends JToolBar
 	private JButton           setLang;
 	private ImageIcon         engIcon;
 	private ImageIcon         rusIcon;
-	private JButton profile;
+	private JButton           profile;
+	private JButton           settings;
 
 	public ToolBar(Huprum main)
 	{
@@ -85,19 +84,48 @@ public class ToolBar extends JToolBar
 		profile.addActionListener(new РrofileActionList());
 		profile.setToolTipText("Профиль");
 		add(profile);
+		//
+		settings = new JButton();
+		ImageIcon settingsIcon = new ImageIcon(
+				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/settings.png")));
+		settings.setIcon(settingsIcon);
+		settings.addActionListener(new SettingsActionList());
+		settings.setToolTipText("Настройки");
+		add(settings);
 	}
+
+	public class SettingsActionList implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			JScrollPane scsetp = main.getLoginer().getChat().scsetp;
+			changerp(scsetp);
+		}
+	}
+
 	public class РrofileActionList implements ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			 JScrollPane sep = main.getLoginer().getChat().sep;
-			if(sep.isVisible()) sep.setVisible(false);
-			else sep.setVisible(true);
-			main.revalidate();
-			main.repaint();
+			JScrollPane sep = main.getLoginer().getChat().sep;
+            changerp(sep);
 		}
 	}
+	private void changerp(JScrollPane panel) {
+		if (panel.isVisible())
+			panel.setVisible(false);
+		else
+		{
+			main.getLoginer().getChat().lastrp.setVisible(false);
+			panel.setVisible(true);
+			main.getLoginer().getChat().lastrp = panel;
+		}
+		main.revalidate();
+		main.repaint();	
+	}
+
 	private void breakoff()
 	{
 		main.configSave();
