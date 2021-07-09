@@ -14,7 +14,6 @@ import java.util.Map;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -123,8 +122,11 @@ public class WestPanel extends JPanel
 				batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
 				batArray[i].setId(id);
 				if (im != null)
+				{
 					batArray[i].setIcon(im.getImageIcon(40, 40));
-				batArray[i].setHorizontalAlignment(SwingConstants.LEFT);
+					batArray[i].setHorizontalAlignment(SwingConstants.LEFT);
+				} else
+					batArray[i].setHorizontalAlignment(SwingConstants.RIGHT);
 				if (strId != null && strId.equals(id + ""))
 				{
 					batArray[i].setSelect(true);
