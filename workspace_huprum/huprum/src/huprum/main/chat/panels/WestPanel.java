@@ -110,18 +110,18 @@ public class WestPanel extends JPanel
 			{
 				JSONObject jo = ja.getJSONObject(i);
 				int        id = Integer.parseInt(jo.getString("id"));
-				
+				ImageManipulation im =null;
 				try
 				{
 					
-					ImageManipulation im = main.store.getAvaImg(id);
+					 im = main.store.getAvaImg(id);
 					if (im != null)
 					{
 						c.gridx = 0;
 						ImageIcon icon       = im.getImageIcon(40, 40);
 						JLabel    label_icon = new JLabel(icon);
 						label_icon.addMouseListener(new Show1(this, im));
-						add(label_icon, c);
+						///add(label_icon, c);
 					}
 				} catch (SQLException | IOException e)
 				{
@@ -133,6 +133,8 @@ public class WestPanel extends JPanel
 				
 				batArray[i] = new UserButtomClass(login, Utilit.COLOR_1074, Color.white);
 				batArray[i].setId(id);
+				if(im!=null)
+				batArray[i].setIcon(im.getImageIcon(40, 40));
 				if (strId != null && strId.equals(id + "")) {
 					batArray[i].setSelect(true);
 					lastButton = batArray[i];
