@@ -30,8 +30,8 @@ public class Utilit
 	/*
 	 * url сервера
 	 */
-	//public static String HUPRUM_URL = "http://localhost/huprum/";
-	public static String HUPRUM_URL = "http://tuktuk.su/huprum/";
+	// public static String HUPRUM_URL = "http://localhost/huprum/";
+	public static String        HUPRUM_URL      = "http://tuktuk.su/huprum/";
 	public static String        SERVER_URL      = HUPRUM_URL + "server/index.php";
 	public static final String  SMILE_URL       = HUPRUM_URL + "server/smile/";
 	public static String        CONFIG          = "config.json";
@@ -43,8 +43,9 @@ public class Utilit
 	public static final int     IMG_MAX_HEIGHT  = 800;
 	public static boolean       SET_CRY_SOUND   = true;
 	public static boolean       SET_STUK_SOUND  = true;
-	public static boolean       SET_DYATEL_SHOW = true;
 	public static boolean       SET_SEND_SOUND  = true;
+	public static boolean       SET_DYATEL_SHOW = true;
+
 
 	public static int CheckLogin(String login)
 	{

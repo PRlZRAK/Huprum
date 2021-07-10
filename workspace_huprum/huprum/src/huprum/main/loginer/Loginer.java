@@ -66,6 +66,18 @@ public class Loginer
 			int locaty = Integer.parseInt(main.store.getParam("locaty"));
 			main.setLocation(locatx, locaty);
 			main.setSize(width, height);
+			String crys  = main.store.getParam("cry_sound");
+			String stucs = main.store.getParam("stuc_sound");
+			String sends = main.store.getParam("send_sound");
+			String dyats = main.store.getParam("dyatel_show");
+			if (!(crys == null) && Integer.parseInt(crys) == 0)
+				Utilit.SET_CRY_SOUND = false;
+			if (!(stucs == null) && Integer.parseInt(stucs) == 0)
+				Utilit.SET_STUK_SOUND = false;
+			if (!(sends == null) && Integer.parseInt(sends) == 0)
+				Utilit.SET_SEND_SOUND = false;
+			if (!(dyats == null) && Integer.parseInt(dyats) == 0)
+				Utilit.SET_DYATEL_SHOW = false;
 		} catch (NumberFormatException | SQLException e)
 		{
 		}

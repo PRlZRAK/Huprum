@@ -133,6 +133,20 @@ public class Huprum extends JFrame
 			store.setParam("height", Integer.toString(getSize().height));
 			store.setParam("locatx", Integer.toString(getLocation().x));
 			store.setParam("locaty", Integer.toString(getLocation().y));
+			
+			String crys;
+			String stucs;
+			String sends;
+			String dyats;
+			if(Utilit.SET_CRY_SOUND)crys = "1";else crys= "0";
+			if(Utilit.SET_STUK_SOUND)stucs = "1";else stucs= "0";
+			if(Utilit.SET_SEND_SOUND)sends = "1";else sends= "0";
+			if(Utilit.SET_DYATEL_SHOW)dyats = "1";else dyats= "0";
+			store.setParam("cry_sound",crys );
+			store.setParam("stuc_sound", stucs);
+			store.setParam("send_sound", sends);
+			store.setParam("dyatel_show", dyats);
+			
 			if (remember)
 			{
 				store.setParam("remember", "1");
