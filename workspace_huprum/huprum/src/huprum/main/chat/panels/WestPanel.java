@@ -171,7 +171,8 @@ public class WestPanel extends JPanel
 			}
 			main.revalidate();
 			main.repaint();
-			clip.play();
+			if (Utilit.SET_CRY_SOUND)
+				clip.play();
 		}
 	}
 

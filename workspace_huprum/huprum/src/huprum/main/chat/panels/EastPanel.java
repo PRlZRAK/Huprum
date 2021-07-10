@@ -8,11 +8,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -25,6 +27,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
+import huprum.main.img.Mult;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
@@ -83,13 +86,24 @@ public class EastPanel extends JPanel
 				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/pensil.png")));
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(10, 5, 15, 5);
+		c.insets = new Insets(5, 10, 5, 10);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
-		c.gridwidth = 3;
-		add(new JLabel("<html><h2 >" + Lang.put("Profile#Профиль")), c);
-		//
+		c.gridwidth = 2;
+		try
+		{
+			String logo_name;
+			if (Lang.getLang().equals("ru"))
+				logo_name = "logo_ru.png";
+			else
+				logo_name = "logo_en.png";
+			BufferedImage logo = ImageIO.read(Mult.class.getResource(logo_name));
+			add(new JLabel(new ImageIcon(logo)), c);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		c.gridwidth = 1;
 		c.gridx = 3;
 		ImageIcon close_image = new ImageIcon(
@@ -97,6 +111,12 @@ public class EastPanel extends JPanel
 		JLabel    label_close = new JLabel(close_image);
 		label_close.addMouseListener(new CloseWidow());
 		add(label_close, c);
+		c.gridwidth = 3;
+		c.gridy++;
+		c.gridx = 0;
+		add(new JLabel("<html><h2 >" + Lang.put("Profile#Профиль")), c);
+		//
+		
 		//
 		c.gridwidth = 2;
 		c.gridy++;

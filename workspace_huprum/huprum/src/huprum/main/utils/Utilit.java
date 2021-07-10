@@ -31,16 +31,20 @@ public class Utilit
 	 * url сервера
 	 */
 	//public static String HUPRUM_URL = "http://localhost/huprum/";
-	public static String        HUPRUM_URL     = "http://tuktuk.su/huprum/";
-	public static String        SERVER_URL     = HUPRUM_URL + "server/index.php";
-	public static final String  SMILE_URL      = HUPRUM_URL + "server/smile/";
-	public static String        CONFIG         = "config.json";
-	public static String        DBNAME         = "tuktuk.stor";
-	public static String        CHAT_IMAGES    = "chatimages.json";
-	private static String       PHON_PATERN    = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
-	private static final String MAIL_PATERN    = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	public static final int     IMG_MAX_WIDTH  = 1000;
-	public static final int     IMG_MAX_HEIGHT = 800;
+	public static String HUPRUM_URL = "http://tuktuk.su/huprum/";
+	public static String        SERVER_URL      = HUPRUM_URL + "server/index.php";
+	public static final String  SMILE_URL       = HUPRUM_URL + "server/smile/";
+	public static String        CONFIG          = "config.json";
+	public static String        DBNAME          = "tuktuk.stor";
+	public static String        CHAT_IMAGES     = "chatimages.json";
+	private static String       PHON_PATERN     = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
+	private static final String MAIL_PATERN     = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	public static final int     IMG_MAX_WIDTH   = 1000;
+	public static final int     IMG_MAX_HEIGHT  = 800;
+	public static boolean       SET_CRY_SOUND   = true;
+	public static boolean       SET_STUK_SOUND  = true;
+	public static boolean       SET_DYATEL_SHOW = true;
+	public static boolean       SET_SEND_SOUND  = true;
 
 	public static int CheckLogin(String login)
 	{
@@ -91,45 +95,8 @@ public class Utilit
 		Matcher mtch        = usrNamePtrn.matcher(mail);
 		return mtch.matches();
 	}
-/*
-	public static String InsertPerenos(String text, int wide, String znak)
-	{
-		
-		int    j         = wide;
-		int    end       = 0;
-		int    i         = wide;
-		int    lenZnak   = znak.length();
-		int    lenght    = text.length();
-		String doublZnak = znak + znak;
-		String otvet     = null;
-		if (lenght <= wide)
-			return text;
-		while (wide < lenght)
-		{
-			for (i = wide; i > end; i--)
-			{
-				char ch = text.charAt(i);
-				if (ch == ' ')
-				{
-					// System.out.println(i);
-					text = new StringBuilder(text).insert(i + 1, znak).toString();
-					otvet = text.replaceAll(doublZnak, znak);;
-					break;
-				}
-				if (i == 0)
-				{
-					// System.out.println("i=" + i);
-					text = new StringBuilder(text).insert(wide, znak).toString();
-					otvet = text.replaceAll(doublZnak, znak);;
-				}
-			}
-			lenght += lenZnak;
-			wide += j;
-		}
-		return otvet;
-	}
-*/
-	public static String insertWordWrap(String src,  int len_str,String separator)
+
+	public static String insertWordWrap(String src, int len_str, String separator)
 	{
 		String rez = "";
 		String row = src;
@@ -159,6 +126,4 @@ public class Utilit
 	{
 		return getCopyright(new Lang(lang));
 	}
-
-	
 }

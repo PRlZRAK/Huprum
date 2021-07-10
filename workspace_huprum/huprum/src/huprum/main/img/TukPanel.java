@@ -35,7 +35,7 @@ public class TukPanel extends JPanel
 		img = Thumbnails.of(img).size(size[0], size[1]).asBufferedImage();
 	}
 
-	private int[] newSize(BufferedImage bimp, int maxX, int maxY)
+	public static int[] newSize(BufferedImage bimp, int maxX, int maxY)
 	{
 		int x = bimp.getWidth();
 		int y = bimp.getHeight();

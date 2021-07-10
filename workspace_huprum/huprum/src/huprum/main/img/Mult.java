@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import huprum.main.media.PlaySound;
+import huprum.main.utils.Utilit;
 
 public class Mult extends JLabel implements Runnable
 {
@@ -20,6 +21,7 @@ public class Mult extends JLabel implements Runnable
 	private BufferedImage[]   img;
 	private int[]             playList;
 	private PlaySound         pl;
+	private long              pause;
 
 	public Mult(String[] scenes, int[] playList)
 	{
@@ -43,9 +45,11 @@ public class Mult extends JLabel implements Runnable
 		}
 	}
 
-	public void play()
+	public void play(long pause)
 	{
-		pl.play();
+		this.pause = pause;
+		if (Utilit.SET_STUK_SOUND)
+			pl.play();
 		new Thread(this).start();;
 	}
 
@@ -57,7 +61,7 @@ public class Mult extends JLabel implements Runnable
 			setIcon(new ImageIcon(img[i]));
 			try
 			{
-				Thread.sleep(50);
+				Thread.sleep(pause);
 			} catch (InterruptedException e)
 			{
 				e.printStackTrace();
@@ -65,17 +69,4 @@ public class Mult extends JLabel implements Runnable
 			repaint();
 		}
 	}
-	/*
-	 * public static void main(String[] args) { String scenes[] = new String[] {
-	 * "dyatel/d1.png", "dyatel/d2.png", "dyatel/d3.png" }; int playList[] = new
-	 * int[] { 1, 2, 0, 1, 2, 1, 0, 1, 2, 1, 0 }; Mult m = new Mult(scenes,
-	 * playList); JFrame win = new JFrame("test");
-	 * win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); win.setSize(1000, 800);
-	 * win.setLayout(null); m.setBounds(0, 10, 350, 400); win.add(m); JButton b =
-	 * new JButton("ok"); b.setBounds(360, 10, 100, 20); b.addActionListener(new
-	 * ActionListener() {
-	 * 
-	 * @Override public void actionPerformed(ActionEvent arg0) { m.play(); } });
-	 * win.add(b); win.setVisible(true); }
-	 */
 }

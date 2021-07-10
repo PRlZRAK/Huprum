@@ -52,6 +52,7 @@ public class Chat
 		lp.setLayout(new BorderLayout());
 		dp = new DyatelPanel();
 		dp.setBackground(Utilit.COLOR_1068);
+		dp.setVisible(Utilit.SET_DYATEL_SHOW);
 		cp = new CenterPanel(main);
 		scroll = new JScrollPane(cp);
 		scroll.setBorder(null);
@@ -72,6 +73,7 @@ public class Chat
 			e.printStackTrace();
 		}
 		setp=new SettingsPanel(main);
+		
 		scsetp = new JScrollPane(setp);
 		scsetp.setVisible(false);
 		rightPanel.add(scsetp, BorderLayout.EAST);
