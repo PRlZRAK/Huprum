@@ -290,13 +290,7 @@ public class EastPanel extends TukPanel
 			{
 				im = new ImageManipulation(eastPanel);
 				if (im.getImage() == null)
-				{/*
-					 * JOptionPane.showMessageDialog(eastPanel,
-					 * "Пожалуйста выберите другую картинку", "Испорченное изображение",
-					 * JOptionPane.ERROR_MESSAGE);
-					 */
 					return;
-				}
 			} catch (IOException e)
 			{
 				JOptionPane.showMessageDialog(eastPanel, "Пожалуйста выберите другую картинку",
@@ -319,25 +313,14 @@ public class EastPanel extends TukPanel
 			pars.put("img", im.getBase64());
 			pars.put("width", im.getWidth() + "");
 			pars.put("height", im.getHeight() + "");
-			String answer = null;
 			try
 			{
-				answer = cl.send(pars);
+				cl.send(pars);
 			} catch (IOException e)
 			{
 				JOptionPane.showMessageDialog(eastPanel, "Нет соединения с сервером", "Потеряна связь",
 						JOptionPane.ERROR_MESSAGE);
 				return;
-			}
-			JSONObject jo = new JSONObject(answer);
-			if (jo.getInt("status") != 0)
-				System.err.println("FaceEditList " + jo.getString("msg"));
-			try
-			{
-				main.store.putAva(Integer.parseInt(id), im.getBase64());
-			} catch (NumberFormatException | SQLException e)
-			{
-				e.printStackTrace();
 			}
 		}
 

@@ -20,7 +20,6 @@ import huprum.main.utils.Utilit;
 
 public class Store
 {
-	
 	public void close()
 	{
 		try
@@ -28,70 +27,39 @@ public class Store
 			conn.close();
 		} catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	private Connection              conn;
-	private PreparedStatement       statmt_0;
-	private PreparedStatement       statmt_1;
-	private PreparedStatement       statmt_2;
 	private PreparedStatement       statmt_3;
 	private PreparedStatement       statmt_4;
-	private PreparedStatement       statmt_5;
 	private HashMap<String, String> pars;
 	private Client                  cl;
-	// private Huprum main;
 
 	public Store(Huprum main)
 	{
 		super();
-		// this.main= main;
 		pars = new HashMap<String, String>();
 		cl = main.getCl();
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:"+Utilit.DBNAME);
-			Statement statmt = conn.createStatement();
-			statmt.execute("CREATE TABLE if not exists AvaImg (" + "	id	INTEGER NOT NULL," + "	img	TEXT,"
-					+ "	PRIMARY KEY(id)" + ");");
+			conn = DriverManager.getConnection("jdbc:sqlite:" + Utilit.DBNAME);
 			Statement statmt1 = conn.createStatement();
 			statmt1.execute("CREATE TABLE if not exists ChatImg (" + "	id	INTEGER NOT NULL," + "	img	TEXT,"
 					+ "	PRIMARY KEY(id)" + ");");
 			Statement statmt2 = conn.createStatement();
 			statmt2.execute("CREATE TABLE if not exists set1 (" + "	id	INTEGER NOT NULL," + "	key	TEXT,"
 					+ "	param	TEXT," + "	PRIMARY KEY(id AUTOINCREMENT)" + ");");
-			statmt_0 = conn.prepareStatement("SELECT id FROM AvaImg WHERE id=?");
-			statmt_1 = conn.prepareStatement("UPDATE AvaImg SET img=? WHERE id=?");
-			statmt_2 = conn.prepareStatement("INSERT OR IGNORE INTO AvaImg(id,img) VALUES (?,?)");
 			statmt_3 = conn.prepareStatement("INSERT OR IGNORE INTO ChatImg(id,img) VALUES (?,?)");
 			statmt_4 = conn.prepareStatement("SELECT img FROM ChatImg WHERE id=?");
-			statmt_5 = conn.prepareStatement("SELECT img FROM AvaImg WHERE id=?");
 		} catch (ClassNotFoundException | SQLException e)
 		{
 			JOptionPane.showOptionDialog(main, "Ошибка", null, JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, new String[]
 					{ "Назад" }, "default");
 			e.printStackTrace();
-		}
-	}
-
-	public void putAva(int id, String img) throws SQLException
-	{
-		statmt_0.setInt(1, id);
-		ResultSet rs = statmt_0.executeQuery();
-		if (rs.next())
-		{
-			statmt_1.setString(1, img);
-			statmt_1.setInt(2, id);
-			statmt_1.executeUpdate();
-		} else
-		{
-			statmt_2.setInt(1, id);
-			statmt_2.setString(2, img);
-			statmt_2.execute();
 		}
 	}
 
@@ -157,16 +125,6 @@ public class Store
 	public ImageManipulation getAvaImg(int id) throws SQLException, IOException
 	{
 		ImageManipulation im;
-		/*
-		statmt_5.setInt(1, id);
-		ResultSet         rs = statmt_5.executeQuery();
-		
-		if (rs.next())
-		{
-			im = new ImageManipulation(rs.getString("img"));
-			im.setId(id);
-			return im;
-		}*/
 		pars.clear();
 		pars.put("action", "get_user_img");
 		pars.put("id", id + "");
@@ -176,15 +134,11 @@ public class Store
 		if (status == 0)
 		{
 			String avatar = jo1.getString("avatar");
-			//System.out.println("avatar="+avatar);
-			try {
-			im = new ImageManipulation(avatar);
-			putAva(id, avatar);
-			}
-			catch ( ArrayIndexOutOfBoundsException e)
+			try
 			{
-				
-			//	e.printStackTrace();
+				im = new ImageManipulation(avatar);
+			} catch (ArrayIndexOutOfBoundsException e)
+			{
 				return null;
 			}
 			return im;
