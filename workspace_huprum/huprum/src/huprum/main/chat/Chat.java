@@ -14,6 +14,7 @@ import huprum.main.chat.panels.SettingsPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
+import huprum.main.img.TukPanel;
 import huprum.main.toolbar.ToolBar;
 import huprum.main.utils.Utilit;
 
@@ -28,7 +29,7 @@ public class Chat
 	public UserPanel   up;
 	public JScrollPane sep;
 	public DyatelPanel dp;
-	private JPanel setp;
+	private TukPanel setp;
 	private JPanel rightPanel;
 	public JScrollPane scsetp;
 	public JScrollPane lastrp;
@@ -72,7 +73,14 @@ public class Chat
 		{
 			e.printStackTrace();
 		}
-		setp=new SettingsPanel(main);
+		try
+		{
+			setp=new SettingsPanel(main);
+		} catch (IOException e)
+		{
+			
+			e.printStackTrace();
+		}
 		
 		scsetp = new JScrollPane(setp);
 		scsetp.setVisible(false);

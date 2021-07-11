@@ -8,18 +8,15 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.json.JSONObject;
@@ -27,11 +24,11 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.connections.Client;
 import huprum.main.img.ImageManipulation;
-import huprum.main.img.Mult;
+import huprum.main.img.TukPanel;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
-public class EastPanel extends JPanel
+public class EastPanel extends TukPanel
 {
 	/**
 	 * 
@@ -57,6 +54,7 @@ public class EastPanel extends JPanel
 
 	public EastPanel(Huprum main) throws IOException
 	{
+		super("logo_en.png", 100, 100, 10, 12, Utilit.COLOR_1085);
 		this.main = main;
 		setBackground(Utilit.COLOR_1085);
 		personal_data = main.getPersonalData();
@@ -75,11 +73,10 @@ public class EastPanel extends JPanel
 				im = main.store.getAvaImg(Integer.parseInt(id));
 				icon = im.getImageIcon(200, 200);
 				show = true;
-			} catch (NumberFormatException | SQLException | IOException|NullPointerException e1)
+			} catch (NumberFormatException | SQLException | IOException | NullPointerException e1)
 			{
 				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
 				show = false;
-				//e1.printStackTrace();
 			}
 		}
 		ImageIcon pensil_image = new ImageIcon(
@@ -91,19 +88,12 @@ public class EastPanel extends JPanel
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 2;
-		try
-		{
-			String logo_name;
-			if (Lang.getLang().equals("ru"))
-				logo_name = "logo_ru.png";
-			else
-				logo_name = "logo_en.png";
-			BufferedImage logo = ImageIO.read(Mult.class.getResource(logo_name));
-			add(new JLabel(new ImageIcon(logo)), c);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		String logo_name;
+		if (Lang.getLang().equals("ru"))
+			logo_name = "logo_ru.png";
+		else
+			logo_name = "logo_en.png";
+		super.setImg(logo_name);
 		c.gridwidth = 1;
 		c.gridx = 3;
 		ImageIcon close_image = new ImageIcon(
@@ -115,8 +105,6 @@ public class EastPanel extends JPanel
 		c.gridy++;
 		c.gridx = 0;
 		add(new JLabel("<html><h2 >" + Lang.put("Profile#Профиль")), c);
-		//
-		
 		//
 		c.gridwidth = 2;
 		c.gridy++;
@@ -318,7 +306,7 @@ public class EastPanel extends JPanel
 			try
 			{
 				// Если картинка большая то уменьшить
-				im.checkMaxSize(400,400);
+				im.checkMaxSize(400, 400);
 			} catch (IOException e1)
 			{
 				e1.printStackTrace();
@@ -329,8 +317,8 @@ public class EastPanel extends JPanel
 			pars.put("action", "edit_user");
 			pars.put("id", personal_data.getString("id"));
 			pars.put("img", im.getBase64());
-			pars.put("width",im.getWidth()+"");
-			pars.put("height",im.getHeight()+"");
+			pars.put("width", im.getWidth() + "");
+			pars.put("height", im.getHeight() + "");
 			String answer = null;
 			try
 			{

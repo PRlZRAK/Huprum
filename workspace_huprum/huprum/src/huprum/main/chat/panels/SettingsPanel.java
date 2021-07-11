@@ -8,22 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import huprum.main.Huprum;
-import huprum.main.img.Mult;
+import huprum.main.img.TukPanel;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
 
-public class SettingsPanel extends JPanel
+public class SettingsPanel extends TukPanel
 {
 	/**
 	 * 
@@ -31,32 +28,28 @@ public class SettingsPanel extends JPanel
 	private static final long serialVersionUID = 1L;
 	private Huprum            main;
 
-	public SettingsPanel(Huprum main)
+	public SettingsPanel(Huprum main) throws IOException
 	{
+		super("logo_en.png", 100, 100, 16, 12, Utilit.COLOR_1085);
 		this.main = main;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		
 		setLayout(gridBagLayout);
-		setBackground(Utilit.COLOR_1085);
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(5, 20, 5, 20);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
-		try
-		{
+		
 			String logo_name;
 			if (Lang.getLang().equals("ru"))
 				logo_name = "logo_ru.png";
 			else
 				logo_name = "logo_en.png";
-			BufferedImage logo = ImageIO.read(Mult.class.getResource(logo_name));
-			add(new JLabel(new ImageIcon(logo)), c);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+			super.setImg(logo_name);
+			
 		c.gridx = 1;
 		ImageIcon close_image = new ImageIcon(
 				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/close.png")));

@@ -78,4 +78,19 @@ public class TukPanel extends JPanel
 		}
 		jf.setVisible(true);
 	}
+
+	public void setImg(String im_name)
+	{
+		try
+		{
+			img = ImageIO.read(TukPanel.class.getResource(im_name));
+			revalidate();
+			repaint();
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
