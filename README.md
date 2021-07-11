@@ -26,7 +26,7 @@ public void paint(Graphics g) {
 	https://treeone.ru/peremennye-sredy-user-windows-bat/#page-content
 	https://ab57.ru/cmd.html#id0
 	http://doctus-stilus.narod.ru/cons_1.html
-5. Сделать вывод всех сообщений через Lang.put(msg) - отв. Михаил, Алексей
+5. Сделать вывод всех сообщений через Lang.put(msg) - отв. Михаил, Алексей (сделал)
 6. Узнавать язык из локальных настроек компьютера для первоначального входа в систему - отв yaa (сделал)
 7. Инсталятор для Linux - отв. yaa - (сделал)
-8. Подбор звуков для под тук тук отв. Михаил
+8. Подбор звуков для под тук тук отв. Михаил (сделал дед)
