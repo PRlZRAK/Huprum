@@ -40,7 +40,7 @@ public class DyatelPanel extends JPanel
 				{ 0, 1,2, 3, 2, 1, 2, 3, 2, 1, 0 };
 		m = new Mult(scenes, playList);
 		*/
-		m=new Mult1("stuk2.gif", "dyatel_stuk.wav");
+		m=new Mult1("stuk3.gif", "dyatel_stuk.wav");
 		m.addMouseListener(new MouseListener()
 		{
 			@Override
