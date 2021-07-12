@@ -126,8 +126,7 @@ public class Register1 extends JFrame implements ActionListener
 	{
 		super(Lang.put("Registration#Регистрация"));
 		cl = main.getCl();
-		// Toolkit kit = Toolkit.getDefaultToolkit();
-		// Dimension screenSize = kit.getScreenSize();
+		
 		setLocation(main.getLocation().x + 50, main.getLocation().y + 30);
 		setSize(1024, 600);
 		String pic_name;

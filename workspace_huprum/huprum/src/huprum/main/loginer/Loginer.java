@@ -134,7 +134,7 @@ public class Loginer
 			panel.add(button, c);
 			button.addActionListener(new LoginActionListener(main));
 			c.gridy++;
-			JButton button_new_user = new JButton(Lang.put("Register#Зарегестрироваться"));
+			JButton button_new_user = new JButton(Lang.put("Register now#Зарегистрироваться"));
 			panel.add(button_new_user, c);
 			button_new_user.addActionListener(new Register1(main));
 			c.gridy++;

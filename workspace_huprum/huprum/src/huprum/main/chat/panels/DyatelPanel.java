@@ -8,7 +8,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-import huprum.main.img.Mult;
+
+import huprum.main.img.Mult1;
 
 public class DyatelPanel extends JPanel
 {
@@ -16,7 +17,7 @@ public class DyatelPanel extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = -3314533031189267270L;
-	private Mult              m;
+	private Mult1              m;
 
 	public DyatelPanel()
 	{
@@ -31,13 +32,15 @@ public class DyatelPanel extends JPanel
 		c.insets = new Insets(0, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 1;
-		
+		/*
 		String scenes[]   = new String[]
 				{ "dyatel/d10.png", "dyatel/d11.png", "dyatel/d12.png" , "dyatel/d13.png" };
 	
 		int    playList[] = new int[]
 				{ 0, 1,2, 3, 2, 1, 2, 3, 2, 1, 0 };
 		m = new Mult(scenes, playList);
+		*/
+		m=new Mult1("stuk2.gif", "dyatel_stuk.wav");
 		m.addMouseListener(new MouseListener()
 		{
 			@Override
@@ -58,7 +61,7 @@ public class DyatelPanel extends JPanel
 			@Override
 			public void mouseEntered(MouseEvent arg0)
 			{
-				m.play(50);
+				m.play();
 			}
 
 			@Override
@@ -71,6 +74,6 @@ public class DyatelPanel extends JPanel
 
 	public void play()
 	{
-		m.play(50);
+		m.play();
 	}
 }
