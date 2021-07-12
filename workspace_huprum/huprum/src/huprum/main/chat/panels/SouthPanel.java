@@ -72,7 +72,6 @@ public class SouthPanel extends JPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		
 		JLabel gray_smile = new JLabel(
 				new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/sm2_gray.png"))));
 		gray_smile.addMouseListener(new GrayListener(sml));
@@ -160,7 +159,11 @@ public class SouthPanel extends JPanel
 
 	public void insertText(String insert_text)
 	{
-		vod.setText(vod.getText() + insert_text);
+		// Эти три строчки нужно было сделать (домашнее задание Миши затем Лёши)
+		int    cp  = vod.getCaretPosition();
+		String txt = vod.getText().substring(0, cp) + insert_text + vod.getText().substring(cp);
+		vod.setText(txt);
+		// vod.setText(vod.getText() + insert_text);
 	}
 
 	public class ImgSeachListener implements MouseListener
@@ -253,7 +256,7 @@ public class SouthPanel extends JPanel
 		public void keyPressed(KeyEvent arg0)
 		{
 			String txt = vod.getText();
-			txt = Utilit.insertWordWrap(txt,  50,"<br>");
+			txt = Utilit.insertWordWrap(txt, 50, "<br>");
 			txt = Smile.replace(txt);
 			show_label.setText("<html>" + txt);
 		}
