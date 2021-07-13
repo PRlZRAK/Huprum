@@ -52,8 +52,7 @@ public class SettingsPanel extends TukPanel
 			super.setImg(logo_name);
 			
 		c.gridx = 1;
-		//ImageIcon close_image = new ImageIcon(
-				//Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/close.png")));
+		
 		ImageIcon close_image;
 		JLabel    label_close = new JLabel();
 		try

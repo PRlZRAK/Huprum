@@ -7,10 +7,12 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -67,7 +69,13 @@ public class UserPanel extends JPanel
 		ImageIcon icon;
 		if (jo.getInt("avatar") == 0)
 		{
-			icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
+			try
+			{
+				icon = new ImageIcon(ImageIO.read(new URL(Utilit.IMG_URL + "mask.jpg")));
+			} catch (IOException e)
+			{
+				icon = null;
+			}
 			show = false;
 		} else
 		{
@@ -76,16 +84,19 @@ public class UserPanel extends JPanel
 				show = true;
 				im = main.store.getAvaImg(id);
 				icon = im.getImageIcon(120, 120);
-			} catch (SQLException | IOException |NullPointerException e)
+			} catch (SQLException | IOException | NullPointerException e)
 			{
 				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
 				show = false;
-				//e.printStackTrace();
 			}
 		}
 		add(new JLabel(jo.getString("login")), c);
 		c.gridy++;
-		label_icon = new JLabel(icon);
+		label_icon = new JLabel();
+		if (icon == null)
+			label_icon.setText("Face");
+		else
+			label_icon.setIcon(icon);
 		label_icon.addMouseListener(new Show(this));
 		add(label_icon, c);
 		c.gridy++;

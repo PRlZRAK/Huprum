@@ -1,6 +1,7 @@
 package huprum.main.chat.panels;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -107,7 +108,8 @@ public class SouthPanel extends JPanel
 		add(show, c);
 		//
 		c.gridx++;
-		vod = new JTextField(40);
+		vod = new JTextField(30);
+		vod.setPreferredSize(new Dimension(100,30));
 		vod.addKeyListener(new KeyList());
 		add(vod, c);
 		//

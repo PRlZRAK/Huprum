@@ -1,5 +1,6 @@
 package huprum.main.smile;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,8 +15,10 @@ public class Smile extends JPanel
 {
 	public Smile(SouthPanel southPanel)
 	{
-		super(new FlowLayout());
+		super(new FlowLayout(FlowLayout.LEFT));
 		setBackground(Utilit.COLOR_1057);
+		setPreferredSize(new Dimension(300, 50));
+		
 		for (String[] str_label : smile_array)
 		{
 			JLabel label = new JLabel("<html>" + tag(str_label[1]));
