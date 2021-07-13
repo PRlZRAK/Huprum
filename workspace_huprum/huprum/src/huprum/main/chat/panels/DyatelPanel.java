@@ -32,14 +32,7 @@ public class DyatelPanel extends JPanel
 		c.insets = new Insets(0, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 1;
-		/*
-		String scenes[]   = new String[]
-				{ "dyatel/d10.png", "dyatel/d11.png", "dyatel/d12.png" , "dyatel/d13.png" };
-	
-		int    playList[] = new int[]
-				{ 0, 1,2, 3, 2, 1, 2, 3, 2, 1, 0 };
-		m = new Mult(scenes, playList);
-		*/
+		
 		m=new Mult1("stuk3.gif", "dyatel_stuk.wav");
 		m.addMouseListener(new MouseListener()
 		{

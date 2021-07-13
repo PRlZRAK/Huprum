@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -22,13 +23,21 @@ public class TukPanel extends JPanel
 	private int               X;
 	private int               Y;
 
-	public TukPanel(String im_name, int maxX, int maxY, int x, int y, Color color) throws IOException
+	public TukPanel(String im_name, int maxX, int maxY, int x, int y, Color color) throws IOException 
 	{
 		this.X = x;
 		this.Y = y;
 		if (color != null)
 			setBackground(color);
-		img = ImageIO.read(TukPanel.class.getResource(im_name));
+		// img = ImageIO.read(TukPanel.class.getResource(im_name));
+		try
+		{
+			img = ImageIO.read(new URL(Utilit.IMG_URL + im_name));
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int[] size = newSize(img, maxX, maxY);
 		if (img.getWidth() == size[0] || img.getHeight() == size[1])
 			return;
@@ -83,14 +92,14 @@ public class TukPanel extends JPanel
 	{
 		try
 		{
-			img = ImageIO.read(TukPanel.class.getResource(im_name));
+			// img = ImageIO.read(TukPanel.class.getResource(im_name));
+			img = ImageIO.read(new URL(Utilit.IMG_URL + im_name));
 			revalidate();
 			repaint();
-		} catch (IOException e)
+		} catch (IOException | NullPointerException e)
 		{
-			// TODO Auto-generated catch block
+			System.err.println(im_name);
 			e.printStackTrace();
 		}
-		
 	}
 }

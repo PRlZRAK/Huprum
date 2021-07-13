@@ -4,17 +4,19 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -72,18 +74,31 @@ public class SouthPanel extends JPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		JLabel gray_smile = new JLabel(
-				new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/sm2_gray.png"))));
+		JLabel gray_smile = new JLabel();
+		try
+		{
+			BufferedImage image = ImageIO.read(new URL(Utilit.IMG_URL + "sm2_gray.png"));
+			gray_smile.setIcon(new ImageIcon(image));
+		} catch (IOException e)
+		{
+			gray_smile.setText("Emoticon");
+		}
 		gray_smile.addMouseListener(new GrayListener(sml));
-		gray_smile.setToolTipText("Выбрать смайлик");
+		gray_smile.setToolTipText(Lang.put("Select emoticon#Выбрать смайлик"));
 		add(gray_smile, c);
 		//
 		c.gridx++;
-		ImageIcon img    = new ImageIcon(
-				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/paper_clip_invert.png")));
-		JLabel    imgBut = new JLabel();
-		imgBut.setIcon(img);
-		imgBut.setToolTipText("Прикрепить изображение");
+		JLabel        imgBut = new JLabel();
+		BufferedImage img    = null;
+		try
+		{
+			img = ImageIO.read(new URL(Utilit.IMG_URL + "paper_clip_invert.png"));
+			imgBut.setIcon(new ImageIcon(img));
+		} catch (IOException e)
+		{
+			imgBut.setText("Attach");
+		}
+		imgBut.setToolTipText(Lang.put("Attach image#Прикрепить изображение"));
 		imgBut.addMouseListener(new ImgSeachListener());
 		add(imgBut, c);
 		//
@@ -159,11 +174,9 @@ public class SouthPanel extends JPanel
 
 	public void insertText(String insert_text)
 	{
-		// Эти три строчки нужно было сделать (домашнее задание Миши затем Лёши)
 		int    cp  = vod.getCaretPosition();
 		String txt = vod.getText().substring(0, cp) + insert_text + vod.getText().substring(cp);
 		vod.setText(txt);
-		// vod.setText(vod.getText() + insert_text);
 	}
 
 	public class ImgSeachListener implements MouseListener

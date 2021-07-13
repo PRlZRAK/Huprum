@@ -34,7 +34,7 @@ public class Chat
 	public JScrollPane scsetp;
 	public JScrollPane lastrp;
 
-	public Chat(Huprum main)
+	public Chat(Huprum main) 
 	{
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();

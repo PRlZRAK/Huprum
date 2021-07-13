@@ -3,16 +3,17 @@ package huprum.main.chat.panels;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -64,7 +65,13 @@ public class EastPanel extends TukPanel
 		ImageIcon icon;
 		if (personal_data.getInt("avatar") == 0)
 		{
-			icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/user.png")));
+			try
+			{
+				icon = new ImageIcon(ImageIO.read(new URL(Utilit.IMG_URL + "user.png")));
+			} catch (IOException e1)
+			{
+				icon = null;
+			}
 			show = false;
 		} else
 		{
@@ -75,12 +82,26 @@ public class EastPanel extends TukPanel
 				show = true;
 			} catch (NumberFormatException | SQLException | IOException | NullPointerException e1)
 			{
-				icon = new ImageIcon(Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/mask.jpg")));
+				try
+				{
+					icon = new ImageIcon(ImageIO.read(new URL(Utilit.IMG_URL + "mask.jpg")));
+				} catch (IOException e2)
+				{
+					icon = null;
+				}
 				show = false;
 			}
 		}
-		ImageIcon pensil_image = new ImageIcon(
-				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/pensil.png")));
+		// ImageIcon pensil_image = new ImageIcon(
+		// Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/pensil.png")));
+		ImageIcon pensil_image;
+		try
+		{
+			pensil_image = new ImageIcon(ImageIO.read(new URL(Utilit.IMG_URL + "pensil.png")));
+		} catch (IOException e2)
+		{
+			pensil_image = null;
+		}
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(5, 10, 5, 10);
@@ -96,9 +117,16 @@ public class EastPanel extends TukPanel
 		super.setImg(logo_name);
 		c.gridwidth = 1;
 		c.gridx = 3;
-		ImageIcon close_image = new ImageIcon(
-				Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/close.png")));
-		JLabel    label_close = new JLabel(close_image);
+		ImageIcon close_image;
+		JLabel    label_close = new JLabel();
+		try
+		{
+			close_image = new ImageIcon(ImageIO.read(new URL(Utilit.IMG_URL + "close.png")));
+			label_close.setIcon(close_image);
+		} catch (IOException e)
+		{
+			label_close.setText("X");
+		}
 		label_close.addMouseListener(new CloseWidow());
 		add(label_close, c);
 		c.gridwidth = 3;
@@ -109,12 +137,20 @@ public class EastPanel extends TukPanel
 		c.gridwidth = 2;
 		c.gridy++;
 		c.gridx = 0;
-		label_icon = new JLabel(icon);
+		label_icon = new JLabel();
+		if (icon != null)
+			label_icon.setIcon(icon);
+		else
+			label_icon.setText("Portrait");
 		label_icon.addMouseListener(new iconShow(this));
 		add(label_icon, c);
 		c.gridx = 2;
 		c.gridwidth = 1;
-		JLabel pensil1 = new JLabel(pensil_image);
+		JLabel pensil1 = new JLabel();
+		if (pensil_image == null)
+			pensil1.setText("pensil");
+		else
+			pensil1.setIcon(pensil_image);
 		pensil1.addMouseListener(new FaceEditList(this));
 		add(pensil1, c);
 		//
@@ -125,7 +161,11 @@ public class EastPanel extends TukPanel
 		login_label = new JLabel(personal_data.getString("login"));
 		add(login_label, c);
 		c.gridx = 2;
-		JLabel pensil2 = new JLabel(pensil_image);
+		JLabel pensil2 = new JLabel();
+		if (pensil_image == null)
+			pensil2.setText("pensil");
+		else
+			pensil2.setIcon(pensil_image);
 		pensil2.addMouseListener(new editLogin(this));
 		add(pensil2, c);
 		//
@@ -136,7 +176,11 @@ public class EastPanel extends TukPanel
 		phone_label = new JLabel(personal_data.getString("phone"));
 		add(phone_label, c);
 		c.gridx = 2;
-		JLabel pensil3 = new JLabel(pensil_image);
+		JLabel pensil3 = new JLabel();
+		if (pensil_image == null)
+			pensil3.setText("pensil");
+		else
+			pensil3.setIcon(pensil_image);
 		pensil3.addMouseListener(new editPhone(this));
 		add(pensil3, c);
 		c.gridx = 3;
@@ -174,7 +218,11 @@ public class EastPanel extends TukPanel
 		email_label = new JLabel(personal_data.getString("email"));
 		add(email_label, c);
 		c.gridx = 2;
-		JLabel pensil4 = new JLabel(pensil_image);
+		JLabel pensil4 = new JLabel();
+		if (pensil_image == null)
+			pensil4.setText("pensil");
+		else
+			pensil4.setIcon(pensil_image);
 		pensil4.addMouseListener(new editEmail(this));
 		add(pensil4, c);
 		c.gridx = 3;
@@ -215,7 +263,11 @@ public class EastPanel extends TukPanel
 		fio_label = new JLabel("<html><p>" + Utilit.insertWordWrap(fio, text_whide, "<br>"));
 		add(fio_label, c);
 		c.gridx = 2;
-		JLabel pensil5 = new JLabel(pensil_image);
+		JLabel pensil5 = new JLabel();
+		if (pensil_image == null)
+			pensil5.setText("pensil");
+		else
+			pensil5.setIcon(pensil_image);
 		pensil5.addMouseListener(new editFio(this));
 		add(pensil5, c);
 		c.gridx = 3;
@@ -253,7 +305,11 @@ public class EastPanel extends TukPanel
 		pass_label = new JLabel(stars(personal_data.getString("password")));
 		add(pass_label, c);
 		c.gridx = 2;
-		JLabel pensil6 = new JLabel(pensil_image);
+		JLabel pensil6 = new JLabel();
+		if (pensil_image == null)
+			pensil6.setText("pensil");
+		else
+			pensil6.setIcon(pensil_image);
 		pensil6.addMouseListener(new editPass(this));
 		add(pensil6, c);
 		c.gridx = 0;

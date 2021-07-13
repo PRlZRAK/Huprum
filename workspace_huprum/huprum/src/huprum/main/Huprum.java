@@ -1,15 +1,16 @@
 package huprum.main;
 
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -39,7 +40,7 @@ public class Huprum extends JFrame
 	private JSONObject        personalData;
 	public Store              store;
 
-	public Huprum(String title) throws MalformedURLException, SQLException
+	public Huprum(String title) throws SQLException, IOException
 	{
 		super(title);
 		try
@@ -63,7 +64,8 @@ public class Huprum extends JFrame
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
-		Image image = Toolkit.getDefaultToolkit().createImage(Huprum.class.getResource("img/logo_blue.png"));
+		
+		BufferedImage image = ImageIO.read(new URL(Utilit.IMG_URL + "logo_blue.png"));
 		setIconImage(image);
 		cl = new Client(Utilit.SERVER_URL);
 		store = new Store(this);
@@ -103,7 +105,7 @@ public class Huprum extends JFrame
 		try
 		{
 			new Huprum("Мессенджер Tuktuk");
-		} catch (MalformedURLException | SQLException e)
+		} catch (SQLException | IOException e)
 		{
 			e.printStackTrace();
 		}
@@ -133,20 +135,30 @@ public class Huprum extends JFrame
 			store.setParam("height", Integer.toString(getSize().height));
 			store.setParam("locatx", Integer.toString(getLocation().x));
 			store.setParam("locaty", Integer.toString(getLocation().y));
-			
 			String crys;
 			String stucs;
 			String sends;
 			String dyats;
-			if(Utilit.SET_CRY_SOUND)crys = "1";else crys= "0";
-			if(Utilit.SET_STUK_SOUND)stucs = "1";else stucs= "0";
-			if(Utilit.SET_SEND_SOUND)sends = "1";else sends= "0";
-			if(Utilit.SET_DYATEL_SHOW)dyats = "1";else dyats= "0";
-			store.setParam("cry_sound",crys );
+			if (Utilit.SET_CRY_SOUND)
+				crys = "1";
+			else
+				crys = "0";
+			if (Utilit.SET_STUK_SOUND)
+				stucs = "1";
+			else
+				stucs = "0";
+			if (Utilit.SET_SEND_SOUND)
+				sends = "1";
+			else
+				sends = "0";
+			if (Utilit.SET_DYATEL_SHOW)
+				dyats = "1";
+			else
+				dyats = "0";
+			store.setParam("cry_sound", crys);
 			store.setParam("stuc_sound", stucs);
 			store.setParam("send_sound", sends);
 			store.setParam("dyatel_show", dyats);
-			
 			if (remember)
 			{
 				store.setParam("remember", "1");
