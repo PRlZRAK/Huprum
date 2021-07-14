@@ -11,14 +11,13 @@ import javax.swing.JPanel;
 import huprum.main.chat.panels.SouthPanel;
 import huprum.main.utils.Utilit;
 
-public class Smile extends JPanel 
+public class Smile extends JPanel
 {
 	public Smile(SouthPanel southPanel)
 	{
 		super(new FlowLayout(FlowLayout.LEFT));
 		setBackground(Utilit.COLOR_1057);
-		setPreferredSize(new Dimension(300, 60));
-		
+		setPreferredSize(new Dimension(300, 90));
 		for (String[] str_label : smile_array)
 		{
 			JLabel label = new JLabel("<html>" + tag(str_label[1]));
@@ -72,31 +71,29 @@ public class Smile extends JPanel
 	private static final long serialVersionUID = 7502031030850223394L;
 	private static String     smile_array[][]  =
 	{
-			{ ")))","https://i.ibb.co/Yb5CjVc/Grinning-face-1f600.png" },
-			{ "=)","https://i.ibb.co/M9nvDdB/Face-with-tears-of-joy-1f602.png"},
-			{ ":x","https://i.ibb.co/4pFb4dq/Shushing-face-1f92b.png" },
-			{ "-_-","https://i.ibb.co/crBDyjW/Expressionless-face-1f611.png" },
-			{ "B)","https://i.ibb.co/3CgZRBy/Smiling-face-with-sunglasses-1f60e.png" },
-			{ ":(","https://i.ibb.co/KGq4Tv0/Worried-face-1f61f.png" },
-			{ ":o","https://i.ibb.co/LJB2dJr/Hushed-face-1f62f.png" },
-			{ "*_*","https://i.ibb.co/bKFxpNn/Flushed-face-1f633.png" },
-			{ ":_(","https://i.ibb.co/hRmRCDb/Loudly-crying-face-1f62d.png" },
-			{ "0x0","https://i.ibb.co/Phpwgz1/Yawning-face-1f971.png" },
-			{ "8)","https://i.ibb.co/nwdcGFL/Pouting-face-1f621.png" },
-			
-			{ ":)","https://emoticons.do.am/1/a2/5.gif" },
-			{ ":-(","https://emoticons.do.am/1/a2/13.gif" },
-			{ ":D","https://emoticons.do.am/1/a2/9.gif" },
-			{ "]:->","https://emoticons.do.am/1/a2/17.gif" },
-			{ ";)","https://emoticons.do.am/1/a2/21.gif" },
-			{ ":-||","https://emoticons.do.am/1/a2/15.gif" },
-			{ ":-&","https://emoticons.do.am/1/91/29.gif" },
-			{ "(Y)","https://emoticons.do.am/1/91/34.gif" },
-			{ ":-/","https://emoticons.do.am/1/91/51.gif" },
-			{ ":-?","https://emoticons.do.am/1/91/25.gif" },
-			{ ":-<","https://emoticons.do.am/1/91/97.gif" },
-			{ ":y:","https://emoticons.do.am/1/91/110.gif" },
-	};
+			{ ")))", "https://i.ibb.co/Yb5CjVc/Grinning-face-1f600.png" },
+			{ "=)", "https://i.ibb.co/M9nvDdB/Face-with-tears-of-joy-1f602.png" },
+			{ ":x", "https://i.ibb.co/4pFb4dq/Shushing-face-1f92b.png" },
+			{ "-_-", "https://i.ibb.co/crBDyjW/Expressionless-face-1f611.png" },
+			{ "B)", "https://i.ibb.co/3CgZRBy/Smiling-face-with-sunglasses-1f60e.png" },
+			{ ":(", "https://i.ibb.co/KGq4Tv0/Worried-face-1f61f.png" },
+			{ ":o", "https://i.ibb.co/LJB2dJr/Hushed-face-1f62f.png" },
+			{ "*_*", "https://i.ibb.co/bKFxpNn/Flushed-face-1f633.png" },
+			{ ":_(", "https://i.ibb.co/hRmRCDb/Loudly-crying-face-1f62d.png" },
+			{ "0x0", "https://i.ibb.co/Phpwgz1/Yawning-face-1f971.png" },
+			{ "8)", "https://i.ibb.co/nwdcGFL/Pouting-face-1f621.png" },
+			{ ":)", "https://emoticons.do.am/1/a2/5.gif" },
+			{ ":-(", "https://emoticons.do.am/1/a2/13.gif" },
+			{ ":D", "https://emoticons.do.am/1/a2/9.gif" },
+			{ "]:->", "https://emoticons.do.am/1/a2/17.gif" },
+			{ ";)", "https://emoticons.do.am/1/a2/21.gif" },
+			{ ":-||", "https://emoticons.do.am/1/a2/15.gif" },
+			{ ":-&", "https://emoticons.do.am/1/91/29.gif" },
+			{ "(Y)", "https://emoticons.do.am/1/91/34.gif" },
+			{ ":-/", "https://emoticons.do.am/1/91/51.gif" },
+			{ ":-?", "https://emoticons.do.am/1/91/25.gif" },
+			{ ":-<", "https://emoticons.do.am/1/91/97.gif" },
+			{ ":y:", "https://emoticons.do.am/1/91/110.gif" }, };
 
 	public static String replace(String str, int width, int height)
 	{
@@ -108,6 +105,7 @@ public class Smile extends JPanel
 		}
 		return str;
 	}
+
 	public static String replace(String str)
 	{
 		for (int i = 0; i < smile_array.length; i++)
@@ -129,4 +127,3 @@ public class Smile extends JPanel
 		return "<img src=\"" + file_name + "\"  >";
 	}
 }
-
