@@ -64,7 +64,6 @@ public class Huprum extends JFrame
 		Toolkit   kit        = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setLocation((screenSize.width - DEFAULT_WIDTH) / 2, (screenSize.height - DEFAULT_HEIGHT) / 2);
-		
 		BufferedImage image = ImageIO.read(new URL(Utilit.IMG_URL + "logo_blue.png"));
 		setIconImage(image);
 		cl = new Client(Utilit.SERVER_URL);
@@ -168,7 +167,6 @@ public class Huprum extends JFrame
 				store.setParam("remember", "0");
 		} catch (SQLException e1)
 		{
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
