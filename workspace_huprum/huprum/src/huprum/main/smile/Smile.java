@@ -17,7 +17,7 @@ public class Smile extends JPanel
 	{
 		super(new FlowLayout(FlowLayout.LEFT));
 		setBackground(Utilit.COLOR_1057);
-		setPreferredSize(new Dimension(300, 50));
+		setPreferredSize(new Dimension(300, 60));
 		
 		for (String[] str_label : smile_array)
 		{
