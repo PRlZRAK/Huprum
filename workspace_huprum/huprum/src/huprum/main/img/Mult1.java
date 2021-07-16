@@ -26,19 +26,32 @@ public class Mult1 extends JLabel
 		{
 			URL url = new URL(Utilit.IMG_URL + gif_name);
 			icon = new ImageIcon(url);
-			pl = new PlaySound(wav_name);
+			if (wav_name == null)
+				pl = null;
+			else
+				pl = new PlaySound(wav_name);
 		} catch (IOException | UnsupportedAudioFileException | LineUnavailableException e1)
 		{
 			icon = null;
 		}
 	}
 
-	public void play()
+	public void play(boolean sound)
 	{
-		if (Utilit.SET_STUK_SOUND)
+		if (sound && pl != null)
 			pl.play();
 		setIcon(null);
 		icon.getImage().flush();
 		setIcon(icon);
+	}
+
+	public int getImgWidth()
+	{
+		return icon.getIconWidth();
+	}
+
+	public int getImgHeight()
+	{
+		return icon.getIconHeight();
 	}
 }

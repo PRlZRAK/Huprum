@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
-import huprum.main.timer.Timer;
 import huprum.main.utils.DTime;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
@@ -34,16 +33,16 @@ public class LoginActionListener implements ActionListener
 		String  log     = loginer.getJlogin();
 		if (log.equals(""))
 		{
-			loginer.setErrLog("<html><p color=red>"+Lang.put("Fill in the field#Заполнить"));
+			loginer.setErrLog("<html><p color=red>" + Lang.put("Fill in the field#Заполнить"));
 			return;
 		} else
 			loginer.setErrLog("");
 		String pass = loginer.getJpass();
 		if (pass.equals(""))
 		{
-			loginer.setErrPas("<html><p color=red>"+Lang.put("Fill in the field#Заполнить"));
+			loginer.setErrPas("<html><p color=red>" + Lang.put("Fill in the field#Заполнить"));
 			loginer.getForgotBut().setVisible(true);
-			return;			
+			return;
 		} else
 			loginer.setErrPas("");
 		int i = Utilit.CheckLogin(log);
@@ -71,13 +70,12 @@ public class LoginActionListener implements ActionListener
 			String jpass = (String) jo.get("password");
 			if (!jpass.equals(pass))
 			{
-				loginer.setErrPas("<html><p color=red>"+Lang.put("Incorrect password#Неправильный пароль"));
+				loginer.setErrPas("<html><p color=red>" + Lang.put("Incorrect password#Неправильный пароль"));
 				loginer.getForgotBut().setVisible(true);
 				return;
 			}
 			main.setRemember(loginer.getJremember().isSelected());
-			
-			int    id       = jo.getInt("id");
+			int id = jo.getInt("id");
 			main.getLoginer().setId(id);
 			String login    = (String) jo.get("login");
 			String phone    = (String) jo.get("phone");
@@ -92,7 +90,8 @@ public class LoginActionListener implements ActionListener
 			return;
 		} catch (IOException e)
 		{
-			loginer.setEr_сonnection("<html><p color=red>"+Lang.put("Connection to the server is not established#Нет соединения с сервером"));
+			loginer.setEr_сonnection("<html><p color=red>"
+					+ Lang.put("Connection to the server is not established#Нет соединения с сервером"));
 			return;
 		}
 	}

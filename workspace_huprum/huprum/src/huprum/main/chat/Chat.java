@@ -15,7 +15,6 @@ import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.img.TukPanel;
-import huprum.main.timer.Timer;
 import huprum.main.toolbar.ToolBar;
 import huprum.main.utils.Utilit;
 
@@ -30,21 +29,19 @@ public class Chat
 	public UserPanel   up;
 	public JScrollPane sep;
 	public DyatelPanel dp;
-	private TukPanel setp;
-	private JPanel rightPanel;
+	private TukPanel   setp;
+	private JPanel     rightPanel;
 	public JScrollPane scsetp;
 	public JScrollPane lastrp;
 
-	public Chat(Huprum main) 
-	{	
-		
+	public Chat(Huprum main)
+	{
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
-		Timer.time("toolbar");
-		toolbar = new ToolBar(main);		
+		// Timer.time("toolbar");
+		toolbar = new ToolBar(main);
 		main.add(toolbar, BorderLayout.PAGE_START);
-		
-		Timer.time("wp");
+		/// Timer.time("wp");
 		JPanel wpanel = new JPanel();
 		wpanel.setLayout(new BorderLayout());
 		up = new UserPanel(main);
@@ -52,12 +49,10 @@ public class Chat
 		wp = new WestPanel(main);
 		wpanel.add(new JScrollPane(wp), BorderLayout.CENTER);
 		main.add(wpanel, BorderLayout.WEST);
-		
-		Timer.time("sp");
+		// Timer.time("sp");
 		sp = new SouthPanel(main);
 		main.add(sp, BorderLayout.SOUTH);
-		
-		Timer.time("lp");
+		// Timer.time("lp");
 		JPanel lp = new JPanel();
 		lp.setLayout(new BorderLayout());
 		dp = new DyatelPanel();
@@ -69,10 +64,10 @@ public class Chat
 		lp.add(scroll, BorderLayout.CENTER);
 		lp.add(dp, BorderLayout.WEST);
 		main.add(lp, BorderLayout.CENTER);
-		Timer.time("ep");
+		// Timer.time("ep");
 		try
 		{
-			Timer.time("rp");
+			// Timer.time("rp");
 			lastrp = new JScrollPane();
 			ep = new EastPanel(main);
 			rightPanel = new JPanel();
@@ -86,28 +81,23 @@ public class Chat
 		}
 		try
 		{
-			setp=new SettingsPanel(main);
+			setp = new SettingsPanel(main);
 		} catch (IOException e)
 		{
-			
 			e.printStackTrace();
 		}
-		
 		scsetp = new JScrollPane(setp);
 		scsetp.setVisible(false);
 		rightPanel.add(scsetp, BorderLayout.EAST);
-        main.add(rightPanel, BorderLayout.EAST);
-        
-		
-		
+		main.add(rightPanel, BorderLayout.EAST);
 		/*
 		 * перерисовка окна
 		 */
-        Timer.time("перерисовка");
+		// Timer.time("перерисовка");
 		main.revalidate();
 		main.repaint();
 		Runnable demon = new Demon(this);
 		new Thread(demon).start();
-		 Timer.time("end of creating panels");
+		// Timer.time("end of creating panels");
 	}
 }
