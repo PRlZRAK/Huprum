@@ -95,7 +95,7 @@ public class CenterPanel extends JPanel
 		} catch (IOException e1)
 		{
 			c.anchor = GridBagConstraints.SOUTH;
-			con.setText("<html><p color=#d3d3d3>Нет соединения с сервером");
+			con.setText("<html><p color=#d3d3d3>"+Lang.put("Connection is lost#Нет соединения с сервером"));
 			add(con, c);
 			return;
 		}
@@ -253,7 +253,7 @@ public class CenterPanel extends JPanel
 				image.showSave(main, msg);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Что то с сохранением пошло не так", "Ошибка",
+				JOptionPane.showMessageDialog(main, Lang.put("Something went wrong with saving#С сохранением что-то пошло не так"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
