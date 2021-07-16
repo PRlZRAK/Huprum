@@ -31,6 +31,7 @@ public class Utilit
 	 * url сервера
 	 */
 	//public static String HUPRUM_URL = "http://localhost/huprum/";
+	//public static String HUPRUM_URL = "http://localhost/html/huprum/";
 	public static String        HUPRUM_URL      = "http://tuktuk.su/huprum/";
 	public static String        SERVER_URL      = HUPRUM_URL + "server/index.php";
 	public static final String  SMILE_URL       = HUPRUM_URL + "server/smile/";
