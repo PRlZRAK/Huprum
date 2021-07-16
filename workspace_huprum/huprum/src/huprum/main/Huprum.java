@@ -105,7 +105,7 @@ public class Huprum extends JFrame
 	{
 		try
 		{
-			new Huprum("Мессенджер Tuktuk");
+			new Huprum("Tuktuk");
 		} catch (SQLException | IOException e)
 		{
 			e.printStackTrace();

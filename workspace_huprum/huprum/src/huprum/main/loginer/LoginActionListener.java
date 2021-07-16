@@ -90,8 +90,7 @@ public class LoginActionListener implements ActionListener
 			return;
 		} catch (IOException e)
 		{
-			loginer.setEr_сonnection("<html><p color=red>"
-					+ Lang.put("Connection to the server is not established#Нет соединения с сервером"));
+			loginer.setEr_сonnection("<html><p color=red>"+Lang.put("Connection is lost#Нет соединения с сервером"));
 			return;
 		}
 	}
