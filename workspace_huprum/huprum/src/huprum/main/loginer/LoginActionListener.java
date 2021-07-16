@@ -87,10 +87,8 @@ public class LoginActionListener implements ActionListener
 			loginer.setPhone(phone);
 			loginer.setLogin(login);
 			main.setPersonalData(jo); // для личного кабинета
-			Timer.start("чат");
 			Chat chat = new Chat(main);
 			loginer.setChat(chat);
-			Timer.time();
 			return;
 		} catch (IOException e)
 		{
