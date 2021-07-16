@@ -4,13 +4,12 @@ public class Timer
 {
 	private static long startTime;
 	private static String processName;
-	private static Date date;
 	public static void start(String str) {
-		startTime = date.getTime();
+		startTime = new Date().getTime();
 		processName=str;
 	}
 	public static void time() {
-		long time = date.getTime()-startTime;
+		long time = new Date().getTime()-startTime;
 		System.out.println("Время выполнения "+processName+": "+time);
 	}
 }

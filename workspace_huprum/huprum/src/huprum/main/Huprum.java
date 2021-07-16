@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.sqlite.Store;
+import huprum.main.timer.Timer;
 import huprum.main.utils.DTime;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
@@ -41,8 +42,9 @@ public class Huprum extends JFrame
 	public Store              store;
 
 	public Huprum(String title) throws SQLException, IOException
-	{
+	{		
 		super(title);
+		Timer.start("Huprum");
 		try
 		{
 			UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -77,6 +79,7 @@ public class Huprum extends JFrame
 		setTitle(Lang.put("Messenger Tuktuk#Мессенджер Tuktuk"));
 		loginer = new Loginer(this);
 		setVisible(true);
+		Timer.time();
 	}
 
 	public Client getCl()
