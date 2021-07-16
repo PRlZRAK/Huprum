@@ -15,6 +15,7 @@ import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.img.TukPanel;
+import huprum.main.timer.Timer;
 import huprum.main.toolbar.ToolBar;
 import huprum.main.utils.Utilit;
 
@@ -39,11 +40,11 @@ public class Chat
 		
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
-		Timer.start("toolbar");
+		Timer.time("toolbar");
 		toolbar = new ToolBar(main);		
 		main.add(toolbar, BorderLayout.PAGE_START);
-		Timer.time();
-		Timer.start("wp");
+		
+		Timer.time("wp");
 		JPanel wpanel = new JPanel();
 		wpanel.setLayout(new BorderLayout());
 		up = new UserPanel(main);
@@ -51,12 +52,12 @@ public class Chat
 		wp = new WestPanel(main);
 		wpanel.add(new JScrollPane(wp), BorderLayout.CENTER);
 		main.add(wpanel, BorderLayout.WEST);
-		Timer.time();
-		Timer.start("sp");
+		
+		Timer.time("sp");
 		sp = new SouthPanel(main);
 		main.add(sp, BorderLayout.SOUTH);
-		Timer.time();
-		Timer.start("lp");
+		
+		Timer.time("lp");
 		JPanel lp = new JPanel();
 		lp.setLayout(new BorderLayout());
 		dp = new DyatelPanel();
@@ -68,10 +69,10 @@ public class Chat
 		lp.add(scroll, BorderLayout.CENTER);
 		lp.add(dp, BorderLayout.WEST);
 		main.add(lp, BorderLayout.CENTER);
-		Timer.time();
+		Timer.time("ep");
 		try
 		{
-			Timer.start("rp");
+			Timer.time("rp");
 			lastrp = new JScrollPane();
 			ep = new EastPanel(main);
 			rightPanel = new JPanel();
@@ -96,17 +97,17 @@ public class Chat
 		scsetp.setVisible(false);
 		rightPanel.add(scsetp, BorderLayout.EAST);
         main.add(rightPanel, BorderLayout.EAST);
-        Timer.time();
+        
 		
 		
 		/*
 		 * перерисовка окна
 		 */
-        Timer.start("перерисовка");
+        Timer.time("перерисовка");
 		main.revalidate();
 		main.repaint();
 		Runnable demon = new Demon(this);
 		new Thread(demon).start();
-		Timer.time();
+		 Timer.time("end of creating panels");
 	}
 }

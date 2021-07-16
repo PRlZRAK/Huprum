@@ -1,16 +1,20 @@
 package huprum.main.timer;
+
 import java.util.Date;
+
 public class Timer
 {
 	private static long startTime;
-	private static String processName;
-	public static void start(String str) {
+
+	public static void start(String str)
+	{
 		startTime = new Date().getTime();
-		processName=str;
+		time(str);
 	}
-	public static void time() {
-		double time = ((double)new Date().getTime()-startTime)/1000;
-		
-		System.out.println("Время выполнения "+processName+": "+time);
+
+	public static void time(String label)
+	{
+		double time = ((double) new Date().getTime() - startTime) / 1000;
+		System.out.println(label + ": " + time);
 	}
 }

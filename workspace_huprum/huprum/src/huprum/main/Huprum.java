@@ -79,7 +79,7 @@ public class Huprum extends JFrame
 		setTitle(Lang.put("Messenger Tuktuk#Мессенджер Tuktuk"));
 		loginer = new Loginer(this);
 		setVisible(true);
-		Timer.time();
+		Timer.time("end Huprum construct");
 	}
 
 	public Client getCl()
