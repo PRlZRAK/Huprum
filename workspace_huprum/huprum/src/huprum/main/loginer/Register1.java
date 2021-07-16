@@ -153,7 +153,7 @@ public class Register1 extends JFrame implements ActionListener
 		panel.add(new JLabel(""), c);
 		c.gridx = 1;
 		c.gridy = 0;
-		panel.add(new JLabel(Lang.put("Username:#Логин:")), c);
+		panel.add(new JLabel(Lang.put("Login:#Логин:")), c);
 		c.gridy++;
 		jlogin = new JTextField(20);
 		er_login = new JLabel("");
