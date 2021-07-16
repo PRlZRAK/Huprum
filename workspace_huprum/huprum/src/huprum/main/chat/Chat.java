@@ -15,7 +15,6 @@ import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.img.TukPanel;
-import huprum.main.timer.Timer;
 import huprum.main.toolbar.ToolBar;
 import huprum.main.utils.Utilit;
 
