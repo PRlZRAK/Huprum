@@ -9,7 +9,8 @@ public class Timer
 		processName=str;
 	}
 	public static void time() {
-		long time = new Date().getTime()-startTime;
+		double time = ((double)new Date().getTime()-startTime)/1000;
+		
 		System.out.println("Время выполнения "+processName+": "+time);
 	}
 }

@@ -15,6 +15,7 @@ import huprum.main.chat.panels.SouthPanel;
 import huprum.main.chat.panels.UserPanel;
 import huprum.main.chat.panels.WestPanel;
 import huprum.main.img.TukPanel;
+import huprum.main.timer.Timer;
 import huprum.main.toolbar.ToolBar;
 import huprum.main.utils.Utilit;
 
@@ -35,7 +36,7 @@ public class Chat
 	public JScrollPane lastrp;
 
 	public Chat(Huprum main) 
-	{
+	{		
 		main.getContentPane().setLayout(new BorderLayout());
 		main.getContentPane().removeAll();
 		toolbar = new ToolBar(main);

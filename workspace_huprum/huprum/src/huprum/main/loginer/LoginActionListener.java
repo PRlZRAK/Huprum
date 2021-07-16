@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import huprum.main.Huprum;
 import huprum.main.chat.Chat;
 import huprum.main.connections.Client;
+import huprum.main.timer.Timer;
 import huprum.main.utils.DTime;
 import huprum.main.utils.Lang;
 import huprum.main.utils.Utilit;
@@ -86,8 +87,10 @@ public class LoginActionListener implements ActionListener
 			loginer.setPhone(phone);
 			loginer.setLogin(login);
 			main.setPersonalData(jo); // для личного кабинета
+			Timer.start("чат");
 			Chat chat = new Chat(main);
 			loginer.setChat(chat);
+			Timer.time();
 			return;
 		} catch (IOException e)
 		{
