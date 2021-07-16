@@ -42,6 +42,10 @@ public class Smile extends JPanel
 		public void mouseClicked(MouseEvent arg0)
 		{
 			southPanel.insertText(insert_text);
+			String txt =southPanel.vod.getText();
+			txt = Utilit.insertWordWrap(txt, 50, "<br>");
+			txt = Smile.replace(txt);
+			southPanel.show_label.setText("<html>" + txt);
 		}
 
 		@Override

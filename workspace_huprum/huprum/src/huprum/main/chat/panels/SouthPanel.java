@@ -43,11 +43,12 @@ public class SouthPanel extends JPanel
 	private Loginer           loginer;
 	private Huprum            main;
 	private String            myId;
-	private JTextField        vod;
+	public JTextField        vod;
 	private ImageManipulation img_send         = null;
 	private JLabel            show;
 	private Smile             sml;
-	private JLabel            show_label;
+	public JLabel            show_label;
+	private JButton           enter;
 
 	public SouthPanel(Huprum main)
 	{
@@ -109,12 +110,12 @@ public class SouthPanel extends JPanel
 		//
 		c.gridx++;
 		vod = new JTextField(30);
-		vod.setPreferredSize(new Dimension(100,30));
+		vod.setPreferredSize(new Dimension(100, 30));
 		vod.addKeyListener(new KeyList());
 		add(vod, c);
 		//
 		c.gridx++;
-		JButton enter = new JButton("Отправить");
+		enter = new JButton("Отправить");
 		enter.addActionListener(new Message());
 		add(enter, c);
 		//
@@ -268,21 +269,23 @@ public class SouthPanel extends JPanel
 	public class KeyList implements KeyListener
 	{
 		@Override
-		public void keyPressed(KeyEvent arg0)
+		public void keyPressed(KeyEvent e)
+		{
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e)
 		{
 			String txt = vod.getText();
 			txt = Utilit.insertWordWrap(txt, 50, "<br>");
 			txt = Smile.replace(txt);
 			show_label.setText("<html>" + txt);
+			if (e.getKeyCode() == 10)
+				enter.doClick();
 		}
 
 		@Override
-		public void keyReleased(KeyEvent arg0)
-		{
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0)
+		public void keyTyped(KeyEvent e)
 		{
 		}
 	}
