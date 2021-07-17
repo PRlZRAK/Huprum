@@ -19,6 +19,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import org.json.JSONObject;
 
+import huprum.main.chat.panels.WaitPanel;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.sqlite.Store;
@@ -39,6 +40,7 @@ public class Huprum extends JFrame
 	private boolean           remember         = false;
 	private JSONObject        personalData;
 	public Store              store;
+	
 
 	public Huprum(String title) throws SQLException, IOException
 	{			
@@ -79,6 +81,7 @@ public class Huprum extends JFrame
 		loginer = new Loginer(this);
 		setVisible(true);
 		//Timer.time("end Huprum construct");
+		
 	}
 
 	public Client getCl()
