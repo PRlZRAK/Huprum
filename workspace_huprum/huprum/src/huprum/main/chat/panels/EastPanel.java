@@ -156,7 +156,7 @@ public class EastPanel extends TukPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		add(new JLabel("Login:"), c);
+		add(new JLabel(Lang.put("Login:#Логин:")), c);
 		c.gridx = 1;
 		login_label = new JLabel(personal_data.getString("login"));
 		add(login_label, c);
@@ -171,7 +171,7 @@ public class EastPanel extends TukPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		add(new JLabel("Tелефон:"), c);
+		add(new JLabel(Lang.put("Phone number:#Tелефон:")), c);
 		c.gridx = 1;
 		phone_label = new JLabel(personal_data.getString("phone"));
 		add(phone_label, c);
@@ -213,7 +213,7 @@ public class EastPanel extends TukPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		add(new JLabel("Почта:"), c);
+		add(new JLabel(Lang.put("Email address:#Почта:")), c);
 		c.gridx = 1;
 		email_label = new JLabel(personal_data.getString("email"));
 		add(email_label, c);
@@ -255,7 +255,7 @@ public class EastPanel extends TukPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		add(new JLabel("Ф.И.О:"), c);
+		add(new JLabel(Lang.put("Full name:#Ф.И.О:")), c);
 		c.gridx = 1;
 		String fio = "";
 		if (!personal_data.isNull("fio"))
@@ -300,7 +300,7 @@ public class EastPanel extends TukPanel
 		//
 		c.gridy++;
 		c.gridx = 0;
-		add(new JLabel("Пароль:"), c);
+		add(new JLabel(Lang.put("Password:#Пароль:")), c);
 		c.gridx = 1;
 		pass_label = new JLabel(stars(personal_data.getString("password")));
 		add(pass_label, c);
@@ -374,7 +374,7 @@ public class EastPanel extends TukPanel
 				cl.send(pars);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(eastPanel, "Нет соединения с сервером", "Потеряна связь",
+				JOptionPane.showMessageDialog(eastPanel, Lang.put("Connection is lost#Нет соединения с сервером"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -460,8 +460,8 @@ public class EastPanel extends TukPanel
 			String par_name = "fio";
 			if (!personal_data.isNull(par_name))
 				data = personal_data.getString(par_name);
-			String n = (String) JOptionPane.showInputDialog(main, "Введите Фамилию Имя Отчество:",
-					"Редактируем личные данные", JOptionPane.NO_OPTION, null, null, data);
+			String n = (String) JOptionPane.showInputDialog(main, Lang.put("Enter your full name#Введите Фамилию Имя Отчество:"),
+					Lang.put("Editing your personal data#Редактируем личные данные"), JOptionPane.NO_OPTION, null, null, data);
 			if (n == null)
 				return;
 			Map<String, String> pars = new HashMap<String, String>();
@@ -474,7 +474,7 @@ public class EastPanel extends TukPanel
 				answer = cl.send(pars);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Нет соединения с сервером", "Потеряна связь",
+				JOptionPane.showMessageDialog(main, Lang.put("Connection is lost#Нет соединения с сервером"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -522,7 +522,7 @@ public class EastPanel extends TukPanel
 			String par_name = "login";
 			if (!personal_data.isNull(par_name))
 				data = personal_data.getString(par_name);
-			String n = (String) JOptionPane.showInputDialog(main, "Логин:", "Редактируем личные данные",
+			String n = (String) JOptionPane.showInputDialog(main, Lang.put("Enter a new login:#Введите новый логин:"), Lang.put("Editing your personal data#Редактируем личные данные"),
 					JOptionPane.NO_OPTION, null, null, data);
 			if (n == null)
 				return;
@@ -536,7 +536,7 @@ public class EastPanel extends TukPanel
 				answer = cl.send(pars);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Нет соединения с сервером", "Потеряна связь",
+				JOptionPane.showMessageDialog(main, Lang.put("Connection is lost#Нет соединения с сервером"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -585,13 +585,13 @@ public class EastPanel extends TukPanel
 			String par_name = "phone";
 			if (!personal_data.isNull(par_name))
 				data = personal_data.getString(par_name);
-			String n = (String) JOptionPane.showInputDialog(main, "Телефон:", "Редактируем личные данные",
+			String n = (String) JOptionPane.showInputDialog(main, Lang.put("Enter a new phone number:#Введите новый телефонный номер:"), Lang.put("Editing your personal data#Редактируем личные данные"),
 					JOptionPane.NO_OPTION, null, null, data);
 			if (n == null)
 				return;
 			if (!Utilit.isPhone(n))
 			{
-				JOptionPane.showMessageDialog(main, "Неправильный телефон " + n, "Ошибка!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(main, Lang.put("Phone is invalid #Неправильный телефон ") + n, Lang.put("Error!#Ошибка!"), JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			n = Utilit.CleaPhone(n);
@@ -605,13 +605,13 @@ public class EastPanel extends TukPanel
 				answer = cl.send(pars);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Нет соединения с сервером", "Потеряна связь",
+				JOptionPane.showMessageDialog(main, Lang.put("Connection is lost#Нет соединения с сервером"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			JSONObject jo = new JSONObject(answer);
 			if (jo.getInt("status") != 0)
-				JOptionPane.showMessageDialog(main, jo.getString("msg"), "Ошибка", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(main, jo.getString("msg"), Lang.put("Error#Ошибка"), JOptionPane.ERROR_MESSAGE);
 			else
 				phone_label.setText(n);
 		}
@@ -653,13 +653,13 @@ public class EastPanel extends TukPanel
 			String par_name = "email";
 			if (!personal_data.isNull(par_name))
 				data = personal_data.getString(par_name);
-			String n = (String) JOptionPane.showInputDialog(main, "Email:", "Редактируем личные данные",
+			String n = (String) JOptionPane.showInputDialog(main, Lang.put("Enter a new email:#Введите новую почту:"), Lang.put("Editing your personal data#Редактируем личные данные"),
 					JOptionPane.NO_OPTION, null, null, data);
 			if (n == null)
 				return;
 			if (!Utilit.isMail(n))
 			{
-				JOptionPane.showMessageDialog(main, "Неправильная почта " + n, "Ошибка!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(main, Lang.put("Email is invalid #Неправильная почта ") + n, Lang.put("Error!#Ошибка!"), JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			Map<String, String> pars = new HashMap<String, String>();
@@ -672,7 +672,7 @@ public class EastPanel extends TukPanel
 				answer = cl.send(pars);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Нет соединения с сервером", "Потеряна связь",
+				JOptionPane.showMessageDialog(main, Lang.put("Connection is lost#Нет соединения с сервером"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -721,7 +721,7 @@ public class EastPanel extends TukPanel
 			String par_name = "password";
 			if (!personal_data.isNull(par_name))
 				data = personal_data.getString(par_name);
-			String n = (String) JOptionPane.showInputDialog(main, "Введите новый пароль:", "Редактируем личные данные",
+			String n = (String) JOptionPane.showInputDialog(main, Lang.put("Enter a new password#Введите новый пароль:"), Lang.put("Editing your personal data#Редактируем личные данные"),
 					JOptionPane.NO_OPTION, null, null, data);
 			if (n == null)
 				return;
@@ -735,7 +735,7 @@ public class EastPanel extends TukPanel
 				answer = cl.send(pars);
 			} catch (IOException e)
 			{
-				JOptionPane.showMessageDialog(main, "Нет соединения с сервером", "Потеряна связь",
+				JOptionPane.showMessageDialog(main, Lang.put("Connection is lost#Нет соединения с сервером"), Lang.put("Error#Ошибка"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
