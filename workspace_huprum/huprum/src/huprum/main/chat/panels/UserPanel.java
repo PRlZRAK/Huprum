@@ -1,5 +1,6 @@
 package huprum.main.chat.panels;
 
+import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -136,11 +137,13 @@ public class UserPanel extends JPanel
 		@Override
 		public void mouseEntered(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 
 		@Override
