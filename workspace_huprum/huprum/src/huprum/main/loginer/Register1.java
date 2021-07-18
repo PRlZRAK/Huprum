@@ -42,6 +42,11 @@ public class Register1 extends JFrame implements ActionListener
 				setErrLog(Lang.put("<html><p color=red>Fill in the field#<html><p color=red>заполнить"));
 			} else
 				setErrLog("");
+			if (log.length() > 10)
+			{
+				setErrLog(Lang.put("<html><p color=red>" + Lang.put("more than 10 characters!#больше 10 знаков!")));
+			} else
+				setErrLog("");
 			@SuppressWarnings("deprecation")
 			String pass = jpass.getText();
 			if (pass.equals(""))
@@ -92,10 +97,11 @@ public class Register1 extends JFrame implements ActionListener
 			}
 			JSONObject jo     = new JSONObject(otvet);
 			int        status = jo.getInt("status");
-			if (status == 2) {
+			if (status == 2)
+			{
 				setErrLog("<html><p color=red>" + Lang.put(jo.getString("msg")));
-			return;}
-			else
+				return;
+			} else
 				setErrLog("");
 			if (status == 3)
 				setErrPhone("<html><p color=red>" + Lang.put(jo.getString("msg")));
@@ -126,7 +132,6 @@ public class Register1 extends JFrame implements ActionListener
 	{
 		super(Lang.put("Registration#Регистрация"));
 		cl = main.getCl();
-		
 		setLocation(main.getLocation().x + 50, main.getLocation().y + 30);
 		setSize(1024, 600);
 		String pic_name;
@@ -137,7 +142,7 @@ public class Register1 extends JFrame implements ActionListener
 		TukPanel panel;
 		try
 		{
-			panel = new TukPanel(pic_name, 250,250, 40, 20, Utilit.COLOR_1068);
+			panel = new TukPanel(pic_name, 250, 250, 40, 20, Utilit.COLOR_1068);
 		} catch (IOException e1)
 		{
 			panel = (TukPanel) new JPanel();
@@ -199,7 +204,6 @@ public class Register1 extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0)
 	{
 		setVisible(true);
-		
 	}
 
 	public void setErrPas(String string)

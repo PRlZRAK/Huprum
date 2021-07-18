@@ -29,42 +29,37 @@ public class SettingsPanel extends TukPanel
 	private static final long serialVersionUID = 1L;
 	private Huprum            main;
 
-	public SettingsPanel(Huprum main) throws IOException 
+	public SettingsPanel(Huprum main) throws IOException
 	{
 		super("logo_en.png", 100, 100, 16, 12, Utilit.COLOR_1085);
 		this.main = main;
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		
 		setLayout(gridBagLayout);
-		
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(5, 20, 5, 20);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
-		
-			String logo_name;
-			if (Lang.getLang().equals("ru"))
-				logo_name = "logo_ru.png";
-			else
-				logo_name = "logo_en.png";
-			super.setImg(logo_name);
-			
+		String logo_name;
+		if (Lang.getLang().equals("ru"))
+			logo_name = "logo_ru.png";
+		else
+			logo_name = "logo_en.png";
+		super.setImg(logo_name);
 		c.gridx = 1;
-		
 		ImageIcon close_image;
 		JLabel    label_close = new JLabel();
 		try
 		{
 			close_image = new ImageIcon(ImageIO.read(new URL(Utilit.IMG_URL + "close.png")));
-			   label_close.setIcon(close_image);
+			label_close.setIcon(close_image);
 		} catch (IOException e)
 		{
-			 label_close.setText("X");
+			label_close.setText("X");
 		}
-
 		label_close.addMouseListener(new CloseWidow());
+		label_close.setToolTipText(Lang.put("Close a window#Закрыть окно"));
 		add(label_close, c);
 		c.gridx = 0;
 		c.gridy++;
