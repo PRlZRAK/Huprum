@@ -4,12 +4,12 @@ if %ERRORLEVEL% EQU 0 goto ok
 echo Install jre
 jre-8u291-windows-i586-iftw.exe
 :ok
-mkdir %USERPROFILE%\tuktuk
-copy tuktuk.jar %USERPROFILE%\tuktuk
-copy logo.ico %USERPROFILE%\tuktuk
-echo @echo off >  %USERPROFILE%\tuktuk\tuktuk.bat 
-echo cd %USERPROFILE%\tuktuk >>  %USERPROFILE%\tuktuk\tuktuk.bat 
-echo start javaw -jar tuktuk.jar >>  %USERPROFILE%\tuktuk\tuktuk.bat
+mkdir "%USERPROFILE%\tuktuk"
+copy tuktuk.jar "%USERPROFILE%\tuktuk"
+copy logo.ico "%USERPROFILE%\tuktuk"
+echo @echo off >  "%USERPROFILE%\tuktuk\tuktuk.bat" 
+echo cd %USERPROFILE%\tuktuk >>  "%USERPROFILE%\tuktuk\tuktuk.bat" 
+echo start javaw -jar tuktuk.jar >>  "%USERPROFILE%\tuktuk\tuktuk.bat"
 :: --------------
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
 echo sLinkFile = "%USERPROFILE%\Desktop\tuktuk.lnk" >> CreateShortcut.vbs
