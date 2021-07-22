@@ -1,6 +1,7 @@
 package huprum.main.chat.panels;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -43,11 +44,11 @@ public class SouthPanel extends JPanel
 	private Loginer           loginer;
 	private Huprum            main;
 	private String            myId;
-	public JTextField        vod;
+	public JTextField         vod;
 	private ImageManipulation img_send         = null;
 	private JLabel            show;
 	private Smile             sml;
-	public JLabel            show_label;
+	public JLabel             show_label;
 	private JButton           enter;
 
 	public SouthPanel(Huprum main)
@@ -212,11 +213,13 @@ public class SouthPanel extends JPanel
 		@Override
 		public void mouseEntered(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 
 		@Override
@@ -248,11 +251,13 @@ public class SouthPanel extends JPanel
 		@Override
 		public void mouseEntered(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 
 		@Override

@@ -1,5 +1,6 @@
 package huprum.main.smile;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
@@ -51,11 +52,13 @@ public class Smile extends JPanel
 		@Override
 		public void mouseEntered(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0)
 		{
+			((JLabel) arg0.getSource()).setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 
 		@Override

@@ -19,7 +19,6 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import org.json.JSONObject;
 
-import huprum.main.chat.panels.WaitPanel;
 import huprum.main.connections.Client;
 import huprum.main.loginer.Loginer;
 import huprum.main.sqlite.Store;
