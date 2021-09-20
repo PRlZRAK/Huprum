@@ -23,7 +23,7 @@ public class VideoPlayer
 		{
 			Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
 		}
-		//f.deleteOnExit();
+		f.deleteOnExit();
 	}
 
 	private void play()
