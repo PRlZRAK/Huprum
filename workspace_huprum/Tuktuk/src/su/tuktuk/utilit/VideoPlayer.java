@@ -9,6 +9,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 public class VideoPlayer
 {
@@ -16,12 +17,13 @@ public class VideoPlayer
 
 	public VideoPlayer(URL url) throws IOException
 	{
-		f=File.createTempFile("test", ".3gp");			
+		f = File.createTempFile("test", ".3gp");
 		Path path = f.toPath();
-		try (InputStream in = url.openStream()) {
-		    Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
+		try (InputStream in = url.openStream())
+		{
+			Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
 		}
-		f.deleteOnExit();
+		//f.deleteOnExit();
 	}
 
 	private void play()
@@ -39,8 +41,11 @@ public class VideoPlayer
 	{
 		try
 		{
-			VideoPlayer p = new VideoPlayer(new URL("https://cloud.mail.ru/public/5xDX/pJUojZADX"));
+			// VideoPlayer p = new VideoPlayer(new
+			// URL("https://cloud.mail.ru/public/5xDX/pJUojZADX"));
+			VideoPlayer p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/test.3gp"));
 			p.play();
+			System.out.println("конец");
 		} catch (MalformedURLException e)
 		{
 			// TODO Auto-generated catch block
