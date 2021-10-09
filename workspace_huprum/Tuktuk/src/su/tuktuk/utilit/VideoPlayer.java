@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.FileNameMap;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -20,7 +22,13 @@ public class VideoPlayer {
 	private File f;
 
 	public VideoPlayer(URL url) throws IOException {
-		f = File.createTempFile("test", ".3gp");
+		String s = url.getFile();
+		System.out.println(s);
+		String ext;
+		if(s.contains(".")) ext = s.substring(s.lastIndexOf("."));
+		else ext="";
+	    System.out.println(ext);
+		f = File.createTempFile("test", ext);
 		Path path = f.toPath();
 		try (InputStream in = url.openStream()) {
 			Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
@@ -55,7 +63,7 @@ public class VideoPlayer {
 
 						VideoPlayer p;
 						try {
-							p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/test.3gp"));
+							p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test.3gp"));
 							p.play();
 						} catch (IOException e) {
 							e.printStackTrace();
