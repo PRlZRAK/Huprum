@@ -8,9 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.FileNameMap;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -20,20 +18,61 @@ import javax.swing.JFrame;
 
 public class VideoPlayer {
 	private File f;
+	private static VideoPlayer p;
 
 	public VideoPlayer(URL url) throws IOException {
-		String s = url.getFile();
-		System.out.println(s);
-		String ext;
-		if(s.contains(".")) ext = s.substring(s.lastIndexOf("."));
-		else ext="";
-	    System.out.println(ext);
-		f = File.createTempFile("test", ext);
-		Path path = f.toPath();
-		try (InputStream in = url.openStream()) {
-			Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
-		}
-		f.deleteOnExit();
+		boolean[] dwnl = { true };
+		Runnable r1 = new Runnable() {
+			@Override
+			public void run() {
+				int time = 0;
+				try {
+					while (dwnl[0]) {
+
+						System.out.println(time);
+						time++;
+						Thread.sleep(1000);
+
+					}
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+
+		Thread t1 = new Thread(r1);
+		t1.start();
+
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				try {
+					String s = url.getFile();
+					String ext;
+					if (s.contains("."))
+						ext = s.substring(s.lastIndexOf("."));
+					else
+						ext = "";
+					f = File.createTempFile("test", ext);
+					Path path = f.toPath();
+					try (InputStream in = url.openStream()) {
+						Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
+					}
+					f.deleteOnExit();
+					dwnl[0] = false;
+					p.play();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		};
+
+		Thread t = new Thread(r);
+		t.start();
+
 	}
 
 	private void play() {
@@ -55,26 +94,17 @@ public class VideoPlayer {
 		c.add(b);
 		b.addActionListener(new ActionListener() {
 
+			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Runnable r = new Runnable() {
-					@Override
-					public void run() {
 
-						VideoPlayer p;
-						try {
-							p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test.3gp"));
-							p.play();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-
-					}
-				};
-
-				Thread t = new Thread(r);
-				t.start();
-
+				try {
+					p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test.3gp"));
+					e.getSource();					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		});
