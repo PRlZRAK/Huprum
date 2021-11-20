@@ -8,7 +8,7 @@ public class TestDescktop
 {
 	public static void main(String[] args)
 	{
-		File f=new File("test.3gp");
+		File f=new File("long_test.3gp");
 		try
 		{
 			Desktop.getDesktop().open(f);
