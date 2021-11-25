@@ -19,12 +19,11 @@ import javax.swing.JFrame;
 public class VideoPlayer
 {
 	private File               f;
+	protected static boolean dwnl;
 	private static VideoPlayer p;
 
 	public VideoPlayer(URL url) throws IOException
 	{
-		boolean[] dwnl =
-		{ true };
 		/*
 		Runnable  r1   = new Runnable()
 						{
@@ -47,9 +46,9 @@ public class VideoPlayer
 								}
 							}
 						};
-						*/
-		Thread    t1   = new Thread();
-		t1.start();
+						
+		Thread    t1   = new Thread(r1);
+		t1.start();*/
 		Runnable r = new Runnable()
 					{
 						@Override
@@ -70,7 +69,7 @@ public class VideoPlayer
 									Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
 								}
 								f.deleteOnExit();
-								dwnl[0] = false;
+								dwnl = false;
 								p.play();
 							} catch (IOException e)
 							{
@@ -100,6 +99,7 @@ public class VideoPlayer
 		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = t.getContentPane();
 		c.setLayout(new FlowLayout());
+		p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test"));
 		JButton b = new JButton("посмотреть видео");
 		c.add(b);
 		b.addActionListener(new ActionListener()
@@ -107,14 +107,35 @@ public class VideoPlayer
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				try
+				if(dwnl) {
+					
+              JButton b = (JButton) e.getSource();
+              b.setText("Загрузка");
+      		Runnable  r1   = new Runnable()
+			{
+				@Override
+				public void run()
 				{
-					p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test.3gp"));
-					e.getSource();
-				} catch (IOException e1)
-				{
-					e1.printStackTrace();
+					try
+					{
+						while (dwnl)
+						{							
+							Thread.sleep(1000);
+						}
+						b.setText("посмотреть видео");
+					} catch (InterruptedException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+			};
+			
+Thread    t1   = new Thread(r1);
+t1.start();
+              
+				}
+				else p.play();
 			}
 		});
 		t.setVisible(true);
