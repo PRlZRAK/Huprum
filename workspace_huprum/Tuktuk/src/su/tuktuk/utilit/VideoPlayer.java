@@ -18,37 +18,12 @@ import javax.swing.JFrame;
 
 public class VideoPlayer
 {
-	private File               f;
-	protected static boolean dwnl;
-	private static VideoPlayer p;
+	private File    f;
+	private boolean dwnl=true;
+	// private VideoPlayer p;
 
 	public VideoPlayer(URL url) throws IOException
 	{
-		/*
-		Runnable  r1   = new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								int time = 0;
-								try
-								{
-									while (dwnl[0])
-									{
-										System.out.println(time);
-										time++;
-										Thread.sleep(1000);
-									}
-								} catch (InterruptedException e)
-								{
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-						};
-						
-		Thread    t1   = new Thread(r1);
-		t1.start();*/
 		Runnable r = new Runnable()
 					{
 						@Override
@@ -68,9 +43,10 @@ public class VideoPlayer
 								{
 									Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
 								}
+								System.out.println("загрузилось");
 								f.deleteOnExit();
 								dwnl = false;
-								p.play();
+								
 							} catch (IOException e)
 							{
 								e.printStackTrace();
@@ -79,6 +55,11 @@ public class VideoPlayer
 					};
 		Thread   t = new Thread(r);
 		t.start();
+	}
+
+	protected boolean isLoading()
+	{
+		return dwnl;
 	}
 
 	private void play()
@@ -99,43 +80,42 @@ public class VideoPlayer
 		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = t.getContentPane();
 		c.setLayout(new FlowLayout());
-		p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test"));
-		JButton b = new JButton("посмотреть видео");
+		Stor st =null;
+		VideoPlayer p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test"),st);
+		JButton     b = new JButton("посмотреть видео");
 		c.add(b);
 		b.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if(dwnl) {
-					
-              JButton b = (JButton) e.getSource();
-              b.setText("Загрузка");
-      		Runnable  r1   = new Runnable()
-			{
-				@Override
-				public void run()
+				if (p.isLoading())
 				{
-					try
-					{
-						while (dwnl)
-						{							
-							Thread.sleep(1000);
-						}
-						b.setText("посмотреть видео");
-					} catch (InterruptedException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			};
-			
-Thread    t1   = new Thread(r1);
-t1.start();
-              
-				}
-				else p.play();
+					JButton b = (JButton) e.getSource();
+					b.setText("Загрузка");
+					Runnable r1 = new Runnable()
+								{
+									@Override
+									public void run()
+									{
+										try
+										{
+											while (p.isLoading())
+											{
+												Thread.sleep(1000);
+											}
+											b.setText("посмотреть видео");
+										} catch (InterruptedException e)
+										{
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+								};
+					Thread   t1 = new Thread(r1);
+					t1.start();
+				} else
+					p.play();
 			}
 		});
 		t.setVisible(true);
