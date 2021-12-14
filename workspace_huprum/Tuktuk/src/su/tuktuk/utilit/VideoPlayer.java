@@ -20,9 +20,8 @@ public class VideoPlayer
 {
 	private File    f;
 	private boolean dwnl=true;
-	// private VideoPlayer p;
 
-	public VideoPlayer(URL url) throws IOException
+	public VideoPlayer(URL url, MStor st) throws IOException
 	{
 		Runnable r = new Runnable()
 					{
@@ -31,19 +30,24 @@ public class VideoPlayer
 						{
 							try
 							{
-								String s = url.getFile();
-								String ext;
-								if (s.contains("."))
-									ext = s.substring(s.lastIndexOf("."));
-								else
-									ext = "";
-								f = File.createTempFile("test", ext);
-								Path path = f.toPath();
-								try (InputStream in = url.openStream())
-								{
-									Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
+								f=st.get(url.toString());
+								if (f == null) {
+									String s = url.getFile();
+									String ext;
+									if (s.contains("."))
+										ext = s.substring(s.lastIndexOf("."));
+									else
+										ext = "";
+									f = File.createTempFile("test", ext);
+									Path path = f.toPath();
+									try (InputStream in = url.openStream())
+									{
+										Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
+									}
+									System.out.println("загрузилось");
+									st.add(url.toString(), f);
 								}
-								System.out.println("загрузилось");
+								
 								f.deleteOnExit();
 								dwnl = false;
 								
@@ -80,7 +84,7 @@ public class VideoPlayer
 		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = t.getContentPane();
 		c.setLayout(new FlowLayout());
-		Stor st =null;
+		MStor st =new MStor();		
 		VideoPlayer p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test"),st);
 		JButton     b = new JButton("посмотреть видео");
 		c.add(b);
