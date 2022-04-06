@@ -1,8 +1,9 @@
 package su.tuktuk.utilit;
 
-import java.awt.Container;
+import java.awt.BorderLayout;
 import java.awt.Desktop;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,6 +16,8 @@ import java.nio.file.StandardCopyOption;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class VideoPlayer
 {
@@ -30,7 +33,7 @@ public class VideoPlayer
 						{
 							try
 							{
-								f=st.get(url.toString());
+								f=st.get(url.toString());								
 								if (f == null) {
 									String s = url.getFile();
 									String ext;
@@ -80,48 +83,82 @@ public class VideoPlayer
 	public static void main(String[] args) throws IOException
 	{
 		JFrame t = new JFrame();
+		
 		t.setSize(500, 500);
-		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = t.getContentPane();
-		c.setLayout(new FlowLayout());
-		MStor st =new MStor();		
-		VideoPlayer p = new VideoPlayer(new URL("http://tuktuk.su/huprum/server/img/long_test"),st);
-		JButton     b = new JButton("посмотреть видео");
-		c.add(b);
-		b.addActionListener(new ActionListener()
+		t.setLayout(new BorderLayout());
+		JPanel s = new JPanel();
+		JPanel n = new JPanel();
+		n.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridy = 0;
+		s.setLayout(new BorderLayout());
+		JTextField vod = new JTextField(30);
+		JButton enter = new JButton("скачать");
+		s.add(vod, BorderLayout.WEST);
+		t.add(s,BorderLayout.SOUTH);
+		t.add(n,BorderLayout.CENTER);
+		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+	    MStor st = new MStor();				
+		enter.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if (p.isLoading())
-				{
-					JButton b = (JButton) e.getSource();
-					b.setText("Загрузка");
-					Runnable r1 = new Runnable()
-								{
-									@Override
-									public void run()
+				//http://tuktuk.su/huprum/server/img/long_test 
+				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1p4HTvApPb2USv26S1f6T_l2lF9LACtA5     powerpoint
+				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1Ildv2Z_jiAEg5UCEXQeH4KRqH9HRKrbk     word
+				JButton b = new JButton();
+				b.setEnabled(false);
+				b.setText("загрузка");		
+				n.add(b,c);
+				c.gridy++;
+				t.revalidate();
+				t.repaint();
+				try {
+					
+				
+						
+						VideoPlayer p = new VideoPlayer(new URL(vod.getText()),st);
+						b.addActionListener(new ActionListener() 
+						{
+							@Override
+							public void actionPerformed(ActionEvent e)
+							{
+							p.play();	
+							}
+							
+						});
+						Runnable r1 = new Runnable()
 									{
-										try
+										@Override
+										public void run()
 										{
-											while (p.isLoading())
+											try
 											{
-												Thread.sleep(1000);
+												while (p.isLoading())
+												{
+													Thread.sleep(1000);
+												}
+												b.setText("открыть");
+												b.setEnabled(true);
+											} catch (InterruptedException e)
+											{
+												// TODO Auto-generated catch block
+												e.printStackTrace();
 											}
-											b.setText("посмотреть видео");
-										} catch (InterruptedException e)
-										{
-											// TODO Auto-generated catch block
-											e.printStackTrace();
 										}
-									}
-								};
-					Thread   t1 = new Thread(r1);
-					t1.start();
-				} else
-					p.play();
+									};
+						Thread   t1 = new Thread(r1);
+						t1.start();				
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+	
 			}
 		});
+		s.add(enter,BorderLayout.EAST);
 		t.setVisible(true);
 	}
 }

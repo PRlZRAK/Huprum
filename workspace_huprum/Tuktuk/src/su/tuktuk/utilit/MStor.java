@@ -10,9 +10,9 @@ public class MStor extends JSONObject {
 		put(key, med);
 	}
 
-	public File get(String key) {
-		if (has(key))
-			return get(key);
+	public File get(String key1) {
+		if (has(key1))
+			return get(key1);
 		else
 			return null;
 
