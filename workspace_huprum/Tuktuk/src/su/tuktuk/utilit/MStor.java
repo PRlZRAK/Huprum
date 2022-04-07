@@ -18,9 +18,11 @@ public class MStor extends HashMap<String, File> {
 	public File get1(String key) {
    if(containsKey(key)) return get(key);
    else return null;
-
-
 	}
+	public boolean has(String key) {
+		   if(containsKey(key)) return true;
+		   else return false;
+			}
 
 	public static void main(String[] args) {
 		MStor s = new MStor();

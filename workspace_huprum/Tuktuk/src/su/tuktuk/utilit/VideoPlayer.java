@@ -26,6 +26,33 @@ public class VideoPlayer
 
 	public VideoPlayer(URL url, MStor st) throws IOException
 	{
+		if (st.has(url.toString()))
+				
+		{
+			Runnable r = new Runnable()
+			{
+				@Override
+				public void run()
+				{
+                 while(st.get1(url.toString())==null)
+					try
+					{
+						Thread.sleep(1000);
+					} catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+                 f = st.get1(url.toString());
+                 f.deleteOnExit();
+				 dwnl = false;
+				}
+			};
+                    Thread   t = new Thread(r);
+                    t.start();
+		}
+		else {
+			st.add(url.toString(), null);
+		
 		Runnable r = new Runnable()
 					{
 						@Override
@@ -48,7 +75,7 @@ public class VideoPlayer
 										Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
 									}
 									System.out.println("загрузилось");
-									st.add(url.toString(), f);
+									st.add(url.toString(), f);									
 								}
 								
 								f.deleteOnExit();
@@ -62,6 +89,7 @@ public class VideoPlayer
 					};
 		Thread   t = new Thread(r);
 		t.start();
+		}
 	}
 
 	protected boolean isLoading()
