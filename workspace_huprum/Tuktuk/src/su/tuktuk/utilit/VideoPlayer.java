@@ -108,17 +108,19 @@ public class VideoPlayer
 				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1p4HTvApPb2USv26S1f6T_l2lF9LACtA5     powerpoint
 				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1Ildv2Z_jiAEg5UCEXQeH4KRqH9HRKrbk     word
 				JButton b = new JButton();
+				try {
+				VideoPlayer p = new VideoPlayer(new URL(vod.getText()),st);				
 				b.setEnabled(false);
 				b.setText("загрузка");		
 				n.add(b,c);
 				c.gridy++;
 				t.revalidate();
 				t.repaint();
-				try {
+				
 					
 				
 						
-						VideoPlayer p = new VideoPlayer(new URL(vod.getText()),st);
+						
 						b.addActionListener(new ActionListener() 
 						{
 							@Override
@@ -151,7 +153,7 @@ public class VideoPlayer
 						Thread   t1 = new Thread(r1);
 						t1.start();				
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					t.remove(b);
 					e1.printStackTrace();
 				}
 
