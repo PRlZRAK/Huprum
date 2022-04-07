@@ -33,7 +33,7 @@ public class VideoPlayer
 						{
 							try
 							{
-								f=st.get(url.toString());								
+								f=st.get1(url.toString());								
 								if (f == null) {
 									String s = url.getFile();
 									String ext;
