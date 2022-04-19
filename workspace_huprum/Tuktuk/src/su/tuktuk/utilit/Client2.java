@@ -1,6 +1,5 @@
 package su.tuktuk.utilit;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,8 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
-
-
 
 public class Client2
 {
@@ -55,7 +52,7 @@ public class Client2
 			{
 				response.append(responseLine.trim());
 			}
-			System.out.println("response = " + response.toString());
+			// System.out.println("response = " + response.toString());
 			return getJson(response.toString());
 		}
 	}
@@ -63,7 +60,7 @@ public class Client2
 	private String getJson(String s)
 	{
 		int b = s.indexOf("<#");
-		if (b > 0)
+		if (b > -1)
 		{
 			int e = s.indexOf("#>");
 			if (e > 0 && e > b)
@@ -79,19 +76,17 @@ public class Client2
 
 	public static void main(String[] args)
 	{
-		 String        HUPRUM_URL      = "http://tuktuk.su/huprum/tuktuk/index.php";
+		String HUPRUM_URL = "http://tuktuk.su/huprum/tuktuk/index.php";
 		try
 		{
-			Client2 cl = new Client2(HUPRUM_URL);
+			Client2             cl   = new Client2(HUPRUM_URL);
 			Map<String, String> pars = new HashMap<String, String>();
 			String              otvet;
 			JSONObject          jo;
-			pars.put("action","get users");
+			pars.put("action", "get users");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			
-					
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
