@@ -28,6 +28,7 @@ public class MStor extends HashMap<String, File>
 		if (containsKey(key))
 			return true;
 		else
+			
 			return false;
 	}
 
