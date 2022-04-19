@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -64,16 +65,23 @@ public class VideoPlayer
 								if (f == null) {
 									String s = url.getFile();
 									String ext;
+									URLConnection urlConnection =url.openConnection();
+									String mimeType = urlConnection.getContentType(); 
+                                     
 									if (s.contains("."))
 										ext = s.substring(s.lastIndexOf("."));
 									else
+										if (mimeType==null)
 										ext = "";
+										else
+										ext ="."+mimeType.substring(mimeType.lastIndexOf("/")+1);
 									f = File.createTempFile("test", ext);
 									Path path = f.toPath();
 									try (InputStream in = url.openStream())
 									{
 										Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
 									}
+									System.out.println(fileType);
 									System.out.println("загрузилось");
 									st.add(url.toString(), f);									
 								}
@@ -135,6 +143,8 @@ public class VideoPlayer
 				//http://tuktuk.su/huprum/server/img/long_test 
 				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1p4HTvApPb2USv26S1f6T_l2lF9LACtA5     powerpoint
 				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1Ildv2Z_jiAEg5UCEXQeH4KRqH9HRKrbk     word
+				//https://thumb.cloud.mail.ru/weblink/thumb/xw1/v3vw/2cwVWoQKn
+				vod.setText("");
 				JButton b = new JButton();
 				try {
 				VideoPlayer p = new VideoPlayer(new URL(vod.getText()),st);				
