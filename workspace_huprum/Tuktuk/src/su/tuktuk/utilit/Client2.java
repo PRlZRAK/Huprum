@@ -87,6 +87,23 @@ public class Client2
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
+			pars.clear();
+			
+			pars.put("action", "sum");
+			pars.put("x", "4");
+			pars.put("y", "9");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			pars.clear();
+			
+			pars.put("action", "step");
+			pars.put("x", "2");
+			pars.put("y", "3");
+			otvet = cl.send(pars);
+			jo = new JSONObject(otvet);
+			System.out.println("otvet = " + jo);
+			pars.clear();
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
