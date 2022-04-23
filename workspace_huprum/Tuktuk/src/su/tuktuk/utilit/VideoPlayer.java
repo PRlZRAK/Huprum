@@ -143,6 +143,7 @@ public class VideoPlayer
 				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1p4HTvApPb2USv26S1f6T_l2lF9LACtA5     powerpoint
 				//https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1Ildv2Z_jiAEg5UCEXQeH4KRqH9HRKrbk     word
 				//https://thumb.cloud.mail.ru/weblink/thumb/xw1/v3vw/2cwVWoQKn
+				//https://thumb.cloud.mail.ru/thumb/xw1/sambo/IMG_4588%5B1%5D.JPG
 				//vod.setText("");
 				JButton b = new JButton();
 				try {

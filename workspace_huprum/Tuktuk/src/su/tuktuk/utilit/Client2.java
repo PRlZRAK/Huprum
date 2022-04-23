@@ -52,7 +52,7 @@ public class Client2
 			{
 				response.append(responseLine.trim());
 			}
-			// System.out.println("response = " + response.toString());
+			System.out.println("response = " + response.toString());
 			return getJson(response.toString());
 		}
 	}
@@ -87,10 +87,11 @@ public class Client2
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
+			/*
 			pars.clear();
 			
 			pars.put("action", "sum");
-			pars.put("x", "4");
+			pars.put("x", "7а8");
 			pars.put("y", "9");
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
@@ -103,7 +104,7 @@ public class Client2
 			otvet = cl.send(pars);
 			jo = new JSONObject(otvet);
 			System.out.println("otvet = " + jo);
-			pars.clear();
+			pars.clear();*/
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
